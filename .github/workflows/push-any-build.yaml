@@ -2,7 +2,7 @@ name: Push to any
 run-name: Build on push to any branch except main
 
 on:
-  push:
+  release:
     branches-ignore:
       - main
 
