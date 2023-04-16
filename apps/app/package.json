@@ -1,20 +1,24 @@
 {
-  "name": "landing",
+  "name": "app",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode"
   },
   "dependencies": {
+    "firebase": "^9.19.1",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-icons": "^4.8.0",
-    "ui": "*"
+    "recoil": "^0.7.7",
+    "ui": "*",
+    "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.12",
