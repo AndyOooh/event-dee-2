@@ -1,0 +1,28 @@
+name: Push to any
+run-name: Build on push to any branch except main
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Install Node.js v18
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+      - name: Install TurboRepo CLI
+        run: yarn global add turbo
+      - name: Lint, Build, and Test
+        run: |
+          yarn workspace "...[HEAD^1]" install
+          turbo run lint --filter="...[HEAD^1]"
+          # turbo run build --filter=...[origin/main]
+          # turbo run test --filter=...[origin/main]

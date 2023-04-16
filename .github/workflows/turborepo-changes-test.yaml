@@ -1,0 +1,25 @@
+name: 'Turborepo Changes'
+run-name: ${{ github.actor }} using 3rd party
+
+on: push
+
+jobs:
+  output-package-names:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Necessary for comparing changes to past commits
+
+      - name: Collect Turborepo Changes
+        id: turborepoChanges
+        uses: 94726/action-turborepo-changes@v1.0.0
+        # with:
+        # from: HEAD^1 # Changes since previous commit (this is the default)
+
+      - name: Validate Action Output
+        if: contains(fromJson(steps.turborepoChanges.outputs.package_names), 'app') # Check if components package has changed
+        run: echo 'package "app" has changed'
+      - name: Log changed packages
+        run: echo ${{ steps.turborepoChanges.outputs.package_names }}

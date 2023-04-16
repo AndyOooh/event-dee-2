@@ -1,0 +1,41 @@
+name: landing-main
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/app/**'
+      - '.github/workflows/app.yaml'
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Install dependecies
+        run: pnpm i
+      - name: build
+        working-directory: ./apps/app
+        run: pnpm build --filter=app
+      - name: start
+        working-directory: ./apps/app
+        run: pnpm start --filter=app
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_EVENT_DEE }}'
+          channelId: live
+          projectId: event-dee
