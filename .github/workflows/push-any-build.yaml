@@ -22,7 +22,6 @@ jobs:
         run: yarn global add turbo
       - name: Lint, Build, and Test
         run: |
-          # yarn workspace "...[HEAD^1]" install
           turbo run install --filter="...[HEAD^1]"
           turbo run lint --filter="...[HEAD^1]"
           # turbo run build --filter=...[origin/main]
