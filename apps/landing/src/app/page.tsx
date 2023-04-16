@@ -14,7 +14,7 @@ export default function Home() {
       <h1>Landing page now</h1>
       {/* <Button /> */}
       {/* <YelloButton /> */}
-      <button className='btn btn-primary bg-orange-400'>Daisy</button>
+      <button className='btn btn-primary bg-orange-300'>Daisy</button>
       <button className='btn btn-primary bg-cyan-300'>Daisy2</button>
       {/* <div className='flex flex-col gap-4'> */}
       <Button />
