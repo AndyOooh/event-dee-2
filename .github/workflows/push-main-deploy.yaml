@@ -1,5 +1,7 @@
 name: Deploy on Changes to Next.js Apps
 on:
+  # pull_request:
+  #   types: [opened, reopened]
   push:
     branches:
       - main
