@@ -53,7 +53,7 @@ function HeaderLeft({}: Props) {
           </li>
         </ul>
       </div>
-      <a className='btn btn-ghost normal-case text-xl'>daisyUI</a>
+      <a className='btn btn-ghost normal-case text-xl'>Event Dee</a>
     </div>
   );
 }
