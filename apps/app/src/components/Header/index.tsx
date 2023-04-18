@@ -7,7 +7,7 @@ type Props = {};
 
 function Header({}: Props) {
   return (
-    <header className='bg-accent'>
+    <header className='bg-green-600/40'>
       <nav className='navbar bg-base-100 w-11/12 mx-auto px-2'>
         <HeaderLeft />
         <Headercenter />
