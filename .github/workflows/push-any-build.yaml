@@ -23,7 +23,7 @@ jobs:
       - name: Lint, Build, and Test
         run: |
           # yarn
-          yarn workspaces foreach --verbose --since --no-private npm info
+          echo yarn workspaces foreach --verbose --since --no-private info
           yarn workspaces foreach --since -pR install
           # turbo run lint --filter="...[HEAD^1]"
           # turbo run build --filter="...[HEAD^1]"
