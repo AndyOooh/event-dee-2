@@ -25,7 +25,7 @@ jobs:
           # yarn
           # yarn workspaces foreach --verbose --since --no-private info
           yarn workspaces info
-          yarn workspaces foreach --since -pR install
+          yarn workspaces foreach --since -pR
           # turbo run lint --filter="...[HEAD^1]"
           # turbo run build --filter="...[HEAD^1]"
           turbo run lint 
