@@ -25,6 +25,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "@yarnpkg/plugin-workspace-tools": "^4.0.0-rc.42",
     "daisyui": "^2.51.5"
   }
 }
