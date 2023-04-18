@@ -22,10 +22,10 @@ jobs:
         run: yarn global add turbo
       - name: Lint, Build, and Test
         run: |
-          # yarn
+          yarn
           # yarn workspaces foreach --verbose --since --no-private info
-          yarn workspaces info
-          yarn workspaces foreach install
+          # yarn workspaces info
+          # yarn workspaces foreach install
           # turbo run lint --filter="...[HEAD^1]"
           # turbo run build --filter="...[HEAD^1]"
           turbo run lint 
