@@ -23,13 +23,16 @@ jobs:
       #     echo "Changes detected: $diff"
       #     echo "diff=$diff" >> $GITHUB_ENV
 
-      - name: Get changed packages
-        id: turborepoChanges
-        uses: 94726/action-turborepo-changes@2f392aee0d6b90803c0551ea774c254451fd92be
+
+      # - name: Get changed packages
+      #   id: turborepoChanges
+      #   uses: 94726/action-turborepo-changes@2f392aee0d6b90803c0551ea774c254451fd92be
 
       - name: Deploy app to app.domain.com
-        if: contains(fromJson(steps.turborepoChanges.outputs.package_names), 'app')
+        # if: contains(fromJson(steps.turborepoChanges.outputs.package_names), 'app')
+
         run: curl https://api.vercel.com/v1/integrations/deploy/prj_fX0FLoIPY5uogeX8NKjuTs44nfxh/50lWzMkNEG
+        
       # - name: Deploy app changes
       #   if: ${{ contains(env.diff, 'app/app') }}
       #   run: curl https://api.vercel.com/v1/integrations/deploy/prj_hoYbmZnRmobnr5K9Dok65mmki7k7/oZFxMHUSsd
