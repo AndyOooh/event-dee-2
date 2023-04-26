@@ -8,7 +8,7 @@ type Props = {};
 function index({}: Props) {
   return (
     <header className='bg-primary'>
-      <nav className='navbar w-11/12 mx-auto px-2'>
+      <nav className='navbar w-11/12 mx-auto px-2 font-semibold'>
         <HeaderLeft />
         <NavBar />
         <HeaderRight />

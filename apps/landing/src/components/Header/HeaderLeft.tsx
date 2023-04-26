@@ -1,4 +1,22 @@
+import Image from 'next/image';
 import React from 'react';
+
+// import profilePic from '../../../public/logo/logo-d-trans.png';
+import profilePic from '../../../public/logo/logo-pink-trans.png';
+// import profilePic from '/logo/logo-d-trans.png';
+
+import { Gruppo, Barlow_Condensed } from 'next/font/google';
+
+const gruppo = Gruppo({
+  weight: ['400'],
+  subsets: ['latin'],
+});
+
+// If loading a variable font, you don't need to specify the font weight
+const barlowCondensed = Barlow_Condensed({
+  weight: ['400', '700', '900'],
+  subsets: ['latin'],
+});
 
 type Props = {};
 
@@ -53,7 +71,19 @@ function HeaderLeft({}: Props) {
           </li>
         </ul>
       </div>
-      <a className='btn btn-ghost normal-case text-xl'>Event Dee</a>
+      <a
+        // className={`btn btn-ghost normal-case text-2xl font-extrabold ${barlowCondensed.className}`}>
+        className={`btn btn-ghost normal-case text-3xl ${barlowCondensed.className}`}>
+        Event<span className='text-emerald-600/80 font-extrabold'>Dee</span> 
+        {/* <Image
+          src={profilePic}
+          alt='logo'
+          width={70}
+          height={70}
+          // fill={true}
+        /> */}
+        {/* <Image src='/logo/logo-d-trans.png' width={50} height={50} alt='logo' /> */}
+      </a>
     </div>
   );
 }

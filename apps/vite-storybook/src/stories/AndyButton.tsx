@@ -1,5 +1,4 @@
 import React from 'react';
-import './button.css';
 
 // Copied from boulerplate Button
 interface ButtonProps {

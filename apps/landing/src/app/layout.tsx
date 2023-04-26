@@ -1,5 +1,14 @@
+import Header from '../components/Header';
 import '../styles/globals.scss';
 // import "ui/styles.css"; // might need this
+
+import { Varela } from 'next/font/google';
+
+// If loading a variable font, you don't need to specify the font weight
+const varela = Varela({
+  weight: ['400'],
+  subsets: ['latin'],
+});
 
 // Figure this out. New way to do head I think - instead of file
 export const metadata = {
@@ -9,8 +18,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en' className='bg-pink-300'>
-      <body>{children}</body>
+    <html lang='en' className={`${varela.className} text-black`}>
+      <body className='min-h-screen'>
+        <Header />
+        <main className=''>{children}</main>
+      </body>
     </html>
   );
 }
