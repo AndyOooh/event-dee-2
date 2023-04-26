@@ -1,3 +1,4 @@
+import { Footer } from '../components/Footer';
 import Header from '../components/Header';
 import '../styles/globals.scss';
 // import "ui/styles.css"; // might need this
@@ -21,7 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en' className={`${varela.className} text-black`}>
       <body className='min-h-screen'>
         <Header />
-        <main className=''>{children}</main>
+        <main className='main-height mt-16'>{children}</main>
+        <Footer />
       </body>
     </html>
   );
