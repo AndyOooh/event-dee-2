@@ -1,19 +1,32 @@
-'use client';
+// 'use client'
 
-import { RecoilRoot } from 'recoil';
-import Header from '../components/Header';
+import { Varela } from 'next/font/google';
+
+import { RecoilProvider } from '../components/RecoilProvider';
 import '../styles/globals.scss';
+
+const varela = Varela({
+  weight: ['400'],
+  subsets: ['latin'],
+});
+
+export const metadata = {
+  title: 'Event Dee - App',
+  description: 'Connecting events',
+  icons: {
+    icon: '/logo/logo-d-trans.png',
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
+    <html lang='en' className={`${varela.className} text-black`}>
       <head />
-      <body className='min-h-screen'>
-        <RecoilRoot>
-          <Header />
-          <main className='w-11/12 bg-primary mx-auto'>{children}</main>
-          <div id='modal'></div>
-        </RecoilRoot>
+      <body className=''>
+        <RecoilProvider>
+          <main className='min-h-screen w-full bg-primary'>{children}</main>
+          {/* <div id='modal'></div> */}
+        </RecoilProvider>
       </body>
     </html>
   );
