@@ -13,9 +13,9 @@ export const AuthCardUser = (props: Props) => {
           <Image src={chomPortait.src} alt='avatar' fill={true} sizes='6rem' />
         </div>
       </div>
-      <div className='flex flex-col text-xs'>
-        <span className='font-semibold'>Chompuu</span>
-        <span text-accent>Model</span>
+      <div className='flex flex-col '>
+        <span className='font-semibold text-xs'>Chompuu</span>
+        <span className='text-[0.5rem]'>Model</span>
       </div>
     </div>
   );
