@@ -1,9 +1,8 @@
 // 'use client'
 
-import { Varela } from 'next/font/google';
-
 import { RecoilProvider } from '../components/RecoilProvider';
 import '../styles/globals.scss';
+import { Varela } from 'next/font/google';
 
 const varela = Varela({
   weight: ['400'],
@@ -14,7 +13,7 @@ export const metadata = {
   title: 'Event Dee - App',
   description: 'Connecting events',
   icons: {
-    icon: '/logo/logo-d-trans.png',
+    icon: '/favicon.ico',
   },
 };
 
@@ -24,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head />
       <body className=''>
         <RecoilProvider>
-          <main className='min-h-screen w-full bg-primary'>{children}</main>
+          <main className='min-h-screen'>{children}</main>
           {/* <div id='modal'></div> */}
         </RecoilProvider>
       </body>

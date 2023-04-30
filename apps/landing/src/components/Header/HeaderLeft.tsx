@@ -3,9 +3,12 @@ import React from 'react';
 
 // import profilePic from '../../../public/logo/logo-d-trans.png';
 import profilePic from '../../../public/logo/logo-pink-trans.png';
+import logoMint from '../../../public/logo/combi_mint.png';
 // import profilePic from '/logo/logo-d-trans.png';
 
 import { Gruppo, Barlow_Condensed } from 'next/font/google';
+import { colorMap } from 'ui';
+import Link from 'next/link';
 
 const gruppo = Gruppo({
   weight: ['400'],
@@ -71,21 +74,15 @@ function HeaderLeft({}: Props) {
           </li>
         </ul>
       </div>
-      <a
-        // className={`btn btn-ghost normal-case text-2xl font-extrabold ${barlowCondensed.className}`}>
-        className={`btn btn-ghost normal-case text-3xl ${barlowCondensed.className}`}>
-        Event<span className='text-emerald-600/80 font-extrabold'>Dee</span> 
-        {/* <Image
-          src={profilePic}
-          alt='logo'
-          width={70}
-          height={70}
-          // fill={true}
-        /> */}
-        {/* <Image src='/logo/logo-d-trans.png' width={50} height={50} alt='logo' /> */}
-      </a>
+      <Link href={'/'}>
+        <div className='relative w-1/2 rounded-lg p-3 hover:scale-105 hover:bg-base-300'>
+          <Image src={logoMint} alt='logo' width={800} height={800} />
+        </div>
+      </Link>
     </div>
   );
 }
 
 export default HeaderLeft;
+
+

@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "turbo run clean && rm -rf node_modules"
@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "@yarnpkg/plugin-workspace-tools": "^4.0.0-rc.42",
-    "daisyui": "^2.51.5"
+    "daisyui": "^2.51.5",
+    "dotenv-cli": "^7.2.1"
   }
 }

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { menuItems } from './menuItems';
+import Link from 'next/link';
+import { appUrl } from '../../consts';
 
 type Props = {};
 
@@ -18,14 +20,14 @@ function NavBar({}: Props) {
               <ul className='p-2 bg-base-100'>
                 {item.subItems.map(subItem => (
                   <li key={subItem.title}>
-                    <a>{subItem.title}</a>
+                    <Link href={subItem.link}>{subItem.title}</Link>
                   </li>
                 ))}
               </ul>
             </li>
           ) : (
             <li key={item.title}>
-              <a>{item.title}</a>
+              <Link href={item.link}>{item.title}</Link>
             </li>
           )
         )}

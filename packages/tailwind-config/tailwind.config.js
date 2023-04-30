@@ -16,14 +16,31 @@ module.exports = {
   daisyui: {
     themes: [
       {
+        // eventDee: {
+        //   ...require('daisyui/src/colors/themes')['[data-theme=coffee]'],
+        //   primary: '#F9F8F5', // white-ish
+        //   // "primary-focus": "mediumblue",
+        //   secondary: '#F2EFE8', // Beige
+        //   accent: '#f9b1cc', // Soft Pink
+        //   neutral: '#1C161D', // Dark Charcoal (black-ish)
+        //   'neutral-content': '#F9F8F5', 
+        //   'base-100': '#F9F8F5', // Off-White (almmost white)
+        //   info: '#87B1E8', // Sky Blue
+        //   success: '#7FE6A7', // Mint Green
+        //   warning: '#FAA447', // Tangerine Orange
+        //   error: '#EA5766', // Coral Red
+        // },
         eventDee: {
           ...require('daisyui/src/colors/themes')['[data-theme=coffee]'],
-          primary: '#F9F8F5', // white-ish
-          // "primary-focus": "mediumblue",
-          secondary: '#F2EFE8', // Beige
-          accent: '#f9b1cc', // Soft Pink
+          primary: '#f9b1cc', // Soft Pink
+          secondary: '#f9b1cc', // shuold be purple?
+          // accent: '#FFE600', // yellow
+          accent: '#1C161D', // yellow
           neutral: '#1C161D', // Dark Charcoal (black-ish)
-          'base-100': '#F9F8F5', // Off-White (almmost white)
+          'neutral-content': '#F9F8F5', // off-white, set this bc default ws red-ish
+          'base-100': '#FFFFFF', // white
+          'base-200': '#F9F8F5', // Off-White (almmost white)
+          'base-300': '#F2EFE8', // beige
           info: '#87B1E8', // Sky Blue
           success: '#7FE6A7', // Mint Green
           warning: '#FAA447', // Tangerine Orange

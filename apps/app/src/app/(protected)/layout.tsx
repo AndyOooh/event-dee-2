@@ -1,5 +1,3 @@
-import { AuthCard } from '../../components/AuthCard';
-import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { PrivateRoutes } from './PrivateRoutes';
 
@@ -8,9 +6,7 @@ export default function protectedLayout({ children }: { children: React.ReactNod
     <PrivateRoutes>
       <div className='flex'>
         <Sidebar />
-        
-        {/* <Header /> */}
-        {children}
+        <div className='bg-base-200 w-full'>{children}</div>
       </div>
     </PrivateRoutes>
   );

@@ -1,9 +1,5 @@
 import { PublicRoutes } from './PublicRoutes';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <PublicRoutes>
-      <div className='flex min-h-screen w-full'>{children}</div>;
-    </PublicRoutes>
-  );
+export default function PublicLayout({ children }: { children: React.ReactNode }) {
+  return <PublicRoutes>{children}</PublicRoutes>;
 }

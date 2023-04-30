@@ -5,4 +5,4 @@ export const appUrl =
     ? 'https://app.event-dee.vercel.app/'
     : NODE_ENV === 'staging'
     ? 'https://dev.event-dee.vercel.app/'
-    : 'https://localhost:3000';
+    : 'http://localhost:3001';

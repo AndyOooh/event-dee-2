@@ -1,11 +1,17 @@
+'use client';
+
 import React from 'react';
 
 import chomPortait from '../../../public/talent/chom_white_12_17.jpg';
 import Image from 'next/image';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase/clientApp';
 
 type Props = {};
 
 export const AuthCardUser = (props: Props) => {
+  const [user, loading, error] = useAuthState(auth);
+  console.log('🚀  file: AuthCardUser.tsx:14  user:', user)
   return (
     <div className='flex gap-1'>
       <div className='avatar'>
@@ -13,9 +19,9 @@ export const AuthCardUser = (props: Props) => {
           <Image src={chomPortait.src} alt='avatar' fill={true} sizes='6rem' />
         </div>
       </div>
-      <div className='flex flex-col '>
-        <span className='font-semibold text-xs'>Chompuu</span>
-        <span className='text-[0.5rem]'>Model</span>
+      <div className='flex flex-col font-semibold'>
+        <span className='text-xs'>{user.email} </span>
+        <span className='text-[0.625rem] text-info'>Model</span>
       </div>
     </div>
   );

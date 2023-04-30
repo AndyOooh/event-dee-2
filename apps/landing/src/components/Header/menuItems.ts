@@ -1,3 +1,5 @@
+import { appUrl } from '../../consts';
+
 export const menuItems = [
   {
     title: 'Companies',
@@ -23,6 +25,6 @@ export const menuItems = [
   },
   {
     title: 'Login',
-    link: '/clients', // to app
+    link: appUrl + '/login', // to app
   },
 ];
