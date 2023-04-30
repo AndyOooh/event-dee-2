@@ -4,9 +4,6 @@ import React, { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'r
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import SignUp from '../../../../../../components/modals/auth/inputs/SignUp';
 import { auth } from '../../../../../../firebase/clientApp';
-import { FIREBASE_ERRORS } from '../../../../../../firebase/errors';
-import { ActionButton } from '../../components/ActionButton';
-import { CheckLegal } from '../../components/CheckLegal';
 import { Page1 } from './Page1';
 import { Page2 } from './Page2';
 
@@ -14,6 +11,10 @@ type Props = {
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
 };
+
+//  TODO: split handle submit into two functions, one for page 1 and one for page 2
+//  TODO: handle validation better
+//  TODO: handle image uploads
 
 export type HandleChange = ChangeEventHandler<HTMLInputElement>;
 

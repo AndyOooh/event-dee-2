@@ -12,8 +12,8 @@ export const SignupMemberLeft = (props: Props) => {
           <div key={index} className='flex gap-12 w-full'>
             <div className=''>{benefit.icon3}</div>
             <div className='flex flex-col gap-2 w-[22rem]'>
-              <p className='text-2xl'>{benefit.title}</p>
-              <p className=''>{benefit.description}</p>
+              <p className='text-xl'>{benefit.title}</p>
+              <p className='text-sm'>{benefit.description}</p>
             </div>
           </div>
         ))}

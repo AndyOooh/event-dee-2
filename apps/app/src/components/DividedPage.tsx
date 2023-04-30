@@ -13,6 +13,8 @@ type Props = {
   paginationText?: string;
 };
 
+// some issues with leftColor - doesnt render every time
+
 export const DividedPage = ({
   left,
   right,
@@ -25,7 +27,7 @@ export const DividedPage = ({
     // <div className='flex h-screen w-full'>
     <div className='flex h-screen max-h-screen w-full overflow-hidden overscroll-none'>
       {/* <div className={`w-1/2 p-4 bg-${leftColor}/40 overflow-hidden`}> */}
-      <div className={`w-1/2 p-4 bg-${leftColor}/40 overflow-hidden`}>
+      <div className={`w-1/2 p-4 bg-${leftColor}/50  overflow-hidden`}> 
         {/* sometijg weird going on with styling this link */}
         <Link href={'/'} className='p-4'>
           <Image src={combi_mint} alt='logo' width={800} height={800} className='w-40' />
@@ -35,10 +37,9 @@ export const DividedPage = ({
       <div className='relative flex-center w-1/2 p-4 bg-base-300'>
           <p className='absolute top-5 left-5 font-extrabold'>{paginationText}</p>
           <div className={`w-${rightContentWidth} flex flex-col gap-8`}>
-
             {rightText ? (
               <>
-                <h1 className='text-7xl font-semibold'>{rightText}</h1>
+                <h1 className='text-6xl font-semibold'>{rightText}</h1>
                 {right}
               </>
             ) : null}

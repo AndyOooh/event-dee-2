@@ -14,7 +14,7 @@ type Props = {};
 function Signup({}: Props) {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
 
   const rightText = page === 1 ? 'Become a member' : 'Create your profile';
 
@@ -32,10 +32,9 @@ function Signup({}: Props) {
       <DividedPage
         left={<SignupMemberLeft />}
         right={<SignupMemberRight page={page} setPage={setPage} />}
-        leftColor='warning'
+        leftColor='secondary'
         rightText={rightText}
         paginationText={`Sign up ${page}/2`}
-        // paginationText='asdasdasfdfsdfsdf'
       />
     </>
   );
