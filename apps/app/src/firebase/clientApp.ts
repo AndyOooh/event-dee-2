@@ -36,10 +36,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = getApps.length ? getApp() : initializeApp(firebaseConfig);
-const firestore = getFirestore(app);
+const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
 
-export { app, firestore, auth, storage };
+export { app, db, auth, storage };
 
 // env vars not initialised on client (see console). Why?

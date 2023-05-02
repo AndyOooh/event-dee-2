@@ -31,3 +31,12 @@ export const createUserDocument = functions.auth.user().onCreate(async (user: an
     .doc(user.uid)
     .set(JSON.parse(JSON.stringify(user)));
 });
+
+
+// Do the oppiste? Listen for ipdates to userDoc and then update the auth user
+// export const updateUserDocument = functions.auth.user().onUpdate(async (user: any) => {
+//   console.log('hahha');
+//   db.collection('users')
+//     .doc(user.uid)
+//     .set(JSON.parse(JSON.stringify(user)));
+// });

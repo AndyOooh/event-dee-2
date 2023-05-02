@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
-import { HandleChange } from '../freelancer/SignupMemberRight/SignupMemberRight';
+import { OnChange } from '../freelancer/SignupMemberRight/SignupMemberRight';
 
 type Props = {
-  handleChange: HandleChange;
+  handleChange: OnChange;
 };
 
 export const CheckLegal = ({ handleChange }: Props) => {

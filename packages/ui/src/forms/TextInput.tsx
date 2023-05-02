@@ -7,6 +7,8 @@ type Props = {
   autoComplete?: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  label?: string;
+  tooltip?: string;
 };
 
 export const TextInput = ({
@@ -16,13 +18,14 @@ export const TextInput = ({
   autoComplete,
   handleChange,
   className,
+  label,
+  tooltip,
 }: Props) => {
   const _name = name || type;
   const _placeholder = placeholder || _name.charAt(0).toUpperCase() + _name.slice(1);
-  // const _placeholder = 'asadasd';
   const _autoComplete = autoComplete || type;
 
-  return (
+  let inputElement = (
     <input
       type={type}
       name={_name}
@@ -32,4 +35,23 @@ export const TextInput = ({
       className={`${className} input input-bordered w-full focus:outline-none focus:border-accent`}
     />
   );
+
+  if (tooltip) {
+    inputElement = (
+      <div className='tooltip tooltip-info tooltip-left w-full text-xs' data-tip={tooltip} >
+        {inputElement}
+      </div>
+    );
+  }
+
+  if (label) {
+    inputElement = (
+      <label className='label w-full flex flex-col'>
+        <span className='label-text self-start mb-3'>{label}</span>
+        {inputElement}
+      </label>
+    );
+  }
+
+  return inputElement;
 };

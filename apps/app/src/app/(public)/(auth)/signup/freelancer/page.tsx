@@ -16,7 +16,8 @@ function Signup({}: Props) {
   const router = useRouter();
   const [page, setPage] = useState(1);
 
-  const rightText = page === 1 ? 'Become a member' : 'Create your profile';
+  const rightText =
+    page === 1 ? 'Become a member' : page === 2 ? 'Create your profile' : 'Upload a Profile Photo';
 
   useEffect(() => {
     if (user) {
@@ -34,7 +35,7 @@ function Signup({}: Props) {
         right={<SignupMemberRight page={page} setPage={setPage} />}
         leftColor='secondary'
         rightText={rightText}
-        paginationText={`Sign up ${page}/2`}
+        paginationText={`Sign up ${page}/3`}
       />
     </>
   );
