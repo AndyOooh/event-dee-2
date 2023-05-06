@@ -1,7 +1,7 @@
 import React from 'react';
 import { OnChange } from './SignupMemberRight';
 import { ActionButton } from '../../components/ActionButton';
-import { FormError, TextInput } from 'ui';
+import { FormError, TextInputHRF } from 'ui';
 
 type Props = {
   handleChange: OnChange;
@@ -13,13 +13,13 @@ export const Step2 = ({ handleChange, onClick, formError }: Props) => {
   return (
     <>
       <div className='flex flex-col items-center gap-2 w-full'>
-        <TextInput
+        <TextInputHRF
           name='name or nickname'
           handleChange={handleChange}
           // label='Name or Nickname'
           tooltip='Real name looks more professional and could result in more job opportunitues.'
         />
-        <TextInput
+        <TextInputHRF
           name='last name'
           handleChange={handleChange}
           // label='Last Name'

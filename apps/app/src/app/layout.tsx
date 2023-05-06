@@ -17,6 +17,8 @@ export const metadata = {
   },
 };
 
+// TODO: check if min-h is neccessary or even useful
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={`${varela.className} text-black`}>

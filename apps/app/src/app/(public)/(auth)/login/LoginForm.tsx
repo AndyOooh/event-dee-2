@@ -6,6 +6,7 @@ import { auth } from '../../../../firebase/clientApp';
 import { FIREBASE_ERRORS } from '../../../../firebase/errors';
 import Link from 'next/link';
 import OAuthButtons from '../../../../components/modals/auth/OAuthButtons';
+import { styles } from '../../../../styles/styles';
 
 type Props = {};
 
@@ -40,7 +41,8 @@ export const LoginForm = (props: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col justify-center gap-4 w-full'>
+    // <form onSubmit={handleSubmit} className='flex flex-col justify-center gap-4 w-3/4 max-w-xs mx-auto'>
+    <form onSubmit={handleSubmit} className={styles.form}>
       {/* <form> */}
       <div className='flex flex-col items-center gap-4 w-full'>
         <input
@@ -74,7 +76,7 @@ export const LoginForm = (props: Props) => {
         </Link>
       </div>
       <div className='divider'>Or login with</div>
-      <OAuthButtons view='login' />
+      <OAuthButtons />
 
       <div className='flex flex-col items-center justify-center gap-2 w-fit mx-auto'>
         <p className='text-sm'>

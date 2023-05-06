@@ -15,7 +15,6 @@ type ButtonProps = {
 
 export const ActionButton = ({ text, onClick, loading }: Props) => {
   const buttonProps: ButtonProps = onClick ? { onClick } : { type: 'submit' };
-  // console.log('🚀  file: ActionButton.tsx:18  buttonProps:', buttonProps)
 
   return (
     <button className='btn w-full max-w-xs mx-auto flex-center' {...buttonProps}>

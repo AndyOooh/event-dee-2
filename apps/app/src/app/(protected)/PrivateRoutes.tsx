@@ -11,10 +11,10 @@ export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading) {
       router.push('/login');
     }
-  }, [user]);
+  }, [loading, user]);
 
   return loading || !user ? <LoaderSpinner /> : <div>{children}</div>;
 };

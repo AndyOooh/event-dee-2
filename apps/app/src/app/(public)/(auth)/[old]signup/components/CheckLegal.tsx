@@ -1,20 +1,20 @@
-'use client';
-
-import React from 'react';
 import Link from 'next/link';
-
-import { FormError } from 'ui';
+import React from 'react';
+import { OnChange } from '../freelancer/SignupMemberRight/SignupMemberRight';
 
 type Props = {
-  name: string;
-  register: any;
-  error?: string;
+  handleChange: OnChange;
 };
 
-export const CheckLegal = ({ name, register, error }: Props) => {
-  const CheckBoxWIthText = (
+export const CheckLegal = ({ handleChange }: Props) => {
+  return (
     <div className='flex-center text-[0.625rem] gap-2 w-full'>
-      <input {...register(name)} type='checkbox' className='checkbox checkbox-xs bg-white' />
+      <input
+        type='checkbox'
+        name='checkbox'
+        onChange={handleChange}
+        className='checkbox checkbox-xs bg-white'
+      />
       <p>
         <span>By signing up you agree to the </span>
         <Link href={'terms-and-conditions'} className='link'>
@@ -25,10 +25,8 @@ export const CheckLegal = ({ name, register, error }: Props) => {
           {' '}
           Privacy Statement
         </Link>
+        .
       </p>
     </div>
   );
-  return CheckBoxWIthText;
 };
-
-// export const MyCheckLegal = React.forwardRef<HTMLInputElement, Props>(CheckLegal);

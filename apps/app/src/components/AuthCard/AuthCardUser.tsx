@@ -17,14 +17,10 @@ export const AuthCardUser = (props: Props) => {
       <div className='avatar'>
         <div className='relative w-8 rounded-full'>
           {/* <Image src={chomPortait.src} alt='avatar' fill={true} sizes='6rem' /> */}
-          <div className='absolute inset-0 rounded-full overflow-hidden bg-orange-400'>
-            <Image
-              src={chomPortait.src}
-              alt='avatar'
-              fill={true}
-            />
-          </div>
-          <Image src={user.photoURL} alt='avatar' fill={true} sizes='6rem' />
+          {/* <div className='absolute inset-0 rounded-full overflow-hidden bg-orange-400'>
+            <Image src={chomPortait.src} alt='avatar' fill={true} />
+          </div> */}
+          <Image src={user.photoURL || chomPortait.src} alt='avatar' fill={true} sizes='6rem' />
         </div>
       </div>
       <div className='flex flex-col font-semibold'>

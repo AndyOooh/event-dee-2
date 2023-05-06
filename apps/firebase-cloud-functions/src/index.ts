@@ -40,3 +40,11 @@ export const createUserDocument = functions.auth.user().onCreate(async (user: an
 //     .doc(user.uid)
 //     .set(JSON.parse(JSON.stringify(user)));
 // });
+
+
+// Sync auth usser with firebase user doc
+// const user = firebase.auth().currentUser;
+// user.reload().then(() => {
+//   const refreshUser = firebase.auth().currentUser;
+//   // do your stuff here
+// })

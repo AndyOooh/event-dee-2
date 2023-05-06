@@ -7,7 +7,7 @@ import { auth } from '../../../../firebase/clientApp';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoaderSpinner } from '../../../../components/ui/LoaderSpinner';
-import { DividedPage } from '../../../../components/DividedPage';
+import { DividedPage } from '../components/DividedPage';
 
 type Props = {};
 

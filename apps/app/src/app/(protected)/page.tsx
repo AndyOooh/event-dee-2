@@ -8,7 +8,7 @@ export default function Home() {
   const [updateProfile, updating, error] = useUpdateProfile(auth);
 
   const onClick = async () => {
-    const res = await updateProfile({ displayName: 'Tommyyyyyy' });
+    const res = await updateProfile({ displayName: 'Henryyyyy' });
     console.log('🚀  file: page.tsx:12  res:', res)
   };
   return (

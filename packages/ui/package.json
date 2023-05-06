@@ -9,16 +9,17 @@
     "clean": "rm -rf node_modules"
   },
   "devDependencies": {
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
+    "@types/react": "^18.2.5",
+    "@types/react-dom": "^18.2.3",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "event-dee-types": "*",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "tsconfig": "*",
     "typescript": "^4.5.2"
   },
   "dependencies": {
+    "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0"
   }
 }
