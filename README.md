@@ -13,7 +13,7 @@
 ### _Connecting events_
 
   <p>
-    <a href="https://github.com/AndyOooh/repo_name">View Demo</a>
+    <a href="https://app-event-dee2.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/AndyOooh/repo_name/issues">Report Bug</a>
     ·
@@ -69,14 +69,14 @@
 
 ## Intro
 
-This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/). It includes four _apps_:
+This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/). It includes four *apps*:
 
 - landing - an SSG Next.js 13 app.
 - app - a Next.js 13 app.
 - vite-storybook - a Storybook 7 app.
 - firebase-cloud-functions - a firebase cloud functions backend.
 
-It also includes five _packages_ for shared configurations, types and UI components:
+It also includes five *packages* for shared configurations, types and UI components:
 
 - eslint-config-custom
 - tsconfig
@@ -143,13 +143,23 @@ yarn dev --filter landing
 
 Or you can _cd_ into the specific directories and use the commands there.
 
-Once you have the development servers running, you can access the landing page at [localhost:3000](http://localhost:3000) and the app at [localhost:3001](http://localhost:3001).
+Once you have the development servers running, you can access the: 
+- landing page at [localhost:3000](http://localhost:3000) 
+- app at [localhost:3001](http://localhost:3001)
+- storybook at [localhost:6006](http://localhost:6006)
 
 You can also run firebase emulators for cloud functions, firestore, auth and storage with:
 
 ```sh
 turbo emulators
 ```
+
+Emulators are available at:
+- [localhost:4000](http://localhost:4000) - cloud functions
+- [localhost:8080](http://localhost:8080) - firestore
+- [localhost:9099](http://localhost:9099) - auth
+- [localhost:9199](http://localhost:9199) - storage
+
 
 To clean the cache and build folders and, run:
 
