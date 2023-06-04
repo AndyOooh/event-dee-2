@@ -78,6 +78,7 @@ This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/
 
 It also includes five **packages** for shared configurations, types and UI components:
 
+
 - eslint-config-custom
 - tsconfig
 - tailwind-config
