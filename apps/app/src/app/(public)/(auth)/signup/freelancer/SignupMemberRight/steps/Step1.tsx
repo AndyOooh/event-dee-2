@@ -1,41 +1,29 @@
 'use client';
-
-import React, { useState } from 'react';
-import { ActionButton } from '../../../components/ActionButton';
-import { FormError, TextInput } from 'ui';
-
-import OAuthButtons from '../../../../../../../components/modals/auth/OAuthButtons';
-import { CheckLegal } from '../../../components/CheckLegal';
-import { styles } from '../../../../../../../styles/styles';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { step1Schema, step1SchemaEmail } from '../validation';
+import { useForm } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { FormStep1, wizardForm } from '../../../../../../../atoms/signupFreelancerAtom';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-type Props = {
-  // onSelectProvider: (provider: 'google' | 'facebook' | 'email') => void;
-  // selectedProvider: 'google' | 'facebook' | 'email';
-};
+import { TextInput, FormError } from 'ui';
+import { FormStep1, wizardForm } from '__atoms/signupFreelancerAtom';
+import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
+import { styles } from '__styles/styles';
+import { ActionButton } from '../../../components/ActionButton';
+import { CheckLegal } from '../../../components/CheckLegal';
+import { step1Schema } from '../validation';
+import { getCloudFunction } from '__firebase/clientApp';
 
-// type FormData = {
-//   provider: 'google' | 'facebook' | 'email';
-//   email: string;
-//   password: string;
-//   confirm_password: string;
-//   check_legal: boolean;
-// };
 type FormData = FormStep1 & {
   confirm_password?: string;
   check_legal: boolean;
 };
 
-export const Step1 = ({}: Props) => {
+export const Step1 = () => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
   console.log('🚀  file: Step1.tsx:35  wFormData:', wFormData);
   const {
     register,
     setValue,
+    setError,
     getValues,
     watch,
     handleSubmit,
@@ -47,42 +35,43 @@ export const Step1 = ({}: Props) => {
       provider: 'email',
     },
   });
+  console.log('🚀  file: Step1.tsx:31  errors:', errors);
+  console.log('🚀  file: Step1.tsx:31  watch:', watch());
 
   console.log('🚀  file: Step1.tsx:43  errors:', errors);
   const provider = watch('provider');
 
-  const onSubmit = (data: any) => {
-    console.log('in SUBMIT');
-    if (provider !== 'email') {
-      setWFormData(prev => ({
-        ...prev,
-        ...data,
-        step: prev.step + 1,
-      }));
+  const onSubmit = async (data: any) => {
+    // console.log('in SUBMIT');
+    const email = watch('email');
+    const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custome function
+    const emailExists = (await checkEmailExists(email)).data;
+    console.log('🚀  file: Step1.tsx:52  emailExists:', emailExists);
+    if (emailExists) {
+      setError('email', { message: 'Email already exists' });
       return;
     }
+
     setWFormData(prev => ({
       ...prev,
       ...data,
       step: prev.step + 1,
     }));
+    return;
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       {provider === 'email' ? (
         <>
-          <TextInput register={register} type='email' />
+          <TextInput name='email' register={register} label={true} />
           <FormError formError={errors?.email?.message} />
-          <TextInput type='password' autoComplete='new-password' register={register} />
-          <FormError formError={errors?.password?.message} />
-          <TextInput
-            name='confirm_password'
-            type='password'
-            autoComplete='new-password'
-            register={register}
-          />
+          {/* <div className='flex gap-4'> */}
+          <TextInput name='new_password' register={register} label={true} />
+          <FormError formError={errors?.new_password?.message} />
+          <TextInput name='confirm_password' label={true} register={register} />
           <FormError formError={errors?.confirm_password?.message} />
+          {/* </div> */}
           <CheckLegal name='check_legal' register={register} error={errors?.check_legal?.message} />
           <FormError formError={errors?.check_legal?.message} />
           <div className='divider'>Or sign up with</div>

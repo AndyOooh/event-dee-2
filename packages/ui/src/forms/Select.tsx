@@ -16,18 +16,19 @@ export const Select = ({ name, value, label, options, text, register, className 
   const _label = label ? toTitleCase(label) : toTitleCase(_value);
 
   return (
-    <div className='form-control w-full max-w-xs'>
-      <label className='label'></label>
-      <select {...register(name)} className='select w-full max-w-xs font-normal'>
-        <option disabled selected>
-          {text}
-        </option>
-        {options.map(option => (
-          <option key={option} className='font-normal'>
-            {option}
+    <>
+      <label className='label w-full p-0'>
+        <select {...register(name)} className='select w-full max-w-xs mx-auto font-normal'>
+          <option disabled selected>
+            {text}
           </option>
-        ))}
-      </select>
-    </div>
+          {options.map(option => (
+            <option key={option} className='font-normal'>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+    </>
   );
 };

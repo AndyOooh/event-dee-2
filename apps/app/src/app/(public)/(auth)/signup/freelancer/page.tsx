@@ -4,7 +4,7 @@ import { DividedPage } from '../../components/DividedPage';
 
 type Props = {};
 
-function Signup({}: Props) {
+function SignupFreelancer({}: Props) {
   return (
     // <DividedPage left={<SignupMemberLeft />} right={<SignupMemberRight />} leftColor='secondary' />
     <div className='flex min-h-screen'>
@@ -14,4 +14,4 @@ function Signup({}: Props) {
   );
 }
 
-export default Signup;
+export default SignupFreelancer;

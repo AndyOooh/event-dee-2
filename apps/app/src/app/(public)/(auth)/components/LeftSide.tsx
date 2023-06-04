@@ -11,7 +11,7 @@ type Props = {
 
 export const LeftSide = ({ children, color }: Props) => {
   return (
-    <div className={`w-1/2 p-4 bg-${color}/50 overflow-hidden`}>
+    <div className={`w-1/2 p-4 bg-${color} overflow-hidden`}>
       <Link href={'/'} className='p-4'>
         <Image src={combi_mint} alt='logo' width={800} height={800} className='w-40' />
       </Link>

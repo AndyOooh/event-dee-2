@@ -1,18 +1,17 @@
 'use client';
 
 import React, { ChangeEventHandler } from 'react';
-import SignUp from '../../../../../../components/modals/auth/inputs/SignUp';
 import { Step1 } from './steps/Step1';
 import { Step2 } from './steps/Step2';
 import { Step3 } from './steps/Step3';
 import { RightSide } from '../../../components/RightSide';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { wizardForm } from '../../../../../../atoms/signupFreelancerAtom';
 
 export type OnChange = ChangeEventHandler<HTMLInputElement>;
 
 export const SignupMemberRight = () => {
-  const [wFormData, setWFormData] = useRecoilState(wizardForm);
+  const wFormData = useRecoilValue(wizardForm);
   const { step } = wFormData;
 
   const header =
@@ -24,5 +23,3 @@ export const SignupMemberRight = () => {
     </RightSide>
   );
 };
-
-export default SignUp;

@@ -10,7 +10,7 @@
         "firebase-debug.*.log"
       ],
       "predeploy": [
-        "yarn workspace firebase-cloud-functions  build"
+        "yarn workspace firebase-cloud-functions build"
       ]
     }
   ]

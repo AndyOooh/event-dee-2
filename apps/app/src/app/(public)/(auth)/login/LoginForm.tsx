@@ -1,12 +1,12 @@
 'use client';
-
 import { useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { auth } from '../../../../firebase/clientApp';
-import { FIREBASE_ERRORS } from '../../../../firebase/errors';
 import Link from 'next/link';
-import OAuthButtons from '../../../../components/modals/auth/OAuthButtons';
-import { styles } from '../../../../styles/styles';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+
+import { FIREBASE_ERRORS } from 'ui/src/utils/firebaseErrors';
+import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
+import { auth } from '__firebase/clientApp';
+import { styles } from '__styles/styles';
 
 type Props = {};
 

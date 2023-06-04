@@ -20,21 +20,21 @@ type Props = {
   selected?: Providers | 'email';
 };
 
-function OAuthButtons({ selected, setSelected }: Props) {
-  console.log('🚀  file: OAuthButtons.tsx:24  selected:', selected)
+export const OAuthButtons = ({ selected, setSelected }: Props) => {
+  console.log('🚀  file: OAuthButtons.tsx:24  selected:', selected);
   const [signInWithGoogle, _userG, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
   const [signInWithFacebook, _userFb, loadingFacebook, errorFacebook] = useSignInWithFacebook(auth);
 
   const onClick = (provider: Providers) => (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log('🚀  file: OAuthButtons.tsx:28  provider:', provider);
-    setSelected('provider', provider)
-    // setSelected
-    //   ? // ? setSelected({ provider: provider })
-    //     setSelected('provider', provider)
-    //   : provider === 'google'
-    //   ? signInWithGoogle()
-    //   : signInWithFacebook();
+    // setSelected('provider', provider);
+    setSelected
+      ? // ? setSelected({ provider: provider })
+        setSelected('provider', provider)
+      : provider === 'google'
+      ? signInWithGoogle()
+      : signInWithFacebook();
   };
 
   return (
@@ -60,6 +60,4 @@ function OAuthButtons({ selected, setSelected }: Props) {
       {errorFacebook && <p>{errorFacebook.message}</p>}
     </div>
   );
-}
-
-export default OAuthButtons;
+};

@@ -32,7 +32,7 @@ function Login({}: Props) {
         left={<LoginLeft />}
         right={<LoginRight />}
         leftColor='secondary'
-        rightText='Welcome back!'
+        // rightText='Welcome back!'
       />
     </>
   );

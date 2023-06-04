@@ -1,43 +1,49 @@
 'use client';
 
-import { toTitleCase } from '../utils/helpers';
+import { IAttributes, getAttributes } from './attributesMap';
 
 type Props = {
-  name?: string;
+  name: string;
   register: any;
-  // error?: string;
-  type?: 'text' | 'email' | 'password';
-  placeholder?: string;
-  autoComplete?: string;
-  className?: string;
-  label?: string;
+  label?: boolean;
   tooltip?: string;
+  className?: string;
+
+  // error?: string;
+  // placeholder?: string;
+  // autoComplete?: string;
+  // type?: 'text' | 'email' | 'password';
 };
 
 export const TextInput = ({
   name,
   register,
-  // error,
-  type = 'text',
-  placeholder,
-  autoComplete,
-  label,
+  label = false,
   tooltip,
   className,
-}: Props): JSX.Element => {
 
-  const _name = name || type;
-  const _placeholder = placeholder || toTitleCase(_name);
-  const _autoComplete = autoComplete || type;
+  // error,
+  // type = 'text',
+  // placeholder,
+  // autoComplete,
+}: Props): JSX.Element => {
+  // const _name = name || type;
+  // const _placeholder = placeholder || toTitleCase(_name);
+  // const _autoComplete = autoComplete || type;
+
+  const { _type, _label, _placeholder, _autocmplete }: IAttributes = getAttributes(name);
+  const attr = getAttributes(name);
+  // console.log('🚀  file: TextInput.tsx:36  attr:', attr)
+  // console.log('🚀  file: TextInput.tsx:39  _type:', _type);
 
   let Input = (
     <>
       <input
-        {...register(_name)}
-        type={type}
+        {...register(name)}
+        type={_type}
         placeholder={_placeholder}
-        autoComplete={_autoComplete}
-        className={`${className} input input-bordered w-full focus:outline-none focus:border-accent`}
+        autoComplete={_autocmplete}
+        className={`${className} input input-bordered w-full max-w-xs mx-auto focus:outline-none focus:border-accent`}
       />
     </>
   );
@@ -54,7 +60,7 @@ export const TextInput = ({
     Input = (
       <>
         <label className='label w-full flex flex-col'>
-          <span className='label-text self-start mb-3'>{label}</span>
+          <span className='label-text self-start mb-3'>{_label}</span>
           {Input}
         </label>
       </>

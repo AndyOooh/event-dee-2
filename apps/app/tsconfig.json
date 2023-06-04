@@ -1,12 +1,21 @@
 {
   "extends": "tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "__components/*": ["components/*"],
+      "__atoms/*": ["atoms/*"],
+      "__firebase/*": ["firebase/*"],
+      "__styles/*": ["styles/*"],
+      "__utils/*": ["utils/*"]
+    }
+  },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/app/(public)/(auth)/signup/business/SignupBusinessRight/validation.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

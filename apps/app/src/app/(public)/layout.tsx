@@ -12,11 +12,11 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
 
-  useEffect(() => {
-    if (user && !loading) {
-      router.push('/');
-    }
-  }, [user, loading]);
+  // useEffect(() => {
+  //   if (user && !loading) {
+  //     router.push('/');
+  //   }
+  // }, [user, loading]);
 
   return loading || user ? <LoaderSpinner /> : <div>{children}</div>;
 }

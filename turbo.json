@@ -1,13 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env.*local", "**/.env"],
+  "globalEnv": ["NEXT_PUBLIC_FIREBASE_API_KEY"],
   "pipeline": {
     "build": {
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
     "dev": {
-      "env": ["NODE_ENV"],
       "cache": false,
       "persistent": true
     },
