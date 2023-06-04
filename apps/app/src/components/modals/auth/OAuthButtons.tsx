@@ -3,8 +3,8 @@
 import { ModalView } from '../../../atoms/authModalAtom';
 import { auth } from '../../../firebase/clientApp';
 import Image from 'next/image';
-import facebookLogo from '/public/images/facebooklogo.png';
-import googleLogo from '/public/images/googlelogo.png';
+import facebookLogo from '/images/facebooklogo.png';
+import googleLogo from '/images/googlelogo.png';
 import { MouseEvent, MouseEventHandler, useEffect } from 'react';
 import {
   useSignInWithGoogle,
