@@ -14,7 +14,7 @@ type Props = {
   toggleView: ToggleView;
 };
 
-function ResetPassword({ toggleView }: Props) {
+export const ResetPassword = ({ toggleView }: Props) => {
   const setAuthModalState = useSetRecoilState(authModalState);
   const [email, setEmail] = useState('');
   const [success, setSuccess] = useState(false);
@@ -71,6 +71,6 @@ function ResetPassword({ toggleView }: Props) {
       )}
     </div>
   );
-}
+};
 
 export default ResetPassword;

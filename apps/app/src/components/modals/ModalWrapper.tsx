@@ -11,7 +11,7 @@ type ModalWrapperProps = {
   className?: string;
 };
 
-function ModalWrapper({ children, visible, setVisible, className }: ModalWrapperProps) {
+export const ModalWrapper = ({ children, visible, setVisible, className }: ModalWrapperProps) => {
   const [mounted, setMounted] = useState(false);
   const divRef = useRef<HTMLDivElement>();
   const modalref = useRef(null);
@@ -39,6 +39,6 @@ function ModalWrapper({ children, visible, setVisible, className }: ModalWrapper
       )}
     </>
   ) : null;
-}
+};
 
 export default ModalWrapper;
