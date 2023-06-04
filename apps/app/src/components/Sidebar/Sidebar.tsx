@@ -26,7 +26,7 @@ import {
   BiCog,
 } from 'react-icons/bi';
 import Image from 'next/image';
-import combi_mint from '../../../public/logo/combi/combi_mint.png';
+import combi_mint from '/public/logo/combi/combi_mint.png';
 import Link from 'next/link';
 
 type Props = {};

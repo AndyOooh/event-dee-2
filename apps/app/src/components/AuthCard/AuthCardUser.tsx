@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import chomPortait from '../../../public/talent/chom_white_12_17.jpg';
+import chomPortait from '/public/talent/chom_white_12_17.jpg';
 import Image from 'next/image';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/clientApp';
