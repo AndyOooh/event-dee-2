@@ -1,2 +1,4 @@
 .next/** linguist-generated
 storybook-static/** linguist-generated
+
+.ts linguist-language=TypeScript

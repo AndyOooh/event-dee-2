@@ -69,14 +69,14 @@
 
 ## Intro
 
-This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/). It includes four *apps*:
+This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/). It includes four **apps**:
 
 - landing - an SSG Next.js 13 app.
 - app - a Next.js 13 app.
 - vite-storybook - a Storybook 7 app.
 - firebase-cloud-functions - a firebase cloud functions backend.
 
-It also includes five *packages* for shared configurations, types and UI components:
+It also includes five **packages** for shared configurations, types and UI components:
 
 - eslint-config-custom
 - tsconfig
@@ -117,7 +117,7 @@ To have a functioning backend you must create a firebase project and add the api
 yarn firebase login
 ```
 
-For running tests and starting the development servers, turborepo is used. It is configured to run tall apps concurrently. The commands are:
+For running tests and starting the development servers, turborepo is used. It is configured to run all apps concurrently. The commands are:
 
 ```sh
 yarn dev
