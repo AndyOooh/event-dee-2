@@ -11,8 +11,8 @@ type Props = {};
 
 // Check if logged in and show page based on that similar to fb!
 
-export const CompanyProfile = (props: Props) => {
+export default function CompanyProfile(props: Props) {
   const [user, loading, error] = useAuthState(auth);
 
   return loading ? <LoaderSpinner /> : user ? <AuthCompanyProfile /> : <PublicCompanyProfile />;
-};
+}

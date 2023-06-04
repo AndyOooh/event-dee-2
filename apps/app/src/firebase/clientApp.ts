@@ -4,8 +4,6 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
-const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
-console.log('🚀  file: clientApp.ts:8  apiKøey:', apiKey)
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

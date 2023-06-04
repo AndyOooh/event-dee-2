@@ -11,7 +11,7 @@ type Props = {
   toggleView: ToggleView;
 };
 
-function AuthInputs({ toggleView }: Props) {
+export const AuthInputs = ({ toggleView }: Props) => {
   const modalState = useRecoilValue(authModalState);
   return (
     <div className='flex flex-col w-full justify-center items-center'>
@@ -22,6 +22,5 @@ function AuthInputs({ toggleView }: Props) {
       )}
     </div>
   );
-}
+};
 
-export default AuthInputs;

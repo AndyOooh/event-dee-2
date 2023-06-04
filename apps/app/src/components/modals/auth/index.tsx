@@ -4,10 +4,10 @@ import { useRecoilState } from 'recoil';
 import { RiCloseCircleFill } from 'react-icons/ri';
 
 import { authModalState } from '../../../atoms/authModalAtom';
-import ModalWrapper from '../ModalWrapper';
-import OAuthButtons from './OAuthButtons';
-import AuthInputs from './inputs';
-import ResetPassword from './ResetPassword';
+import { ModalWrapper } from '../ModalWrapper';
+import { OAuthButtons } from './OAuthButtons';
+import { AuthInputs } from './inputs';
+import { ResetPassword } from './ResetPassword';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase/clientApp';
 import { useEffect } from 'react';
@@ -58,7 +58,7 @@ function AuthModal() {
           <div className='flex flex-col gap-4 w-full'>
             {modalState.view === 'login' || modalState.view === 'signup' ? (
               <>
-                <OAuthButtons view={modalState.view} />
+                <OAuthButtons />
                 OR
                 <AuthInputs toggleView={handleChangeView} />
               </>
