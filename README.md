@@ -8,7 +8,7 @@
 <img src="https://github.com/AndyOooh/event-dee-2/assets/60953822/47df893b-42af-426c-9a5b-b1108c83bd96" alt="Logo" width="" height="70">
 
 <!-- <h1>Event Dee</h3> -->
-<!-- <h4>Connecting events - An event workers platform</h4> -->
+<!-- <h4>Connecting events - An event workers platform.</h4> -->
 
 ### _Connecting events_
 
