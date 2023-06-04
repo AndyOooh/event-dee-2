@@ -8,21 +8,19 @@ node_modules
 # testing
 coverage
 
-# production
+# next.js
+.next/
+out/
 build
-dist
-out
-.next
-lib
 
 # misc
 .DS_Store
 *.pem
-.vscode
 
 # debug
-*.log
-logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # local env files
 .env
@@ -36,30 +34,3 @@ logs
 
 # vercel
 .vercel
-
-# app firebase-cloud-functions
-pids
-*.pid
-*.seed
-*.pid.lock
-lib-cov
-.nyc_output
-.grunt
-bower_components
-.lock-wscript
-.npm
-.eslintcache
-.node_repl_history
-*.tgz
-.yarn-integrity
-
-
-# app Vite-storybook
-dist-ssr
-*.local
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
