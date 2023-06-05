@@ -6,7 +6,7 @@ export default function protectedLayout({ children }: { children: React.ReactNod
     <PrivateRoutes>
       <div className='flex'>
         <Sidebar />
-        <div className='bg-base-200 w-full'>{children}</div>
+        <div className='bg-base-300 w-full'>{children}</div>
       </div>
     </PrivateRoutes>
   );

@@ -87,7 +87,7 @@ export const Step2 = ({}: Props) => {
       });
       // console.log('HERE IS DOWNLOAD URL', downloadURL);
     } catch (error) {
-      console.log('🚀  file: Step3.tsx:98  error:', error);
+      console.log('🚀  file: Step2.tsx:90  error:', error)
     }
   };
 

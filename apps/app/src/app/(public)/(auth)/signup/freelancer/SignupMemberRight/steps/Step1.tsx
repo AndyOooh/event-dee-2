@@ -11,6 +11,7 @@ import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
 import { step1Schema } from '../validation';
 import { getCloudFunction } from '__firebase/clientApp';
+import { SwitchToLogin } from '../../../components/SwitchToLogin';
 
 type FormData = FormStep1 & {
   confirm_password?: string;
@@ -35,10 +36,7 @@ export const Step1 = () => {
       provider: 'email',
     },
   });
-  console.log('🚀  file: Step1.tsx:31  errors:', errors);
-  console.log('🚀  file: Step1.tsx:31  watch:', watch());
 
-  console.log('🚀  file: Step1.tsx:43  errors:', errors);
   const provider = watch('provider');
 
   const onSubmit = async (data: any) => {
@@ -77,12 +75,7 @@ export const Step1 = () => {
           <div className='divider'>Or sign up with</div>
           <OAuthButtons setSelected={setValue} selected={provider} />
           <ActionButton text='Step 2' />
-          <div className='flex gap-2 w-fit mx-auto'>
-            Have an account?
-            <button className='font-bold' onClick={() => console.log('login')}>
-              Log In
-            </button>
-          </div>
+          <SwitchToLogin />
         </>
       ) : (
         <>

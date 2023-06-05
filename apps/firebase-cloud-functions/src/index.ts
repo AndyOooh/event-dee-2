@@ -28,16 +28,14 @@ const db = admin.firestore();
 // listener
 export const createUserDocument = functions.auth.user().onCreate(async (user: any) => {
   if (!user.displayName) {
-  // delete user in auh and return email + photo
-  // return { email: user.email, photoURL: user.providerData[0].photoURL };
-  
+    // delete user in auh and return email + photo
+    // return { email: user.email, photoURL: user.providerData[0].photoURL };
   }
   console.log('hahha');
   db.collection('users')
     .doc(user.uid)
     .set(JSON.parse(JSON.stringify(user)));
 });
-
 
 // Can be called from client
 export const checkEmailExists = functions.https.onCall(async (email, context) => {
@@ -46,7 +44,7 @@ export const checkEmailExists = functions.https.onCall(async (email, context) =>
     console.log('🚀  file: index.ts:40  userRecord:', userRecord);
     return { emailExists: true };
   } catch (error) {
-    console.log('🚀  file: index.ts:44  error:', error)
+    console.log('🚀  file: index.ts:44  error:', error);
     return false;
     // throw new functions.https.HttpsError('invalid-argument', "email doesn't exist");
   }
@@ -72,3 +70,8 @@ export const test = functions.https.onRequest((req, res) => {
 //   const refreshUser = firebase.auth().currentUser;
 //   // do your stuff here
 // })
+
+export const deleteUser = functions.auth.user().onDelete(async (user: any) => {
+  console.log('deleting user: user.uid ');
+  db.collection('users').doc(user.uid).delete();
+});

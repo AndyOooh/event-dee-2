@@ -65,7 +65,9 @@ export const Step3 = () => {
       try {
         const userDocRef = doc(db, 'users', newUser?.uid);
         console.log('🚀  file: SignupMemberRight.tsx:67  userDocRef *********:', userDocRef);
+        console.log('Before ref**************')
         const imageRef = ref(storage, `users/${userDocRef.id}/images/profile`);
+        console.log('After ref**************')
         await uploadString(imageRef, selectedFile, 'data_url');
         const downloadURL = await getDownloadURL(imageRef);
         

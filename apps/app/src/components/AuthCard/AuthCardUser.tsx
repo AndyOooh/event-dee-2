@@ -11,7 +11,6 @@ type Props = {};
 
 export const AuthCardUser = (props: Props) => {
   const [user, loading, error] = useAuthState(auth);
-  console.log('🚀  file: AuthCardUser.tsx:14  user:', user);
   return (
     <div className='flex gap-1'>
       <div className='avatar'>

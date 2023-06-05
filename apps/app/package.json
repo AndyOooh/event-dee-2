@@ -17,7 +17,7 @@
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.9",
-    "react-icons": "^4.8.0",
+    "react-icons": "^4.9.0",
     "react-spinners": "^0.13.8",
     "recoil": "^0.7.7",
     "ui": "*",

@@ -13,6 +13,7 @@ import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
 import { step1Schema } from '../../../freelancer/SignupMemberRight/validation';
+import { SwitchToLogin } from '../../../components/SwitchToLogin';
 
 type FormData = FormStep1 & {
   email?: string;
@@ -75,12 +76,7 @@ export const Step1 = () => {
             <div className='divider'>Or sign up with</div>
             <OAuthButtons setSelected={setValue} selected={provider} />
             <ActionButton text='Step 2' />
-            <div className='flex gap-2 w-fit mx-auto'>
-              Have an account?
-              <button className='font-bold' onClick={() => console.log('login')}>
-                Log In
-              </button>
-            </div>
+            <SwitchToLogin />
           </>
         ) : (
           <>

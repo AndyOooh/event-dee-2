@@ -1,24 +1,24 @@
-'use client';
+// 'use client';
 
-import { useUpdateProfile } from 'react-firebase-hooks/auth';
 import { AuthCard } from '../../components/AuthCard';
-import { auth } from '../../firebase/clientApp';
+import { HomeMain } from './components/HomeMain/HomeMain';
+import { HomeRight } from './components/HomeRight/HomeRight';
+import { BiMenu } from 'react-icons/bi';
 
 export default function Home() {
-  const [updateProfile, updating, error] = useUpdateProfile(auth);
-
-  const onClick = async () => {
-    const res = await updateProfile({ displayName: 'Henryyyyy' });
-    console.log('🚀  file: page.tsx:12  res:', res)
-  };
   return (
     <div className='w-full p-4'>
-      <div className='flex justify-end'>
+      {/* Extreact this into component taking children? BiMenu should set visibility of sideBar further up, how? */}
+      <div className='flex justify-between mb-8'>
+        <BiMenu size='2.5rem' className='lg:invisible' />
         <AuthCard />
       </div>
-      <button className='btn' onClick={onClick}>
-        Button
-      </button>
+      {/* This should prob go into styles.ts file */}
+      {/* <div className='border border-info'> */}
+      <div className='flex gap-4 p-8 max-w-7xl mx-auto'>
+        <HomeMain />
+        <HomeRight />
+      </div>
     </div>
   );
 }
