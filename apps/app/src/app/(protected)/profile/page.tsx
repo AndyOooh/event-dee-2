@@ -1,4 +1,3 @@
-import { PageWithAuthCard } from '__components/PageWithAuthCard';
 import { ColoredDiv } from 'ui';
 
 type Props = {};
@@ -6,20 +5,47 @@ type Props = {};
 // This is the Profile page as seen from the user's perspective with edittable fields
 // For Profile page as seen from other users' perspective, see freelancers/[userId].tsx
 export default function ProfilePageUser(props: Props) {
+  const sections = [
+    {
+      title: 'Profile photo',
+      element: <div>Profile photo</div>,
+    },
+    {
+      title: 'Personal information',
+      element: <div>Personal information</div>,
+    },
+    {
+      title: 'Work information',
+      element: <div>Work information</div>,
+    },
+    {
+      title: 'Links',
+      element: <div>Links</div>,
+    },
+    {
+      title: 'Getting to know you better',
+      element: <div>Getting to know you better...</div>,
+    },
+  ];
+
   return (
-    <PageWithAuthCard>
-      {/* <ColoredDiv
-        color='yellow'
-        direction='top'
-        height={10.5}
-        className='z-10 left-16 bottom-1/2'
-      /> */}
-      <div className='flex flex-col gap-4 w-full'>
-        <h1>ProfilePageUser</h1>
-        <ColoredDiv color='orange' direction='right' height={6} className='z-10' />
-        <ColoredDiv color='orange' direction='right' height={6} className='z-10' />
-        <ColoredDiv color='orange' direction='right' height={6} className='z-10' />
+    <div className='flex flex-col gap-4 w-full'>
+      <h1>ProfilePageUser</h1>
+      <h1 className='text-3xl'>Profile Settings</h1>
+      <div className='flex flex-col gap-4'>
+        {sections.map(section => (
+          <div key={section.title} className='flex flex-col gap-2'>
+            <h2 className='text-xl'>{section.title}</h2>
+            <div className='card bg-base-100'>
+              <div className='card-body'>{section.element}</div>
+            </div>
+          </div>
+        ))}
       </div>
-    </PageWithAuthCard>
+
+      {/* <ColoredDiv color='orange' direction='right' height={6} className='z-10' />
+      <ColoredDiv color='orange' direction='right' height={6} className='z-10' />
+      <ColoredDiv color='orange' direction='right' height={6} className='z-10' /> */}
+    </div>
   );
 }

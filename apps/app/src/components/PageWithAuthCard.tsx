@@ -9,7 +9,7 @@ type Props = {
 
 export const PageWithAuthCard = ({ children }: Props) => {
   return (
-    <div className='bg-base-300 w-full p-4'>
+    <div className='bg-base-300 w-full p-8'>
       <div className='flex justify-between mb-8'>
         <BiMenu size='2.5rem' className='lg:invisible' />
         <AuthCard />

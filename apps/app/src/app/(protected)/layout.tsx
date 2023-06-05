@@ -1,3 +1,4 @@
+import { PageWithAuthCard } from '__components/PageWithAuthCard';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { PrivateRoutes } from './PrivateRoutes';
 
@@ -6,7 +7,8 @@ export default function protectedLayout({ children }: { children: React.ReactNod
     <PrivateRoutes>
       <div className='flex'>
         <Sidebar />
-        <div className='bg-base-300 w-full'>{children}</div>
+        <PageWithAuthCard>{children}</PageWithAuthCard>
+        {/* <div className='bg-base-300 w-full'>{children}</div> */}
       </div>
     </PrivateRoutes>
   );
