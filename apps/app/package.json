@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next"
+    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",

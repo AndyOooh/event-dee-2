@@ -8,7 +8,7 @@ export type IAttributes = {
 };
 
 export const getAttributes = (name: string) => {
-//   console.log('🚀  file: attributesMap.ts:11  name:', name);
+  //   console.log('🚀  file: attributesMap.ts:11  name:', name);
   let attributes: IAttributes;
   switch (name) {
     case 'name':
@@ -46,6 +46,39 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'current-password',
       };
       break;
+    case 'invite_link':
+      attributes = {
+        _type: 'text',
+        _label: 'Invite Link',
+        _placeholder: 'https://app.eventdee.com/invite/your-name',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'province':
+      attributes = {
+        _type: 'text',
+        _label: 'Province',
+        _placeholder: 'Eg. Ontario',
+        _autocmplete: 'address-level1',
+      };
+      break;
+    case 'gender':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Gender',
+        _placeholder: 'Eg. Ontario',
+        _autocmplete: 'address-level1',
+      };
+      break;
+    case 'pronouns':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Pronouns',
+        _placeholder: 'Eg. Ontario',
+        _autocmplete: 'address-level1',
+      };
+      break;
+
     default:
       attributes = {
         _type: '',

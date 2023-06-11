@@ -29,7 +29,7 @@ export const ProfileCard = (props: Props) => {
         </div>
       </div>
       {/* get user from firestor and display first + last */}
-      <p className='text-xl font-bold'>{user.displayName}</p>
+      <p className='text-xl font-bold'>{user?.displayName}</p>
       <Badge />
       <div className='flex-center'>
         {' '}

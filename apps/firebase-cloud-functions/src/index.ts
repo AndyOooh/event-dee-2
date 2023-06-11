@@ -27,6 +27,7 @@ const db = admin.firestore();
 
 // listener
 export const createUserDocument = functions.auth.user().onCreate(async (user: any) => {
+  console.log('🚀  file: index.ts:39  user:', user)
   if (!user.displayName) {
     // delete user in auh and return email + photo
     // return { email: user.email, photoURL: user.providerData[0].photoURL };

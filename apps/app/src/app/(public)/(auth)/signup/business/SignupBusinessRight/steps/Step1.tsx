@@ -56,7 +56,7 @@ export const Step1 = () => {
         Access the highly curated society of top event workers. Find the talent you need for your
         next event.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
         {provider === 'email' ? (
           <>
             <TextInput name='email' register={register} label={true} />

@@ -13,7 +13,7 @@ function Sidebar({}: Props) {
     {
       icon: <BiHome size={iconSize} />,
       title: 'Home',
-      link: '/home',
+      link: '/',
     },
     {
       icon: <BiSearchAlt size={iconSize} />,

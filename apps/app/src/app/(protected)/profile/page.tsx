@@ -1,4 +1,6 @@
 import { ColoredDiv } from 'ui';
+import { ProfilePhoto } from './components/profilePhoto';
+import { PersonalInfo } from './components/personalInformation/PersonalInfo';
 
 type Props = {};
 
@@ -8,11 +10,11 @@ export default function ProfilePageUser(props: Props) {
   const sections = [
     {
       title: 'Profile photo',
-      element: <div>Profile photo</div>,
+      element: <ProfilePhoto />,
     },
     {
       title: 'Personal information',
-      element: <div>Personal information</div>,
+      element: <PersonalInfo />,
     },
     {
       title: 'Work information',
