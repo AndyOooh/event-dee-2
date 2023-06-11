@@ -55,6 +55,7 @@ bower_components
 
 
 # app Vite-storybook
+storybook-static
 dist-ssr
 *.local
 .idea

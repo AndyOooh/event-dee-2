@@ -7,7 +7,7 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "preview": "vite preview",
-    "clean": "rm -rf node_modules && rm -rf .turbo"
+    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf storybook-static"
   },
   "dependencies": {
     "react": "^18.2.0",

@@ -1,8 +1,9 @@
 // 'use client'
 
+import { Varela } from 'next/font/google';
+
 import { RecoilProvider } from '../components/RecoilProvider';
 import '../styles/globals.scss';
-import { Varela } from 'next/font/google';
 
 const varela = Varela({
   weight: ['400'],

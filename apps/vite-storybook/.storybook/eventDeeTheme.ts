@@ -23,7 +23,7 @@ export const eventDeeTheme = create({
   // UI
   appBg: colorMap.beige,
   appContentBg: colorMap.white,
-  appBorderColor: colorMap.peach,
+  // appBorderColor: colorMap.peach,
   appBorderRadius: 4,
 
   // Text colors
@@ -32,12 +32,12 @@ export const eventDeeTheme = create({
 
   // Toolbar default and active colors
   barTextColor: colorMap.black,
-  barSelectedColor: colorMap.peach,
+  // barSelectedColor: colorMap.peach,
   barBg: colorMap.beige,
 
   // Form colors
   inputBg: colorMap.white,
-  inputBorder: colorMap.peach,
+  // inputBorder: colorMap.peach,
   inputTextColor: colorMap.black,
   inputBorderRadius: 2,
 });

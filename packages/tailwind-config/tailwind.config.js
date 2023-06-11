@@ -40,7 +40,8 @@ module.exports = {
           'neutral-content': '#F9F8F5', // off-white, set this bc default ws red-ish
           'base-100': '#FFFFFF', // white
           'base-200': '#F9F8F5', // Off-White (almmost white)
-          'base-300': '#F2EFE8', // beige
+          // 'base-300': '#F2EFE8', // beige
+          'base-300': '#F2EFE8', // Teamway-beige
           info: '#87B1E8', // Sky Blue
           success: '#7FE6A7', // Mint Green
           warning: '#FAA447', // Tangerine Orange

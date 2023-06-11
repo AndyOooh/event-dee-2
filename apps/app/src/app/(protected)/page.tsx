@@ -1,24 +1,13 @@
-'use client';
-
-import { useUpdateProfile } from 'react-firebase-hooks/auth';
-import { AuthCard } from '../../components/AuthCard';
-import { auth } from '../../firebase/clientApp';
+import { HomeMain } from './components/HomeMain/HomeMain';
+import { HomeRight } from './components/HomeRight/HomeRight';
 
 export default function Home() {
-  const [updateProfile, updating, error] = useUpdateProfile(auth);
-
-  const onClick = async () => {
-    const res = await updateProfile({ displayName: 'Henryyyyy' });
-    console.log('🚀  file: page.tsx:12  res:', res)
-  };
   return (
-    <div className='w-full p-4'>
-      <div className='flex justify-end'>
-        <AuthCard />
-      </div>
-      <button className='btn' onClick={onClick}>
-        Button
-      </button>
-    </div>
+    <>
+      <HomeMain />
+      <HomeRight />
+    </>
   );
 }
+
+// <div className='flex gap-4 p-8 max-w-7xl mx-auto'>

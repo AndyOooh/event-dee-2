@@ -36,7 +36,7 @@ export const Step2 = ({}: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
       <TextInput
         name='name'
         tooltip='Real name looks more professional and could result in more job opportunitues.'

@@ -1,7 +1,7 @@
-
-
 .next/** linguist-generated
 storybook-static/** linguist-generated
+
+git restore
 
 *.ts linguist-language=TypeScript
 *.tsx linguist-language=TypeScript

@@ -42,7 +42,7 @@ export const LoginForm = (props: Props) => {
 
   return (
     // <form onSubmit={handleSubmit} className='flex flex-col justify-center gap-4 w-3/4 max-w-xs mx-auto'>
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.formSmall}>
       {/* <form> */}
       <div className='flex flex-col items-center gap-4 w-full'>
         <input

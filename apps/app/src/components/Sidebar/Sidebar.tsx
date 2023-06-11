@@ -1,33 +1,8 @@
-import React from 'react';
-
-import { MdEventNote } from 'react-icons/md';
-import {
-  RiExchangeDollarLine,
-  RiCalendarEventLine,
-  RiCalendarFill,
-  RiCalendarEventFill,
-  RiSettings5Line,
-  RiSettings5Fill,
-  RiHome4Fill,
-  RiHammerFill,
-} from 'react-icons/ri';
-
-import {
-  BiHome,
-  BiHomeSmile,
-  BiSearchAlt,
-  BiRun,
-  BiMoney,
-  BiMoneyWithdraw,
-  BiDollarCircle,
-  BiCalendarCheck,
-  BiListPlus,
-  BiListCheck,
-  BiCog,
-} from 'react-icons/bi';
+import { BiHome, BiSearchAlt, BiDollarCircle, BiCalendarCheck, BiCog } from 'react-icons/bi';
 import Image from 'next/image';
 import combi_mint from '/public/logo/combi/combi_mint.png';
 import Link from 'next/link';
+// import { useState } from 'react';
 
 type Props = {};
 
@@ -38,7 +13,7 @@ function Sidebar({}: Props) {
     {
       icon: <BiHome size={iconSize} />,
       title: 'Home',
-      link: '/home',
+      link: '/',
     },
     {
       icon: <BiSearchAlt size={iconSize} />,
@@ -62,8 +37,13 @@ function Sidebar({}: Props) {
     },
   ];
 
+  // const [first, setfirst] = useState('second');
+
+  // TODO: On small screens show a hamburger menu which pushes sidebar in
+  // from the left, pushing dashboard content to the right with a dark overlay
+
   return (
-    <div className='w-56 h-screen p-4 flex flex-col'>
+    <div className='w-[15.5rem] h-screen p-4 hidden lg:flex flex-col'>
       <Link href={'/'} className='px-2 py-6'>
         <Image src={combi_mint} alt='logo' width={800} height={800} />
       </Link>
