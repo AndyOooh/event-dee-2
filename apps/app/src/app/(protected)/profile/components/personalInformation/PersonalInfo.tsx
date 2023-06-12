@@ -7,10 +7,8 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { step1Schema } from './validation';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
-import { FormError, TextInput } from 'ui';
+import { FormError, SearchableSelect, SearchableSelect2, Select, TextInput } from 'ui';
 import { formArray } from '../formArray';
-
-type Props = {};
 
 type FormData = {
   first_name: string;
@@ -22,9 +20,10 @@ type FormData = {
   pronouns: string;
 };
 
-export const PersonalInfo = (props: Props) => {
+export const PersonalInfo = () => {
   const { currentUser } = useContext(UserContext);
   const [formData, setFormData] = useState({});
+  const [select2Value, setSelect2Value] = useState('');
 
   const {
     register,
@@ -63,20 +62,61 @@ export const PersonalInfo = (props: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className='w-full grid grid-cols-2 gap-6'>
-        {formArray.map((info, index) => (
-          <>
-            <TextInput
-              key={index}
-              name={info.title}
-              defaultValue={currentUser && currentUser[info.title]}
-              register={register}
-              label={true}
-              maxW='max-w-md'
-            />
-            {/* <FormError formError={errors?.email?.message} /> */}
-          </>
-        ))}
+        {formArray.map((info, index) => {
+          return info.type === 'text' ? (
+            <div key={info.title}>
+              <TextInput
+                name={info.title}
+                defaultValue={currentUser && currentUser[info.title]}
+                register={register}
+                label={true}
+                maxW='max-w-md'
+              />
+              {/* <FormError formError={errors?.email?.message} /> */}
+            </div>
+          ) : (
+            <div key={info.title}>
+              {/* <SearchableSelect optionsProp={info.options} /> */}
+              <SearchableSelect2
+                name={info.title}
+                defaultValue={currentUser && currentUser[info.title]}
+                options={info.options}
+                register={register}
+                label={true}
+                className=''
+                maxW='max-w-md'
+                // value,
+                id={info.title}
+                selectedVal={select2Value}
+                handleChange={val => setSelect2Value(val)}
+              />
+            </div>
+            // <div key={info.title}>
+            //   <Select
+            //     name={info.title}
+            //     defaultValue={currentUser && currentUser[info.title]}
+            //     options={info.options}
+            //     register={register}
+            //     label={true}
+            //     className=''
+            //     maxW='max-w-md'
+            //   />
+            // </div>
+          );
+        })}
       </div>
+
+      {/* <select className='select w-full max-w-xs'>
+        <option disabled selected>
+          Pick your favorite Simpson
+        </option>
+        <option>Homer</option>
+        <option>Marge</option>  
+        <option>Bart</option>
+        <option>Lisa</option>
+        <option>Maggie</option>
+      </select> */}
+
       <>
         <ActionButton text='Update' />
       </>

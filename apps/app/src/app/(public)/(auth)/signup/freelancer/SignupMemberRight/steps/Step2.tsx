@@ -55,7 +55,7 @@ export const Step2 = ({}: Props) => {
         options={['Model', 'Photographer', 'MC']}
         register={register}
         className=''
-        text='Choose profession'
+        defaultValue='Choose profession'
       />
       <FormError formError={errors?.profession?.message} />
 
