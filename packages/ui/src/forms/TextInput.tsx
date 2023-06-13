@@ -11,7 +11,6 @@ type Props = {
   className?: string;
   maxW?: string;
 
-
   // error?: string;
   // placeholder?: string;
   // autoComplete?: string;

@@ -7,7 +7,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { step1Schema } from './validation';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
-import { FormError, SearchableSelect, SearchableSelect2, Select, TextInput } from 'ui';
+import { FormError, ReactSelect, SearchableSelect, SearchableSelect2, Select, TextInput } from 'ui';
 import { formArray } from '../formArray';
 
 type FormData = {
@@ -22,6 +22,7 @@ type FormData = {
 
 export const PersonalInfo = () => {
   const { currentUser } = useContext(UserContext);
+  console.log('🚀  file: PersonalInfo.tsx:25  currentUser:', currentUser)
   const [formData, setFormData] = useState({});
   const [select2Value, setSelect2Value] = useState('');
 
@@ -75,22 +76,32 @@ export const PersonalInfo = () => {
               {/* <FormError formError={errors?.email?.message} /> */}
             </div>
           ) : (
-            <div key={info.title}>
-              {/* <SearchableSelect optionsProp={info.options} /> */}
-              <SearchableSelect2
-                name={info.title}
-                defaultValue={currentUser && currentUser[info.title]}
-                options={info.options}
-                register={register}
-                label={true}
-                className=''
-                maxW='max-w-md'
-                // value,
-                id={info.title}
-                selectedVal={select2Value}
-                handleChange={val => setSelect2Value(val)}
-              />
-            </div>
+            <ReactSelect
+              name={info.title}
+              // defaultValue={currentUser && { value: currentUser[info.title] }}
+              defaultValue={currentUser && { value: 'heyy', label: 'Heyyyy'  }}
+              // defaultValue={'dasdasd'}
+              options={info.options}
+              register={register}
+              label={true}
+              maxW='max-w-md'
+            />
+            //   <SearchableSelect optionsProp={info.options} />
+            // <div key={info.title}>
+            //   <SearchableSelect2
+            //     name={info.title}
+            //     defaultValue={currentUser && currentUser[info.title]}
+            //     options={info.options}
+            //     register={register}
+            //     label={true}
+            //     className=''
+            //     maxW='max-w-md'
+            //     // value,
+            //     id={info.title}
+            //     selectedVal={select2Value}
+            //     handleChange={val => setSelect2Value(val)}
+            //   />
+            // </div>
             // <div key={info.title}>
             //   <Select
             //     name={info.title}

@@ -14,7 +14,7 @@ type FormInput = {
   title: keyof FormData;
   type: 'text' | 'select';
   tooltip: string;
-  options?: string[];
+  options?: any[];
 };
 
 export const formArray: FormInput[] = [
@@ -43,7 +43,10 @@ export const formArray: FormInput[] = [
     title: 'province',
     type: 'select',
     tooltip: 'Enter your province',
-    options: thaiProvinces.map(province => province.provinceNameEn),
+    options: thaiProvinces.map(province => ({
+      value: province.provinceNameEn,
+      label: province.provinceNameEn,
+    })),
     // options: ['Male', 'Female', 'Non-binary', 'Prefer not to say'],
   },
   {
@@ -51,7 +54,25 @@ export const formArray: FormInput[] = [
     type: 'select',
     tooltip:
       'EventDee deeply values diversity and this data will only be used by Teamway for our own analytics purposes and not shared with 3rd parties without your consent. This field is optional.',
-    options: ['Male', 'Female', 'Non-binary', 'Prefer not to say'],
+    options: [
+      {
+        value: 'male',
+        label: 'Male',
+      },
+      {
+        value: 'female',
+        label: 'Female',
+      },
+      {
+        value: 'non_binary',
+        label: 'Non-binary',
+      },
+      {
+        value: 'prefer_not_to_say',
+        label: 'Prefer not to say',
+      },
+    ],
+    // options: ['Male', 'Female', 'Non-binary', 'Prefer not to say'],
   },
 
   {
@@ -59,8 +80,11 @@ export const formArray: FormInput[] = [
     type: 'select',
     tooltip:
       'You can add your pronouns to your profile to signal one of the most deeply felt aspects of who we are: our gender identity. This field is optional.',
-    options: ['He/Him', 'She/Her', 'They/Them', 'Prefer not to say'],
+    options: [
+      { value: 'he_him', label: 'He/Him' },
+      { value: 'she_her', label: 'She/Her' },
+      { valu: 'they_them', label: 'They/Them' },
+      { value: 'prefer_not_to_say', label: 'Prefer not to say' },
+    ],
   },
 ];
-
-
