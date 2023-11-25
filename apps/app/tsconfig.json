@@ -3,12 +3,27 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "__components/*": ["components/*"],
-      "__atoms/*": ["atoms/*"],
-      "__firebase/*": ["firebase/*"],
-      "__styles/*": ["styles/*"],
-      "__utils/*": ["utils/*"]
-    }
+      "__components/*": [
+        "components/*"
+      ],
+      "__atoms/*": [
+        "atoms/*"
+      ],
+      "__firebase/*": [
+        "firebase/*"
+      ],
+      "__styles/*": [
+        "styles/*"
+      ],
+      "__utils/*": [
+        "utils/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -17,5 +32,7 @@
     ".next/types/**/*.ts",
     "src/app/(public)/(auth)/signup/business/SignupBusinessRight/validation.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

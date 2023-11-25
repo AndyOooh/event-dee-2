@@ -13,7 +13,7 @@
     "clean": "rm -rf node_modules && rm -rf lib && rm -rf ui-debug.log"
   },
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "main": "lib/index.js",
   "dependencies": {
