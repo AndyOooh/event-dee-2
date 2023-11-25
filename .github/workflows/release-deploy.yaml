@@ -3,8 +3,6 @@ run-name: Deploy app-main on release
 
 on:
   release:
-    branches:
-      - main
     types: [created]
 
 jobs:

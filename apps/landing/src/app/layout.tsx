@@ -4,17 +4,24 @@ import '../styles/globals.scss';
 // import "ui/styles.css"; // might need this
 
 // import { Varela, Barlow_Condensed } from 'next/font/google';
-import { Varela, Gantari, Maven_Pro, Cabin, Inter, Karla } from 'next/font/google';
+import {
+  Varela,
+  // Gantari,
+  Maven_Pro,
+  Cabin,
+  Inter,
+  Karla,
+} from 'next/font/google';
 
 // If loading a variable font, you don't need to specify the font weight
 const varela = Varela({
   weight: ['400'],
   subsets: ['latin'],
 });
-const gantari = Gantari({
-  // weight: ['400'],
-  subsets: ['latin'],
-});
+// const gantari = Gantari({
+//   // weight: ['400'],
+//   subsets: ['latin'],
+// });
 const maven_Pro = Maven_Pro({
   // weight: ['400'],
   subsets: ['latin'],
