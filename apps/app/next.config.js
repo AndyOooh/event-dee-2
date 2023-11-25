@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['ui'],
   experimental: {
-    appDir: true,
+    // appDir: true,
   },
   images: {
     domains: ['firebasestorage.googleapis.com', 'lh3.googleusercontent.com'],

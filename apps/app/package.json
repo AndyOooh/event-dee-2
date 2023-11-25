@@ -12,12 +12,8 @@
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
     "firebase": "^9.19.1",
-    "next": "latest",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.9",
-    "react-icons": "^4.9.0",
     "react-spinners": "^0.13.8",
     "recoil": "^0.7.7",
     "ui": "*",
@@ -25,9 +21,6 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.12",
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
     "eslint-config-custom": "*",
     "tsconfig": "*"
   }
