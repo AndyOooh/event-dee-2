@@ -1,5 +1,11 @@
 {
   "private": true,
+  "name": "turbo-tw-daisy-sb",
+  "packageManager": "yarn@1.22.19",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "dotenv -- turbo run dev",
@@ -8,7 +14,18 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "emulator": "turbo run emulators"
   },
+  "dependencies": {
+    "next": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@yarnpkg/plugin-workspace-tools": "^4.0.0-rc.42",
+    "daisyui": "^2.51.5",
+    "dotenv-cli": "^7.2.1"
+  },
   "devDependencies": {
+    "@types/node": "^17.0.12",
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
     "autoprefixer": "^10.4.14",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
@@ -17,16 +34,5 @@
     "tailwindcss": "^3.3.1",
     "turbo": "latest",
     "typescript": "^5.0.4"
-  },
-  "name": "turbo-tw-daisy-sb",
-  "packageManager": "yarn@1.22.19",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "dependencies": {
-    "@yarnpkg/plugin-workspace-tools": "^4.0.0-rc.42",
-    "daisyui": "^2.51.5",
-    "dotenv-cli": "^7.2.1"
   }
 }
