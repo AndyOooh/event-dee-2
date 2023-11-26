@@ -7,7 +7,7 @@ import { Checkbox, FormError, Select, TextInput } from 'ui';
 import { styles } from '../../../../../../../styles/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { step2Schema } from '../validation';
+import { IStep2Schema, step2Schema } from '../validation';
 import { useRecoilState } from 'recoil';
 import { FormStep2, wizardForm } from '../../../../../../../atoms/signupFreelancerAtom';
 
@@ -20,7 +20,8 @@ export const Step2 = ({}: Props) => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormStep2>({
+  // } = useForm<FormStep2>({
+  } = useForm<IStep2Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step2Schema),
   });
@@ -57,7 +58,8 @@ export const Step2 = ({}: Props) => {
         className=''
         defaultValue='Choose profession'
       />
-      <FormError formError={errors?.profession?.message} />
+      {/*as string is a quick fix. check it later */}
+      <FormError formError={errors?.profession?.message as string} /> 
 
       <div className='form-control'>
         <label className='label'>

@@ -9,14 +9,24 @@ import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
-import { step1Schema } from '../validation';
+import { IStep1Schema, step1Schema } from '../validation';
 import { getCloudFunction } from '__firebase/clientApp';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
 
 type FormData = FormStep1 & {
-  confirm_password?: string;
   check_legal: boolean;
+  // confirm_password?: string;
+  confirm_password?: unknown;
 };
+
+
+// type FormData = {
+//   email?: unknown;
+//   new_password?: unknown;
+//   provider?: string;
+//   check_legal?: boolean;
+//   confirm_password?: unknown;
+// };
 
 export const Step1 = () => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
@@ -29,7 +39,8 @@ export const Step1 = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  // } = useForm<FormData>({
+  } = useForm<IStep1Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step1Schema),
     defaultValues: {
