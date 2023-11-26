@@ -36,7 +36,7 @@ export const PersonalInfo = () => {
     formState: { errors },
   } = useForm<FormData>({
     mode: 'onTouched',
-    resolver: yupResolver(step1Schema),
+    // resolver: yupResolver(step1Schema),
     defaultValues: {
       //   provider: 'email',
     },

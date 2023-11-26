@@ -1,5 +1,7 @@
 // 'use client';
 
+export {}
+
 // import React from 'react';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 // import { ProfilePageFreelancerPrivate } from './components/profilePrivate/ProfilePageFreelancerPrivate';
