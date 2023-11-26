@@ -2,6 +2,14 @@
 
 import { atom } from 'recoil';
 
+// type FormData = {
+//   email?: unknown;
+//   new_password?: unknown;
+//   provider?: string;
+//   check_legal?: boolean;
+//   confirm_password?: unknown;
+// };
+
 export type FormStep1 = {
   email?: string;
   new_password?: string;

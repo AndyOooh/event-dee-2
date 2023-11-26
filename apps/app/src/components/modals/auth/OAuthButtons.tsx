@@ -12,7 +12,7 @@ import {
   useAuthState,
 } from 'react-firebase-hooks/auth';
 
-type Providers = 'google' | 'facebook';
+export type Providers = 'google' | 'facebook';
 
 type Props = {
   // setSelected?: (provider: Providers) => void;

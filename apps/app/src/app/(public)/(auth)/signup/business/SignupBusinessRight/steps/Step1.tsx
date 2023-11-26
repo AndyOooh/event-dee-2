@@ -12,7 +12,7 @@ import { styles } from '__styles/styles';
 // import { step1Schema } from '../validation';
 import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
-import { step1Schema } from '../../../freelancer/SignupMemberRight/validation';
+import { IStep1Schema, step1Schema } from '../../../freelancer/SignupMemberRight/validation';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
 
 type FormData = FormStep1 & {
@@ -32,7 +32,7 @@ export const Step1 = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<IStep1Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step1Schema),
     defaultValues: {
@@ -63,7 +63,7 @@ export const Step1 = () => {
             <FormError formError={errors?.email?.message} />
             <div className='flex gap-4'>
               <TextInput name='password' register={register} label={true} />
-              <FormError formError={errors?.password?.message} />
+              <FormError formError={errors?.new_password?.message} />
               <TextInput name='confirm_password' label={true} register={register} />
               <FormError formError={errors?.confirm_password?.message} />
             </div>
