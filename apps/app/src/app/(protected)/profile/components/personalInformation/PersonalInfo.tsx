@@ -22,7 +22,7 @@ type FormData = {
 
 export const PersonalInfo = () => {
   const { currentUser } = useContext(UserContext);
-  console.log('🚀  file: PersonalInfo.tsx:25  currentUser:', currentUser)
+  console.log('🚀  file: PersonalInfo.tsx:25  currentUser:', currentUser);
   const [formData, setFormData] = useState({});
   const [select2Value, setSelect2Value] = useState('');
 
@@ -63,58 +63,60 @@ export const PersonalInfo = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className='w-full grid grid-cols-2 gap-6'>
-        {formArray.map((info, index) => {
-          return info.type === 'text' ? (
-            <div key={info.title}>
-              <TextInput
-                name={info.title}
-                defaultValue={currentUser && currentUser[info.title]}
-                register={register}
-                label={true}
-                maxW='max-w-md'
-              />
-              {/* <FormError formError={errors?.email?.message} /> */}
-            </div>
-          ) : (
-            <ReactSelect
-              name={info.title}
-              // defaultValue={currentUser && { value: currentUser[info.title] }}
-              defaultValue={currentUser && { value: 'heyy', label: 'Heyyyy'  }}
-              // defaultValue={'dasdasd'}
-              options={info.options}
-              register={register}
-              label={true}
-              maxW='max-w-md'
-            />
-            //   <SearchableSelect optionsProp={info.options} />
-            // <div key={info.title}>
-            //   <SearchableSelect2
-            //     name={info.title}
-            //     defaultValue={currentUser && currentUser[info.title]}
-            //     options={info.options}
-            //     register={register}
-            //     label={true}
-            //     className=''
-            //     maxW='max-w-md'
-            //     // value,
-            //     id={info.title}
-            //     selectedVal={select2Value}
-            //     handleChange={val => setSelect2Value(val)}
-            //   />
-            // </div>
-            // <div key={info.title}>
-            //   <Select
-            //     name={info.title}
-            //     defaultValue={currentUser && currentUser[info.title]}
-            //     options={info.options}
-            //     register={register}
-            //     label={true}
-            //     className=''
-            //     maxW='max-w-md'
-            //   />
-            // </div>
-          );
-        })}
+        {currentUser
+          ? formArray.map((info, index) => {
+              return info.type === 'text' ? (
+                <div key={info.title}>
+                  <TextInput
+                    name={info.title}
+                    defaultValue={currentUser && currentUser[info.title]}
+                    register={register}
+                    label={true}
+                    maxW='max-w-md'
+                  />
+                  {/* <FormError formError={errors?.email?.message} /> */}
+                </div>
+              ) : (
+                <ReactSelect
+                  name={info.title}
+                  defaultValue={currentUser && currentUser[info.title]}
+                  // defaultValue={currentUser && { value: 'heyy22', label: 'Heyyyy'  }}
+                  // defaultValue={'dasdasd'}
+                  options={info.options}
+                  register={register}
+                  label={true}
+                  maxW='max-w-md'
+                />
+                //   <SearchableSelect optionsProp={info.options} />
+                // <div key={info.title}>
+                //   <SearchableSelect2
+                //     name={info.title}
+                //     defaultValue={currentUser && currentUser[info.title]}
+                //     options={info.options}
+                //     register={register}
+                //     label={true}
+                //     className=''
+                //     maxW='max-w-md'
+                //     // value,
+                //     id={info.title}
+                //     selectedVal={select2Value}
+                //     handleChange={val => setSelect2Value(val)}
+                //   />
+                // </div>
+                // <div key={info.title}>
+                //   <Select
+                //     name={info.title}
+                //     defaultValue={currentUser && currentUser[info.title]}
+                //     options={info.options}
+                //     register={register}
+                //     label={true}
+                //     className=''
+                //     maxW='max-w-md'
+                //   />
+                // </div>
+              );
+            })
+          : null}
       </div>
 
       {/* <select className='select w-full max-w-xs'>

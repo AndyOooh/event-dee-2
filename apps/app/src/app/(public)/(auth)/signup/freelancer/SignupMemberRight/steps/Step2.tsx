@@ -29,6 +29,7 @@ export const Step2 = ({}: Props) => {
   console.log('🚀  file: Step1.tsx:52  data:', watch());
 
   const onSubmit: SubmitHandler<FormStep2> = data => {
+    console.log('ONSUBMIT data:, data')
     setWFormData(prev => ({
       ...prev,
       ...data,
@@ -72,7 +73,7 @@ export const Step2 = ({}: Props) => {
         </div>
       </div>
       <FormError formError={errors?.other_skills?.message} />
-      <ActionButton text='Step 2' />
+      <ActionButton text='Step 3' />
     </form>
   );
 };

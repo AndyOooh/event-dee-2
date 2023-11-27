@@ -48,12 +48,12 @@ export const step2Schema = yup
   .object({
     name: yup.string().required().min(2),
 
-    first_name: yup.string().required().min(2),
+    first_name: yup.string().min(2),
     last_name: yup.string().required().min(2),
     // profession: yup.string().required().is([!'Choose profession'], 'Please choose a profession'),
     profession: yup.string().required().not(['Choose profession'], 'Please choose a profession'),
     other_skills: yup.array().min(1).of(yup.string()).required(),
-    company_name: yup.string().required().min(2),
+    company_name: yup.string().min(2),
   })
   .required();
 export type IStep2Schema = yup.InferType<typeof step2Schema>;

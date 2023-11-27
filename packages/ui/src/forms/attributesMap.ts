@@ -58,7 +58,7 @@ export const getAttributes = (name: string) => {
       attributes = {
         _type: 'text',
         _label: 'Province',
-        _placeholder: 'Eg. Ontario',
+        _placeholder: 'Eg. Bangkpl',
         _autocmplete: 'address-level1',
       };
       break;
@@ -66,7 +66,7 @@ export const getAttributes = (name: string) => {
       attributes = {
         _type: 'dropdown',
         _label: 'Gender',
-        _placeholder: 'Eg. Ontario',
+        _placeholder: 'Eg. Female',
         _autocmplete: 'address-level1',
       };
       break;
@@ -74,7 +74,7 @@ export const getAttributes = (name: string) => {
       attributes = {
         _type: 'dropdown',
         _label: 'Pronouns',
-        _placeholder: 'Eg. Ontario',
+        _placeholder: 'Eg. she/Her',
         _autocmplete: 'address-level1',
       };
       break;

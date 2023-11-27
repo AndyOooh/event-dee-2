@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Select from 'react-select';
+import { getAttributes } from './attributesMap';
 
 type Option = {
   value: string;
@@ -26,7 +27,7 @@ export const ReactSelect = ({
   tooltip,
   options,
   maxW = 'max-w-sm',
-}: Props) => {
+}: Props): JSX.Element => {
   console.log('🚀  file: ReactSelect.tsx:30  defaultValue:', defaultValue);
   const [isClearable, setIsClearable] = useState(true);
   const [isSearchable, setIsSearchable] = useState(true);
@@ -34,23 +35,27 @@ export const ReactSelect = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isRtl, setIsRtl] = useState(false);
 
-  const [selectedOption, setSelectedOption] = useState(null);
-  const options2: Option[] = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
+  const [selectedOption, setSelectedOption] = useState(defaultValue);
+  console.log('🚀  file: ReactSelect.tsx:39  selectedOption:', selectedOption);
 
-  return (
+  const { _type, _label, _placeholder, _autocmplete } = getAttributes(name);
+
+  console.log('LOADINGGGGG!!!!!!!!!');
+  let SelectElement = (
     <div
       // className={`input input-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
       className={`flex-center p-0 input input-bordered w-full mx-auto focus:outline-none focus:border-accent max-w-md ${maxW}`}>
+      {/* <input defaultValue={defaultValue?.label} className='bg-white' /> */}
+
       <Select
-        className='basic-single'
         // name={name}
-        defaultValue={defaultValue}
-        // defaultValue={{ value: 'chocolate', label: 'dsff' }}
+        value={selectedOption}
+        className='basic-single'
+        placeholder={_placeholder}
         // defaultValue={options[0]}
+        defaultValue={defaultValue}
+        // defaultValue={{ value: 'chocolate', label: 'Male33333' }}
+        // defaultValue={'dsfsdf'}
         isDisabled={isDisabled}
         isLoading={isLoading}
         // isRtl={isRtl}
@@ -77,6 +82,26 @@ export const ReactSelect = ({
       />
     </div>
   );
+
+  if (tooltip) {
+    SelectElement = (
+      <div className='tooltip tooltip-info tooltip-left w-full text-xs' data-tip={tooltip}>
+        {SelectElement}
+      </div>
+    );
+  }
+
+  if (label) {
+    SelectElement = (
+      <>
+        <label className='label w-full flex flex-col'>
+          <span className='label-text self-start mb-3'>{_label}</span>
+          {SelectElement}
+        </label>
+      </>
+    );
+  }
+  return SelectElement;
 };
 
 {
