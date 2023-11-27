@@ -2,7 +2,7 @@ const { NODE_ENV } = process.env as { NODE_ENV: 'production' | 'staging' | 'deve
 
 export const appUrl =
   NODE_ENV === 'production'
-    ? 'https://app.event-dee.vercel.app'
+    ? 'https://app-event-dee2.vercel.app'
     : NODE_ENV === 'staging'
-    ? 'https://dev.event-dee.vercel.app'
+    ? 'https://dev-event-dee2.vercel.app'
     : 'http://localhost:3001';
