@@ -9,6 +9,7 @@ import { step1Schema } from './validation';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import { FormError, ReactSelect, SearchableSelect, SearchableSelect2, Select, TextInput } from 'ui';
 import { formArray } from '../formArray';
+import { getCloudFunction } from '__firebase/clientApp';
 
 type FormData = {
   first_name: string;
@@ -42,15 +43,15 @@ export const PersonalInfo = () => {
     },
   });
   const onSubmit = async (data: any) => {
-    // console.log('in SUBMIT');
-    // const email = watch('email');
-    // const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
-    // const emailExists = (await checkEmailExists(email)).data;
-    // console.log('🚀  file: Step1.tsx:52  emailExists:', emailExists);
-    // if (emailExists) {
-    //   setError('email', { message: 'Email already exists' });
-    //   return;
-    // }
+    console.log('in SUBMIT');
+    const email = watch('email');
+    const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
+    const emailExists = (await checkEmailExists(email)).data;
+    console.log('🚀  file: Step1.tsx:52  emailExists:', emailExists);
+    if (emailExists) {
+      setError('email', { message: 'Email already exists' });
+      return;
+    }
 
     setFormData(prev => ({
       ...prev,
