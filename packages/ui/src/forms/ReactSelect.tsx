@@ -22,13 +22,14 @@ type Props = {
 
 export const ReactSelect = ({
   name,
+  register,
   label = false,
   defaultValue,
   tooltip,
   options,
   maxW = 'max-w-sm',
 }: Props): JSX.Element => {
-  console.log('🚀  file: ReactSelect.tsx:30  defaultValue:', defaultValue);
+  // console.log('🚀  file: ReactSelect.tsx:30  defaultValue:', defaultValue);
   const [isClearable, setIsClearable] = useState(true);
   const [isSearchable, setIsSearchable] = useState(true);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -36,11 +37,14 @@ export const ReactSelect = ({
   const [isRtl, setIsRtl] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState(defaultValue);
-  console.log('🚀  file: ReactSelect.tsx:39  selectedOption:', selectedOption);
+  // console.log('🚀  file: ReactSelect.tsx:39  selectedOption:', selectedOption);
 
   const { _type, _label, _placeholder, _autocmplete } = getAttributes(name);
 
-  console.log('LOADINGGGGG!!!!!!!!!');
+  const LALALALA = register(name);
+  console.log('🚀  file: ReactSelect.tsx:45  LALALALA:', LALALALA)
+
+  // console.log('LOADINGGGGG!!!!!!!!!');
   let SelectElement = (
     <div
       // className={`input input-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
@@ -48,8 +52,9 @@ export const ReactSelect = ({
       {/* <input defaultValue={defaultValue?.label} className='bg-white' /> */}
 
       <Select
-        // name={name}
-        value={selectedOption}
+        {...register(name)}
+        // name={name + 'kakaka'}
+        // value={selectedOption}
         className='basic-single'
         placeholder={_placeholder}
         // defaultValue={options[0]}

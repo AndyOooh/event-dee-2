@@ -3,12 +3,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { styles } from '__styles/styles';
 import { UserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { step1Schema } from './validation';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import { FormError, ReactSelect, SearchableSelect, SearchableSelect2, Select, TextInput } from 'ui';
 import { formArray } from '../formArray';
+import { db } from '__firebase/clientApp';
+import { doc, updateDoc } from 'firebase/firestore';
 
 type FormData = {
   first_name: string;
@@ -23,8 +25,15 @@ type FormData = {
 export const PersonalInfo = () => {
   const { currentUser } = useContext(UserContext);
   console.log('🚀  file: PersonalInfo.tsx:25  currentUser:', currentUser);
-  const [formData, setFormData] = useState({});
+  // const [formData, setFormData] = useState({});
+  // console.log('🚀  file: PersonalInfo.tsx:29  formData:', formData);
   const [select2Value, setSelect2Value] = useState('');
+  
+
+  // useEffect(() => {
+  //   console.log('in useEffect');
+  //   console.log('Formdata changed: ', formData);
+  // }, [formData]);
 
   const {
     register,
@@ -42,22 +51,22 @@ export const PersonalInfo = () => {
     },
   });
   const onSubmit = async (data: any) => {
-    // console.log('in SUBMIT');
-    // const email = watch('email');
-    // const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
-    // const emailExists = (await checkEmailExists(email)).data;
-    // console.log('🚀  file: Step1.tsx:52  emailExists:', emailExists);
-    // if (emailExists) {
-    //   setError('email', { message: 'Email already exists' });
-    //   return;
-    // }
+    try {
+      console.log('🚀  file: PersonalInfo.tsx:53  data:', data);
+      console.log('in SUBMIT');
+      console.log('Updating user uid: ', currentUser.uid);
 
-    setFormData(prev => ({
-      ...prev,
-      ...data,
-    }));
-    <s></s>;
-    return;
+      // TODO: compare data with currentUser and only update the ones that are different
+      // If nothing is different, don't update (return and show a message)
+
+      const userDocRef = doc(db, 'users', currentUser.uid);
+      const res = await updateDoc(userDocRef, data);
+      // console.log('🚀  file: PersonalInfo.tsx:55  res:', res);
+
+      return;
+    } catch (error) {
+      console.log('🚀  file: PersonalInfo.tsx:59  error:', error);
+    }
   };
 
   return (
@@ -77,16 +86,17 @@ export const PersonalInfo = () => {
                   {/* <FormError formError={errors?.email?.message} /> */}
                 </div>
               ) : (
-                <ReactSelect
-                  name={info.title}
-                  defaultValue={currentUser && currentUser[info.title]}
-                  // defaultValue={currentUser && { value: 'heyy22', label: 'Heyyyy'  }}
-                  // defaultValue={'dasdasd'}
-                  options={info.options}
-                  register={register}
-                  label={true}
-                  maxW='max-w-md'
-                />
+                // <ReactSelect
+                //   key={info.title}
+                //   name={info.title}
+                //   defaultValue={currentUser && currentUser[info.title]}
+                //   // defaultValue={currentUser && { value: 'heyy22', label: 'Heyyyy'  }}
+                //   // defaultValue={'dasdasd'}
+                //   options={info.options}
+                //   register={register}
+                //   label={true}
+                //   maxW='max-w-md'
+                // />
                 //   <SearchableSelect optionsProp={info.options} />
                 // <div key={info.title}>
                 //   <SearchableSelect2
@@ -103,17 +113,17 @@ export const PersonalInfo = () => {
                 //     handleChange={val => setSelect2Value(val)}
                 //   />
                 // </div>
-                // <div key={info.title}>
-                //   <Select
-                //     name={info.title}
-                //     defaultValue={currentUser && currentUser[info.title]}
-                //     options={info.options}
-                //     register={register}
-                //     label={true}
-                //     className=''
-                //     maxW='max-w-md'
-                //   />
-                // </div>
+                <div key={info.title}>
+                  <Select
+                    name={info.title}
+                    defaultValue={currentUser && currentUser[info.title]}
+                    options={info.options}
+                    register={register}
+                    label={true}
+                    className=''
+                    maxW='max-w-md'
+                  />
+                </div>
               );
             })
           : null}

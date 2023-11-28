@@ -12,8 +12,8 @@ type Props = {};
 
 export const AuthCardUser = (props: Props) => {
   const [user, loading, error] = useAuthState(auth);
-  const UserCtx = useContext(UserContext);
-  console.log('🚀  file: AuthCardUser.tsx:16  profCtx:', UserCtx);
+  // const UserCtx = useContext(UserContext);
+  // console.log('🚀  file: AuthCardUser.tsx:16  profCtx:', UserCtx);
 
   return (
     <div className='flex gap-1'>

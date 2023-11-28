@@ -8,7 +8,7 @@ type Props = {
   label?: boolean;
   tooltip?: string;
   className: string;
-  options: string[];
+  options: any[];
   value?: string;
   maxW?: string;
 };
@@ -28,22 +28,19 @@ export const Select = ({
   const _label = toTitleCase(_value);
 
   let Select = (
-    // <label className='label w-full p-0'>
     <>
       <select
         {...register(name)}
-        className={`select select-bordered w-full mx-auto font-normal focus:outline-none focus:border-accent ${maxW} ${className}`}>
-        <option disabled selected>
-          {defaultValue}
-        </option>
+        className={`select select-bordered w-full mx-auto font-normal focus:outline-none focus:border-accent ${maxW} ${className} text-inherit`}>
+        {/* <option disabled selected> */}
+        <option>{defaultValue}</option>
         {options.map(option => (
-          <option key={option} className='font-normal'>
-            {option}
+          <option key={option.label} className='text-inherit'>
+            {option.label}
           </option>
         ))}
       </select>
     </>
-    // </label>
   );
 
   if (tooltip) {
