@@ -1,7 +1,8 @@
-import { ColoredDiv } from 'ui';
 import { ProfilePhoto } from './components/profilePhoto';
 import { PersonalInfo } from './components/personalInformation/PersonalInfo';
 import { WorkInfo } from './components/workInformation/WorkInfo';
+import { LinksInfo } from './components/links/LinksInfo';
+import { GetToKnow } from './components/getToKnow/GetToKnow';
 
 type Props = {};
 
@@ -23,17 +24,16 @@ export default function ProfilePageUser(props: Props) {
     },
     {
       title: 'Links',
-      element: <div>Links</div>,
+      element: <LinksInfo />,
     },
     {
       title: 'Getting to know you better',
-      element: <div>Getting to know you better...</div>,
+      element: <GetToKnow />,
     },
   ];
 
   return (
     <div className='flex flex-col gap-4 w-full'>
-      <h1>ProfilePageUser</h1>
       <h1 className='text-3xl'>Profile Settings</h1>
       <div className='flex flex-col gap-4'>
         {sections.map(section => (
@@ -45,10 +45,6 @@ export default function ProfilePageUser(props: Props) {
           </div>
         ))}
       </div>
-
-      {/* <ColoredDiv color='orange' direction='right' height={6} className='z-10' />
-      <ColoredDiv color='orange' direction='right' height={6} className='z-10' />
-      <ColoredDiv color='orange' direction='right' height={6} className='z-10' /> */}
     </div>
   );
 }

@@ -35,7 +35,7 @@ export const Select = ({
         {/* <option disabled selected> */}
         <option>{defaultValue}</option>
         {options.map(option => (
-          <option key={option.label} className='text-inherit'>
+          <option key={option.value} value={option.value} className='text-inherit'>
             {option.label}
           </option>
         ))}

@@ -8,16 +8,17 @@ type FormData = {
   province: string;
   gender: string;
   pronouns: string;
+  height: string;
 };
 
 type FormInput = {
   title: keyof FormData;
   type: 'text' | 'select';
   tooltip: string;
-  options?: any[];
+  options?: { value: any; label: string }[];
 };
 
-export const formArray: FormInput[] = [
+export const formArrayPersonalInfo: FormInput[] = [
   {
     title: 'first_name',
     type: 'text',
@@ -72,7 +73,6 @@ export const formArray: FormInput[] = [
         label: 'Prefer not to say',
       },
     ],
-    // options: ['Male', 'Female', 'Non-binary', 'Prefer not to say'],
   },
 
   {
@@ -83,8 +83,17 @@ export const formArray: FormInput[] = [
     options: [
       { value: 'he_him', label: 'He/Him' },
       { value: 'she_her', label: 'She/Her' },
-      { valu: 'they_them', label: 'They/Them' },
+      { value: 'they_them', label: 'They/Them' },
       { value: 'prefer_not_to_say', label: 'Prefer not to say' },
     ],
+  },
+  {
+    title: 'height',
+    type: 'select',
+    tooltip: 'Enter your height',
+    options: Array.from({ length: 100 }, (_, i) => ({
+      value: `${i + 100} cm`,
+      label: `${i + 100} cm`,
+    })),
   },
 ];

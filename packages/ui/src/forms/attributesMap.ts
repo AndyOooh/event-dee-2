@@ -78,6 +78,70 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'address-level1',
       };
       break;
+    case 'linkedin':
+      attributes = {
+        _type: 'text',
+        _label: 'LinkedIn',
+        _placeholder: 'https://www.linkedin.com/in/your-name',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'instagram':
+      attributes = {
+        _type: 'text',
+        _label: 'Instagram',
+        _placeholder: 'https://www.instagram.com/your-name',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'facebook':
+      attributes = {
+        _type: 'text',
+        _label: 'Facebook',
+        _placeholder: 'https://www.facebook.com/your-name',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'twitter':
+      attributes = {
+        _type: 'text',
+        _label: 'Twitter',
+        _placeholder: 'https://www.twitter.com/your-name',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'tiktok':
+      attributes = {
+        _type: 'text',
+        _label: 'TikTok',
+        _placeholder: 'https://www.tiktok.com/@your-name',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'youtube':
+      attributes = {
+        _type: 'text',
+        _label: 'Youtube',
+        _placeholder: 'https://www.youtube.com/your-name',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'profile_header':
+      attributes = {
+        _type: 'text',
+        _label: 'Profile Header',
+        _placeholder: 'A one-liner about you',
+        _autocmplete: 'url',
+      };
+      break;
+    case 'profile_text':
+      attributes = {
+        _type: 'textarea',
+        _label: 'Profile Text',
+        _placeholder: 'A bit more about you',
+        _autocmplete: 'url',
+      };
+      break;
 
     default:
       attributes = {
