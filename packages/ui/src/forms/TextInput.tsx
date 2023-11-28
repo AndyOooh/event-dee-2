@@ -10,11 +10,6 @@ type Props = {
   tooltip?: string;
   className?: string;
   maxW?: string;
-
-  // error?: string;
-  // placeholder?: string;
-  // autoComplete?: string;
-  // type?: 'text' | 'email' | 'password';
 };
 
 /* Takes maxW bc unable to overwrite max-w with tailwind. This is weird as other styles can be overwritten */
@@ -27,32 +22,33 @@ export const TextInput = ({
   tooltip,
   className,
   maxW = 'max-w-sm',
-}: // error,
-// type = 'text',
-// placeholder,
-// autoComplete,
-Props): JSX.Element => {
-  // const _name = name || type;
-  // const _placeholder = placeholder || toTitleCase(_name);
-  // const _autoComplete = autoComplete || type;
-
+}: Props): JSX.Element => {
   const { _type, _label, _placeholder, _autocmplete }: IAttributes = getAttributes(name);
-  // const attr = getAttributes(name);
-  // console.log('🚀  file: TextInput.tsx:36  attr:', attr)
-  // console.log('🚀  file: TextInput.tsx:39  _type:', _type);
 
-  let Input = (
-    <>
-      <input
-        {...register(name)}
-        type={_type}
-        placeholder={_placeholder}
-        autoComplete={_autocmplete}
-        defaultValue={defaultValue}
-        className={`input input-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
-      />
-    </>
-  );
+  let Input =
+    _type === 'textarea' ? (
+      <>
+        <textarea
+          {...register(name)}
+          type={_type}
+          placeholder={_placeholder}
+          autoComplete={_autocmplete}
+          defaultValue={defaultValue}
+          className={`textarea textarea-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
+        />
+      </>
+    ) : (
+      <>
+        <input
+          {...register(name)}
+          type={_type}
+          placeholder={_placeholder}
+          autoComplete={_autocmplete}
+          defaultValue={defaultValue}
+          className={`input input-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
+        />
+      </>
+    );
 
   if (tooltip) {
     Input = (

@@ -6,9 +6,9 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import { ReactSelect, SearchableSelect, SearchableSelect2, Select, TextInput } from 'ui';
-import { formArray } from '../formArray';
 import { db } from '__firebase/clientApp';
 import { doc, updateDoc } from 'firebase/firestore';
+import { formArrayWorkInfo } from '../formArrayWorkInfo';
 
 type FormData = {
   first_name: string;
@@ -61,7 +61,7 @@ export const WorkInfo = () => {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className='w-full grid grid-cols-2 gap-6'>
         {currentUser
-          ? formArray.map((info, index) => {
+          ? formArrayWorkInfo.map((info, index) => {
               return info.type === 'text' ? (
                 <div key={info.title}>
                   <TextInput
