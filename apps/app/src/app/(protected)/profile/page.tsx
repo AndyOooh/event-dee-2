@@ -1,6 +1,7 @@
 import { ColoredDiv } from 'ui';
 import { ProfilePhoto } from './components/profilePhoto';
 import { PersonalInfo } from './components/personalInformation/PersonalInfo';
+import { WorkInfo } from './components/workInformation/WorkInfo';
 
 type Props = {};
 
@@ -18,7 +19,7 @@ export default function ProfilePageUser(props: Props) {
     },
     {
       title: 'Work information',
-      element: <div>Work information</div>,
+      element: <WorkInfo />,
     },
     {
       title: 'Links',

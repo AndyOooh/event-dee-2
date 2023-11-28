@@ -20,7 +20,7 @@ type FormData = {
   pronouns: string;
 };
 
-export const PersonalInfo = () => {
+export const WorkInfo = () => {
   const { currentUser } = useContext(UserContext);
 
   const {
@@ -40,7 +40,7 @@ export const PersonalInfo = () => {
   });
   const onSubmit = async (data: any) => {
     try {
-      console.log('🚀  file: PersonalInfo.tsx:53  data:', data);
+      console.log('🚀  file: WorkInfo.tsx:53  data:', data);
       console.log('in SUBMIT');
       console.log('Updating user uid: ', currentUser.uid);
 
@@ -49,11 +49,11 @@ export const PersonalInfo = () => {
 
       const userDocRef = doc(db, 'users', currentUser.uid);
       const res = await updateDoc(userDocRef, data);
-      // console.log('🚀  file: PersonalInfo.tsx:55  res:', res);
+      // console.log('🚀  file: WorkInfo.tsx:55  res:', res);
 
       return;
     } catch (error) {
-      console.log('🚀  file: PersonalInfo.tsx:59  error:', error);
+      console.log('🚀  file: WorkInfo.tsx:59  error:', error);
     }
   };
 
