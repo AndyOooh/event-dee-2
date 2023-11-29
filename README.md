@@ -195,5 +195,7 @@ See the [open issues](https://github.com/AndyOooh/persona/issues) for a full lis
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Jira integration now works!
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
