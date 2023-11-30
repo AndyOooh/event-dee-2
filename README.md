@@ -13,7 +13,8 @@
 ### _Connecting events_
 
   <p>
-    <a href="https://app-event-dee2.vercel.app/">View Demo</a>
+    <!-- <a href="https://app-event-dee2.vercel.app/">View Demo</a> -->
+    <a href="https://event-dee2.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/AndyOooh/repo_name/issues">Report Bug</a>
     ·
@@ -44,6 +45,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#author">Author</a></li>
+    <li><a href="#library-docs">Libraries</a></li>
   </ol>
 </details>
 
@@ -77,7 +79,6 @@ This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/
 - firebase-cloud-functions - a firebase cloud functions backend.
 
 It also includes five **packages** for shared configurations, types and UI components:
-
 
 - eslint-config-custom
 - tsconfig
@@ -144,8 +145,9 @@ yarn dev --filter landing
 
 Or you can _cd_ into the specific directories and use the commands there.
 
-Once you have the development servers running, you can access the: 
-- landing page at [localhost:3000](http://localhost:3000) 
+Once you have the development servers running, you can access the:
+
+- landing page at [localhost:3000](http://localhost:3000)
 - app at [localhost:3001](http://localhost:3001)
 - storybook at [localhost:6006](http://localhost:6006)
 
@@ -156,11 +158,11 @@ turbo emulators
 ```
 
 Emulators are available at:
+
 - [localhost:4000](http://localhost:4000) - cloud functions
 - [localhost:8080](http://localhost:8080) - firestore
 - [localhost:9099](http://localhost:9099) - auth
 - [localhost:9199](http://localhost:9199) - storage
-
 
 To clean the cache and build folders and, run:
 
@@ -195,10 +197,23 @@ See the [open issues](https://github.com/AndyOooh/persona/issues) for a full lis
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Jira integration now works!
+## Library docs
+
+- firebase: [Firebase](https://firebase.google.com/)
+- next: [Next.js](https://nextjs.org/)
+- turborepo: [Turborepo](https://turbo.build/)
+- vite: [Vite](https://vitejs.dev/)
+- storybook: [Storybook](https://storybook.js.org/)
+- tailwindcss: [TailwindCSS](https://tailwindcss.com/)
+- daisyui: [Daisy UI](https://daisyui.com/)
+- react-firebase-hooks: [React Firebase Hooks](https://github.com/CSFrequency/react-firebase-hooks/tree/09bf06b28c82b4c3c1beabb1b32a8007232ed045)
+- react-hook-form: [React Hook Form](https://react-hook-form.com/)
+- yup: [Yup](https://github.com/jquense/yup)
+- recoil: [Recoil](https://recoiljs.org/)
+- typescript: [TypeScript](https://www.typescriptlang.org/)
+- eslint: [ESLint](https://eslint.org/)
+
+- clone reddit video (react-firebase-hooks, recoil): [Clone Reddit Video](https://www.youtube.com/watch?v=rCm5RVYKWVg&t=12603s)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-### Test branch
-Test branch 
