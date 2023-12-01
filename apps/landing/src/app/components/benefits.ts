@@ -44,5 +44,4 @@ export const benefits: Benefits[] = [
     color: 'red',
     direction: 'bottom',
   },
-
 ];
