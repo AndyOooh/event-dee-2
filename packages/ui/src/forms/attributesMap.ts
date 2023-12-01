@@ -16,7 +16,7 @@ export const getAttributes = (name: string) => {
     case 'last_name':
       attributes = {
         _type: 'text',
-        _label: `Your ${toTitleCase(name)}`,
+        _label: `${toTitleCase(name)}`,
         _placeholder: `Eg. ${name === 'last_name' ? 'Doe' : 'John'}`,
         _autocmplete: name === 'last_name' ? 'family-name' : 'given-name',
       };
