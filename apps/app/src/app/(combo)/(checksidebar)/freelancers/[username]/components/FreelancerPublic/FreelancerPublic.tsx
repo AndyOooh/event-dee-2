@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {};
 
-export const ProfilePageFreelancerPublic = (props: Props) => {
+export const FreelancerPublic = (props: Props) => {
   return (
     <>
       <div className='flex'>

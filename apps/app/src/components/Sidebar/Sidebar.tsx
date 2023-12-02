@@ -44,7 +44,7 @@ function Sidebar({}: Props) {
 
   return (
     // <div className='h-screen sticky top-0'>
-    <div className='w-[15.5rem] h-screen sticky top-0 hidden lg:flex flex-col p-4'>
+    <aside className='w-[15.5rem] h-screen sticky top-0 hidden lg:flex flex-col p-4'>
       <Link href={'/'} className='px-2 py-6'>
         <Image src={combi_mint} alt='logo' width={800} height={800} />
       </Link>
@@ -61,7 +61,7 @@ function Sidebar({}: Props) {
           ))}
         </li>
       </ul>
-    </div>
+    </aside>
     // <div></div>
     // </div>
   );

@@ -37,6 +37,21 @@ export const Step2 = ({}: Props) => {
     }));
   };
 
+  const professionOptions = [
+    {
+      label: 'Model',
+      value: 'Model',
+    },
+    {
+      label: 'Photographer',
+      value: 'Photographer',
+    },
+    {
+      label: 'MC',
+      value: 'MC',
+    },
+  ]
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
       <TextInput
@@ -54,7 +69,7 @@ export const Step2 = ({}: Props) => {
 
       <Select
         name='profession'
-        options={['Model', 'Photographer', 'MC']}
+        options={professionOptions}
         register={register}
         className=''
         defaultValue='Choose profession'
