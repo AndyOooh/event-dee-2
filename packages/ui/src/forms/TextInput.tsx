@@ -23,7 +23,7 @@ export const TextInput = ({
   className,
   maxW = 'max-w-sm',
 }: Props): JSX.Element => {
-  const { _type, _label, _placeholder, _autocmplete }: IAttributes = getAttributes(name);
+  const { _type, _label, _placeholder, _autocmplete, _rows, _maxLenght }: IAttributes = getAttributes(name);
 
   let Input =
     _type === 'textarea' ? (
@@ -35,6 +35,8 @@ export const TextInput = ({
           autoComplete={_autocmplete}
           defaultValue={defaultValue}
           className={`textarea textarea-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
+          rows={_rows}
+          maxLength={_maxLenght}
         />
       </>
     ) : (
@@ -46,6 +48,7 @@ export const TextInput = ({
           autoComplete={_autocmplete}
           defaultValue={defaultValue}
           className={`input input-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
+          maxLength={_maxLenght}
         />
       </>
     );

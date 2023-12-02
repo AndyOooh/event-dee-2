@@ -21,8 +21,9 @@ export const LinksInfo = ({ register }: Props) => {
           ? formArrayLinksInfo.map((info, index) => (
               <div key={info.title}>
                 <TextInput
-                  name={info.title}
-                  defaultValue={currentUser && currentUser[info.title]}
+                  name={info.name}
+                  // defaultValue={currentUser && currentUser[info.title]}
+                  defaultValue={currentUser && currentUser.links?.[index]}
                   register={register}
                   label={true}
                   maxW='max-w-md'
