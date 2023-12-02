@@ -5,14 +5,12 @@ import { auth } from '__firebase/clientApp';
 import Image from 'next/image';
 import React, { useContext } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { socialsMap } from './SocialsMap';
+import { data_socials } from './data_socials';
 import { UserContext } from 'app/(protected)/components/Providers/UserProvider';
 
 type Props = {};
 
 export const FreelancerCard = (props: Props) => {
-  // const [user, loading, error] = useAuthState(auth);
-  // const { currentUser } = useContext(CurrUserContext);
   const { user } = useContext(UserContext);
   return user ? (
     <div className='card h-[36rem] bg-base-100 shadow-xl'>
@@ -29,9 +27,9 @@ export const FreelancerCard = (props: Props) => {
       <div className='card-body'>
         <h2 className='card-title flex-col xl:flex-row'>
           {user.displayName}
-          <div className='badge badge-secondary text-xs xl:text-sm'>Rating: 4.6</div>
+          <p className='text-base-content text-sm'>({user.pronouns})</p>
         </h2>
-        <p className='text-base-content text-sm -mt-1'>({user.pronouns})</p>
+        <div className='badge badge-secondary text-xs xl:text-sm -mt-1'>Rating: 4.6</div>
         <p className='text-base-content text-lg'>{user.profile_header} </p>
         <div className='card-actions justify-end'>
           {/* <div className='badge badge-outline'>Fashion</div>
@@ -43,7 +41,7 @@ export const FreelancerCard = (props: Props) => {
               {/* <a href={link} target='_blank' className='badge badge-outline'> */}
               <a href={link} target='_blank'>
                 {/* <div className='rounded border-2 border-pink-200 w-10 '> */}
-                {socialsMap.find(soc => link.includes(soc.link))?.icon}
+                {data_socials.find(soc => link.includes(soc.link))?.icon}
                 {/* </div> */}
               </a>
             </div>

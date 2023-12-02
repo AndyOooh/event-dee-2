@@ -38,8 +38,8 @@ export const FreelancerRight = (props: Props) => {
   return (
     <div className='flex flex-1 flex-col gap-4 mt-4'>
       {sections.map(section => (
-        <div key={section.title} className='flex flex-col gap-2 mt-4'>
-          <h2 className='text-xl'>{section.title}</h2>
+        <div key={section.title} className='flex flex-col gap-2'>
+          <h2 className='text-xl pl-4'>{section.title}</h2>
           <div className='card bg-base-100'>
             <div className='card-body'>{section.element}</div>
           </div>

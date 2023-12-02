@@ -81,10 +81,26 @@ export const formArrayPersonalInfo: FormInput[] = [
     tooltip:
       'You can add your pronouns to your profile to signal one of the most deeply felt aspects of who we are: our gender identity. This field is optional.',
     options: [
-      { value: 'he_him', label: 'He/Him' },
-      { value: 'she_her', label: 'She/Her' },
-      { value: 'they_them', label: 'They/Them' },
-      { value: 'prefer_not_to_say', label: 'Prefer not to say' },
+      {
+        // value: 'he_him',
+        value: 'He/Him',
+        label: 'He/Him',
+      },
+      {
+        //  value: 'she_her',
+        value: 'She/Her',
+        label: 'She/Her',
+      },
+      {
+        //  value: 'they_them',
+        value: 'They/Them',
+        label: 'They/Them',
+      },
+      {
+        // value: 'prefer_not_to_say',
+        value: 'Prefer not to say',
+        label: 'Prefer not to say',
+      },
     ],
   },
   {

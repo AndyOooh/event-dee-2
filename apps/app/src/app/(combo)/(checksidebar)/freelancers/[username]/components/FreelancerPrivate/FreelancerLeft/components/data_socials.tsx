@@ -12,7 +12,7 @@ import {
 
 const iconSize = '2rem';
 
-export const socialsMap = [
+export const data_socials = [
   {
     name: 'facebook',
     // icon: <SiFacebook size={iconSize} />,

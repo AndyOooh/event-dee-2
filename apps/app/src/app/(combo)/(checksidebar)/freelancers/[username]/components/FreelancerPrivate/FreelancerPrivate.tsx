@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColoredDiv } from 'ui';
-import { FreelancerLeft } from './FreelancerLeft/FreelancerLeft';
-import { FreelancerRight } from './FreelancerRight/FreelancerRight';
+import { FreelancerLeft } from './FreelancerLeft';
+import { FreelancerRight } from './FreelancerRight';
 import { CurrentUserProvider } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { UserProvider } from 'app/(protected)/components/Providers/UserProvider';
 

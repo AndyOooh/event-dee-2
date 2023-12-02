@@ -1,5 +1,3 @@
-import thaiProvinces from '__utils/provinces.json';
-
 type FormData = {
   english_profiency: string;
   work_experience: string;
@@ -20,19 +18,19 @@ export const formArrayWorkInfo: FormInput[] = [
     tooltip: 'Select your English proficiency',
     options: [
       {
-        value: 'native',
+        value: 'Native',
         label: 'Native or Bilingual',
       },
       {
-        value: 'fluent',
+        value: 'Fluent',
         label: 'Fluent',
       },
       {
-        value: 'intermediate',
+        value: 'Intermediate',
         label: 'Intermediate',
       },
       {
-        value: 'basic',
+        value: 'Basic',
         label: 'Basic',
       },
     ],
