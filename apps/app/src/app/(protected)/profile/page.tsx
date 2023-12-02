@@ -10,7 +10,7 @@ import { db } from '__firebase/clientApp';
 import { doc, updateDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
-import { UserContext } from '../components/Providers/CurrentUserProvider';
+import { CurrUserContext } from '../components/Providers/CurrentUserProvider';
 
 type FormData = {
   first_name: string;
@@ -27,7 +27,7 @@ type FormData = {
  * For Profile page as seen from other users' perspective, see freelancers/[userId].tsx
  */
 export default function ProfilePageUser() {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(CurrUserContext);
 
   const {
     register,

@@ -1,13 +1,16 @@
 'use client';
 
-import { UserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
+// import { CurrUserContext } from 'app/(protected)/components/Providers/userProvider';
+import { UserContext } from 'app/(protected)/components/Providers/UserProvider';
 import React, { useContext } from 'react';
 import { ColoredDiv } from 'ui';
 
 type Props = {};
 
 export const FreelancerRight = (props: Props) => {
-  const { currentUser } = useContext(UserContext);
+  // const { currentUser } = useContext(CurrUserContext);
+  const { user } = useContext(UserContext);
+  console.log('🚀  file: FreelancerRight.tsx:14  user:', user)
 
   const sections = [
     // {
@@ -17,7 +20,7 @@ export const FreelancerRight = (props: Props) => {
     {
       title: 'About',
       // element: <ColoredDiv color='white' direction='top' height={6} className='z-10' />,
-      element: <div>{currentUser?.profile_text}</div>,
+      element: <div>{user?.profile_text}</div>,
     },
     {
       title: 'Work information',

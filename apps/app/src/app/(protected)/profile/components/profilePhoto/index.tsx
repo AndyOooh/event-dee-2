@@ -5,7 +5,7 @@ import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
 import React, { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { UserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
+import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { BiTrashAlt } from 'react-icons/bi';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
@@ -14,7 +14,7 @@ import { uploadString, getDownloadURL, ref } from 'firebase/storage';
 type Props = {};
 
 export const ProfilePhoto = (props: Props) => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(CurrUserContext);
   const [placeholder, setplaceholder] = useState(currentUser?.photoURL);
   const [selectedFile, setSelectedFile] = useState<string>(null);
   const selectedFileRef = useRef<HTMLInputElement>(null);

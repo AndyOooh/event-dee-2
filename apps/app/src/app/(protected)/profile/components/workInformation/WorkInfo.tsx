@@ -1,7 +1,7 @@
 'use client';
 
 import { styles } from '__styles/styles';
-import { UserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
+import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import React, { useContext } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { Select, TextInput } from 'ui';
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const WorkInfo = ({ register }: Props) => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(CurrUserContext);
 
   return (
     <div className={styles.form}>
