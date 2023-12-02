@@ -1,12 +1,12 @@
 import React from 'react';
 import { ColoredDiv } from 'ui';
-import { ProfileLeft } from './ProfileLeft';
-import { ProfileRight } from './ProfileRight';
+import { FreelancerLeft } from './FreelancerLeft';
+import { FreelancerRight } from './FreelancerRight';
 import { CurrentUserProvider } from 'app/(protected)/components/Providers/CurrentUserProvider';
 
 type Props = {};
 
-export const ProfilePageFreelancerPrivate = (props: Props) => {
+export const FreelancerPrivate = (props: Props) => {
   return (
     <CurrentUserProvider>
       <div className='w-full'>
@@ -14,8 +14,8 @@ export const ProfilePageFreelancerPrivate = (props: Props) => {
           <ColoredDiv color='green' direction='right' height={10.5} className='z-10 -top-10' />
         </div>
         <div className='flex gap-8 static'>
-          <ProfileLeft />
-          <ProfileRight />
+          <FreelancerLeft />
+          <FreelancerRight />
         </div>
       </div>
     </CurrentUserProvider>

@@ -9,10 +9,9 @@ import { socialsMap } from './SocialsMap';
 
 type Props = {};
 
-export const ProfileCard = (props: Props) => {
+export const FreelancerCard = (props: Props) => {
   const [user, loading, error] = useAuthState(auth);
   const { currentUser } = useContext(UserContext);
-  console.log('🚀  file: ProfileCard.tsx:15  currentUser:', currentUser);
   return currentUser ? (
     <div className='card h-[36rem] bg-base-100 shadow-xl'>
       <figure className=''>
@@ -33,14 +32,17 @@ export const ProfileCard = (props: Props) => {
         <p className='text-base-content text-sm -mt-1'>({currentUser.pronouns})</p>
         <p className='text-base-content text-lg'>{currentUser.profile_header} </p>
         <div className='card-actions justify-end'>
-          <div className='badge badge-outline'>Fashion</div>
-          <div className='badge badge-outline'>Products</div>
+          {/* <div className='badge badge-outline'>Fashion</div>
+          <div className='badge badge-outline'>Products</div> */}
         </div>
         <div className='card-actions justify-end'>
-          {currentUser.links.map(link => (
+          {currentUser.links.filter(Boolean).map((link: string) => (
             <div key={link} className=''>
-              <a href={link} target='_blank' className='badge badge-outline'>
-                {socialsMap.find(soc => link.includes(soc.link)).icon}
+              {/* <a href={link} target='_blank' className='badge badge-outline'> */}
+              <a href={link} target='_blank'>
+                {/* <div className='rounded border-2 border-pink-200 w-10 '> */}
+                {socialsMap.find(soc => link.includes(soc.link))?.icon}
+                {/* </div> */}
               </a>
             </div>
           ))}

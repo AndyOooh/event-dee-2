@@ -83,9 +83,9 @@ export default function ProfilePageUser() {
   return (
     <div className='flex flex-col gap-4 w-full'>
       <h1 className='text-3xl'>Profile Settings</h1>
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col'>
         <div key={'Profile photo'} className='flex flex-col gap-2'>
-          <h2 className='text-xl'>{'Profile photo'}</h2>
+          <h2 className='text-xl'>Profile photo</h2>
           <div className='card bg-base-100'>
             <div className='card-body'>
               <ProfilePhoto />
@@ -95,7 +95,7 @@ export default function ProfilePageUser() {
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           {sections.map(section => (
-            <div key={section.title} className='flex flex-col gap-2'>
+            <div key={section.title} className='flex flex-col gap-2 mt-4'>
               <h2 className='text-xl'>{section.title}</h2>
               <div className='card bg-base-100'>
                 <div className='card-body'>{section.element}</div>

@@ -7,39 +7,42 @@ import {
   SiYoutube,
   SiFacebook,
   SiInstagram,
-  SiTiktok
+  SiTiktok,
 } from 'react-icons/si';
+
+const iconSize = '2rem';
 
 export const socialsMap = [
   {
     name: 'facebook',
+    // icon: <SiFacebook size={iconSize} />,
     icon: <SiFacebook />,
-    link: 'https://www.facebook.com/',
+    link: 'facebook.com/',
   },
   {
     name: 'instagram',
-    icon: <SiInstagram />,
+    icon: <SiInstagram size={iconSize} />,
     link: 'https://www.instagram.com',
   },
   {
     name: 'tiktok',
-    icon: <SiTiktok />,
-    link: 'https://www.tiktok.com'
+    icon: <SiTiktok size={iconSize} />,
+    link: 'https://www.tiktok.com',
   },
   {
     name: 'linkedin',
-    icon: <SiLinkedin />,
+    icon: <SiLinkedin size={iconSize} />,
+    // icon: <SiLinkedin />,
     link: 'https://www.linkedin.com',
   },
   {
     name: 'twitter',
-    icon: <SiTwitter />,
-    link: 'https://www.twitter.com',
+    icon: <SiTwitter size={iconSize} className='rounded' />,
+    link: 'twitter.com',
   },
   {
     name: 'youtube',
-    icon: <SiYoutube />,
+    icon: <SiYoutube size={iconSize} />,
     link: 'https://www.youtube.com',
   },
-
 ];
