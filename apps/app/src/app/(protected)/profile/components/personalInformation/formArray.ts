@@ -1,6 +1,6 @@
 import thaiProvinces from '__utils/provinces.json';
 
-type FormData = {
+export type IPersonalInfo = {
   first_name: string;
   last_name: string;
   email: string;
@@ -9,13 +9,16 @@ type FormData = {
   gender: string;
   pronouns: string;
   height: string;
+  age: string;
+  // birthday: Date; // should replace age with this. Find a date picker toold or similar.
 };
 
 type FormInput = {
-  title: keyof FormData;
+  title: keyof IPersonalInfo;
   type: 'text' | 'select';
   tooltip: string;
   options?: { value: any; label: string }[];
+  prepend?: string;
 };
 
 export const formArrayPersonalInfo: FormInput[] = [
@@ -39,6 +42,7 @@ export const formArrayPersonalInfo: FormInput[] = [
     type: 'text',
     tooltip:
       "This is a personal link for you to invite your contacts to Teamway. Once you edit this URL, the old URL won't work.",
+    prepend: 'app.eventdee.com/invite/',
   },
   {
     title: 'province',
@@ -57,19 +61,19 @@ export const formArrayPersonalInfo: FormInput[] = [
       'EventDee deeply values diversity and this data will only be used by Teamway for our own analytics purposes and not shared with 3rd parties without your consent. This field is optional.',
     options: [
       {
-        value: 'male',
+        value: 'Male',
         label: 'Male',
       },
       {
-        value: 'female',
+        value: 'Female',
         label: 'Female',
       },
       {
-        value: 'non_binary',
+        value: 'Non-binary',
         label: 'Non-binary',
       },
       {
-        value: 'prefer_not_to_say',
+        value: 'Prefer not to say',
         label: 'Prefer not to say',
       },
     ],
@@ -110,6 +114,15 @@ export const formArrayPersonalInfo: FormInput[] = [
     options: Array.from({ length: 100 }, (_, i) => ({
       value: `${i + 100} cm`,
       label: `${i + 100} cm`,
+    })),
+  },
+  {
+    title: 'age',
+    type: 'select',
+    tooltip: 'Enter your age',
+    options: Array.from({ length: 85 }, (_, i) => ({
+      value: `${i + 15} years old`,
+      label: `${i + 15} years old`,
     })),
   },
 ];

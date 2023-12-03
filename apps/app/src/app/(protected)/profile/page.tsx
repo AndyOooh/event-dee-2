@@ -11,16 +11,16 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { CurrUserContext } from '../components/Providers/CurrentUserProvider';
+import { DevTool } from '@hookform/devtools';
+import { IPersonalInfo } from './components/personalInformation/formArray';
+import { IWorkInfo } from './components/workInformation/formArrayWorkInfo';
+import { IGetToKnow } from './components/getToKnow/formArrayGetToKnow';
+import { IpersonalInfoSchema, personalInfoSchema } from './components/personalInformation/validation';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-type FormData = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  invite_link: string;
-  province: string;
-  gender: string;
-  pronouns: string;
-};
+// ILinks // fix this module and add it to the form data
+// type FormValues = IPersonalInfo & IWorkInfo & IGetToKnow;
+type FormValues = IpersonalInfoSchema;
 
 /*
  * This is the Profile page as seen from the user's perspective with edittable fields
@@ -30,6 +30,7 @@ export default function ProfilePageUser() {
   const { currentUser } = useContext(CurrUserContext);
 
   const {
+    control,
     register,
     setValue,
     setError,
@@ -37,15 +38,15 @@ export default function ProfilePageUser() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<FormValues>({
     mode: 'onTouched',
-    // resolver: yupResolver(step1Schema),
+    resolver: yupResolver(personalInfoSchema),
     defaultValues: {
       //   provider: 'email',
     },
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormValues) => {
     try {
       console.log('On submit data: ', data);
       const userDocRef = doc(db, 'users', currentUser.uid);
@@ -64,7 +65,7 @@ export default function ProfilePageUser() {
     // },
     {
       title: 'Personal information',
-      element: <PersonalInfo register={register} />,
+      element: <PersonalInfo register={register} errors={errors} />,
     },
     {
       title: 'Work information',
@@ -93,7 +94,7 @@ export default function ProfilePageUser() {
             {/* <div className='card-body'>{section.element}</div> */}
           </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
           {sections.map(section => (
             <div key={section.title} className='flex flex-col gap-2 mt-4'>
               <h2 className='text-xl'>{section.title}</h2>
@@ -106,6 +107,7 @@ export default function ProfilePageUser() {
             <ActionButton text='Update' />
           </div>
         </form>
+        <DevTool control={control} />
       </div>
     </div>
   );

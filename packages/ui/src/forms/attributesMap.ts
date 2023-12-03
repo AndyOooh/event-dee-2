@@ -51,8 +51,10 @@ export const getAttributes = (name: string) => {
     case 'invite_link':
       attributes = {
         _type: 'text',
+        // _label: 'Invite Link (https://app.eventdee.com/invite/)',
         _label: 'Invite Link',
-        _placeholder: 'https://app.eventdee.com/invite/your-name',
+        // _placeholder: 'https://app.eventdee.com/invite/your-name',
+        _placeholder: '',
         _autocmplete: 'url',
       };
       break;

@@ -1,6 +1,4 @@
-import thaiProvinces from '__utils/provinces.json';
-
-type FormData = {
+type ILinks = {
   linkedin: string;
   instagram: string;
   facebook: string;
@@ -10,7 +8,7 @@ type FormData = {
 };
 
 type FormInput = {
-  title: keyof FormData;
+  title: keyof ILinks;
   name: string;
   type: 'text' | 'select';
   tooltip: string;
