@@ -61,7 +61,8 @@
 - ![Firebase](https://img.shields.io/static/v1?style=for-the-badge&message=Firebase&color=222222&logo=Firebase&logoColor=FFCA28&label=)
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 - ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-- ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+- ![Recoil](https://img.shields.io/static/v1?style=for-the-badge&message=Recoil&color=3578E5&logo=Recoil&logoColor=FFFFFF&label=)
+<!-- - ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) -->
 - ![Next.js](https://img.shields.io/static/v1?style=for-the-badge&message=Next.js&color=000000&logo=Next.js&logoColor=FFFFFF&label=)
 - ![Vite](https://img.shields.io/static/v1?style=for-the-badge&message=Vite&color=646CFF&logo=Vite&logoColor=FFFFFF&label=)
 - ![Storybook](https://img.shields.io/static/v1?style=for-the-badge&message=Storybook&color=FF4785&logo=Storybook&logoColor=FFFFFF&label=)
@@ -96,7 +97,7 @@ To get a local copy up and running follow these simple steps.
 
 ## Prerequisites
 
-You must be running **node v. 18** or higher.
+You must be running **node v.18.17** or higher.
 
 ## Installation
 
@@ -104,7 +105,7 @@ You must be running **node v. 18** or higher.
    ```sh
    git@github.com:AndyOooh/event-dee-2.git
    ```
-2. Install packages (In the root folder):
+2. Install packages:
    ```sh
    yarn install
    ```
@@ -113,34 +114,58 @@ You must be running **node v. 18** or higher.
 
 # Usage
 
-To have a functioning backend you must create a firebase project and add the api key to _apps/app/.env_ and other configurations in _apps/app/firebase/clientApp.ts_. Lastly, log in to your firebase account in the terminal by running:
+To have a functioning backend you must create a firebase project and add the api key to _apps/app/.env_ and other configurations in _apps/app/firebase/clientApp.ts_. Lastly, log in to your firebase account:
 
 ```sh
 yarn firebase login
 ```
 
+## Scripts
+
 For running tests and starting the development servers, turborepo is used. It is configured to run all apps concurrently. The commands are:
 
+Run dev servers:
 ```sh
-yarn dev
+turbo dev
 ```
 
-and
+Lint
+```sh
+turbo lint
+```
+
+Build apps:
+```sh
+turbo build
+```
+
+<!-- Run tests:
 
 ```sh
-yarn test
+turbo test
 ```
 
 or
 
 ```sh
-yarn coverage
-```
+turbo coverage
+``` -->
 
-However, you can also run the apps separately. Either by using the `--filter` flag in combination with the app names `landing`, `app`, `firebase-cloud-functions` or `vite-storybook`, or by appending them with `:<package>`. For example, to start the client development server only, run:
+To clean the cache and remove build folders and other generated code, run:
 
 ```sh
-yarn dev --filter landing
+turbo clean
+```
+
+In addition you might want to delete the root _node_modules_ folder.
+
+
+### Filtering apps
+
+You can also run the apps separately. Either by using the `--filter` flag in combination with the app names `landing`, `app`, `firebase-cloud-functions` or `vite-storybook`, or by appending them with `:<package>`. For example, to start the client development server only, run:
+
+```sh
+turbo dev --filter landing
 ```
 
 Or you can _cd_ into the specific directories and use the commands there.
@@ -150,6 +175,8 @@ Once you have the development servers running, you can access the:
 - landing page at [localhost:3000](http://localhost:3000)
 - app at [localhost:3001](http://localhost:3001)
 - storybook at [localhost:6006](http://localhost:6006)
+
+
 
 You can also run firebase emulators for cloud functions, firestore, auth and storage with:
 
@@ -163,12 +190,7 @@ Emulators are available at:
 - [localhost:8080](http://localhost:8080) - firestore
 - [localhost:9099](http://localhost:9099) - auth
 - [localhost:9199](http://localhost:9199) - storage
-
-To clean the cache and build folders and, run:
-
-```sh
-turbo clean
-```
+**NB: Emulators are not yest set up!**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -199,21 +221,32 @@ See the [open issues](https://github.com/AndyOooh/persona/issues) for a full lis
 
 ## Library docs
 
-- firebase: [Firebase](https://firebase.google.com/)
-- next: [Next.js](https://nextjs.org/)
-- turborepo: [Turborepo](https://turbo.build/)
-- vite: [Vite](https://vitejs.dev/)
-- storybook: [Storybook](https://storybook.js.org/)
-- tailwindcss: [TailwindCSS](https://tailwindcss.com/)
-- daisyui: [Daisy UI](https://daisyui.com/)
-- react-firebase-hooks: [React Firebase Hooks](https://github.com/CSFrequency/react-firebase-hooks/tree/09bf06b28c82b4c3c1beabb1b32a8007232ed045)
-- react-hook-form: [React Hook Form](https://react-hook-form.com/)
-- yup: [Yup](https://github.com/jquense/yup)
-- recoil: [Recoil](https://recoiljs.org/)
-- typescript: [TypeScript](https://www.typescriptlang.org/)
-- eslint: [ESLint](https://eslint.org/)
+- [Turborepo](https://turbo.build/)
+- [Next.js](https://nextjs.org/)
+- [Recoil](https://recoiljs.org/)
+- [Firebase](https://firebase.google.com/)
 
-- clone reddit video (react-firebase-hooks, recoil): [Clone Reddit Video](https://www.youtube.com/watch?v=rCm5RVYKWVg&t=12603s)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Daisy UI](https://daisyui.com/)
+
+- [Storybook](https://storybook.js.org/)
+- [Vite](https://vitejs.dev/)
+- [React Firebase Hooks](https://github.com/CSFrequency/react-firebase-hooks/tree/09bf06b28c82b4c3c1beabb1b32a8007232ed045)
+- [React Hook Form](https://react-hook-form.com/)
+- [Yup](https://github.com/jquense/yup)
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [ESLint](https://eslint.org/)
+
+- [Github Actions](https://github.com/features/actions)
+
+- [Clone Reddit Video](https://www.youtube.com/watch?v=rCm5RVYKWVg&t=12603s) (next.js, firebase, react-firebase-hooks, recoil)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+<!-- Markdown Guide: https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- Create shields (images) https://shields.io/badges -->
+<!-- Example shield url. Replace message, logo and color:
+https://img.shields.io/static/v1?style=for-the-badge&message=Recoil&color=3578E5&logo=Recoil&logoColor=FFFFFF&label= -->
