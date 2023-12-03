@@ -258,6 +258,8 @@ See the [open issues](https://github.com/AndyOooh/persona/issues) for a full lis
 - [Github Actions](https://github.com/features/actions)
 
 - [Clone Reddit Video](https://www.youtube.com/watch?v=rCm5RVYKWVg&t=12603s) (next.js, firebase, react-firebase-hooks, recoil)
+- [React Hook Form Playlist - Codevolution](https://www.youtube.com/playlist?list=PLC3y8-rFHvwjmgBr1327BA5bVXoQH-w5s)
+- [React Hook Form Playlist - Beier Luo](https://www.youtube.com/playlist?list=PL03g4H_exuTppOgtY-45oWvN79rvJIKzf)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

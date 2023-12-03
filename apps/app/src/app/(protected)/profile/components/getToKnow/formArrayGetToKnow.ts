@@ -1,12 +1,12 @@
 import thaiProvinces from '__utils/provinces.json';
 
-type FormData = {
+export type IGetToKnow = {
   profile_header: string;
   profile_text: string;
 };
 
 type FormInput = {
-  title: keyof FormData;
+  title: keyof IGetToKnow;
   type: 'text' | 'textarea';
   tooltip: string;
   // options?: { value: any; label: string }[];

@@ -3,15 +3,17 @@
 import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import React, { useContext } from 'react';
-import { UseFormRegister } from 'react-hook-form';
-import { Select, TextInput } from 'ui';
-import { formArrayPersonalInfo } from '../formArrayPersonalInfo';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FormError, Select, TextInput } from 'ui';
+import { formArrayPersonalInfo } from './formArray';
+import { FormValues } from '__atoms/signupBusinessAtom';
 
 type Props = {
   register: UseFormRegister<any>;
+  errors: FieldErrors<FormValues>;
 };
 
-export const PersonalInfo = ({ register }: Props) => {
+export const PersonalInfo = ({ register, errors }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
 
   return (
@@ -27,8 +29,9 @@ export const PersonalInfo = ({ register }: Props) => {
                     register={register}
                     label={true}
                     maxW='max-w-md'
+                    prepend={info.prepend}
                   />
-                  {/* <FormError formError={errors?.email?.message} /> */}
+                  <FormError formError={errors?.[info.title]?.message} />
                 </div>
               ) : (
                 <div key={info.title}>
@@ -41,6 +44,7 @@ export const PersonalInfo = ({ register }: Props) => {
                     className=''
                     maxW='max-w-md'
                   />
+                  <FormError formError={errors?.[info.title]?.message} />
                 </div>
               );
             })
