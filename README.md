@@ -67,6 +67,7 @@
 - ![Firebase](https://img.shields.io/static/v1?style=for-the-badge&message=Firebase&color=222222&logo=Firebase&logoColor=FFCA28&label=)
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 - ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+- ![Recoil](https://img.shields.io/static/v1?style=for-the-badge&message=Recoil&color=3578E5&logo=Recoil&logoColor=FFFFFF&label=)
 - ![Next.js](https://img.shields.io/static/v1?style=for-the-badge&message=Next.js&color=000000&logo=Next.js&logoColor=FFFFFF&label=)
 - ![Recoil](https://img.shields.io/static/v1?style=for-the-badge&message=Recoil&color=3578E5&logo=Recoil&logoColor=FFFFFF&label=)
 - ![Vite](https://img.shields.io/static/v1?style=for-the-badge&message=Vite&color=646CFF&logo=Vite&logoColor=FFFFFF&label=)
@@ -130,19 +131,25 @@ yarn firebase login
 For running tests and starting the development servers, turborepo is used. It is configured to run all apps concurrently. The commands are:
 
 Run dev servers:
-
 ```sh
 turbo dev
 ```
 
 Lint
-
 ```sh
 turbo lint
 ```
 
 Build apps:
 
+```sh
+turbo build
+```
+
+<!-- Run tests:
+
+```sh
+=======
 ```sh
 turbo build
 ```
@@ -183,6 +190,7 @@ Once you have the development servers running, you can access the:
 - app at [localhost:3001](http://localhost:3001)
 - storybook at [localhost:6006](http://localhost:6006)
 
+
 ## Emulators
 
 You can also run firebase emulators for cloud functions, firestore, auth and storage with:
@@ -198,7 +206,9 @@ Emulators are available at:
 - [localhost:9099](http://localhost:9099) - auth
 - [localhost:9199](http://localhost:9199) - storage
 
-  **NB: Emulators are not yest set up!**
+
+**NB: Emulators are not yest set up!**
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
