@@ -43,6 +43,11 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+     <ul>
+        <li><a href="#basic-scripts">Basic Scripts</a></li>
+        <li><a href="#filtering-apps">Filtering apps</a></li>
+        <li><a href="#emulators">Emulators</a></li>
+      </ul>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#author">Author</a></li>
     <li><a href="#library-docs">Libraries</a></li>
@@ -56,19 +61,20 @@
 ## Built With
 
 <!-- * [![Next][Next.js]][Next-url] -->
+<!-- - ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) -->
 
 - ![Turborepo](https://img.shields.io/static/v1?style=for-the-badge&message=Turborepo&color=9E4C96&logo=Turborepo&logoColor=FFFFFF&label=)
 - ![Firebase](https://img.shields.io/static/v1?style=for-the-badge&message=Firebase&color=222222&logo=Firebase&logoColor=FFCA28&label=)
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 - ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 - ![Recoil](https://img.shields.io/static/v1?style=for-the-badge&message=Recoil&color=3578E5&logo=Recoil&logoColor=FFFFFF&label=)
-<!-- - ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) -->
 - ![Next.js](https://img.shields.io/static/v1?style=for-the-badge&message=Next.js&color=000000&logo=Next.js&logoColor=FFFFFF&label=)
+- ![Recoil](https://img.shields.io/static/v1?style=for-the-badge&message=Recoil&color=3578E5&logo=Recoil&logoColor=FFFFFF&label=)
 - ![Vite](https://img.shields.io/static/v1?style=for-the-badge&message=Vite&color=646CFF&logo=Vite&logoColor=FFFFFF&label=)
 - ![Storybook](https://img.shields.io/static/v1?style=for-the-badge&message=Storybook&color=FF4785&logo=Storybook&logoColor=FFFFFF&label=)
 - ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 - ![DaisyUI](https://img.shields.io/static/v1?style=for-the-badge&message=DaisyUI&color=5A0EF8&logo=DaisyUI&logoColor=FFFFFF&label=)
-- ![Jest](https://img.shields.io/static/v1?style=for-the-badge&message=Jest&color=C21325&logo=Jest&logoColor=FFFFFF&label=)
+<!-- - ![Jest](https://img.shields.io/static/v1?style=for-the-badge&message=Jest&color=C21325&logo=Jest&logoColor=FFFFFF&label=) -->
 
 ## Intro
 
@@ -120,7 +126,7 @@ To have a functioning backend you must create a firebase project and add the api
 yarn firebase login
 ```
 
-## Scripts
+## Basic Scripts
 
 For running tests and starting the development servers, turborepo is used. It is configured to run all apps concurrently. The commands are:
 
@@ -135,6 +141,15 @@ turbo lint
 ```
 
 Build apps:
+
+```sh
+turbo build
+```
+
+<!-- Run tests:
+
+```sh
+=======
 ```sh
 turbo build
 ```
@@ -159,8 +174,7 @@ turbo clean
 
 In addition you might want to delete the root _node_modules_ folder.
 
-
-### Filtering apps
+## Filtering apps
 
 You can also run the apps separately. Either by using the `--filter` flag in combination with the app names `landing`, `app`, `firebase-cloud-functions` or `vite-storybook`, or by appending them with `:<package>`. For example, to start the client development server only, run:
 
@@ -177,6 +191,7 @@ Once you have the development servers running, you can access the:
 - storybook at [localhost:6006](http://localhost:6006)
 
 
+## Emulators
 
 You can also run firebase emulators for cloud functions, firestore, auth and storage with:
 
@@ -190,7 +205,10 @@ Emulators are available at:
 - [localhost:8080](http://localhost:8080) - firestore
 - [localhost:9099](http://localhost:9099) - auth
 - [localhost:9199](http://localhost:9199) - storage
+
+
 **NB: Emulators are not yest set up!**
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
