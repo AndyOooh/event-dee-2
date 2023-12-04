@@ -54,7 +54,7 @@
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
+<!-- ABOUT THE PROJEC -->
 
 # About The Project
 
