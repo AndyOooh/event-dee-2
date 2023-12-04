@@ -1,5 +1,5 @@
 import React from 'react';
-import { benefits } from './benefits';
+import { benefits } from './benefits-data';
 import { ColoredDiv } from 'ui';
 import { container } from '../../styles/styles';
 
