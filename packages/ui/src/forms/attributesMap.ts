@@ -51,9 +51,7 @@ export const getAttributes = (name: string) => {
     case 'invite_link':
       attributes = {
         _type: 'text',
-        // _label: 'Invite Link (https://app.eventdee.com/invite/)',
         _label: 'Invite Link',
-        // _placeholder: 'https://app.eventdee.com/invite/your-name',
         _placeholder: '',
         _autocmplete: 'url',
       };
@@ -147,6 +145,15 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'url',
         _rows: 5,
         _maxLenght: 250,
+      };
+      break;
+    case 'dob':
+      attributes = {
+        _type: 'date',
+        // _type: 'text',
+        _label: 'Date of Birth',
+        _placeholder: 'Eg. 01/01/1990',
+        _autocmplete: 'bday',
       };
       break;
 

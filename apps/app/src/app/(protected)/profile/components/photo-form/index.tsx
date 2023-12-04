@@ -13,7 +13,7 @@ import { uploadString, getDownloadURL, ref } from 'firebase/storage';
 
 type Props = {};
 
-export const ProfilePhoto = (props: Props) => {
+export const PhotoForm = (props: Props) => {
   const { currentUser } = useContext(CurrUserContext);
   const [placeholder, setplaceholder] = useState(currentUser?.photoURL);
   const [selectedFile, setSelectedFile] = useState<string>(null);

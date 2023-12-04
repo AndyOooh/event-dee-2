@@ -3,24 +3,22 @@
 import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import React, { useContext } from 'react';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { FormError, Select, TextInput } from 'ui';
-import { formArrayPersonalInfo } from './formArray';
-import { FormValues } from '__atoms/signupBusinessAtom';
+import { UseFormRegister } from 'react-hook-form';
+import { Select, TextInput } from 'ui';
+import { formArrayWorkInfo } from './form-data';
 
 type Props = {
   register: UseFormRegister<any>;
-  errors: FieldErrors<FormValues>;
 };
 
-export const PersonalInfo = ({ register, errors }: Props) => {
+export const WorkInfo = ({ register }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
 
   return (
     <div className={styles.form}>
       <div className='w-full grid grid-cols-2 gap-6'>
         {currentUser
-          ? formArrayPersonalInfo.map((info, index) => {
+          ? formArrayWorkInfo.map((info, index) => {
               return info.type === 'text' ? (
                 <div key={info.title}>
                   <TextInput
@@ -29,9 +27,8 @@ export const PersonalInfo = ({ register, errors }: Props) => {
                     register={register}
                     label={true}
                     maxW='max-w-md'
-                    prepend={info.prepend}
                   />
-                  <FormError formError={errors?.[info.title]?.message} />
+                  {/* <FormError formError={errors?.email?.message} /> */}
                 </div>
               ) : (
                 <div key={info.title}>
@@ -44,7 +41,6 @@ export const PersonalInfo = ({ register, errors }: Props) => {
                     className=''
                     maxW='max-w-md'
                   />
-                  <FormError formError={errors?.[info.title]?.message} />
                 </div>
               );
             })
