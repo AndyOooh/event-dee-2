@@ -18,7 +18,7 @@ const initCurrentUserContext: CurrentUserContextType = {
   updateCurrentUser: () => {},
 };
 
-export const UserContext = createContext<CurrentUserContextType>(initCurrentUserContext);
+export const CurrUserContext = createContext<CurrentUserContextType>(initCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, loadingState, errorState] = useAuthState(auth);
@@ -44,7 +44,7 @@ export const CurrentUserProvider = ({ children }: { children: React.ReactNode })
     }
   }, [loadingState, loadingDoc]);
 
-  // Alternative not using firestore hooks. Function not finished
+  /* Alternative not using firestore hooks. Function not finished */
   // const fetchCurrentUser = async (userId: string) => {
   //   const userDocRef = doc(db, 'users', userId as string);
   //   console.log('🚀  file: PrivateRoutesContextProvider.tsx:45  userDoc:', userDocRef);
@@ -65,5 +65,5 @@ export const CurrentUserProvider = ({ children }: { children: React.ReactNode })
     }),
     [currentUser, updateCurrentUser, loading, error]
   );
-  return <UserContext.Provider value={testContext}>{children}</UserContext.Provider>;
+  return <CurrUserContext.Provider value={testContext}>{children}</CurrUserContext.Provider>;
 };

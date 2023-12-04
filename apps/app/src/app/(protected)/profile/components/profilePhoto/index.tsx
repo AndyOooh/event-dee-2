@@ -1,23 +1,22 @@
 'use client';
 
-import { auth } from '__firebase/clientApp';
+import { auth, db, storage } from '__firebase/clientApp';
 import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
-import React, { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
-import { UserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
+import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { BiTrashAlt } from 'react-icons/bi';
+import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
+import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { uploadString, getDownloadURL, ref } from 'firebase/storage';
 
 type Props = {};
 
 export const ProfilePhoto = (props: Props) => {
-  const [user, loading, error] = useAuthState(auth);
-  const { currentUser } = useContext(UserContext);
-  console.log('🚀  file: index.tsx:16  currentUser:', currentUser);
+  const { currentUser } = useContext(CurrUserContext);
   const [placeholder, setplaceholder] = useState(currentUser?.photoURL);
-  console.log('🚀  file: index.tsx:18  placeholder:', placeholder);
-
-  const [selectedFile, setSelectedFile] = useState<string>();
+  const [selectedFile, setSelectedFile] = useState<string>(null);
   const selectedFileRef = useRef<HTMLInputElement>(null);
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
 
@@ -28,43 +27,60 @@ export const ProfilePhoto = (props: Props) => {
   }, [currentUser]);
 
   const onRemoveImage = () => {
-    setplaceholder(null);
+    setplaceholder(currentUser?.photoURL);
+    setSelectedFile(null);
   };
 
-  {
-    /* <div className='avatar indicator'>
-        <span className='indicator-item badge badge-secondary'>typing…</span> */
-  }
+  const onSubmit = async (e: FormEvent) => {
+    try {
+      e.preventDefault();
+      const userDocRef = doc(db, 'users', currentUser?.uid);
+      const imageRef = ref(storage, `users/${userDocRef.id}/images/profile`);
+      await uploadString(imageRef, selectedFile, 'data_url');
+      const downloadURL = await getDownloadURL(imageRef);
+      const res = await updateProfile({
+        photoURL: downloadURL,
+      });
+
+      const unsubscribe = onSnapshot(userDocRef, async (doc: any) => {
+        if (doc.exists()) {
+          await updateDoc(userDocRef, {
+            photoURL: downloadURL,
+          });
+          unsubscribe(); // Stop listening for further changes
+        }
+      });
+
+      /* reset values */
+      setplaceholder(null);
+      setSelectedFile(null);
+      // selectedFileRef.current.value = null;
+    } catch (error) {
+      console.log('🚀  file: index.tsx:65  error:', error);
+    }
+  };
 
   const indicator = (
     <div className='absolute top-[25%] right-0 rounded-full bg-primary border border-error z-10 p-1 hover:cursor-pointer hover:scale-110'>
-      <BiTrashAlt className='text-2xl text-error font-semibold' size={'1rem'} onClick={onRemoveImage} />
+      <BiTrashAlt
+        className='text-2xl text-error font-semibold'
+        size={'1rem'}
+        onClick={onRemoveImage}
+      />
     </div>
   );
 
   return (
-    <form>
-      {/* <div className='relative border-2 border-cyan-400 w-fit mx-auto'> */}
-      {/* <BiTrashAlt
-          className='absolute top-0 right-0 text-2xl text-red-500'
-          onClick={onRemoveImage}
-        /> */}
-      {/* <div className='avatar indicator'>
-          <span className='indicator-item badge badge-secondary'>typing…</span> */}
-      {/* <div className="w-20 h-20 rounded-lg">
-    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-  </div> */}
+    <form onSubmit={onSubmit}>
       <ImageUpload
         selectedFile={selectedFile}
         placeholder={placeholder}
         indicator={indicator}
-        // setSelectedFile={setSelectedFile}
         selectedFileRef={selectedFileRef}
         onSelectImage={(e: ChangeEvent<HTMLInputElement>) => onSelectImage(e, setSelectedFile)}
         label='Change your profile photo'
       />
-      {/* </div> */}
-      {/* </div> */}
+      <ActionButton text='Update' disabled={!selectedFile} />
     </form>
   );
 };

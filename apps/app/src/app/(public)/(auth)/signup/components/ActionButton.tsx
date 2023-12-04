@@ -6,6 +6,7 @@ type Props = {
   text: string;
   onClick?: () => void;
   loading?: boolean;
+  disabled?: boolean;
 };
 
 type ButtonProps = {
@@ -13,23 +14,16 @@ type ButtonProps = {
   type?: 'submit';
 };
 
-export const ActionButton = ({ text, onClick, loading }: Props) => {
+export const ActionButton = ({ text, onClick, loading, disabled }: Props) => {
   const buttonProps: ButtonProps = onClick ? { onClick } : { type: 'submit' };
-  // console.log('🚀  file: ActionButton.tsx:18  buttonProps:', buttonProps)
 
-  return (
+  return disabled ? (
+    <button className='btn w-full max-w-xs mx-auto flex-center' {...buttonProps} disabled>
+      {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
+    </button>
+  ) : (
     <button className='btn w-full max-w-xs mx-auto flex-center' {...buttonProps}>
       {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
     </button>
   );
-
-  // return onClick ? (
-  //   <button className='btn w-full max-w-xs mx-auto flex-center' onClick={onClick}>
-  //     {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
-  //   </button>
-  // ) : (
-  //   <button className='btn w-full max-w-xs mx-auto flex-center' type='submit'>
-  //     {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
-  //   </button>
-  // );
 };

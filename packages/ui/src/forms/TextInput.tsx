@@ -10,6 +10,7 @@ type Props = {
   tooltip?: string;
   className?: string;
   maxW?: string;
+  prepend?: string;
 };
 
 /* Takes maxW bc unable to overwrite max-w with tailwind. This is weird as other styles can be overwritten */
@@ -22,8 +23,10 @@ export const TextInput = ({
   tooltip,
   className,
   maxW = 'max-w-sm',
+  prepend,
 }: Props): JSX.Element => {
-  const { _type, _label, _placeholder, _autocmplete }: IAttributes = getAttributes(name);
+  const { _type, _label, _placeholder, _autocmplete, _rows, _maxLenght }: IAttributes =
+    getAttributes(name);
 
   let Input =
     _type === 'textarea' ? (
@@ -35,6 +38,8 @@ export const TextInput = ({
           autoComplete={_autocmplete}
           defaultValue={defaultValue}
           className={`textarea textarea-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
+          rows={_rows}
+          maxLength={_maxLenght}
         />
       </>
     ) : (
@@ -45,10 +50,25 @@ export const TextInput = ({
           placeholder={_placeholder}
           autoComplete={_autocmplete}
           defaultValue={defaultValue}
-          className={`input input-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
-        />
+          className={`${
+            prepend ? 'flex-1 pl-0 h-auto focus:border-none' : `input-bordered ${maxW}`
+          } input w-full mx-auto focus:outline-none focus:border-accent ${className}`}
+          maxLength={_maxLenght}></input>
       </>
     );
+
+  if (prepend) {
+    Input = (
+      // <div className='input input-bordered flex gap-2 w-full focus-within:[border:1px_solid_black] pl-0'>
+      <div
+        className={`input input-bordered flex gap-2 w-full focus-within:[border:1px_solid_black] pl-0 ${maxW}`}>
+        <span className='text-sm bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
+          {prepend}
+        </span>
+        {Input}
+      </div>
+    );
+  }
 
   if (tooltip) {
     Input = (

@@ -56,15 +56,10 @@ export const Step3 = () => {
     // some things needs to be pulled out of this if. Actually we should have an object of props to update and add to it inside if.
     if (selectedFile) {
       try {
-        console.log('UID:::::', newUser?.uid);
         const userDocRef = doc(db, 'users', newUser?.uid);
-        console.log('111: userDocRef *****', userDocRef);
         const imageRef = ref(storage, `users/${userDocRef.id}/images/profile`);
-        console.log('22222222222222222222222222');
         await uploadString(imageRef, selectedFile, 'data_url');
-        console.log('333333333333333333333333');
         const downloadURL = await getDownloadURL(imageRef);
-        console.log('44444444444444444444444444444');
 
         // seems redundant to update both auth and firabse user.
         await updateProfile({

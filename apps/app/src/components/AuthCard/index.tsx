@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { AuthCardUser } from './AuthCardUser';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { MdArrowDropDown } from 'react-icons/md';
@@ -18,10 +18,12 @@ import {
   BiUserCircle,
   BiCog,
 } from 'react-icons/bi';
+import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 
 // TODO: Error and loading state
 
 export const AuthCard = () => {
+  const { currentUser } = useContext(CurrUserContext);
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
   const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
   console.log('🚀  file: index.tsx:17  error_delete:', error_delete);
@@ -39,7 +41,8 @@ export const AuthCard = () => {
     {
       type: 'link',
       label: 'My Profile',
-      href: '/freelancers/dasdas',
+      // href: '/freelancers/dasdas',
+      href: `/freelancers/${currentUser?.displayName}`,
       icon: <BiUser size='1.5rem' color='black' />,
     },
     {

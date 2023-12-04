@@ -43,7 +43,8 @@ function Sidebar({}: Props) {
   // from the left, pushing dashboard content to the right with a dark overlay
 
   return (
-    <div className='w-[15.5rem] h-screen p-4 hidden lg:flex flex-col'>
+    // <div className='h-screen sticky top-0'>
+    <aside className='w-[15.5rem] h-screen sticky top-0 hidden lg:flex flex-col p-4'>
       <Link href={'/'} className='px-2 py-6'>
         <Image src={combi_mint} alt='logo' width={800} height={800} />
       </Link>
@@ -60,7 +61,9 @@ function Sidebar({}: Props) {
           ))}
         </li>
       </ul>
-    </div>
+    </aside>
+    // <div></div>
+    // </div>
   );
 }
 

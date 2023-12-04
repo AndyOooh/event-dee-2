@@ -5,6 +5,8 @@ export type IAttributes = {
   _label: string;
   _placeholder: string;
   _autocmplete: string;
+  _rows?: number;
+  _maxLenght?: number;
 };
 
 export const getAttributes = (name: string) => {
@@ -16,7 +18,7 @@ export const getAttributes = (name: string) => {
     case 'last_name':
       attributes = {
         _type: 'text',
-        _label: `Your ${toTitleCase(name)}`,
+        _label: `${toTitleCase(name)}`,
         _placeholder: `Eg. ${name === 'last_name' ? 'Doe' : 'John'}`,
         _autocmplete: name === 'last_name' ? 'family-name' : 'given-name',
       };
@@ -49,8 +51,10 @@ export const getAttributes = (name: string) => {
     case 'invite_link':
       attributes = {
         _type: 'text',
+        // _label: 'Invite Link (https://app.eventdee.com/invite/)',
         _label: 'Invite Link',
-        _placeholder: 'https://app.eventdee.com/invite/your-name',
+        // _placeholder: 'https://app.eventdee.com/invite/your-name',
+        _placeholder: '',
         _autocmplete: 'url',
       };
       break;
@@ -78,7 +82,7 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'address-level1',
       };
       break;
-    case 'linkedin':
+    case 'links.0':
       attributes = {
         _type: 'text',
         _label: 'LinkedIn',
@@ -86,7 +90,7 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'url',
       };
       break;
-    case 'instagram':
+    case 'links.1':
       attributes = {
         _type: 'text',
         _label: 'Instagram',
@@ -94,7 +98,7 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'url',
       };
       break;
-    case 'facebook':
+    case 'links.2':
       attributes = {
         _type: 'text',
         _label: 'Facebook',
@@ -102,7 +106,7 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'url',
       };
       break;
-    case 'twitter':
+    case 'links.3':
       attributes = {
         _type: 'text',
         _label: 'Twitter',
@@ -110,7 +114,7 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'url',
       };
       break;
-    case 'tiktok':
+    case 'links.4':
       attributes = {
         _type: 'text',
         _label: 'TikTok',
@@ -118,7 +122,7 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'url',
       };
       break;
-    case 'youtube':
+    case 'links.5':
       attributes = {
         _type: 'text',
         _label: 'Youtube',
@@ -132,6 +136,7 @@ export const getAttributes = (name: string) => {
         _label: 'Profile Header',
         _placeholder: 'A one-liner about you',
         _autocmplete: 'url',
+        _maxLenght: 50,
       };
       break;
     case 'profile_text':
@@ -140,6 +145,8 @@ export const getAttributes = (name: string) => {
         _label: 'Profile Text',
         _placeholder: 'A bit more about you',
         _autocmplete: 'url',
+        _rows: 5,
+        _maxLenght: 250,
       };
       break;
 
