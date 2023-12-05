@@ -1,6 +1,6 @@
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from './clientApp';
-import { format } from 'date-fns';
+import { format, intervalToDuration } from 'date-fns';
 
 export const checkEmailExists = async (emailToCheck: string) => {
   try {
@@ -19,7 +19,22 @@ export const checkEmailExists = async (emailToCheck: string) => {
   }
 };
 
-export const fbTimestampToDateInput = (unixSeconds: number) => {
-  const date = format(new Date(unixSeconds * 1000), 'yyyy-MM-dd');
+export const formatDate = (_date: any, isUnixSeconds: boolean = false) => {
+  if (!_date) return null;
+  if (isUnixSeconds) {
+    const date = format(new Date(_date.seconds * 1000), 'yyyy-MM-dd');
+    return date;
+  }
+  const date = format(new Date(_date), 'yyyy-MM-dd');
   return date;
+};
+
+export const timeDiff = (unixSeconds: number) => {
+  if (!unixSeconds) return null;
+  console.log('🚀  file: utilities.ts:28  unixSeconds:', unixSeconds);
+  const now = new Date();
+  const then = new Date(unixSeconds * 1000);
+  console.log('🚀  file: utilities.ts:30  then:', then);
+  const diff = intervalToDuration({ start: then, end: now });
+  return diff;
 };
