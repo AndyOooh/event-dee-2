@@ -1,24 +1,32 @@
 import thaiProvinces from '__utils/provinces.json';
+import { IpersonalInfoSchema } from './validation';
 
-export type IPersonalInfo = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  invite_link: string;
-  province: string;
-  gender: string;
-  pronouns: string;
-  height: string;
-  age: string;
-  // birthday: Date; // should replace age with this. Find a date picker toold or similar.
+// export type IPersonalInfo = {
+//   first_name: string;
+//   last_name: string;
+//   email: string;
+//   invite_link: string;
+//   province: string;
+//   gender: string;
+//   pronouns: string;
+//   height: string;
+//   age: string;
+//   // birthday: Date; // should replace age with this. Find a date picker toold or similar.
+// };
+
+const dateXYearsago = (years: number) => {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() - years);
+  return date.toISOString().split('T')[0];
 };
 
 type FormInput = {
-  title: keyof IPersonalInfo;
-  type: 'text' | 'select';
+  title: keyof IpersonalInfoSchema;
+  type: 'text' | 'select' | 'date';
   tooltip: string;
   options?: { value: any; label: string }[];
   prepend?: string;
+  extraProps?: any;
 };
 
 export const formArrayPersonalInfo: FormInput[] = [
@@ -37,6 +45,7 @@ export const formArrayPersonalInfo: FormInput[] = [
     type: 'text',
     tooltip: 'Enter your email',
   },
+
   {
     title: 'invite_link',
     type: 'text',
@@ -116,13 +125,22 @@ export const formArrayPersonalInfo: FormInput[] = [
       label: `${i + 100} cm`,
     })),
   },
+  // {
+  //   title: 'age',
+  //   type: 'select',
+  //   tooltip: 'Enter your age',
+  //   options: Array.from({ length: 85 }, (_, i) => ({
+  //     value: `${i + 15} years old`,
+  //     label: `${i + 15} years old`,
+  //   })),
+  // },
   {
-    title: 'age',
-    type: 'select',
-    tooltip: 'Enter your age',
-    options: Array.from({ length: 85 }, (_, i) => ({
-      value: `${i + 15} years old`,
-      label: `${i + 15} years old`,
-    })),
+    title: 'dob',
+    type: 'date',
+    tooltip: 'Enter your birthdate',
+    extraProps: {
+      min: dateXYearsago(100),
+      max: dateXYearsago(18),
+    },
   },
 ];

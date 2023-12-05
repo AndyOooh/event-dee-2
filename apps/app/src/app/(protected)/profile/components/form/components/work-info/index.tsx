@@ -5,7 +5,7 @@ import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUse
 import React, { useContext } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { Select, TextInput } from 'ui';
-import { formArrayWorkInfo } from './formArrayWorkInfo';
+import { formArrayWorkInfo } from './form-data';
 
 type Props = {
   register: UseFormRegister<any>;

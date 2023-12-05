@@ -24,11 +24,11 @@ export const FreelancerRight = (props: Props) => {
     },
     {
       title: 'Work information',
-      element: <ColoredDiv color='purple' direction='top' height={6} className='z-10' />,
+      // element: <ColoredDiv color='purple' direction='top' height={6} className='z-10' />,
     },
     {
       title: 'Get to know',
-      element: <ColoredDiv color='blue' direction='top' height={6} className='z-10' />,
+      // element: <ColoredDiv color='blue' direction='top' height={6} className='z-10' />,
     },
     // {
     //   title: 'Getting to know you better',

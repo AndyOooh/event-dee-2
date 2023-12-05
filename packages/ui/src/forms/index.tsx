@@ -8,3 +8,4 @@ export { Select } from './Select';
 export { SearchableSelect } from './SearchableSelect';
 export { SearchableSelect2 } from './SearchableSelect2';
 export { ReactSelect } from './ReactSelect';
+export { DatePicker } from './DatePicker';

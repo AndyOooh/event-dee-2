@@ -2,11 +2,12 @@
 
 import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { FormError, Select, TextInput } from 'ui';
-import { formArrayPersonalInfo } from './formArray';
+import { DatePicker, FormError, Select, TextInput } from 'ui';
+import { formArrayPersonalInfo } from './form-data';
 import { FormValues } from '__atoms/signupBusinessAtom';
+import { formatDate } from '__firebase/utilities';
 
 type Props = {
   register: UseFormRegister<any>;
@@ -20,9 +21,27 @@ export const PersonalInfo = ({ register, errors }: Props) => {
     <div className={styles.form}>
       <div className='w-full grid grid-cols-2 gap-6'>
         {currentUser
-          ? formArrayPersonalInfo.map((info, index) => {
-              return info.type === 'text' ? (
-                <div key={info.title}>
+          ? formArrayPersonalInfo.map((info, index) => (
+              <div key={info.title}>
+                {info.type === 'select' ? (
+                  <Select
+                    name={info.title}
+                    defaultValue={currentUser && currentUser[info.title]}
+                    options={info.options}
+                    register={register}
+                    label={true}
+                    maxW='max-w-md'
+                  />
+                ) : info.type === 'date' ? (
+                  <DatePicker
+                    name={info.title}
+                    defaultValue={currentUser && formatDate(currentUser[info.title], true)}
+                    register={register}
+                    label={true}
+                    maxW='max-w-md'
+                    extraProps={info.extraProps}
+                  />
+                ) : (
                   <TextInput
                     name={info.title}
                     defaultValue={currentUser && currentUser[info.title]}
@@ -31,23 +50,10 @@ export const PersonalInfo = ({ register, errors }: Props) => {
                     maxW='max-w-md'
                     prepend={info.prepend}
                   />
-                  <FormError formError={errors?.[info.title]?.message} />
-                </div>
-              ) : (
-                <div key={info.title}>
-                  <Select
-                    name={info.title}
-                    defaultValue={currentUser && currentUser[info.title]}
-                    options={info.options}
-                    register={register}
-                    label={true}
-                    className=''
-                    maxW='max-w-md'
-                  />
-                  <FormError formError={errors?.[info.title]?.message} />
-                </div>
-              );
-            })
+                )}
+                <FormError formError={errors?.[info.title]?.message} />
+              </div>
+            ))
           : null}
       </div>
     </div>

@@ -1,14 +1,12 @@
 'use client';
 
-// import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import React, { useContext } from 'react';
 import { UserContext } from 'app/(protected)/components/Providers/UserProvider';
-import { format } from 'date-fns';
+import { formatDate, timeDiff } from '__firebase/utilities';
 type Props = {};
 
 export const FreelancerStatsCard = (props: Props) => {
   const { user } = useContext(UserContext);
-  const formattedDate: string = format(new Date(2014, 1, 11), 'MMM d yyyy');
 
   const stats = [
     {
@@ -17,7 +15,7 @@ export const FreelancerStatsCard = (props: Props) => {
     },
     {
       title: 'Member since',
-      value: formattedDate,
+      value: formatDate(user?.metadata?.creationTime) || null,
     },
     {
       title: 'Location',
@@ -32,6 +30,10 @@ export const FreelancerStatsCard = (props: Props) => {
       value: user?.english_profiency,
     },
     {
+      title: 'Age',
+      value: timeDiff(user?.dob?.seconds)?.years || null,
+    },
+    {
       title: 'Jobs',
       value: 55,
     },
@@ -42,29 +44,21 @@ export const FreelancerStatsCard = (props: Props) => {
 
     {
       title: 'Work experience',
-      value: `${user?.work_experience} years`,
+      value: user?.work_experience ? `${user.work_experience} years` : null,
     },
   ];
 
   return user ? (
     <div className='card bg-base-100 shadow-xl'>
-      {/* <figure className=''>
-        <Image
-          src={user?.photoURL}
-          alt='avatar'
-          width={1000}
-          height={1000}
-          // fill={true}
-          sizes='300'
-        />
-      </figure> */}
       <div className='card-body gap-5'>
-        {stats.map(stat => (
-          <div key={stat.title} className='flex flex-col gap-1 text-sm'>
-            <span className='text-base-content'>{stat.title}</span>
-            <span className=''>{stat.value}</span>
-          </div>
-        ))}
+        {stats
+          .filter((stat: any) => stat.value)
+          .map(stat => (
+            <div key={stat.title} className='flex flex-col gap-1 text-sm'>
+              <span className='text-base-content'>{stat.title}</span>
+              <span className=''>{stat.value}</span>
+            </div>
+          ))}
 
         <div className='card-actions justify-end'>
           {/* <div className='badge badge-outline'>Fashion</div>

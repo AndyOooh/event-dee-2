@@ -5,6 +5,7 @@ import { IAttributes, getAttributes } from './attributesMap';
 type Props = {
   name: string;
   register: any;
+  registeroptions?: any;
   defaultValue?: string;
   label?: boolean;
   tooltip?: string;
@@ -18,6 +19,7 @@ type Props = {
 export const TextInput = ({
   name,
   register,
+  registeroptions,
   defaultValue,
   label = false,
   tooltip,
@@ -32,7 +34,7 @@ export const TextInput = ({
     _type === 'textarea' ? (
       <>
         <textarea
-          {...register(name)}
+          {...register(name, registeroptions)}
           type={_type}
           placeholder={_placeholder}
           autoComplete={_autocmplete}
@@ -45,7 +47,7 @@ export const TextInput = ({
     ) : (
       <>
         <input
-          {...register(name)}
+          {...register(name, registeroptions)}
           type={_type}
           placeholder={_placeholder}
           autoComplete={_autocmplete}

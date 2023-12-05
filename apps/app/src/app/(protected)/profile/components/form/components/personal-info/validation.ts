@@ -1,4 +1,6 @@
 import * as yup from 'yup';
+import { checkEmailExists } from '__firebase/utilities';
+import { startCase, camelCase } from 'lodash';
 
 // type Gender = 'Male' | 'Female' | 'Non-binary' | 'Prefer not to say';
 enum Gender {
@@ -18,16 +20,33 @@ enum Pronouns {
 // 'Male' | 'Female' | 'Non-binary' | 'Prefer not to say';
 
 export const personalInfoSchema = yup.object().shape({
-  first_name: yup.string().min(3),
-  last_name: yup.string().min(3),
-  email: yup.string().email(),
+  first_name: yup
+    .string()
+    .min(3)
+    .transform(value => startCase(camelCase(value))),
+  last_name: yup
+    .string()
+    .min(3)
+    .transform(value => startCase(camelCase(value))),
+  email: yup
+    .string()
+    .email()
+    .test('email', 'Email already exists', async email => {
+      // const exists = await checkEmailExists(email);
+      // return !exists;
+      return await checkEmailExists(email);
+    }),
   invite_link: yup.string().min(3),
   province: yup.string().min(3), // use json file?
   gender: yup.mixed<Gender>().oneOf(Object.values(Gender)),
   pronouns: yup.mixed<Pronouns>().oneOf(Object.values(Pronouns)),
   height: yup.string().min(3),
-  age: yup.string().min(3),
-  // birthday: yup.date().min(3),
+  // age: yup.string().min(3),
+  dob: yup.date().test('age', 'You must be 18 or older', function (birthdate) {
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - 18);
+    return birthdate <= cutoff;
+  }),
 });
 
 export type IpersonalInfoSchema = yup.InferType<typeof personalInfoSchema>;

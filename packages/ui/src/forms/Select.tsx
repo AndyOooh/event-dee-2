@@ -7,7 +7,7 @@ type Props = {
   defaultValue?: string;
   label?: boolean;
   tooltip?: string;
-  className: string;
+  className?: string;
   options: any[];
   value?: string;
   maxW?: string;
