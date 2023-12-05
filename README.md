@@ -251,6 +251,7 @@ See the [open issues](https://github.com/AndyOooh/persona/issues) for a full lis
 - [React Firebase Hooks](https://github.com/CSFrequency/react-firebase-hooks/tree/09bf06b28c82b4c3c1beabb1b32a8007232ed045)
 - [React Hook Form](https://react-hook-form.com/)
 - [Yup](https://github.com/jquense/yup)
+- [Lodash](https://lodash.com/docs/4.17.15)
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [ESLint](https://eslint.org/)

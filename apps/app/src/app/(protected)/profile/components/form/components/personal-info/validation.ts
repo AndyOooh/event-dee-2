@@ -42,22 +42,11 @@ export const personalInfoSchema = yup.object().shape({
   pronouns: yup.mixed<Pronouns>().oneOf(Object.values(Pronouns)),
   height: yup.string().min(3),
   // age: yup.string().min(3),
-  dob: yup
-    .date()
-    // .transform((value, originalValue) => {
-    //   console.log('value:', value, typeof value);
-    //   console.log('originalValue:', originalValue, typeof originalValue);
-    //   // Transform the input date to "YYYY-MM-DD" format
-    //   if (originalValue && value instanceof Date) {
-    //     return originalValue.toISOString().split('T')[0]; // Convert to "YYYY-MM-DD"
-    //   }
-    //   return value;
-    // })
-    .test('age', 'You must be 18 or older', function (birthdate) {
-      const cutoff = new Date();
-      cutoff.setFullYear(cutoff.getFullYear() - 18);
-      return birthdate <= cutoff;
-    }),
+  dob: yup.date().test('age', 'You must be 18 or older', function (birthdate) {
+    const cutoff = new Date();
+    cutoff.setFullYear(cutoff.getFullYear() - 18);
+    return birthdate <= cutoff;
+  }),
 });
 
 export type IpersonalInfoSchema = yup.InferType<typeof personalInfoSchema>;

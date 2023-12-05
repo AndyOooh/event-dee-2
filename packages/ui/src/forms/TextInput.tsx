@@ -5,7 +5,7 @@ import { IAttributes, getAttributes } from './attributesMap';
 type Props = {
   name: string;
   register: any;
-  registeroptions?: any
+  registeroptions?: any;
   defaultValue?: string;
   label?: boolean;
   tooltip?: string;
@@ -29,10 +29,6 @@ export const TextInput = ({
 }: Props): JSX.Element => {
   const { _type, _label, _placeholder, _autocmplete, _rows, _maxLenght }: IAttributes =
     getAttributes(name);
-
-    if (name === 'dob') {
-      console.log('_type, _label, _placeholder, _autocmplete, _rows, _maxLenght: ', _type, _label, _placeholder, _autocmplete, _rows, _maxLenght);
-    }
 
   let Input =
     _type === 'textarea' ? (

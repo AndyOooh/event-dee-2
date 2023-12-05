@@ -16,7 +16,7 @@ import { IpersonalInfoSchema } from './validation';
 
 const dateXYearsago = (years: number) => {
   const date = new Date();
-  date.setFullYear(date.getFullYear() - 18);
+  date.setFullYear(date.getFullYear() - years);
   return date.toISOString().split('T')[0];
 };
 
@@ -139,8 +139,7 @@ export const formArrayPersonalInfo: FormInput[] = [
     type: 'date',
     tooltip: 'Enter your birthdate',
     extraProps: {
-      // min: dateXYearsago(50),
-      min: new Date(1900, 0, 1).toISOString().split('T')[0],
+      min: dateXYearsago(100),
       max: dateXYearsago(18),
     },
   },
