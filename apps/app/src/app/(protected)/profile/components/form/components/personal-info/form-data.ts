@@ -14,12 +14,19 @@ import { IpersonalInfoSchema } from './validation';
 //   // birthday: Date; // should replace age with this. Find a date picker toold or similar.
 // };
 
+const dateXYearsago = (years: number) => {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() - 18);
+  return date.toISOString().split('T')[0];
+};
+
 type FormInput = {
   title: keyof IpersonalInfoSchema;
   type: 'text' | 'select' | 'date';
   tooltip: string;
   options?: { value: any; label: string }[];
   prepend?: string;
+  extraProps?: any;
 };
 
 export const formArrayPersonalInfo: FormInput[] = [
@@ -127,9 +134,14 @@ export const formArrayPersonalInfo: FormInput[] = [
   //     label: `${i + 15} years old`,
   //   })),
   // },
-  // {
-  //   title: 'dob',
-  //   type: 'date',
-  //   tooltip: 'Enter your birthdate',
-  // },
+  {
+    title: 'dob',
+    type: 'date',
+    tooltip: 'Enter your birthdate',
+    extraProps: {
+      // min: dateXYearsago(50),
+      min: new Date(1900, 0, 1).toISOString().split('T')[0],
+      max: dateXYearsago(18),
+    },
+  },
 ];

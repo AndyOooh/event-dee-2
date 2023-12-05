@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { checkEmailExists } from '__firebase/utilities';
+import { startCase, camelCase } from 'lodash';
 
 // type Gender = 'Male' | 'Female' | 'Non-binary' | 'Prefer not to say';
 enum Gender {
@@ -19,17 +20,21 @@ enum Pronouns {
 // 'Male' | 'Female' | 'Non-binary' | 'Prefer not to say';
 
 export const personalInfoSchema = yup.object().shape({
-  first_name: yup.string().min(3),
-  last_name: yup.string().min(3),
+  first_name: yup
+    .string()
+    .min(3)
+    .transform(value => startCase(camelCase(value))),
+  last_name: yup
+    .string()
+    .min(3)
+    .transform(value => startCase(camelCase(value))),
   email: yup
     .string()
     .email()
     .test('email', 'Email already exists', async email => {
-      // const exists = checkEmailExists(email);
-      const exists = await checkEmailExists(email);
-      console.log('🚀  file: validation.ts:30  exists:', exists)
-      return !exists;
-      // return await checkEmailExists(email);
+      // const exists = await checkEmailExists(email);
+      // return !exists;
+      return await checkEmailExists(email);
     }),
   invite_link: yup.string().min(3),
   province: yup.string().min(3), // use json file?
@@ -37,13 +42,22 @@ export const personalInfoSchema = yup.object().shape({
   pronouns: yup.mixed<Pronouns>().oneOf(Object.values(Pronouns)),
   height: yup.string().min(3),
   // age: yup.string().min(3),
-  // dob: yup.date().test('age', 'You must be 18 or older', function (birthdate) {
-  //   const cutoff = new Date();
-  //   cutoff.setFullYear(cutoff.getFullYear() - 18);
-  //   return birthdate <= cutoff;
-  // }),
+  dob: yup
+    .date()
+    // .transform((value, originalValue) => {
+    //   console.log('value:', value, typeof value);
+    //   console.log('originalValue:', originalValue, typeof originalValue);
+    //   // Transform the input date to "YYYY-MM-DD" format
+    //   if (originalValue && value instanceof Date) {
+    //     return originalValue.toISOString().split('T')[0]; // Convert to "YYYY-MM-DD"
+    //   }
+    //   return value;
+    // })
+    .test('age', 'You must be 18 or older', function (birthdate) {
+      const cutoff = new Date();
+      cutoff.setFullYear(cutoff.getFullYear() - 18);
+      return birthdate <= cutoff;
+    }),
 });
 
 export type IpersonalInfoSchema = yup.InferType<typeof personalInfoSchema>;
-
-
