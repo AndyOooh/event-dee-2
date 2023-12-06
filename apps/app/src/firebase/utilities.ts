@@ -4,11 +4,11 @@ import { format, intervalToDuration } from 'date-fns';
 
 export const checkEmailExists = async (emailToCheck: string) => {
   try {
-    if (!emailToCheck) return true;
+    if (!emailToCheck) return false;
     const usersCollection = collection(db, 'users');
     const q = query(usersCollection, where('email', '==', emailToCheck));
     const querySnapshot = await getDocs(q);
-    console.log('querySnapshot:', querySnapshot.size);
+    console.log('checkEmailExists querySnapshot length: ', querySnapshot.size);
     querySnapshot.forEach(doc => {
       console.log(doc.id, ' => ', doc.data());
     });
