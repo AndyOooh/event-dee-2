@@ -47,6 +47,7 @@ export const personalInfoSchema = ({ initialEmail }) =>
     invite_link: yup
       .string()
       .transform(curr => (curr === '' ? null : curr))
+      .lowercase()
       .nullable()
       .min(3),
     province: yup // use json file?

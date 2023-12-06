@@ -15,6 +15,7 @@ import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-i
 import { WorkInfo } from './components/work-info';
 import { is } from 'date-fns/locale';
 import { ValidateOptions } from 'yup';
+import { getChangedFormData } from '__utils/helpers';
 
 // ILinks // fix this module and add it to the form data
 // type FormValues = IPersonalInfo & IWorkInfo & IGetToKnow;
@@ -43,8 +44,6 @@ export const EditProfileForm = () => {
     },
   } = useForm<FormValues>({
     mode: 'onTouched', // no feedback while typing
-    // mode: 'onBlur', // only on/off focus
-    // mode: 'onSubmit', // only on/off focus
     // resolver: yupResolver(personalInfoSchema),
     resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
     // defaultValues: {
@@ -64,21 +63,25 @@ export const EditProfileForm = () => {
   };
 
   const onTest = () => {
-    console.log('🚀  file: index.tsx:66  isValid:', isValid);
-    console.log('🚀  file: index.tsx:66  data:', watch());
-    console.log('🚀  file: index.tsx:66  errors:', errors);
-    console.log('🚀  file: index.tsx:66  defaultValues:', defaultValues);
+    const data = watch();
+    const changedData = getChangedFormData(data, dirtyFields);
+    console.log('🚀  file: index.tsx:66  data:', data);
     console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
+    console.log('🚀  file: index.tsx:66  filteredData:', changedData);
+    console.log('🚀  file: index.tsx:66  isValid:', isValid);
+    console.log('🚀  file: index.tsx:66  errors:', errors);
+    console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
   };
 
   const onSubmit = async (data: FormValues) => {
     try {
       console.log('On submit data: ', data);
       console.log('dirtyFields: ', dirtyFields);
+      const changedData = getChangedFormData(data, dirtyFields);
 
       const userDocRef = doc(db, 'users', currentUser.uid);
       // console.log('🚀  file: index.tsx:62  userDocRef:', userDocRef);
-      // const res = await updateDoc(userDocRef, data);
+      const res = await updateDoc(userDocRef, data);
       // console.log('🚀  file: index.tsx:77  res:', res);
 
       return;
@@ -121,7 +124,7 @@ export const EditProfileForm = () => {
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
           {/* <ActionButton text='Update' loading={isSubmitting} /> */}
-          <button onClick={onTest} className='btn btn-neutral'>
+          <button type='button' onClick={onTest} className='btn btn-neutral'>
             Test
           </button>
         </div>

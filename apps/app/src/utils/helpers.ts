@@ -15,3 +15,12 @@ export const onSelectImage = (
     }
   };
 };
+
+export const getChangedFormData = (data: any, dirtyFields: any) => {
+  return Object.keys(data).reduce((acc, key) => {
+    if (dirtyFields[key]) {
+      acc[key] = data[key];
+    }
+    return acc;
+  }, {});
+};
