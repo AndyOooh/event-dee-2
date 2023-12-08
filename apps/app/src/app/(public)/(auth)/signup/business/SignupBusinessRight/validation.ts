@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { step1Schema as step1SchemaFreelancer } from '../../freelancer/SignupMemberRight/validation';
+import { step1Schema as step1SchemaFreelancer } from '../../freelancer/signup-member-right/validation';
 
 // Step 1 ------------------------------------------------------------------------
 

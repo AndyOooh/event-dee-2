@@ -1,7 +1,7 @@
 'use client';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import LoginLeft from './LoginLeft/LoginLeft';
+import LoginLeft from './left/LoginLeft';
 import LoginRight from './LoginRight';
 import { auth } from '../../../../firebase/clientApp';
 import { useEffect } from 'react';
