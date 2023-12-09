@@ -13,19 +13,22 @@ type Props = {};
 
 export const ProfileCard = (props: Props) => {
   const [user, loading, error] = useAuthState(auth);
+  console.log('🚀  file: ProfileCard.tsx:16  user:', user);
 
-  return (
+  return user ? (
     <div className='flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4'>
       {/* Avatar */}
       <div className='avatar'>
         <div className='w-32'>
-          <Image
-            src={user.photoURL}
-            alt='avatar'
-            fill={true}
-            sizes='500'
-            className='rounded-3xl'
-          />
+          {user?.photoURL && (
+            <Image
+              src={user?.photoURL}
+              alt='avatar'
+              fill={true}
+              sizes='500'
+              className='rounded-3xl'
+            />
+          )}
         </div>
       </div>
       {/* get user from firestor and display first + last */}
@@ -46,5 +49,5 @@ export const ProfileCard = (props: Props) => {
         Complete profile
       </button>
     </div>
-  );
+  ) : null;
 };

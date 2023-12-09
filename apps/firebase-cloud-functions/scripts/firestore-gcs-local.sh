@@ -8,7 +8,8 @@
 
 # Define variables
 # fileName="first-export"  # Replace with your desired export file name
-collection_names="test"  # Comma separated list of collection names to expor
+collection_name1=test
+collection_name2=users  # Comma separated list of collection names to expor
 folder_name="firestore_export"
 local_path="./emulator-data"
 
@@ -22,6 +23,6 @@ url="gs://event-dee-staging.appspot.com/${folder_name}"
 # Delete the previous export file in GCS
 gcloud storage rm -r $url
 # Export data from Firebase to GCS
-gcloud firestore export $url --collection-ids "${collection_names}"
+gcloud firestore export $url --collection-ids=$collection_name1,$collection_name2
 # Import data from GCS to local
 gcloud storage cp -r $url $local_path

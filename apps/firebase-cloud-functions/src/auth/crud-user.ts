@@ -58,7 +58,16 @@ export const checkEmailExists = functions.https.onCall(async email => {
 // })
 
 export const deleteUser = functions.auth.user().onDelete(async (user: any) => {
-  console.log('deleting user..: user.uid ');
-  // TODOD: delete user folder in storage. Also, is user deleted in auth??
-  db.collection('users').doc(user.uid).delete();
+  try {
+    console.log('deleting user..: user.uid ');
+    // TODOD: delete user folder in storage. Also, is user deleted in auth??
+    await db.collection('users').doc(user.uid).delete();
+
+    await admin
+      .storage()
+      .bucket()
+      .deleteFiles({ prefix: `users/${user.uid}` });
+  } catch (error) {
+    console.log('🚀  file: crud-user.ts:68  error:', error);
+  }
 });
