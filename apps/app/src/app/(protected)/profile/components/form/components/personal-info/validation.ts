@@ -1,6 +1,7 @@
 import * as yup from 'yup';
-import { checkEmailExists } from '__firebase/utilities';
+// import { checkEmailExists } from '__firebase/utilities';
 import { startCase, camelCase } from 'lodash';
+import { getCloudFunction } from '__firebase/clientApp';
 
 // type Gender = 'Male' | 'Female' | 'Non-binary' | 'Prefer not to say';
 enum Gender {
@@ -42,7 +43,10 @@ export const personalInfoSchema = ({ initialEmail }) =>
         if (initialEmail === value) return true;
         // const exists = await checkEmailExists(email);
         // return !exists;
-        return !(await checkEmailExists(value));
+        // return !(await checkEmailExists(value));
+        const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
+        const emailExists = (await checkEmailExists(value)).data;
+        return !emailExists;
       }),
     invite_link: yup
       .string()

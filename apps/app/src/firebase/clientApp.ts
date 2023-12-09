@@ -1,7 +1,7 @@
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
+import { connectAuthEmulator, getAuth } from 'firebase/auth';
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
+import { connectStorageEmulator, getStorage } from 'firebase/storage';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
 const firebaseConfig = {
@@ -23,5 +23,16 @@ const getCloudFunction = (functionName: string) => {
   const returnedFunction = httpsCallable(functions, functionName);
   return returnedFunction;
 };
+
+// if (
+//   // process.env.REACT_APP_EMULATED === 'True' &&
+//   // (process.env.NODE_ENV.match(/development/i) ||
+//   //   window.location.hostname === 'localhost')
+//   true
+// ) {
+//   connectAuthEmulator(auth, 'http://localhost:9099');
+//   connectFirestoreEmulator(db, 'localhost', 8080);
+//   connectStorageEmulator(storage, 'localhost', 9199);
+// }
 
 export { app, db, auth, storage, getCloudFunction };

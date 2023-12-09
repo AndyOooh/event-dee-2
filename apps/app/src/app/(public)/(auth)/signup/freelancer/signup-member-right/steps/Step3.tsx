@@ -33,6 +33,8 @@ export const Step3 = () => {
 
   const onSubmit = async () => {
     const { name, last_name, email, new_password, provider, profession, other_skills } = wFormData;
+    console.log('🚀  file: Step3.tsx:36  new_password:', new_password)
+    console.log('🚀  file: Step3.tsx:36  email:', email)
 
     let newUser: any;
     try {

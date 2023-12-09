@@ -2,22 +2,23 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from './clientApp';
 import { format, intervalToDuration } from 'date-fns';
 
-export const checkEmailExists = async (emailToCheck: string) => {
-  try {
-    if (!emailToCheck) return false;
-    const usersCollection = collection(db, 'users');
-    const q = query(usersCollection, where('email', '==', emailToCheck));
-    const querySnapshot = await getDocs(q);
-    console.log('checkEmailExists querySnapshot length: ', querySnapshot.size);
-    querySnapshot.forEach(doc => {
-      console.log(doc.id, ' => ', doc.data());
-    });
-    return querySnapshot.size > 0;
-  } catch (error) {
-    console.error('Error checking email existence:', error);
-    throw error; // Handle the error as needed
-  }
-};
+/* This was already creeated in FCF, so turing this off */
+// export const checkEmailExists = async (emailToCheck: string) => {
+//   try {
+//     if (!emailToCheck) return false;
+//     const usersCollection = collection(db, 'users');
+//     const q = query(usersCollection, where('email', '==', emailToCheck));
+//     const querySnapshot = await getDocs(q);
+//     console.log('checkEmailExists querySnapshot length: ', querySnapshot.size);
+//     querySnapshot.forEach(doc => {
+//       console.log(doc.id, ' => ', doc.data());
+//     });
+//     return querySnapshot.size > 0;
+//   } catch (error) {
+//     console.error('Error checking email existence:', error);
+//     throw error; // Handle the error as needed
+//   }
+// };
 
 export const formatDate = (_date: any, isUnixSeconds: boolean = false) => {
   if (!_date) return null;

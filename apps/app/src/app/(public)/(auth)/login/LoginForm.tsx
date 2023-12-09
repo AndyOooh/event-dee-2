@@ -7,6 +7,7 @@ import { FIREBASE_ERRORS } from 'ui/src/utils/firebaseErrors';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { auth } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
+import { FormError } from 'ui';
 
 type Props = {};
 
@@ -62,9 +63,10 @@ export const LoginForm = (props: Props) => {
           className='input input-bordered w-full max-w-xs focus:outline-none focus:border-accent'
         />
         {formError || authError ? (
-          <p className='text-xs text-red-500'>
-            {formError || FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]}
-          </p>
+          <FormError formError={formError || FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]} />
+          // <p className='text-xs text-red-500'>
+          //   {formError || FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]}
+          // </p>
         ) : null}
         <button className='btn w-full max-w-xs' type='submit'>
           Log in

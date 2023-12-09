@@ -1,5 +1,5 @@
-import { SignupMemberLeft } from './SignupMemberLeft/SignupMemberLeft';
-import { SignupMemberRight } from './SignupMemberRight/SignupMemberRight';
+import { SignupMemberLeft } from './signup-member-left/SignupMemberLeft';
+import { SignupMemberRight } from './signup-member-right/SignupMemberRight';
 import { DividedPage } from '../../components/DividedPage';
 
 type Props = {};

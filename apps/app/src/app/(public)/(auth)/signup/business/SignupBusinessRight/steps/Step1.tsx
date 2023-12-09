@@ -12,7 +12,7 @@ import { styles } from '__styles/styles';
 // import { step1Schema } from '../validation';
 import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
-import { IStep1Schema, step1Schema } from '../../../freelancer/SignupMemberRight/validation';
+import { IStep1Schema, step1Schema } from '../../../freelancer/signup-member-right/validation';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
 
 type FormData = FormStep1 & {

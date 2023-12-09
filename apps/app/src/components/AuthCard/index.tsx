@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useContext } from 'react';
+import { useRouter } from 'next/navigation';
 import { AuthCardUser } from './AuthCardUser';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { MdArrowDropDown } from 'react-icons/md';
@@ -26,6 +27,7 @@ export const AuthCard = () => {
   const { currentUser } = useContext(CurrUserContext);
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
   const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
+  const router = useRouter();
   console.log('🚀  file: index.tsx:17  error_delete:', error_delete);
 
   const onSignOut = async () => {
@@ -35,6 +37,7 @@ export const AuthCard = () => {
   const onDeleteUser = async () => {
     const succes = await deleteUser();
     console.log('🚀  file: index.tsx:24  succes:', succes);
+    router.push('/');
   };
 
   const menuData = [

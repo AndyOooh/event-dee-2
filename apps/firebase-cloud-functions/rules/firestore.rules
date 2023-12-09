@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /data {
+    allow read, write: if true;
+
+    // All items available in the store. Users can read
+    // items but never write them.
+    match /items/{itemID} {
+      allow read: if true;
+    }
+  }
+}

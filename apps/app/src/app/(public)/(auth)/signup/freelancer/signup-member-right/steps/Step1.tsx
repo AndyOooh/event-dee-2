@@ -19,15 +19,6 @@ type FormData = FormStep1 & {
   confirm_password?: unknown;
 };
 
-
-// type FormData = {
-//   email?: unknown;
-//   new_password?: unknown;
-//   provider?: string;
-//   check_legal?: boolean;
-//   confirm_password?: unknown;
-// };
-
 export const Step1 = () => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
   console.log('🚀  file: Step1.tsx:35  wFormData:', wFormData);
@@ -39,7 +30,6 @@ export const Step1 = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  // } = useForm<FormData>({
   } = useForm<IStep1Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step1Schema),

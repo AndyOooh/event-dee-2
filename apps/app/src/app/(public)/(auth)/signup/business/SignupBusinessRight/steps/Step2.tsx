@@ -19,7 +19,7 @@ import { auth, db, storage } from '__firebase/clientApp';
 import { doc, updateDoc } from 'firebase/firestore';
 import { uploadString, getDownloadURL } from 'firebase/storage';
 import { ref } from 'yup';
-import { IStep2Schema } from '../../../freelancer/SignupMemberRight/validation';
+import { IStep2Schema } from '../../../freelancer/signup-member-right/validation';
 
 type Props = {};
 
@@ -39,7 +39,7 @@ export const Step2 = ({}: Props) => {
     watch,
     handleSubmit,
     formState: { errors },
-  // } = useForm<FormStep2>({
+    // } = useForm<FormStep2>({
   } = useForm<IStep2Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step2Schema),
