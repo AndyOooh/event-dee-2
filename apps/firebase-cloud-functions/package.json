@@ -9,8 +9,13 @@
     "start": "yarn run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "emulators": "firebase emulators:start",
-    "clean": "rm -rf node_modules && rm -rf lib && rm -rf ui-debug.log"
+    "emulatorsOLD": "firebase emulators:start",
+    "emulators": "firebase emulators:start --import=emulator-data",
+    "emulators_with_export": "firebase emulators:start --export-on-exit=emulator-data --import=emulator-data",
+    "clean": "rm -rf node_modules && rm -rf lib && rm -rf ui-debug.log",
+    "migrate-firesstore1": "firebase firestore:export emulator-data/firestore-export",
+    "migrate-firestore": "./scripts/firestore-gcs-local.sh",
+    "migrate-auth": "./scripts/auth-local.sh"
   },
   "engines": {
     "node": "20"

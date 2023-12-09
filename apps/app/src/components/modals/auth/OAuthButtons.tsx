@@ -13,6 +13,7 @@ import {
 } from 'react-firebase-hooks/auth';
 import { is } from 'date-fns/locale';
 import { FormError } from 'ui';
+import { AuthError } from 'firebase/auth';
 
 export type Providers = 'google' | 'facebook';
 
@@ -20,33 +21,43 @@ type Props = {
   // setSelected?: (provider: Providers) => void;
   setSelected?: any;
   selected?: Providers | 'email';
-  isLogin?: boolean;
 };
 
-export const OAuthButtons = ({ selected, setSelected, isLogin = false }: Props) => {
+export const OAuthButtons = ({ selected, setSelected }: Props) => {
   console.log('🚀  file: OAuthButtons.tsx:24  selected:', selected);
   const [signInWithGoogle, _userG, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
   const [signInWithFacebook, _userFb, loadingFacebook, errorFacebook] = useSignInWithFacebook(auth);
 
+  // const lala: AuthError = {
+  //   code: 'auth/invalid-email',
+  //   message: 'The email address is badly formatted.',
+  // };
+
   const onClick = (provider: Providers) => (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log('🚀  file: OAuthButtons.tsx:28  provider:', provider);
+    try {
+      e.preventDefault();
+      console.log('🚀  file: OAuthButtons.tsx:28  provider:', provider);
 
-    if (isLogin) {
-      const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
-      // const emailExists = (await checkEmailExists(email)).data;
+      // setSelected('provider', provider);
+      setSelected
+        ? // ? setSelected({ provider: provider })
+          setSelected('provider', provider)
+        : provider === 'google'
+        ? signInWithGoogle()
+        : signInWithFacebook();
+    } catch (error) {
+      console.log('🚀  file: OAuthButtons.tsx:51  error:', error.message);
+      console.log('🚀  file: OAuthButtons.tsx:51  error:', error);
+      console.log('Error google: ', errorGoogle);
     }
-
-    // setSelected('provider', provider);
-    setSelected
-      ? // ? setSelected({ provider: provider })
-        setSelected('provider', provider)
-      : provider === 'google'
-      ? signInWithGoogle()
-      : signInWithFacebook();
   };
 
-  if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:40  errorGoogle:', errorGoogle);
+  if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:55  errorGoogle:', errorGoogle);
+  // if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:40  errorGoogle:', errorGoogle.);
+  if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:57  message:', errorGoogle.message);
+  if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:58  code:', errorGoogle.code);
+  if (errorGoogle)
+    console.log('🚀  file: OAuthButtons.tsx:60  customData:', errorGoogle.customData);
 
   return (
     <div className='w-full flex-center flex-col gap-4'>

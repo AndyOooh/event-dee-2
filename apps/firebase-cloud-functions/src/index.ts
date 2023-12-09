@@ -14,7 +14,7 @@ export const db = admin.firestore();
 // });
 
 export const test = functions.https.onRequest((req, res) => {
-  console.log('🚀  file: index.ts:47  res:', res);
-  console.log('🚀  file: index.ts:47  req:', req);
+  console.log('🚀  file: index.ts:47  req:', req.body);
+  // console.log('🚀  file: index.ts:47  res:', res);
   res.send('Hello from Firebase!');
 });

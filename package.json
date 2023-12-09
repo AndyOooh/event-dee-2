@@ -12,7 +12,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "turbo run clean && rm -rf node_modules",
-    "emulator": "turbo run emulators"
+    "emulators": "turbo run emulators"
   },
   "dependencies": {
     "@yarnpkg/plugin-workspace-tools": "^4.0.0-rc.42",
