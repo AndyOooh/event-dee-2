@@ -1,10 +1,18 @@
-import { initializeApp, getApp, getApps } from 'firebase/app';
-import { connectAuthEmulator, getAuth } from 'firebase/auth';
+import { initializeApp, getApp, getApps, FirebaseOptions } from 'firebase/app';
+import {
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  browserSessionPersistence,
+  connectAuthEmulator,
+  getAuth,
+  indexedDBLocalPersistence,
+  initializeAuth,
+} from 'firebase/auth';
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { connectStorageEmulator, getStorage } from 'firebase/storage';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: 'event-dee-staging.firebaseapp.com',
   projectId: 'event-dee-staging',
@@ -18,6 +26,10 @@ const app = getApps.length ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
+// const auth = initializeAuth(app, {
+//   persistence: [indexedDBLocalPersistence, browserLocalPersistence, browserSessionPersistence],
+//   popupRedirectResolver: browserPopupRedirectResolver,
+// });
 const functions = getFunctions();
 const getCloudFunction = (functionName: string) => {
   const returnedFunction = httpsCallable(functions, functionName);

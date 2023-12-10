@@ -77,7 +77,7 @@ export const ProfileCompletedDetails = (props: Props) => {
         return (
           <div key={index} className='flex justify-between'>
             <p className='text-sm font-medium'>{item.title}</p>
-            <p>
+            <div>
               {item.completed ? (
                 <div className='border-2 border-success rounded-full'>
                   <BsFillCheckCircleFill size={'1.25rem'} className='text-success/70' />
@@ -87,7 +87,7 @@ export const ProfileCompletedDetails = (props: Props) => {
                   <BsFillCircleFill size={'1.25rem'} className='text-success/10' />
                 </div>
               )}
-            </p>
+            </div>
           </div>
         );
       })}

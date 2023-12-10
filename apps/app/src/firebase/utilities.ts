@@ -1,6 +1,14 @@
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from './clientApp';
 import { format, intervalToDuration } from 'date-fns';
+import {
+  EmailAuthProvider,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  User,
+  browserPopupRedirectResolver,
+  reauthenticateWithCredential,
+  reauthenticateWithPopup,
+} from 'firebase/auth';
+import { auth } from './clientApp';
 
 /* This was already creeated in FCF, so turing this off */
 // export const checkEmailExists = async (emailToCheck: string) => {
@@ -38,4 +46,25 @@ export const timeDiff = (unixSeconds: number) => {
   console.log('🚀  file: utilities.ts:30  then:', then);
   const diff = intervalToDuration({ start: then, end: now });
   return diff;
+};
+
+export const reAuthenticate = async (authUser: User, password?: string) => {
+  try {
+    console.log('🚀  file: utilities.ts:45  user:', authUser);
+    const { providerId } = authUser.providerData[0];
+    console.log('🚀  file: utilities.ts:48  providerId:', providerId);
+
+    if (providerId === 'password') {
+      const userProvidedPassword = password;
+      const credential = EmailAuthProvider.credential(authUser.email, userProvidedPassword);
+      const result = await reauthenticateWithCredential(authUser, credential);
+      return;
+    } else {
+      const provider =
+        providerId === 'google.com' ? new GoogleAuthProvider() : new FacebookAuthProvider();
+      await reauthenticateWithPopup(authUser, provider, browserPopupRedirectResolver);
+    }
+  } catch (error) {
+    console.log('lalalal');
+  }
 };

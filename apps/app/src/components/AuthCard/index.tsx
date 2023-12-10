@@ -8,7 +8,7 @@ import { MdArrowDropDown } from 'react-icons/md';
 import { BsBellFill, BsFillChatFill } from 'react-icons/bs';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/clientApp';
-import { useDeleteUser, useSignOut } from 'react-firebase-hooks/auth';
+import { useAuthState, useDeleteUser, useSignOut } from 'react-firebase-hooks/auth';
 import {
   BiLogOut,
   BiEraser,
@@ -20,11 +20,16 @@ import {
   BiCog,
 } from 'react-icons/bi';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
+import { EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
+import { reAuthenticate } from '__firebase/utilities';
 
 // TODO: Error and loading state
 
 export const AuthCard = () => {
   const { currentUser } = useContext(CurrUserContext);
+  console.log('🚀  file: index.tsx:30  currentUser:', currentUser)
+  const [user, loading_user, error_user] = useAuthState(auth);
+  console.log('🚀  file: index.tsx:32  user:', user)
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
   const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
   const router = useRouter();
@@ -34,10 +39,29 @@ export const AuthCard = () => {
     const succes = await signOut();
     console.log('🚀  file: index.tsx:20  succes:', succes);
   };
+  
   const onDeleteUser = async () => {
-    const succes = await deleteUser();
-    console.log('🚀  file: index.tsx:24  succes:', succes);
-    router.push('/');
+    const { providerId } = user.providerData[0]; 
+    if (providerId === 'password') {
+      const result = await reAuthenticate(user);
+      console.log('🚀  file: index.tsx:41  result:', result);
+    }
+
+
+
+    console.log('auth: ', auth);
+    const result = await reAuthenticate(user);
+    console.log('🚀  file: index.tsx:41  result:', result);
+    // TODO(you): prompt the user to re-provide their sign-in credentials
+    // const credential = promptForCredentials();
+
+    // const authenti = await currentUser.reauthenticateWithCredential(credential);
+    // const authenti = await currentUser.reauthenticateWithCredential();
+    // console.log('🚀  file: index.tsx:43  authenti:', authenti);
+
+    //   const succes = await deleteUser();
+    //   console.log('🚀  file: index.tsx:24  succes:', succes);
+    //   router.push('/');
   };
 
   const menuData = [
