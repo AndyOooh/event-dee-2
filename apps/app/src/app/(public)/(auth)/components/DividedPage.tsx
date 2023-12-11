@@ -16,7 +16,7 @@ type Props = {
 
 export const DividedPage = ({ left, right, leftColor }: Props) => {
   return (
-    <div className='flex h-screen w-full'>
+    <section className='flex h-screen w-full'>
       <div className={`w-1/2 p-4 bg-${leftColor}/50 overflow-hidden`}>
         <Link href={'/'} className='p-4'>
           <Image src={combi_mint} alt='logo' width={800} height={800} className='w-40' />
@@ -28,6 +28,6 @@ export const DividedPage = ({ left, right, leftColor }: Props) => {
 
         {right}
       </div>
-    </div>
+    </section>
   );
 };

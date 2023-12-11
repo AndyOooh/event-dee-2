@@ -48,8 +48,9 @@ export const timeDiff = (unixSeconds: number) => {
   return diff;
 };
 
-export const reAuthenticate = async (authUser: User, password?: string) => {
+export const reAuthenticate = async (password?: string) => {
   try {
+    const authUser = auth.currentUser;
     console.log('🚀  file: utilities.ts:45  user:', authUser);
     const { providerId } = authUser.providerData[0];
     console.log('🚀  file: utilities.ts:48  providerId:', providerId);
@@ -58,13 +59,15 @@ export const reAuthenticate = async (authUser: User, password?: string) => {
       const userProvidedPassword = password;
       const credential = EmailAuthProvider.credential(authUser.email, userProvidedPassword);
       const result = await reauthenticateWithCredential(authUser, credential);
-      return;
+      return true;
     } else {
       const provider =
         providerId === 'google.com' ? new GoogleAuthProvider() : new FacebookAuthProvider();
       await reauthenticateWithPopup(authUser, provider, browserPopupRedirectResolver);
+      return true;
     }
   } catch (error) {
     console.log('lalalal');
+    return error;
   }
 };

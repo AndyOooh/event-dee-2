@@ -7,7 +7,7 @@ type Props = {};
 
 function Signup({}: Props) {
   return (
-    <div className='min-h-screen flex-center bg-primary/20 text-3xl'>
+    <section className='min-h-screen flex-center bg-primary/20 text-3xl'>
       <p>
         Sign up as{' '}
         <Link href={'/signup/freelancer'} className='link link-primary'>
@@ -19,7 +19,7 @@ function Signup({}: Props) {
           Businesss?
         </Link>
       </p>
-    </div>
+    </section>
   );
 }
 

@@ -3,72 +3,35 @@
 import React, { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthCardUser } from './AuthCardUser';
-import { RiArrowDropDownLine } from 'react-icons/ri';
 import { MdArrowDropDown } from 'react-icons/md';
 import { BsBellFill, BsFillChatFill } from 'react-icons/bs';
-import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/clientApp';
-import { useAuthState, useDeleteUser, useSignOut } from 'react-firebase-hooks/auth';
-import {
-  BiLogOut,
-  BiEraser,
-  BiUser,
-  BiUserPlus,
-  BiUserX,
-  BiUserCheck,
-  BiUserCircle,
-  BiCog,
-} from 'react-icons/bi';
+import { useSignOut } from 'react-firebase-hooks/auth';
+import { BiLogOut, BiUser, BiUserCheck, BiCog } from 'react-icons/bi';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
-import { reAuthenticate } from '__firebase/utilities';
 
 // TODO: Error and loading state
 
 export const AuthCard = () => {
   const { currentUser } = useContext(CurrUserContext);
-  console.log('🚀  file: index.tsx:30  currentUser:', currentUser)
-  const [user, loading_user, error_user] = useAuthState(auth);
-  console.log('🚀  file: index.tsx:32  user:', user)
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
-  const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
   const router = useRouter();
-  console.log('🚀  file: index.tsx:17  error_delete:', error_delete);
+  // const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
 
   const onSignOut = async () => {
     const succes = await signOut();
+    if (succes) router.push('/');
     console.log('🚀  file: index.tsx:20  succes:', succes);
   };
-  
-  const onDeleteUser = async () => {
-    const { providerId } = user.providerData[0]; 
-    if (providerId === 'password') {
-      const result = await reAuthenticate(user);
-      console.log('🚀  file: index.tsx:41  result:', result);
-    }
 
-
-
-    console.log('auth: ', auth);
-    const result = await reAuthenticate(user);
-    console.log('🚀  file: index.tsx:41  result:', result);
-    // TODO(you): prompt the user to re-provide their sign-in credentials
-    // const credential = promptForCredentials();
-
-    // const authenti = await currentUser.reauthenticateWithCredential(credential);
-    // const authenti = await currentUser.reauthenticateWithCredential();
-    // console.log('🚀  file: index.tsx:43  authenti:', authenti);
-
-    //   const succes = await deleteUser();
-    //   console.log('🚀  file: index.tsx:24  succes:', succes);
-    //   router.push('/');
-  };
+  // const onDeleteUser = async (password?: string) => {
+  //   router.push('/settings');
+  // };
 
   const menuData = [
     {
       type: 'link',
       label: 'My Profile',
-      // href: '/freelancers/dasdas',
       href: `/freelancers/${currentUser?.displayName}`,
       icon: <BiUser size='1.5rem' color='black' />,
     },
@@ -77,14 +40,12 @@ export const AuthCard = () => {
       label: 'Edit Profile',
       href: '/profile',
       icon: <BiUserCheck size='1.5rem' color='black' />,
-      // icon: <BiUserPlus size='1.5rem' color='black' />,
     },
     {
       type: 'link',
       label: 'Account settings',
-      href: '/account/settings',
+      href: '/settings',
       icon: <BiCog size='1.5rem' color='black' />,
-      // icon: <BiUserPlus size='1.5rem' color='black' />,
     },
     {
       type: 'button',
@@ -92,12 +53,12 @@ export const AuthCard = () => {
       onClick: async () => await onSignOut(),
       icon: <BiLogOut size='1.5rem' color='black' />,
     },
-    {
-      type: 'button',
-      label: 'Delete Account',
-      onClick: async () => await onDeleteUser(),
-      icon: <BiEraser size='1.5rem' color='black' />,
-    },
+    // {
+    //   type: 'button',
+    //   label: 'Delete Account',
+    //   onClick: async () => await onDeleteUser(),
+    //   icon: <BiEraser size='1.5rem' color='black' />,
+    // },
   ];
 
   return (
@@ -140,9 +101,6 @@ export const AuthCard = () => {
                 </button>
               );
             })}
-
-            {/* <button onClick={async () => await onSignOut()}>Log out</button>
-             <button onClick={async () => await onDeleteUser()}>Delete Account</button> */}
           </div>
         </div>
       </div>

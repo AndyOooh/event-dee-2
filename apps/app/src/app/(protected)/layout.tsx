@@ -7,12 +7,12 @@ export default function protectedLayout({ children }: { children: React.ReactNod
   return (
     <PrivateRoutes>
       <CurrentUserProvider>
-        <div className='flex'>
+        <section className='flex'>
         {/* <div className='flex bg-base-300'> */}
           <Sidebar />
           <PageWithAuthCard>{children}</PageWithAuthCard>
           {/* <div className='bg-base-300 w-full'>{children}</div> */}
-        </div>
+        </section>
       </CurrentUserProvider>
     </PrivateRoutes>
   );

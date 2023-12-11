@@ -1,4 +1,5 @@
 import { Providers } from '__components/modals/auth/OAuthButtons';
+import { PW_MIN_LENGTH } from '__utils/global-consts';
 import { getAuth } from 'firebase/auth';
 import * as yup from 'yup';
 
@@ -10,7 +11,7 @@ export const step1SchemaEmail = yup.object().shape({
   }),
   new_password: yup.string().when('provider', {
     is: 'email',
-    then: () => yup.string().min(6).required(),
+    then: () => yup.string().min(PW_MIN_LENGTH).required(),
   }),
   confirm_password: yup.string().oneOf([yup.ref('new_password'), null], 'Passwords must match'),
 });
@@ -73,15 +74,3 @@ const schema3 = yup
     is: 'email',
     then: () => emailAndPasswordSchema.required(),
   });
-
-// const values = {
-//   provider: 'email',
-//   email: 'john@example.com',
-//   password: 'password',
-// };
-
-// schema.validate(values).then((result) => {
-//   console.log(result);
-// }).catch((err) => {
-//   console.log(err);
-// });

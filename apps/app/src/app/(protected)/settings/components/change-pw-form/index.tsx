@@ -2,101 +2,114 @@
 
 import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { db } from '__firebase/clientApp';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
-import { doc, updateDoc } from 'firebase/firestore';
-import React, { useContext, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { is } from 'date-fns/locale';
-import { ValidateOptions } from 'yup';
-import { getChangedFormData } from '__utils/helpers';
+import React, { useContext, useEffect } from 'react';
+import { ErrorOption, useForm } from 'react-hook-form';
 import { IchangePasswordSchema, changePasswordSchema } from './validaton';
+import { TextInput, FormError } from 'ui';
+import { useAuthState, useUpdatePassword } from 'react-firebase-hooks/auth';
+import { auth } from '__firebase/clientApp';
+import { reAuthenticate } from '__firebase/utilities';
+import { watch } from 'fs';
 
 export const ChangePasswordForm = () => {
   const { currentUser } = useContext(CurrUserContext);
+  const [updatePassword, updating, error] = useUpdatePassword(auth);
+  const [authUser] = useAuthState(auth);
+  const { providerId } = authUser.providerData[0];
 
   const {
-    control,
     register,
-    setValue,
-    setError,
-    getValues,
-    watch,
     reset,
     handleSubmit,
-    formState: {
-      errors,
-      isDirty,
-      isValid,
-      isSubmitting,
-      isSubmitSuccessful,
-      dirtyFields,
-      defaultValues,
-    },
+    watch,
+    control,
+    setError,
+    formState: { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful, isValidating },
   } = useForm<IchangePasswordSchema>({
     mode: 'onTouched',
+    // mode: 'onBlur',
+    // mode: 'onSubmit',
     resolver: yupResolver(changePasswordSchema),
   });
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
+    if (isSubmitSuccessful) reset();
   }, [isSubmitSuccessful, reset]);
 
+  useEffect(() => {
+    if (isValidating) {
+      console.log('🚀🚀🚀🚀🚀🚀   file: index.tsx:36  isValidating:', isValidating);
+      console.log(watch());
+      console.log(isValid);
+      console.log(errors)
+      console.log()
+    }
+  }, [isValidating]);
+
   const onError = (errors: any, e: any) => {
-    console.log('🚀  file: WorkInfo.tsx:52  data:', watch());
     console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
   };
 
-  const onTest = () => {
-    const data = watch();
-    const changedData = getChangedFormData(data, dirtyFields);
-    // console.log('🚀  file: index.tsx:66  data:', data);
-    // console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
-    // console.log('🚀  file: index.tsx:66  filteredData:', changedData);
-    // console.log('🚀  file: index.tsx:66  isValid:', isValid);
-    // console.log('🚀  file: index.tsx:66  errors:', errors);
-    // console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
-  };
-
   const onSubmit = async (data: IchangePasswordSchema) => {
+    console.log('🚀  file: index.tsx:50  data:', data);
     try {
-      console.log('On submit data: ', data);
-      console.log('dirtyFields: ', dirtyFields);
-      const changedData = getChangedFormData(data, dirtyFields);
+      const result =
+        providerId === 'password'
+          ? await reAuthenticate(data.current_password)
+          : await reAuthenticate();
 
-      const userDocRef = doc(db, 'users', currentUser.uid);
-      // console.log('🚀  file: index.tsx:62  userDocRef:', userDocRef);
-      const res = await updateDoc(userDocRef, data);
-      // console.log('🚀  file: index.tsx:77  res:', res);
+      console.log('🚀  file: index.tsx:52  result:', result);
+      console.log('ISFBErrror: ', result instanceof Error);
+
+      result instanceof Error
+        ? setError('current_password', { message: 'Incorrect password' })
+        : updatePassword(data.new_password);
+
+      // updatePassword(data.new_password);
 
       return;
     } catch (error) {
+      setError('new_password', { message: 'Wrong password' });
       console.log('🚀  file: WorkInfo.tsx:59  error:', error);
     }
   };
 
+  const inputArray = Object.keys(changePasswordSchema.fields);
+  console.log('🚀  file: index.tsx:74  inputArray:', inputArray);
+  providerId === 'password' ? inputArray.splice(1, 0, '') : inputArray.splice(0, 1);
+
   return currentUser ? (
     <>
-      <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-        <div key='password' className='flex flex-col gap-2 mt-4'>
+      <div>
+        <div className='flex flex-col gap-2 mt-4'>
           <h2 className='text-xl'>Change Password</h2>
           <div className='card bg-base-100'>
-            <div className='card-body'>
-              <div>Section Element</div>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit, onError)} noValidate className='card-body'>
+              <div className='w-full grid grid-cols-2 gap-6'>
+                {inputArray.map((input: string, idx: number) => {
+                  return inputArray.length === 4 && idx === 1 ? (
+                    <div key={input}></div>
+                  ) : (
+                    <div key={input}>
+                      <TextInput
+                        name={input}
+                        // defaultValue={currentUser && currentUser[input]}
+                        register={register}
+                        label={true}
+                        maxW='max-w-md'
+                      />
+                      <FormError formError={errors?.[input]?.message} />
+                    </div>
+                  );
+                })}
+              </div>
+              <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
+            </form>
           </div>
         </div>
-
-        <div className='w-full sticky bottom-0 p-4'>
-          <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          <button type='button' onClick={onTest} className='btn btn-neutral'>
-            Test
-          </button>
-        </div>
-      </form>
+      </div>
       <DevTool control={control} />
     </>
   ) : null;

@@ -15,8 +15,6 @@ function Login({}: Props) {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
 
-  console.log('in login page');
-
   useEffect(() => {
     if (user) {
       console.log('user: ', user);

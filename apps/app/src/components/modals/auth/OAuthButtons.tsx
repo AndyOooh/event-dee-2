@@ -24,7 +24,6 @@ type Props = {
 };
 
 export const OAuthButtons = ({ selected, setSelected }: Props) => {
-  console.log('🚀  file: OAuthButtons.tsx:24  selected:', selected);
   const [signInWithGoogle, _userG, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
   const [signInWithFacebook, _userFb, loadingFacebook, errorFacebook] = useSignInWithFacebook(auth);
 

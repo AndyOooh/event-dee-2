@@ -23,10 +23,10 @@ export const ComboSidebarLayoutProvider = ({ privatePage, publicPage }: Props) =
   ) : user ? (
     // Most of this is copy/paste from (protected)/page.tsx and layout.tsx.
     // Create a component?
-    <div className='flex'>
+    <section className='flex'>
       <Sidebar />
       <PageWithAuthCard>{privatePage}</PageWithAuthCard>
-    </div>
+    </section>
   ) : (
     <>{publicPage}</>
   );

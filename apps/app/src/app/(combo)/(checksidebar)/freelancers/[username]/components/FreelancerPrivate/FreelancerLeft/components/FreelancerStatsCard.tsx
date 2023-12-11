@@ -7,6 +7,7 @@ type Props = {};
 
 export const FreelancerStatsCard = (props: Props) => {
   const { user } = useContext(UserContext);
+  console.log('🚀  file: FreelancerStatsCard.tsx:10  user:', user)
 
   const stats = [
     {
@@ -51,6 +52,7 @@ export const FreelancerStatsCard = (props: Props) => {
   return user ? (
     <div className='card bg-base-100 shadow-xl'>
       <div className='card-body gap-5'>
+        hello
         {stats
           .filter((stat: any) => stat.value)
           .map(stat => (

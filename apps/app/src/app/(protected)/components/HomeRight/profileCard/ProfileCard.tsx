@@ -19,7 +19,7 @@ export const ProfileCard = (props: Props) => {
     <div className='flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4'>
       {/* Avatar */}
       <div className='avatar'>
-        <div className='w-32'>
+        <div className='w-32 relative'>
           {user?.photoURL && (
             <Image
               src={user?.photoURL}
@@ -27,6 +27,7 @@ export const ProfileCard = (props: Props) => {
               fill={true}
               sizes='500'
               className='rounded-3xl'
+              priority={true}
             />
           )}
         </div>
