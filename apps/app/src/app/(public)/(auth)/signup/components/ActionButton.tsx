@@ -7,6 +7,7 @@ type Props = {
   onClick?: () => void;
   loading?: boolean;
   disabled?: boolean;
+  className?: string;
 };
 
 type ButtonProps = {
@@ -14,7 +15,7 @@ type ButtonProps = {
   type?: 'submit';
 };
 
-export const ActionButton = ({ text, onClick, loading, disabled }: Props) => {
+export const ActionButton = ({ text, onClick, loading, disabled, className }: Props) => {
   const buttonProps: ButtonProps = onClick ? { onClick } : { type: 'submit' };
 
   return disabled ? (
@@ -22,7 +23,7 @@ export const ActionButton = ({ text, onClick, loading, disabled }: Props) => {
       {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
     </button>
   ) : (
-    <button className='btn w-full max-w-xs mx-auto flex-center' {...buttonProps}>
+    <button className={`btn w-full max-w-xs mx-auto flex-center ${className}`} {...buttonProps}>
       {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
     </button>
   );

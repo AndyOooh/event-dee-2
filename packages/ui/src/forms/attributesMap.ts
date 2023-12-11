@@ -40,6 +40,7 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'new-password',
       };
       break;
+    case 'current_password':
     case 'password':
       attributes = {
         _type: 'password',
