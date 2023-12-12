@@ -221,8 +221,17 @@ Once you have the development servers running, you can access the:
 # Roadmap
 
 - [x] Bootstrap repo, apps, packages and configs.
+- [x] Firebase set up.
+- [x] Storybook set up.
+- [ ] Emulators set up.
 - [x] Landing page.
 - [x] Authentication flows.
+- [x] User profiles - edit, delete, view.
+- [ ] Event creation - create, edit, delete, view.
+- [ ] Video upload, storage and viewing.
+- [ ] Search.
+- [ ] Event feed.
+- [ ] Payment.
 - [ ] ...
 
 See the [open issues](https://github.com/AndyOooh/persona/issues) for a full list of proposed features (and known issues).
