@@ -79,10 +79,10 @@
 
 This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/). It includes four **apps**:
 
-- landing - an SSG Next.js 13 app.
-- app - a Next.js 13 app.
-- vite-storybook - a Storybook 7 app.
-- firebase-cloud-functions - a firebase cloud functions backend.
+- landing - an SSG Next.js app.
+- app - a Next.js app.
+- vite-storybook - a Storybook app.
+- firebase-cloud-functions - a Firebase Cloud Functions backend.
 
 It also includes five **packages** for shared configurations, types and UI components:
 
@@ -90,7 +90,7 @@ It also includes five **packages** for shared configurations, types and UI compo
 - tsconfig
 - tailwind-config
 - event-dee-types
-- ui
+- ui (React component library)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -119,11 +119,35 @@ You must be running **node v.18.17** or higher.
 
 # Usage
 
-To have a functioning backend you must create a firebase project and add the api key to _apps/app/.env_ and other configurations in _apps/app/firebase/clientApp.ts_. Lastly, log in to your firebase account:
+To have a functioning backend you have two options:
+- Ceate a Firebase project
+- Run with emulators
+
+## Firebase project
+ Create a firebase project and add the api key to _apps/app/.env_ and other configurations in _apps/app/firebase/clientApp.ts_. Lastly, log in to your firebase account:
 
 ```sh
 yarn firebase login
 ```
+
+## Emulators
+
+You can run firebase emulators for cloud functions, firestore, auth and storage with:
+
+```sh
+turbo emulators
+```
+
+Emulators are available at:
+
+- [localhost:4000](http://localhost:4000) - cloud functions
+- [localhost:8080](http://localhost:8080) - firestore
+- [localhost:9099](http://localhost:9099) - auth
+- [localhost:9199](http://localhost:9199) - storage
+
+
+**NB: Emulators are not yet set up!**
+
 
 ## Basic Scripts
 
@@ -190,25 +214,6 @@ Once you have the development servers running, you can access the:
 - storybook at [localhost:6006](http://localhost:6006)
 
 
-## Emulators
-
-You can also run firebase emulators for cloud functions, firestore, auth and storage with:
-
-```sh
-turbo emulators
-```
-
-Emulators are available at:
-
-- [localhost:4000](http://localhost:4000) - cloud functions
-- [localhost:8080](http://localhost:8080) - firestore
-- [localhost:9099](http://localhost:9099) - auth
-- [localhost:9199](http://localhost:9199) - storage
-
-
-**NB: Emulators are not yest set up!**
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -216,8 +221,17 @@ Emulators are available at:
 # Roadmap
 
 - [x] Bootstrap repo, apps, packages and configs.
+- [x] Firebase set up.
+- [x] Storybook set up.
+- [ ] Emulators set up.
 - [x] Landing page.
 - [x] Authentication flows.
+- [x] User profiles - edit, delete, view.
+- [ ] Event creation - create, edit, delete, view.
+- [ ] Video upload, storage and viewing.
+- [ ] Search.
+- [ ] Event feed.
+- [ ] Payment.
 - [ ] ...
 
 See the [open issues](https://github.com/AndyOooh/persona/issues) for a full list of proposed features (and known issues).
