@@ -62,7 +62,7 @@
 
 <!-- * [![Next][Next.js]][Next-url] -->
 <!-- - ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) -->
-
+<!-- - ![Jest](https://img.shields.io/static/v1?style=for-the-badge&message=Jest&color=C21325&logo=Jest&logoColor=FFFFFF&label=) -->
 - ![Turborepo](https://img.shields.io/static/v1?style=for-the-badge&message=Turborepo&color=9E4C96&logo=Turborepo&logoColor=FFFFFF&label=)
 - ![Firebase](https://img.shields.io/static/v1?style=for-the-badge&message=Firebase&color=222222&logo=Firebase&logoColor=FFCA28&label=)
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -73,7 +73,6 @@
 - ![Recoil](https://img.shields.io/static/v1?style=for-the-badge&message=Recoil&color=3578E5&logo=Recoil&logoColor=FFFFFF&label=)
 - ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 - ![DaisyUI](https://img.shields.io/static/v1?style=for-the-badge&message=DaisyUI&color=5A0EF8&logo=DaisyUI&logoColor=FFFFFF&label=)
-<!-- - ![Jest](https://img.shields.io/static/v1?style=for-the-badge&message=Jest&color=C21325&logo=Jest&logoColor=FFFFFF&label=) -->
 
 ## Intro
 
@@ -199,13 +198,13 @@ In addition you might want to delete the root _node_modules_ folder.
 
 ## Filtering apps
 
-You can also run the apps separately. Either by using the `--filter` flag in combination with the app names `landing`, `app`, `firebase-cloud-functions` or `vite-storybook`, or by appending them with `:<package>`. For example, to start the client development server only, run:
+You can also run the apps separately by using the `--filter` flag in combination with the app name: `landing`, `app`, `firebase-cloud-functions` or `vite-storybook`. For example, to start the client development server only, run:
 
 ```sh
 turbo dev --filter landing
 ```
 
-Or you can _cd_ into the specific directories and use the commands there.
+Or you can navigate to the specific app/package directory and use the local commands there with yarn.
 
 Once you have the development servers running, you can access the:
 
