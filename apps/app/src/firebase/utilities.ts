@@ -8,7 +8,8 @@ import {
   reauthenticateWithCredential,
   reauthenticateWithPopup,
 } from 'firebase/auth';
-import { auth } from './clientApp';
+import { auth, db } from './clientApp';
+import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 
 /* This was already creeated in FCF, so turing this off */
 // export const checkEmailExists = async (emailToCheck: string) => {
@@ -70,4 +71,23 @@ export const reAuthenticate = async (password?: string) => {
     console.log('lalalal');
     return error;
   }
+};
+
+//  create a function that takes a collection name and payload and creates a document in that collection.
+//  If the collection does not exist, it will be created.
+export const createDocument = async (collectionName: string, payload: any) => {
+  try {
+    const docRef = await addDoc(collection(db, collectionName), payload);
+    console.log('Document written with ID: ', docRef.id);
+    return docRef;
+  } catch (error) {
+    console.error('Error adding document: ', error);
+    throw error; // Handle the error as needed
+  }
+};
+
+export const fetchUser = async (uid: string) => {
+  const userDocRef = doc(db, 'users', uid);
+  const userDoc = await getDoc(userDocRef);
+  return { currentUser: userDoc.data() };
 };

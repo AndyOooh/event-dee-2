@@ -43,10 +43,10 @@ export const ChangePasswordForm = () => {
       console.log('🚀🚀🚀🚀🚀🚀   file: index.tsx:36  isValidating:', isValidating);
       console.log(watch());
       console.log(isValid);
-      console.log(errors)
-      console.log()
+      console.log(errors);
+      console.log();
     }
-  }, [isValidating]);
+  }, [isValidating, watch, isValid, errors, isDirty]);
 
   const onError = (errors: any, e: any) => {
     console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);

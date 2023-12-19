@@ -8,7 +8,7 @@ export default function protectedLayout({ children }: { children: React.ReactNod
     <PrivateRoutes>
       <CurrentUserProvider>
         <section className='flex'>
-        {/* <div className='flex bg-base-300'> */}
+          {/* <div className='flex bg-base-300'> */}
           <Sidebar />
           <PageWithAuthCard>{children}</PageWithAuthCard>
           {/* <div className='bg-base-300 w-full'>{children}</div> */}
