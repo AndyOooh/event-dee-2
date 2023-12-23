@@ -13,7 +13,8 @@ import {
 } from 'react-firebase-hooks/auth';
 import { is } from 'date-fns/locale';
 import { FormError } from 'ui';
-import { AuthError } from 'firebase/auth';
+import { AuthCredential, AuthError, CustomParameters, UserCredential } from 'firebase/auth';
+import { signInWithCredential } from 'firebase/auth';
 
 export type Providers = 'google' | 'facebook';
 
@@ -24,6 +25,7 @@ type Props = {
 };
 
 export const OAuthButtons = ({ selected, setSelected }: Props) => {
+  // const [user, loading, error] = useAuthState(auth);
   const [signInWithGoogle, _userG, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
   const [signInWithFacebook, _userFb, loadingFacebook, errorFacebook] = useSignInWithFacebook(auth);
 
@@ -32,24 +34,60 @@ export const OAuthButtons = ({ selected, setSelected }: Props) => {
   //   message: 'The email address is badly formatted.',
   // };
 
-  const onClick = (provider: Providers) => (e: MouseEvent<HTMLButtonElement>) => {
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log('🚀  file: OAuthButtons.tsx:38  user:', user);
+  //     setSelected && setSelected('provider', provider);
+  //   }
+  // }, [user]);
+
+  const onClick = (provider: Providers) => async (e: MouseEvent<HTMLButtonElement>) => {
     try {
       e.preventDefault();
       console.log('🚀  file: OAuthButtons.tsx:28  provider:', provider);
 
-      // setSelected('provider', provider);
-      setSelected
-        ? // ? setSelected({ provider: provider })
-          setSelected('provider', provider)
-        : provider === 'google'
-        ? signInWithGoogle()
-        : signInWithFacebook();
+      const cusParams: CustomParameters = {
+        tlalallallay: 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
+      };
+
+      // const scopes = ['email', 'profile', 'testtttttttttttttttttttttttttttttttttttttttt'];
+      // const creds: UserCredential =
+      //   provider === 'google' ? await signInWithGoogle([], cusParams) : await signInWithFacebook();
+      // console.log('🚀  file: OAuthButtons.tsx:49  creds:', creds);
+
+      const creds: UserCredential =
+        provider === 'google' ? await signInWithGoogle([], cusParams) : await signInWithFacebook();
+      setSelected && setSelected('provider', provider);
+      // setSelected('oAuthCreds', { ...creds });
+
+      // const authCreds: AuthCredential = creds.providerId;
+
+      // await signInWithCredential(auth, authCreds);
     } catch (error) {
       console.log('🚀  file: OAuthButtons.tsx:51  error:', error.message);
       console.log('🚀  file: OAuthButtons.tsx:51  error:', error);
       console.log('Error google: ', errorGoogle);
     }
   };
+
+  // const onClick = (provider: Providers) => (e: MouseEvent<HTMLButtonElement>) => {
+  //   try {
+  //     e.preventDefault();
+  //     console.log('🚀  file: OAuthButtons.tsx:28  provider:', provider);
+
+  //     // setSelected('provider', provider);
+  //     setSelected
+  //       ? // ? setSelected({ provider: provider })
+  //         setSelected('provider', provider)
+  //       : provider === 'google'
+  //       ? signInWithGoogle()
+  //       : signInWithFacebook();
+  //   } catch (error) {
+  //     console.log('🚀  file: OAuthButtons.tsx:51  error:', error.message);
+  //     console.log('🚀  file: OAuthButtons.tsx:51  error:', error);
+  //     console.log('Error google: ', errorGoogle);
+  //   }
+  // };
 
   if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:55  errorGoogle:', errorGoogle);
   // if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:40  errorGoogle:', errorGoogle.);

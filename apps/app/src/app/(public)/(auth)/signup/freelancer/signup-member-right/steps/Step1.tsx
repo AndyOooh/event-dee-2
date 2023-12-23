@@ -10,18 +10,15 @@ import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
 import { IStep1Schema, step1Schema } from '../validation';
-import { getCloudFunction } from '__firebase/clientApp';
+import { auth, getCloudFunction } from '__firebase/clientApp';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
-
-type FormData = FormStep1 & {
-  check_legal: boolean;
-  // confirm_password?: string;
-  confirm_password?: unknown;
-};
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const Step1 = () => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
-  console.log('🚀  file: Step1.tsx:35  wFormData:', wFormData);
+  const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
+  console.log('🚀  file: Step2.tsx:21  authUser:', authUser);
+
   const {
     register,
     setValue,
@@ -39,6 +36,9 @@ export const Step1 = () => {
   });
 
   const provider = watch('provider');
+
+  const formValues = watch();
+  console.log('🚀  file: Step1.tsx:44  formValues2:', formValues);
 
   const onSubmit = async (data: any) => {
     // console.log('in SUBMIT');
@@ -81,6 +81,8 @@ export const Step1 = () => {
       ) : (
         <>
           <p className=''>Signing up with</p>
+          {/* <p>{formValues.oAuthCreds.user.email} </p> */}
+          <p>{authUser?.email}</p>
           <OAuthButtons setSelected={setValue} selected={provider} />
           <CheckLegal name='check_legal' register={register} error={errors?.check_legal?.message} />
           <FormError formError={errors?.check_legal?.message} />

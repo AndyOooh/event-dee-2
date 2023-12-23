@@ -12,19 +12,29 @@ import { DividedPage } from '../components/DividedPage';
 type Props = {};
 
 function Login({}: Props) {
-  const [user, loading, error] = useAuthState(auth);
+  // const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
 
-  useEffect(() => {
-    if (user) {
-      console.log('user: ', user);
-      router.push('/');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log('🚀  file: page.tsx:20  user:', user)
+  //     router.push('/');
+  //   }
+  // }, [user]);
 
-  return loading || user ? (
-    <LoaderSpinner />
-  ) : (
+  // return loading || user ? (
+  //   <LoaderSpinner />
+  // ) : (
+  //   <>
+  //     <DividedPage
+  //       left={<LoginLeft />}
+  //       right={<LoginRight />}
+  //       leftColor='secondary'
+  //       // rightText='Welcome back!'
+  //     />
+  //   </>
+  // );
+  return (
     <>
       <DividedPage
         left={<LoginLeft />}

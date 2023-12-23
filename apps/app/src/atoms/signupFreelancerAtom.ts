@@ -6,6 +6,7 @@ export type FormStep1 = {
   email?: string;
   new_password?: string;
   provider: 'google' | 'facebook' | 'email';
+  oAuthCreds?: any;
 };
 
 export type FormStep2 = {
@@ -32,5 +33,6 @@ export const wizardForm = atom<FormValues>({
     profession: '',
     other_skills: [],
     step: 1,
+    oAuthCreds: null,
   },
 });
