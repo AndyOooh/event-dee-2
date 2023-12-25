@@ -13,6 +13,9 @@ import { IStep1Schema, step1Schema } from '../validation';
 import { auth, getCloudFunction } from '__firebase/clientApp';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Image from 'next/image';
+import facebookLogo from '/public/images/facebooklogo.png';
+import googleLogo from '/public/images/googlelogo.png';
 
 export const Step1 = () => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
@@ -60,7 +63,9 @@ export const Step1 = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={provider === 'email' ? styles.formSmall : styles.form}>
       {provider === 'email' ? (
         <>
           <TextInput name='email' register={register} label={true} />
@@ -74,19 +79,51 @@ export const Step1 = () => {
           <CheckLegal name='check_legal' register={register} error={errors?.check_legal?.message} />
           <FormError formError={errors?.check_legal?.message} />
           <div className='divider'>Or sign up with</div>
-          <OAuthButtons setSelected={setValue} selected={provider} />
+          <OAuthButtons isSignUp={true} setSelected={setValue} selected={provider} />
           <ActionButton text='Step 2' />
           <SwitchToLogin />
         </>
       ) : (
         <>
-          <p className=''>Signing up with</p>
-          {/* <p>{formValues.oAuthCreds.user.email} </p> */}
-          <p>{authUser?.email}</p>
-          <OAuthButtons setSelected={setValue} selected={provider} />
-          <CheckLegal name='check_legal' register={register} error={errors?.check_legal?.message} />
-          <FormError formError={errors?.check_legal?.message} />
-          <ActionButton text='Step 2' />
+          <div className='w-4/5 mx-auto flex flex-col items-center gap-4 bg-cyan-200/30'>
+            <p className='self-start font-semibold'>Signing up with</p>
+            <div className='relative flex items-center gap-4'>
+              <div className='avatar'>
+                <div className='w-16'>
+                  {/* <img src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' /> */}
+                  <Image
+                    src={authUser?.photoURL}
+                    alt={provider}
+                    fill={true}
+                    sizes='3rem'
+                    className='rounded-xl'
+                  />
+                </div>
+              </div>
+              <div className='relative h-16 flex items-center gap-3 border border-gray-500 px-4 py-2 rounded-lg'>
+                <div className='avatar'>
+                  <div className='w-8'>
+                    <Image
+                      src={provider === 'google' ? googleLogo : facebookLogo}
+                      alt='google'
+                      fill={true}
+                      sizes='3rem'
+                    />
+                  </div>
+                </div>
+                <p>{authUser?.email}</p>
+              </div>
+            </div>
+            {/* <p>{formValues.oAuthCreds.user.email} </p> */}
+            {/* <OAuthButtons setSelected={setValue} selected={provider} /> */}
+            <CheckLegal
+              name='check_legal'
+              register={register}
+              error={errors?.check_legal?.message}
+            />
+            <FormError formError={errors?.check_legal?.message} />
+            <ActionButton text='Step 2' />
+          </div>
         </>
       )}
     </form>

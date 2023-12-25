@@ -22,7 +22,7 @@ function TestSuccess({}: Props) {
     };
 
     fetchToken();
-  }, [user, router]);
+  }, [user, router, loading]);
 
   const onLogout = async () => {
     try {

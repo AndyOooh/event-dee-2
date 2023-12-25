@@ -12,7 +12,7 @@ export const PublicRoutes = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const fetchToken = async () => {
-      const token = await user?.getIdTokenResult();
+      const token = await user?.getIdTokenResult(true);
       console.log('🚀  file: PublicRoutes.tsx:19  token:', token);
       !loading && token?.claims.basic_info_done && router.push('/');
     };
@@ -20,5 +20,5 @@ export const PublicRoutes = ({ children }: { children: React.ReactNode }) => {
     fetchToken();
   }, [user, router, loading]);
 
-  return loading || !user ? <LoaderSpinner /> : <div>{children}</div>;
+  return loading ? <LoaderSpinner /> : <div>{children}</div>;
 };

@@ -12,9 +12,9 @@ export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const fetchToken = async () => {
-      const token = await user?.getIdTokenResult();
+      const token = await user?.getIdTokenResult(true);
       console.log('🚀  PrivateRoutes, token:', token);
-      !loading && !token?.claims.basic_info_done && router.push('/test');
+      !loading && !token?.claims.basic_info_done && router.push('/login');
     };
 
     fetchToken();

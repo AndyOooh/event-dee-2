@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
 import { wizardForm } from '__atoms/signupFreelancerAtom';
-import { auth, db, storage } from '__firebase/clientApp';
+import { auth, db, getCloudFunction, storage } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
 import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
@@ -87,10 +87,19 @@ export const Step3 = () => {
       const updatedUserDoc = await updateDoc(userDocRef, userDocUpdates);
       console.log('🚀  file: Step3.tsx:119  updatedUserDoc:', updatedUserDoc);
 
+      const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
+      const resSetCC = await setCustomClaims({
+        uid: authUser?.uid,
+        payload: { basic_info_done: true },
+      });
+
       setWFormData(prev => ({
         ...prev,
         step: 1,
       }));
+
+      /* Shouldnt mkae it here */
+      console.log('routing to HOMEEEEEEE')
 
       router.push('/');
     } catch (error) {
