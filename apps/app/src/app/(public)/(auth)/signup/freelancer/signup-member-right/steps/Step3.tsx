@@ -1,15 +1,12 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import { uploadString, getDownloadURL, ref } from 'firebase/storage';
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import {
   useUpdateProfile,
-  useSignInWithGoogle,
-  useSignInWithFacebook,
   useCreateUserWithEmailAndPassword,
-  useSignOut,
   useAuthState,
 } from 'react-firebase-hooks/auth';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
@@ -19,20 +16,14 @@ import { styles } from '__styles/styles';
 import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
 import { ActionButton } from '../../../components/ActionButton';
-import { AuthCredential, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-// import { getAuth, updateProfile } from 'firebase/auth';
 
 export const Step3 = () => {
   const [selectedFile, setSelectedFile] = useState<string>();
   const selectedFileRef = useRef<HTMLInputElement>(null);
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
   const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
-  console.log('🚀  file: Step3.tsx:29  authUser:', authUser);
   const router = useRouter();
 
-  // console.log('🚀  file: Step3.tsx:24  errorUpdate:', errorUpdate);
-  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
-  const [signInWithFacebook, userFb, loadingFacebook, errorFacebook] = useSignInWithFacebook(auth);
   const [createUserWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
     useCreateUserWithEmailAndPassword(
       auth
@@ -40,44 +31,22 @@ export const Step3 = () => {
     );
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
   const { handleSubmit } = useForm();
-  const [signOut, loading_signout, error_signout] = useSignOut(auth);
 
   const onSubmit = async () => {
     try {
       const { name, last_name, email, new_password, provider, profession, other_skills } =
         wFormData;
 
-      // console.log('🚀  file: Step3.tsx:29  authUser:', authUser);
-      // const res1 = await updateProfile({
-      //   displayName: 'BATMAN___________YAYYYYYYY',
-      // });
-      // console.log('🚀  file: Step3.tsx:50  res1:', res1);
-      // console.log('🚀  file: Step3.tsx:29  authUser:', authUser);
+      const newUser =
+        provider === 'email'
+          ? (await createUserWithEmailAndPassword(email, new_password)).user
+          : authUser;
 
-      let newUser: any;
-      try {
-        if (provider === 'google') {
-          // const newU = await signInWithGoogle();
-          // newUser = newU.user;
-          // newUser = wFormData.oAuthCreds.user;
-          newUser = authUser;
-        } else if (provider === 'facebook') {
-          // newUser = (await signInWithFacebook()).user;
-          // newUser = wFormData.oAuthCreds.user;
-          newUser = authUser;
-        } else {
-          const result = await createUserWithEmailAndPassword(email, new_password);
-          newUser = result.user;
-        }
-      } catch (error) {
-        console.log('🚀  file: Step3.tsx:56  error:', error);
-      }
-
-      if (errorEmail || errorFacebook || errorGoogle) {
-        const error = errorEmail || errorFacebook || errorGoogle;
-        console.log('🚀  file: Step3.tsx:63  error:', error);
-        return;
-      }
+      // if (errorEmail || errorFacebook || errorGoogle) {
+      //   const error = errorEmail || errorFacebook || errorGoogle;
+      //   console.log('🚀  file: Step3.tsx:63  error:', error);
+      //   return;
+      // }
 
       const userDocUpdates: any = {
         basic_info_done: true,
@@ -90,9 +59,7 @@ export const Step3 = () => {
         invite_link: `https://app.eventdee.com/invite/${name}-${last_name}`,
       };
 
-      console.log('newUser.uid', newUser?.uid);
       const userDocRef = doc(db, 'users', newUser?.uid);
-      console.log('🚀  file: Step3.tsx:90  userDocRef:', userDocRef);
 
       let downloadURL = '';
       if (selectedFile) {
@@ -118,15 +85,7 @@ export const Step3 = () => {
       // });
 
       const updatedUserDoc = await updateDoc(userDocRef, userDocUpdates);
-      console.log('🚀  file: Step3.tsx:119  updatedUserDoc:', updatedUserDoc)
-
-      // console.log('🤣🤣🤣 auth.currentUser before:', auth.currentUser);
-
-      // const res = await updateProfile({
-      //   displayName: 'BATMAN___________YAYYYYYYY',
-      // });
-
-      // console.log('🤣🤣🤣 auth.currentUser after:', auth.currentUser);
+      console.log('🚀  file: Step3.tsx:119  updatedUserDoc:', updatedUserDoc);
 
       setWFormData(prev => ({
         ...prev,
@@ -134,16 +93,10 @@ export const Step3 = () => {
       }));
 
       router.push('/');
-
-      
     } catch (error) {
       console.log('🚀  file: Step3.tsx:116  error:', error);
     }
   };
-
-  // const onSubmit = async () => {
-  //   return 'sdsadsa';
-  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>

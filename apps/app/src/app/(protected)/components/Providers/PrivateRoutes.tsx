@@ -1,22 +1,24 @@
 'use client';
 
-import React, { useContext, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { CurrUserContext } from './CurrentUserProvider';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { auth } from '__firebase/clientApp';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
   const [user, loading, error] = useAuthState(auth);
-  const { currentUser } = useContext(CurrUserContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (currentUser && !currentUser?.basic_info_done && !loading) {
-      router.push('/login');
-    }
-  }, [user, currentUser, loading, router]);
+    const fetchToken = async () => {
+      const token = await user?.getIdTokenResult();
+      console.log('🚀  PrivateRoutes, token:', token);
+      !loading && !token?.claims.basic_info_done && router.push('/test');
+    };
 
-  return loading ? <LoaderSpinner /> : <div>{children}</div>;
+    fetchToken();
+  }, [user, router, loading]);
+
+  return loading || !user ? <LoaderSpinner /> : <div>{children}</div>;
 };
