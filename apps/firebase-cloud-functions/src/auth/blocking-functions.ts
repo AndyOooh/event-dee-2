@@ -1,6 +1,6 @@
-import { HttpsError, beforeUserCreated, beforeUserSignedIn } from 'firebase-functions/v2/identity';
-import * as admin from 'firebase-admin';
-import { BlockingFunction } from 'firebase-functions/v1';
+// import { HttpsError, beforeUserCreated, beforeUserSignedIn } from 'firebase-functions/v2/identity';
+// import * as admin from 'firebase-admin';
+// import { BlockingFunction } from 'firebase-functions/v1';
 
 // export const beforecreated = beforeUserCreated(async event => {
 //   try {
@@ -46,8 +46,8 @@ import { BlockingFunction } from 'firebase-functions/v1';
 //   }
 // });
 
-/* 
-Goals:
-Create: User exists: block creation, user does not exist: create user - blocks log ins
-Sign in: User exists: sign in, user does not exist: block sign in - blocks log ins
-*/
+// /* 
+// Goals:
+// Create: User exists: block creation, user does not exist: create user - blocks log ins
+// Sign in: User exists: sign in, user does not exist: block sign in - blocks log ins
+// */
