@@ -4,7 +4,8 @@ import { db } from '..';
 import { getAuth } from 'firebase-admin/auth';
 
 // listener
-export const createUserDocument = functions.auth.user().onCreate(async (user: any) => {
+export const createUserDocument = functions.auth.user().onCreate(async (user: any, ctx) => {
+  console.log('🚀  file: crud-user.ts:8  ctx:', ctx);
   console.log('createUserDocument called!');
   console.log('🚀  file: index.ts:39  user:', user);
   if (!user.displayName) {
@@ -42,14 +43,6 @@ export const checkEmailExists = functions.https.onCall(async email => {
     // throw new functions.https.HttpsError('invalid-argument', "email doesn't exist");
   }
 });
-
-// Do the oppiste? Listen for ipdates to userDoc and then update the auth user
-// export const updateUserDocument = functions.auth.user().onUpdate(async (user: any) => {
-//   console.log('hahha');
-//   db.collection('users')
-//     .doc(user.uid)
-//     .set(JSON.parse(JSON.stringify(user)));
-// });
 
 // Sync auth usser with firebase user doc
 // const user = firebase.auth().currentUser;

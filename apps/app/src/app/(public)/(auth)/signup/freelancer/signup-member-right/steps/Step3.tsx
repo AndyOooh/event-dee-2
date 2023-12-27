@@ -48,16 +48,23 @@ export const Step3 = () => {
       //   return;
       // }
 
-      const userDocUpdates: any = {
+      const customClaims = {
         basic_info_done: true,
+        type: 'freelancer',
+      };
+
+      const userDocUpdates: any = {
+        customClaims,
         type: 'freelancer',
         first_name: name,
         last_name: last_name,
         displayName: name,
         profession: profession,
         other_skills: other_skills,
-        invite_link: `https://app.eventdee.com/invite/${name}-${last_name}`,
+        invite_link: `${name}-${last_name}`.toLowerCase(),
       };
+
+      // https://app.eventdee.com/invite
 
       const userDocRef = doc(db, 'users', newUser?.uid);
 
@@ -75,6 +82,9 @@ export const Step3 = () => {
 
       if (downloadURL) {
         userDocUpdates.photoURL = downloadURL;
+        await updateProfile({
+          photoURL: downloadURL,
+        });
       }
 
       // const unsubscribe = onSnapshot(userDocRef, async (doc: any) => {
@@ -90,7 +100,7 @@ export const Step3 = () => {
       const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
       const resSetCC = await setCustomClaims({
         uid: authUser?.uid,
-        payload: { basic_info_done: true },
+        payload: customClaims,
       });
 
       setWFormData(prev => ({
@@ -99,7 +109,7 @@ export const Step3 = () => {
       }));
 
       /* Shouldnt mkae it here */
-      console.log('routing to HOMEEEEEEE')
+      console.log('routing to HOMEEEEEEE');
 
       router.push('/');
     } catch (error) {

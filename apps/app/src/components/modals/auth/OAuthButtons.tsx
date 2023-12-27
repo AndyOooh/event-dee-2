@@ -9,6 +9,7 @@ import {
   useSignInWithGoogle,
   useSignInWithFacebook,
   useAuthState,
+  useDeleteUser,
 } from 'react-firebase-hooks/auth';
 import { FormError } from 'ui';
 import { UserCredential, signOut } from 'firebase/auth';
@@ -23,7 +24,7 @@ type Props = {
 };
 
 export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props) => {
-  const [authUser, authLoading, authError] = useAuthState(auth);
+  const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
   const [signInWithGoogle, _userG, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
   const [signInWithFacebook, _userFb, loadingFacebook, errorFacebook] = useSignInWithFacebook(auth);
   const [error, setError] = useState(null);
@@ -50,19 +51,15 @@ export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props)
       const token = await creds.user.getIdTokenResult(true);
       console.log('🚀  file: OAuthButtons.tsx:51  token:', token);
 
-      // const token = await authUser?.getIdTokenResult(true);
-      // console.log('🚀  file: OAuthButtons.tsx:53  token:', token);
-
-      // const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
-      // const emailExists = (await checkEmailExists(creds.user.email)).data;
       if (isSignUp && token?.claims.basic_info_done) {
         console.log('😒😒😒😒😒😒😒😒😒😒😒');
         /* race condition with PublicRoutes. Can't get this error message to ui as we redirect to / and then to /login */
-        // await signOut(auth);
+        // await signOut(auth); // ends up on /login with no message to user
         setError({ message: 'Email already exists' });
         return;
       } else if (!isSignUp && !token?.claims.basic_info_done) {
         /* this works work */
+        await deleteUser();
         console.log('❤️❤️❤️❤️❤️❤️❤️❤️');
         setError({ message: 'Email does not exist' });
         return;
