@@ -10,16 +10,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { IStep2Schema, step2Schema } from '../validation';
 import { useRecoilState } from 'recoil';
 import { FormStep2, wizardForm } from '../../../../../../../atoms/signupFreelancerAtom';
-import { auth } from '__firebase/clientApp';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 type Props = {};
 
 export const Step2 = ({}: Props) => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
-  const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
-  console.log('🚀  file: Step2.tsx:21  authUser:', authUser)
-  
   const {
     register,
     watch,

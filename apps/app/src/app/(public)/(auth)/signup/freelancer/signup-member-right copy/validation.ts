@@ -42,7 +42,7 @@ export const step1Schema = yup
     // then: () => step1SchemaEmail.required(),
     then: () => step1SchemaEmail.required(),
   });
-export type IStep1Schema = yup.InferType<typeof step1Schema> & { oAuthCreds?: any };
+export type IStep1Schema = yup.InferType<typeof step1Schema>;
 
 // Step 2 ------------------------------------------------------------------------
 export const step2Schema = yup

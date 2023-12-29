@@ -1,9 +1,11 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { db } from '..';
+import { getAuth } from 'firebase-admin/auth';
 
 // listener
-export const createUserDocument = functions.auth.user().onCreate(async (user: any) => {
+export const createUserDocument = functions.auth.user().onCreate(async (user: any, ctx) => {
+  console.log('🚀  file: crud-user.ts:8  ctx:', ctx);
   console.log('createUserDocument called!');
   console.log('🚀  file: index.ts:39  user:', user);
   if (!user.displayName) {
@@ -42,14 +44,6 @@ export const checkEmailExists = functions.https.onCall(async email => {
   }
 });
 
-// Do the oppiste? Listen for ipdates to userDoc and then update the auth user
-// export const updateUserDocument = functions.auth.user().onUpdate(async (user: any) => {
-//   console.log('hahha');
-//   db.collection('users')
-//     .doc(user.uid)
-//     .set(JSON.parse(JSON.stringify(user)));
-// });
-
 // Sync auth usser with firebase user doc
 // const user = firebase.auth().currentUser;
 // user.reload().then(() => {
@@ -69,5 +63,27 @@ export const deleteUser = functions.auth.user().onDelete(async (user: any) => {
       .deleteFiles({ prefix: `users/${user.uid}` });
   } catch (error) {
     console.log('🚀  file: crud-user.ts:68  error:', error);
+  }
+});
+
+export const setCustomClaims = functions.https.onCall(async (data, context) => {
+  try {
+    const { uid, payload } = data;
+    console.log('🚀  file: crud-user.ts:78  payload:', payload);
+    console.log('🚀  file: crud-user.ts:78  uid:', uid);
+    const res = await getAuth().setCustomUserClaims(uid, payload);
+    console.log('🚀  file: crud-user.ts:78  res:', res);
+    // Lookup the user associated with the specified uid.
+    const userNew = await getAuth()
+      .getUser(uid)
+      .then(userRecord => {
+        // The claims can be accessed on the user record.
+        console.log(userRecord?.customClaims);
+      });
+    console.log('🚀  file: crud-user.ts:85  userNew:', userNew);
+
+    return { message: `Custom claims set on uid: ${data.uid}` };
+  } catch (error) {
+    throw error;
   }
 });

@@ -42,7 +42,6 @@ export const LoginForm = (props: Props) => {
   };
 
   return (
-    // <form onSubmit={handleSubmit} className='flex flex-col justify-center gap-4 w-3/4 max-w-xs mx-auto'>
     <form onSubmit={handleSubmit} className={styles.formSmall}>
       {/* <form> */}
       <div className='flex flex-col items-center gap-4 w-full'>
@@ -63,10 +62,11 @@ export const LoginForm = (props: Props) => {
           className='input input-bordered w-full max-w-xs focus:outline-none focus:border-accent'
         />
         {formError || authError ? (
-          <FormError formError={formError || FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]} />
-          // <p className='text-xs text-red-500'>
-          //   {formError || FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]}
-          // </p>
+          <FormError
+            formError={
+              formError || FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]
+            }
+          />
         ) : null}
         <button className='btn w-full max-w-xs' type='submit'>
           Log in

@@ -1,17 +1,17 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import { uploadString, getDownloadURL, ref } from 'firebase/storage';
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import {
   useUpdateProfile,
-  useSignInWithGoogle,
-  useSignInWithFacebook,
   useCreateUserWithEmailAndPassword,
+  useAuthState,
 } from 'react-firebase-hooks/auth';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 import { wizardForm } from '__atoms/signupFreelancerAtom';
-import { auth, db, storage } from '__firebase/clientApp';
+import { auth, db, getCloudFunction, storage } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
 import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
@@ -21,8 +21,9 @@ export const Step3 = () => {
   const [selectedFile, setSelectedFile] = useState<string>();
   const selectedFileRef = useRef<HTMLInputElement>(null);
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
-  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
-  const [signInWithFacebook, userFb, loadingFacebook, errorFacebook] = useSignInWithFacebook(auth);
+  const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
+  const router = useRouter();
+
   const [createUserWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
     useCreateUserWithEmailAndPassword(
       auth
@@ -32,73 +33,87 @@ export const Step3 = () => {
   const { handleSubmit } = useForm();
 
   const onSubmit = async () => {
-    const { name, last_name, email, new_password, provider, profession, other_skills } = wFormData;
-    console.log('🚀  file: Step3.tsx:36  new_password:', new_password);
-    console.log('🚀  file: Step3.tsx:36  email:', email);
-
-    let newUser: any;
     try {
-      if (provider === 'google') {
-        const newU = await signInWithGoogle();
-        newUser = newU.user;
-      } else if (provider === 'facebook') {
-        newUser = (await signInWithFacebook()).user;
-      } else {
-        // newUser = (await createUserWithEmailAndPassword(email, new_password)).user;
-        const result = await createUserWithEmailAndPassword(email, new_password);
-        console.log('🚀  file: Step3.tsx:49  result:', result);
-        newUser = result.user;
+      const { name, last_name, email, new_password, provider, profession, other_skills } =
+        wFormData;
+
+      const newUser =
+        provider === 'email'
+          ? (await createUserWithEmailAndPassword(email, new_password)).user
+          : authUser;
+
+      // if (errorEmail || errorFacebook || errorGoogle) {
+      //   const error = errorEmail || errorFacebook || errorGoogle;
+      //   console.log('🚀  file: Step3.tsx:63  error:', error);
+      //   return;
+      // }
+
+      const customClaims = {
+        basic_info_done: true,
+        type: 'freelancer',
+      };
+
+      const userDocUpdates: any = {
+        customClaims,
+        type: 'freelancer',
+        first_name: name,
+        last_name: last_name,
+        displayName: name,
+        profession: profession,
+        other_skills: other_skills,
+        invite_link: `${name}-${last_name}`.toLowerCase(),
+      };
+
+      // https://app.eventdee.com/invite
+
+      const userDocRef = doc(db, 'users', newUser?.uid);
+
+      let downloadURL = '';
+      if (selectedFile) {
+        try {
+          const imageRef = ref(storage, `users/${userDocRef.id}/images/profile`);
+          await uploadString(imageRef, selectedFile, 'data_url');
+          downloadURL = await getDownloadURL(imageRef);
+          console.log('Image uploaded successfully: ', downloadURL);
+        } catch (error) {
+          throw error;
+        }
       }
-    } catch (error) {
-      console.log('🚀  file: Step3.tsx:67  error:', error);
-    }
 
-    if (errorEmail || errorFacebook || errorGoogle) {
-      const error = errorEmail || errorFacebook || errorGoogle;
-      return;
-    }
-
-    // some things needs to be pulled out of this if. Actually we should have an object of props to update and add to it inside if.
-    if (selectedFile) {
-      try {
-        const userDocRef = doc(db, 'users', newUser?.uid);
-        const imageRef = ref(storage, `users/${userDocRef.id}/images/profile`);
-        await uploadString(imageRef, selectedFile, 'data_url');
-        const downloadURL = await getDownloadURL(imageRef);
-
-        // seems redundant to update both auth and firabse user.
+      if (downloadURL) {
+        userDocUpdates.photoURL = downloadURL;
         await updateProfile({
           photoURL: downloadURL,
-          displayName: name,
         });
-        const fullName = `${name} ${last_name}`;
-        console.log('🚀  file: Step3.tsx:76  fullName:', fullName);
-        const unsubscribe = onSnapshot(userDocRef, async (doc: any) => {
-          if (doc.exists()) {
-            // User document exists, proceed with the update
-            // Your update logic here
-            await updateDoc(userDocRef, {
-              type: 'freelancer',
-              first_name: name,
-              last_name: last_name,
-              full_name: fullName,
-              displayName: name,
-              photoURL: downloadURL,
-              profession: profession,
-              other_skills: other_skills,
-              invite_link: `https://app.eventdee.com/invite/${name}-${last_name}`,
-            });
-            unsubscribe(); // Stop listening for further changes
-          }
-        });
-        console.log('666666666666666666666');
-        setWFormData(prev => ({
-          ...prev,
-          step: 1,
-        }));
-      } catch (error) {
-        console.log('🚀  file: Step3.tsx:98  error:', error);
       }
+
+      // const unsubscribe = onSnapshot(userDocRef, async (doc: any) => {
+      //   if (doc.exists()) {
+      //     await updateDoc(userDocRef, userDocUpdates);
+      //     unsubscribe(); // Stop listening for further changes
+      //   }
+      // });
+
+      const updatedUserDoc = await updateDoc(userDocRef, userDocUpdates);
+      console.log('🚀  file: Step3.tsx:119  updatedUserDoc:', updatedUserDoc);
+
+      const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
+      const resSetCC = await setCustomClaims({
+        uid: authUser?.uid,
+        payload: customClaims,
+      });
+
+      setWFormData(prev => ({
+        ...prev,
+        step: 1,
+      }));
+
+      /* Shouldnt mkae it here */
+      console.log('routing to HOMEEEEEEE');
+
+      router.push('/');
+    } catch (error) {
+      console.log('🚀  file: Step3.tsx:116  error:', error);
     }
   };
 

@@ -3,7 +3,7 @@
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { auth } from '__firebase/clientApp';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
@@ -11,10 +11,14 @@ export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user && !loading) {
-      router.push('/login');
-    }
-  }, [loading, user]);
+    const fetchToken = async () => {
+      const token = await user?.getIdTokenResult(true);
+      console.log('🚀  PrivateRoutes, token:', token);
+      !loading && !token?.claims.basic_info_done && router.push('/login');
+    };
+
+    fetchToken();
+  }, [user, router, loading]);
 
   return loading || !user ? <LoaderSpinner /> : <div>{children}</div>;
 };
