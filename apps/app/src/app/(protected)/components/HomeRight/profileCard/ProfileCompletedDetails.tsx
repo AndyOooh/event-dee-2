@@ -30,7 +30,9 @@ export const ProfileCompletedDetails = (props: Props) => {
     availability,
     languages,
     work_experience,
-    english_profiency
+    english_profiency,
+    profile_header,
+    profile_text,
   } = currentUser;
 
   const getCompletionStatus = (fields: any[]) => {
@@ -107,6 +109,10 @@ export const ProfileCompletedDetails = (props: Props) => {
     {
       title: 'Video introduction',
       completed: !!videoUrl,
+    },
+    {
+      title: 'Profile header & text',
+      completed: getCompletionStatus([profile_header, profile_text]),
     },
   ];
 
