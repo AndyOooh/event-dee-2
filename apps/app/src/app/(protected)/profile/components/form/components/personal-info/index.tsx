@@ -6,12 +6,12 @@ import { useContext } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { DatePicker, FormError, Select, TextInput } from 'ui';
 import { formArrayPersonalInfo } from './form-data';
-import { FormValues } from '__atoms/signupBusinessAtom';
 import { formatDate } from '__firebase/utilities';
+import { IpersonalInfoSchema } from './validation';
 
 type Props = {
   register: UseFormRegister<any>;
-  errors: FieldErrors<FormValues>;
+  errors: FieldErrors<IpersonalInfoSchema>;
 };
 
 export const PersonalInfo = ({ register, errors }: Props) => {
@@ -51,7 +51,8 @@ export const PersonalInfo = ({ register, errors }: Props) => {
                     prepend={info.prepend}
                   />
                 )}
-                <FormError formError={errors?.[info.title]?.message} />
+                <FormError formError={errors?.[info.title]?.message as string} />
+                {/* <FormError formError={errors?.[info.title]?.message} /> */}
               </div>
             ))
           : null}

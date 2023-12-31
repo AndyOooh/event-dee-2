@@ -5,9 +5,7 @@ import { Stats } from './stats/Stats';
 import { ReferralAd } from './referralAd/ReferralAd';
 import { createDocument } from '__firebase/utilities';
 
-type Props = {};
-
-export const HomeMain = (props: Props) => {
+export const HomeMain = () => {
   const submitHandler = async () => {
     try {
       console.log('submitHandler');

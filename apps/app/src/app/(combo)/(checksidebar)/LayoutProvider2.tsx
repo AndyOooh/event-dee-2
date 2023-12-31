@@ -7,6 +7,7 @@ import Sidebar from '__components/Sidebar/Sidebar';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { auth } from '__firebase/clientApp';
 import { PageWithAuthCard } from '__components/PageWithAuthCard';
+import { CurrentUserProvider } from 'app/(protected)/components/Providers/CurrentUserProvider';
 
 type Props = {
   children: JSX.Element[];
@@ -24,8 +25,10 @@ export const ComboSidebarLayoutProvider2 = ({ children }: Props) => {
     // Most of this is copy/paste from (protected)/page.tsx and layout.tsx.
     // Create a component?
     <div className='flex'>
-      <Sidebar />
-      <PageWithAuthCard>{childArray[0]}</PageWithAuthCard>
+      <CurrentUserProvider>
+        <Sidebar />
+        <PageWithAuthCard>{childArray[0]}</PageWithAuthCard>
+      </CurrentUserProvider>
     </div>
   ) : (
     <>{childArray[1]}</>

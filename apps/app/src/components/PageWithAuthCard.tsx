@@ -4,7 +4,7 @@ import { BiMenu } from 'react-icons/bi';
 import { AuthCard } from './AuthCard';
 
 type Props = {
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
 export const PageWithAuthCard = ({ children }: Props) => {

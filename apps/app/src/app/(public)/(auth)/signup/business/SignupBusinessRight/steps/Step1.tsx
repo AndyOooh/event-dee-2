@@ -1,34 +1,35 @@
 'use client';
-
-import React from 'react';
-import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { FormError, TextInput } from 'ui';
-import { FormStep1, wizardForm } from '__atoms/signupBusinessAtom';
+import { TextInput, FormError } from 'ui';
+import { wizardForm } from '__atoms/signupFreelancerAtom';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { styles } from '__styles/styles';
-// import { step1Schema } from '../validation';
 import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
-import { IStep1Schema, step1Schema } from '../../../freelancer/signup-member-right/validation';
+import { IStep1Schema, step1Schema } from '../validation';
+import { auth, getCloudFunction } from '__firebase/clientApp';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
-
-type FormData = FormStep1 & {
-  email?: string;
-  password?: string;
-  confirm_password?: string;
-  check_legal: boolean;
-};
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import Image from 'next/image';
+import facebookLogo from '/public/images/facebooklogo.png';
+import googleLogo from '/public/images/googlelogo.png';
+import { Providers } from 'app/types';
 
 export const Step1 = () => {
-  const [wFormData, setWFormData] = useRecoilState(wizardForm);
-  console.log('🚀  file: Step1.tsx:35  wFormData:', wFormData);
+  const [, setWFormData] = useRecoilState(wizardForm);
+  const [authUser] = useAuthState(auth);
+  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(
+    auth
+    // {sendEmailVerification: true} // implement later
+  );
+
   const {
     register,
     setValue,
-    getValues,
+    setError,
     watch,
     handleSubmit,
     formState: { errors },
@@ -36,18 +37,29 @@ export const Step1 = () => {
     mode: 'onTouched',
     resolver: yupResolver(step1Schema),
     defaultValues: {
-      provider: 'email',
+      provider: Providers.email,
     },
   });
+
   const provider = watch('provider');
 
-  const onSubmit = (data: any) => {
-    console.log('in SUBMIT');
+  const onSubmit = async (data: any) => {
+    const email = watch('email');
+    const checkEmailExists = getCloudFunction('checkEmailExists');
+    const emailExists = (await checkEmailExists(email)).data;
+    if (emailExists) {
+      setError('email', { message: 'Email already exists' });
+      return;
+    }
+
+    await createUserWithEmailAndPassword(data.email, data.new_password);
+
     setWFormData(prev => ({
       ...prev,
       ...data,
       step: prev.step + 1,
     }));
+    return;
   };
 
   return (
@@ -56,7 +68,9 @@ export const Step1 = () => {
         Access the highly curated society of top event workers. Find the talent you need for your
         next event.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={provider === 'email' ? styles.formSmall : styles.form}>
         {provider === 'email' ? (
           <>
             <TextInput name='email' register={register} label={true} />
@@ -74,14 +88,39 @@ export const Step1 = () => {
             />
             <FormError formError={errors?.check_legal?.message} />
             <div className='divider'>Or sign up with</div>
-            <OAuthButtons setSelected={setValue} selected={provider} />
+            <OAuthButtons isSignUp={true} setSelected={setValue} selected={provider} />
             <ActionButton text='Step 2' />
             <SwitchToLogin />
           </>
         ) : (
-          <>
-            <p className=''>Signing up with</p>
-            <OAuthButtons setSelected={setValue} selected={provider} />
+          <div className='w-4/5 mx-auto flex flex-col items-center gap-4 bg-cyan-200/30'>
+            <p className='self-start font-semibold'>Signing up with</p>
+            <div className='relative flex items-center gap-4'>
+              <div className='avatar'>
+                <div className='w-16'>
+                  <Image
+                    src={authUser?.photoURL || '/images/profile-photo-placeholder.jpg'}
+                    alt={provider}
+                    fill={true}
+                    sizes='3rem'
+                    className='rounded-xl'
+                  />
+                </div>
+              </div>
+              <div className='relative h-16 flex items-center gap-3 border border-gray-500 px-4 py-2 rounded-lg'>
+                <div className='avatar'>
+                  <div className='w-8'>
+                    <Image
+                      src={provider === 'google' ? googleLogo : facebookLogo}
+                      alt='google'
+                      fill={true}
+                      sizes='3rem'
+                    />
+                  </div>
+                </div>
+                <p>{authUser?.email}</p>
+              </div>
+            </div>
             <CheckLegal
               name='check_legal'
               register={register}
@@ -89,7 +128,7 @@ export const Step1 = () => {
             />
             <FormError formError={errors?.check_legal?.message} />
             <ActionButton text='Step 2' />
-          </>
+          </div>
         )}
       </form>
     </>

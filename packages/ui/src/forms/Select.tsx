@@ -1,5 +1,6 @@
 import React from 'react';
 import { toTitleCase } from '../utils/helpers';
+import { SelectOptions } from 'event-dee-types';
 
 type Props = {
   name: string;
@@ -8,7 +9,7 @@ type Props = {
   label?: boolean;
   tooltip?: string;
   className?: string;
-  options: any[];
+  options: SelectOptions
   value?: string;
   maxW?: string;
 };
@@ -34,11 +35,17 @@ export const Select = ({
         className={`select select-bordered w-full mx-auto font-normal focus:outline-none focus:border-accent ${maxW} ${className} text-inherit`}>
         {/* <option disabled selected> */}
         <option>{defaultValue}</option>
-        {options.map(option => (
-          <option key={option.value} value={option.value} className='text-inherit'>
-            {option.label}
-          </option>
-        ))}
+        {options.map(opt => {
+          const isString = typeof opt === 'string';
+          const value = isString ? opt : opt.value;
+          // const label = isString ? opt : opt.label || opt.value;
+          const label = isString ? opt : opt.label;
+          return (
+            <option key={value} value={value} className='text-inherit'>
+              {label}
+            </option>
+          );
+        })}
       </select>
     </>
   );
