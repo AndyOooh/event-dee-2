@@ -16,7 +16,7 @@ export const AuthCardUser = () => {
       </div>
       <div className='flex flex-col font-semibold'>
         <span className='text-xs'>{currentUser?.displayName || currentUser?.email} </span>
-        <span className='text-[0.625rem] text-info'>{currentUser?.profession}</span>
+        <span className='text-[0.625rem] text-info'>{currentUser?.customClaims?.type}</span>
       </div>
     </div>
   );

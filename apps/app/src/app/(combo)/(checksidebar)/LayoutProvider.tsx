@@ -7,6 +7,7 @@ import Sidebar from '__components/Sidebar/Sidebar';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { auth } from '__firebase/clientApp';
 import { PageWithAuthCard } from '__components/PageWithAuthCard';
+import { CurrentUserProvider } from 'app/(protected)/components/Providers/CurrentUserProvider';
 
 type Props = {
   privatePage: React.ReactNode;
@@ -24,8 +25,10 @@ export const ComboSidebarLayoutProvider = ({ privatePage, publicPage }: Props) =
     // Most of this is copy/paste from (protected)/page.tsx and layout.tsx.
     // Create a component?
     <section className='flex'>
-      <Sidebar />
-      <PageWithAuthCard>{privatePage}</PageWithAuthCard>
+      <CurrentUserProvider>
+        <Sidebar />
+        <PageWithAuthCard>{privatePage}</PageWithAuthCard>
+      </CurrentUserProvider>
     </section>
   ) : (
     <>{publicPage}</>

@@ -72,8 +72,8 @@ export const AuthCard = () => {
         </div>
       </div>
       <div className='divider divider-horizontal m-0 p-0'></div>
+      {/* {currentUser && <AuthCardUser currentUser={currentUser} />} */}
       <AuthCardUser />
-
       <div className='dropdown dropdown-end'>
         <label tabIndex={0} className='btn btn-circle btn-ghost btn-xs text-info'>
           <MdArrowDropDown size='1.5rem' color='black' />
