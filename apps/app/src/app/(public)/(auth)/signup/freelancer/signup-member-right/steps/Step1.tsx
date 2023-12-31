@@ -18,20 +18,17 @@ import facebookLogo from '/public/images/facebooklogo.png';
 import googleLogo from '/public/images/googlelogo.png';
 
 export const Step1 = () => {
-  const [wFormData, setWFormData] = useRecoilState(wizardForm);
-  const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
-  const [createUserWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
-    useCreateUserWithEmailAndPassword(
-      auth
-      // {sendEmailVerification: true} // implement later
-    );
-  console.log('🚀  file: Step2.tsx:21  authUser:', authUser);
+  const [, setWFormData] = useRecoilState(wizardForm);
+  const [authUser] = useAuthState(auth);
+  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(
+    auth
+    // {sendEmailVerification: true} // implement later
+  );
 
   const {
     register,
     setValue,
     setError,
-    getValues,
     watch,
     handleSubmit,
     formState: { errors },
@@ -46,14 +43,11 @@ export const Step1 = () => {
   const provider = watch('provider');
 
   const formValues = watch();
-  console.log('🚀  file: Step1.tsx:44  formValues2:', formValues);
 
   const onSubmit = async (data: any) => {
-    console.log('in SUBMIT');
     const email = watch('email');
     const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
     const emailExists = (await checkEmailExists(email)).data;
-    console.log('🚀  file: Step1.tsx:52  emailExists:', emailExists);
     if (emailExists) {
       setError('email', { message: 'Email already exists' });
       return;
@@ -77,12 +71,10 @@ export const Step1 = () => {
         <>
           <TextInput name='email' register={register} label={true} />
           <FormError formError={errors?.email?.message} />
-          {/* <div className='flex gap-4'> */}
           <TextInput name='new_password' register={register} label={true} />
           <FormError formError={errors?.new_password?.message} />
           <TextInput name='confirm_password' label={true} register={register} />
           <FormError formError={errors?.confirm_password?.message} />
-          {/* </div> */}
           <CheckLegal name='check_legal' register={register} error={errors?.check_legal?.message} />
           <FormError formError={errors?.check_legal?.message} />
           <div className='divider'>Or sign up with</div>
