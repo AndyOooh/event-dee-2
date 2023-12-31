@@ -16,6 +16,7 @@ import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-
 import Image from 'next/image';
 import facebookLogo from '/public/images/facebooklogo.png';
 import googleLogo from '/public/images/googlelogo.png';
+import { Providers } from 'app/types';
 
 export const Step1 = () => {
   const [, setWFormData] = useRecoilState(wizardForm);
@@ -36,7 +37,7 @@ export const Step1 = () => {
     mode: 'onTouched',
     resolver: yupResolver(step1Schema),
     defaultValues: {
-      provider: 'email',
+      provider: Providers.email,
     },
   });
 

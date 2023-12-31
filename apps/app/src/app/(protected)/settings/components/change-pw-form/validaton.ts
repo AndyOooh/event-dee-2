@@ -19,7 +19,7 @@ export const changePasswordSchema = yup.object().shape({
   // }),
 
   current_password: yup.string().when({
-    is: exists => !!exists,
+    is: (exists: boolean) => !!exists,
     then: schema =>
       schema.min(PW_MIN_LENGTH, 'Passwords are minimum 6 characters long.').required(),
     // schema.transform(curr => null).nullable(),
