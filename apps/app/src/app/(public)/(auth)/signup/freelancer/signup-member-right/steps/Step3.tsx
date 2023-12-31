@@ -16,12 +16,14 @@ import { styles } from '__styles/styles';
 import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
 import { ActionButton } from '../../../components/ActionButton';
+import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 
 export const Step3 = () => {
   const [selectedFile, setSelectedFile] = useState<string>();
   const selectedFileRef = useRef<HTMLInputElement>(null);
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
   const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const [createUserWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
@@ -34,13 +36,17 @@ export const Step3 = () => {
 
   const onSubmit = async () => {
     try {
+      setLoading(true);
       const { name, last_name, email, new_password, provider, profession, other_skills } =
         wFormData;
 
-      const newUser =
-        provider === 'email'
-          ? (await createUserWithEmailAndPassword(email, new_password)).user
-          : authUser;
+      // const newUser =
+      // provider === 'email'
+      // ? (await createUserWithEmailAndPassword(email, new_password)).user
+      // : authUser;
+
+      const newUser = authUser;
+      console.log('🚀  file: Step3.tsx:41  newUser:', newUser);
 
       // if (errorEmail || errorFacebook || errorGoogle) {
       //   const error = errorEmail || errorFacebook || errorGoogle;
@@ -111,13 +117,16 @@ export const Step3 = () => {
       /* Shouldnt mkae it here */
       console.log('routing to HOMEEEEEEE');
 
+      setLoading(false);
       router.push('/');
     } catch (error) {
       console.log('🚀  file: Step3.tsx:116  error:', error);
     }
   };
 
-  return (
+  return loadingUpdate || loadingEmail || loading ? (
+    <LoaderSpinner />
+  ) : (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
       <div className='flex flex-col items-center gap-2 w-full'>
         <ImageUpload

@@ -12,7 +12,7 @@ import { CheckLegal } from '../../../components/CheckLegal';
 import { IStep1Schema, step1Schema } from '../validation';
 import { auth, getCloudFunction } from '__firebase/clientApp';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Image from 'next/image';
 import facebookLogo from '/public/images/facebooklogo.png';
 import googleLogo from '/public/images/googlelogo.png';
@@ -20,6 +20,11 @@ import googleLogo from '/public/images/googlelogo.png';
 export const Step1 = () => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
   const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
+  const [createUserWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
+    useCreateUserWithEmailAndPassword(
+      auth
+      // {sendEmailVerification: true} // implement later
+    );
   console.log('🚀  file: Step2.tsx:21  authUser:', authUser);
 
   const {
@@ -53,6 +58,8 @@ export const Step1 = () => {
       setError('email', { message: 'Email already exists' });
       return;
     }
+
+    await createUserWithEmailAndPassword(data.email, data.new_password);
 
     setWFormData(prev => ({
       ...prev,

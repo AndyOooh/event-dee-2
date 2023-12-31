@@ -60,7 +60,7 @@ export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props)
       } else if (!isSignUp && !token?.claims.basic_info_done) {
         /* this works work */
         await deleteUser();
-        console.log('❤️❤️❤️❤️❤️❤️❤️❤️');
+        console.log('User deleted: ❤️❤️❤️❤️❤️❤️❤️❤️');
         setError({ message: 'Email does not exist' });
         return;
       }
