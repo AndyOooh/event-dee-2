@@ -42,13 +42,13 @@ export const LoaderSpinner = (props: Props) => {
         rotateZ={15}
         className='absolute z-20 bottom-8 right-1/4'
       />
-      <GridLoader
+      {/* <GridLoader
         color={colorMap.green}
         // color={'red'}
         size={30}
         aria-label='Loading Spinner'
         data-testid='loader'
-      />
+      /> */}
     </div>
   );
 };

@@ -3,7 +3,6 @@
 # From apps/firebase-cloud-functions: yarn migrate-firestore
 # Replaces folder apps/firebase-cloud-functions/emulator-data/firestore_export with current firestore data
 # Can set which collections to export by changing collection_names variable
-# Export/import via GCS is actually redudnant, see the auth script above for a better way to migrate firestore data
 # Was unable to make object versioning work.
 
 # Define variables

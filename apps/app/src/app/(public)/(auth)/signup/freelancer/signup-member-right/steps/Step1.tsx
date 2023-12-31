@@ -49,7 +49,7 @@ export const Step1 = () => {
   console.log('🚀  file: Step1.tsx:44  formValues2:', formValues);
 
   const onSubmit = async (data: any) => {
-    // console.log('in SUBMIT');
+    console.log('in SUBMIT');
     const email = watch('email');
     const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
     const emailExists = (await checkEmailExists(email)).data;
@@ -99,7 +99,7 @@ export const Step1 = () => {
                 <div className='w-16'>
                   {/* <img src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' /> */}
                   <Image
-                    src={authUser?.photoURL}
+                    src={authUser?.photoURL || '/images/profile-photo-placeholder.jpg'}
                     alt={provider}
                     fill={true}
                     sizes='3rem'

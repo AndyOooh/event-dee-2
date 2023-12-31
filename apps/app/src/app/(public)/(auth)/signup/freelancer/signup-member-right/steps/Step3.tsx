@@ -68,9 +68,9 @@ export const Step3 = () => {
         profession: profession,
         other_skills: other_skills,
         invite_link: `${name}-${last_name}`.toLowerCase(),
+        photoURL:
+          'https://storage.cloud.google.com/event-dee-staging.appspot.com/misc/profile-photo-placeholder.jpg', // pleacholder image url in GCS
       };
-
-      // https://app.eventdee.com/invite
 
       const userDocRef = doc(db, 'users', newUser?.uid);
 
@@ -114,11 +114,8 @@ export const Step3 = () => {
         step: 1,
       }));
 
-      /* Shouldnt mkae it here */
-      console.log('routing to HOMEEEEEEE');
-
-      setLoading(false);
       router.push('/');
+      setLoading(false);
     } catch (error) {
       console.log('🚀  file: Step3.tsx:116  error:', error);
     }
