@@ -6,20 +6,14 @@ import { db } from '__firebase/clientApp';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import { doc, updateDoc } from 'firebase/firestore';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { GetToKnow } from './components/get-to-know';
 import { LinksInfo } from './components/links';
 import { PersonalInfo } from './components/personal-info';
 import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-info/validation';
 import { WorkInfo } from './components/work-info';
-import { is } from 'date-fns/locale';
-import { ValidateOptions } from 'yup';
 import { getChangedFormData } from '__utils/helpers';
-
-// ILinks // fix this module and add it to the form data
-// type FormValues = IPersonalInfo & IWorkInfo & IGetToKnow;
-type FormValues = IpersonalInfoSchema;
 
 export const EditProfileForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -27,9 +21,6 @@ export const EditProfileForm = () => {
   const {
     control,
     register,
-    setValue,
-    setError,
-    getValues,
     watch,
     reset,
     handleSubmit,
@@ -42,13 +33,9 @@ export const EditProfileForm = () => {
       dirtyFields,
       defaultValues,
     },
-  } = useForm<FormValues>({
-    mode: 'onTouched', // no feedback while typing
-    // resolver: yupResolver(personalInfoSchema),
+  } = useForm<IpersonalInfoSchema>({
+    mode: 'onTouched',
     resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
-    // defaultValues: {
-    //   //   provider: 'email',
-    // },
   });
 
   useEffect(() => {
@@ -73,7 +60,7 @@ export const EditProfileForm = () => {
     console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
   };
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: IpersonalInfoSchema) => {
     try {
       console.log('On submit data: ', data);
       console.log('dirtyFields: ', dirtyFields);

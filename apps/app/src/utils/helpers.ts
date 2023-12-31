@@ -1,3 +1,5 @@
+import { AnyObject } from 'yup';
+
 type SetSelectedFile = (file: string) => void;
 
 export const onSelectImage = (
@@ -24,3 +26,7 @@ export const getChangedFormData = (data: any, dirtyFields: any) => {
     return acc;
   }, {});
 };
+
+/* Converts empty string to null and makes yup ignore null value */
+export const stringNullable = (field: AnyObject) =>
+  field.transform((value: any) => (value === '' ? null : value)).nullable();

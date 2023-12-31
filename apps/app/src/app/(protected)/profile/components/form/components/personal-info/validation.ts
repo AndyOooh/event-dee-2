@@ -2,30 +2,39 @@ import * as yup from 'yup';
 // import { checkEmailExists } from '__firebase/utilities';
 import { startCase, camelCase } from 'lodash';
 import { getCloudFunction } from '__firebase/clientApp';
+import { AnyObject } from 'yup';
+import { stringNullable } from '__utils/helpers';
 
-enum Gender {
+export enum Gender {
   Male = 'Male',
   Female = 'Female',
   NonBinary = 'Non-binary',
   PreferNotToSay = 'Prefer not to say',
 }
 
-enum Pronouns {
+export enum Pronouns {
   HeHim = 'He/Him',
   SheHer = 'She/Her',
   TheyThem = 'They/Them',
   PreferNotToSay = 'Prefer not to say',
 }
 
+// first_name: yup
+//   .string()
+//   .transform(value => startCase(camelCase(value)))
+//   .transform(curr => (curr === '' ? null : curr))
+//   .nullable()
+//   .min(3),
+
 // export const personalInfoSchema = yup.object().shape({ // old, before wrapping schema in a function
 export const personalInfoSchema = ({ initialEmail }) =>
   yup.object().shape({
-    first_name: yup
-      .string()
-      .transform(value => startCase(camelCase(value)))
-      .transform(curr => (curr === '' ? null : curr))
-      .nullable()
-      .min(3),
+    first_name: stringNullable(
+      yup
+        .string()
+        .transform(value => startCase(camelCase(value)))
+        .min(3)
+    ),
     last_name: yup
       .string()
       .transform(value => startCase(camelCase(value)))
@@ -56,9 +65,22 @@ export const personalInfoSchema = ({ initialEmail }) =>
       .transform(curr => (curr === '' ? null : curr))
       .nullable()
       .min(3),
-    gender: yup.mixed<Gender>().oneOf(Object.values(Gender)).optional(),
-    pronouns: yup.mixed<Pronouns>().oneOf(Object.values(Pronouns)).optional(),
-    height: yup.string().min(3).optional(),
+    gender: yup
+      .mixed<Gender>()
+      .transform(curr => (curr === '' ? null : curr))
+      .nullable()
+      .oneOf(Object.values(Gender))
+      .optional(),
+    pronouns: yup
+      .mixed<Pronouns>()
+      .transform(curr => (curr === '' ? null : curr))
+      .nullable()
+      .oneOf(Object.values(Pronouns)),
+    height: yup
+      .string()
+      .transform(curr => (curr === '' ? null : curr))
+      .min(3)
+      .nullable(),
     dob: yup
       .date()
       .nullable()
