@@ -9,16 +9,14 @@ import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
-
-// import { IStep1Schema, step1Schema } from '../../../freelancer/signup-member-right/validation';
 import { IStep1Schema, step1Schema } from '../validation';
-
 import { auth, getCloudFunction } from '__firebase/clientApp';
 import { SwitchToLogin } from '../../../components/SwitchToLogin';
 import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import Image from 'next/image';
 import facebookLogo from '/public/images/facebooklogo.png';
 import googleLogo from '/public/images/googlelogo.png';
+import { Providers } from 'app/types';
 
 export const Step1 = () => {
   const [, setWFormData] = useRecoilState(wizardForm);
@@ -39,17 +37,15 @@ export const Step1 = () => {
     mode: 'onTouched',
     resolver: yupResolver(step1Schema),
     defaultValues: {
-      provider: 'email',
+      provider: Providers.email,
     },
   });
 
   const provider = watch('provider');
 
-  const formValues = watch();
-
   const onSubmit = async (data: any) => {
     const email = watch('email');
-    const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
+    const checkEmailExists = getCloudFunction('checkEmailExists');
     const emailExists = (await checkEmailExists(email)).data;
     if (emailExists) {
       setError('email', { message: 'Email already exists' });
@@ -72,17 +68,27 @@ export const Step1 = () => {
         Access the highly curated society of top event workers. Find the talent you need for your
         next event.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={provider === 'email' ? styles.formSmall : styles.form}>
         {provider === 'email' ? (
           <>
             <TextInput name='email' register={register} label={true} />
             <FormError formError={errors?.email?.message} />
+
             <div className='flex gap-4'>
               <TextInput name='password' register={register} label={true} />
               <FormError formError={errors?.new_password?.message} />
               <TextInput name='confirm_password' label={true} register={register} />
               <FormError formError={errors?.confirm_password?.message} />
             </div>
+
+            {/* <TextInput name='new_password' register={register} label={true} />
+            <FormError formError={errors?.new_password?.message} />
+            <TextInput name='confirm_password' label={true} register={register} />
+            <FormError formError={errors?.confirm_password?.message} /> */}
+
+
             <CheckLegal
               name='check_legal'
               register={register}
@@ -90,7 +96,7 @@ export const Step1 = () => {
             />
             <FormError formError={errors?.check_legal?.message} />
             <div className='divider'>Or sign up with</div>
-            <OAuthButtons setSelected={setValue} selected={provider} />
+            <OAuthButtons isSignUp={true} setSelected={setValue} selected={provider} />
             <ActionButton text='Step 2' />
             <SwitchToLogin />
           </>
