@@ -3,7 +3,6 @@ import * as yup from 'yup';
 import { startCase, camelCase } from 'lodash';
 import { getCloudFunction } from '__firebase/clientApp';
 
-// type Gender = 'Male' | 'Female' | 'Non-binary' | 'Prefer not to say';
 enum Gender {
   Male = 'Male',
   Female = 'Female',
@@ -18,9 +17,7 @@ enum Pronouns {
   PreferNotToSay = 'Prefer not to say',
 }
 
-// 'Male' | 'Female' | 'Non-binary' | 'Prefer not to say';
-
-// export const personalInfoSchema = yup.object().shape({
+// export const personalInfoSchema = yup.object().shape({ // old, before wrapping schema in a function
 export const personalInfoSchema = ({ initialEmail }) =>
   yup.object().shape({
     first_name: yup
@@ -62,12 +59,6 @@ export const personalInfoSchema = ({ initialEmail }) =>
     gender: yup.mixed<Gender>().oneOf(Object.values(Gender)).optional(),
     pronouns: yup.mixed<Pronouns>().oneOf(Object.values(Pronouns)).optional(),
     height: yup.string().min(3).optional(),
-    // age: yup.string().min(3),
-    // dob: yup.date().test('age', 'You must be 18 or older', function (birthdate) {
-    //   const cutoff = new Date();
-    //   cutoff.setFullYear(cutoff.getFullYear() - 18);
-    //   return birthdate <= cutoff;
-    // }),
     dob: yup
       .date()
       .nullable()
@@ -80,5 +71,5 @@ export const personalInfoSchema = ({ initialEmail }) =>
       }),
   });
 
-// export type IpersonalInfoSchema = yup.InferType<typeof personalInfoSchema>; // before wrapping schema in a function
+// export type IpersonalInfoSchema = yup.InferType<typeof personalInfoSchema>; // old, before wrapping schema in a function
 export type IpersonalInfoSchema = yup.InferType<ReturnType<typeof personalInfoSchema>>;
