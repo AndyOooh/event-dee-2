@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { TextInput, FormError } from 'ui';
-import { FormStep1, wizardForm } from '__atoms/signupFreelancerAtom';
+import { wizardForm } from '__atoms/signupFreelancerAtom';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
@@ -97,7 +97,6 @@ export const Step1 = () => {
             <div className='relative flex items-center gap-4'>
               <div className='avatar'>
                 <div className='w-16'>
-                  {/* <img src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' /> */}
                   <Image
                     src={authUser?.photoURL || '/images/profile-photo-placeholder.jpg'}
                     alt={provider}
@@ -121,8 +120,6 @@ export const Step1 = () => {
                 <p>{authUser?.email}</p>
               </div>
             </div>
-            {/* <p>{formValues.oAuthCreds.user.email} </p> */}
-            {/* <OAuthButtons setSelected={setValue} selected={provider} /> */}
             <CheckLegal
               name='check_legal'
               register={register}
