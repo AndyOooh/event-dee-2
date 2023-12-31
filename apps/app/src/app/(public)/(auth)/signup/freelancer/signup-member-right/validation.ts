@@ -1,6 +1,4 @@
-import { Providers } from '__components/modals/auth/OAuthButtons';
 import { PW_MIN_LENGTH } from '__utils/global-consts';
-import { getAuth } from 'firebase/auth';
 import * as yup from 'yup';
 
 // Step 1 ------------------------------------------------------------------------

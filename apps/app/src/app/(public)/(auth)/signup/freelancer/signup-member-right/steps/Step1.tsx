@@ -83,44 +83,38 @@ export const Step1 = () => {
           <SwitchToLogin />
         </>
       ) : (
-        <>
-          <div className='w-4/5 mx-auto flex flex-col items-center gap-4 bg-cyan-200/30'>
-            <p className='self-start font-semibold'>Signing up with</p>
-            <div className='relative flex items-center gap-4'>
+        <div className='w-4/5 mx-auto flex flex-col items-center gap-4 bg-cyan-200/30'>
+          <p className='self-start font-semibold'>Signing up with</p>
+          <div className='relative flex items-center gap-4'>
+            <div className='avatar'>
+              <div className='w-16'>
+                <Image
+                  src={authUser?.photoURL || '/images/profile-photo-placeholder.jpg'}
+                  alt={provider}
+                  fill={true}
+                  sizes='3rem'
+                  className='rounded-xl'
+                />
+              </div>
+            </div>
+            <div className='relative h-16 flex items-center gap-3 border border-gray-500 px-4 py-2 rounded-lg'>
               <div className='avatar'>
-                <div className='w-16'>
+                <div className='w-8'>
                   <Image
-                    src={authUser?.photoURL || '/images/profile-photo-placeholder.jpg'}
-                    alt={provider}
+                    src={provider === 'google' ? googleLogo : facebookLogo}
+                    alt='google'
                     fill={true}
                     sizes='3rem'
-                    className='rounded-xl'
                   />
                 </div>
               </div>
-              <div className='relative h-16 flex items-center gap-3 border border-gray-500 px-4 py-2 rounded-lg'>
-                <div className='avatar'>
-                  <div className='w-8'>
-                    <Image
-                      src={provider === 'google' ? googleLogo : facebookLogo}
-                      alt='google'
-                      fill={true}
-                      sizes='3rem'
-                    />
-                  </div>
-                </div>
-                <p>{authUser?.email}</p>
-              </div>
+              <p>{authUser?.email}</p>
             </div>
-            <CheckLegal
-              name='check_legal'
-              register={register}
-              error={errors?.check_legal?.message}
-            />
-            <FormError formError={errors?.check_legal?.message} />
-            <ActionButton text='Step 2' />
           </div>
-        </>
+          <CheckLegal name='check_legal' register={register} error={errors?.check_legal?.message} />
+          <FormError formError={errors?.check_legal?.message} />
+          <ActionButton text='Step 2' />
+        </div>
       )}
     </form>
   );
