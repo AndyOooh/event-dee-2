@@ -6,7 +6,15 @@ const nextConfig = {
     // appDir: true,
   },
   images: {
-    domains: ['firebasestorage.googleapis.com', 'lh3.googleusercontent.com'],
+    domains: ['firebasestorage.googleapis.com', 'lh3.googleusercontent.com', 'localhost'],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'assets.example.com',
+    //     port: '',
+    //     pathname: '/account123/**',
+    //   },
+    // ],
   },
 };
 

@@ -1,0 +1,32 @@
+{"users": [
+{
+  "localId": "CWDQiXWNjNXSp0tpxgzpxn7Ks063",
+  "email": "andy.learngcp@gmail.com",
+  "emailVerified": true,
+  "displayName": "andy O",
+  "photoUrl": "https://firebasestorage.googleapis.com/v0/b/event-dee-staging.appspot.com/o/users%2FCWDQiXWNjNXSp0tpxgzpxn7Ks063%2Fimages%2Fprofile?alt=media&token=9b30caf6-d5e1-4ceb-a7ee-42103ec69f09",
+  "lastSignedInAt": "1704017690504",
+  "createdAt": "1704009285994",
+  "customAttributes": "{\"basic_info_done\":true,\"type\":\"freelancer\"}",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "116140913283830852782",
+      "email": "andy.learngcp@gmail.com",
+      "displayName": "andy O",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJCXxzxHsh1dsCVbRIIXHhRu2TxP04PUZ0YnG3LdT6R=s96-c"
+    }
+  ]
+},
+{
+  "localId": "LY8nsKpGj8TOkA2IyKtjDZELOXP2",
+  "email": "pp@pp.pp",
+  "emailVerified": false,
+  "passwordHash": "7ClsJXOrub2EZXTzgaQiWX6A64tb2kaEZ/Rz0EQ1ymTgBb1FsNtubOY0x3JaeEok6rRjqZZ4ChraazyUB1AMDQ==",
+  "salt": "1h+qTpQ1Cm9XFQ==",
+  "photoUrl": "https://firebasestorage.googleapis.com/v0/b/event-dee-staging.appspot.com/o/users%2FLY8nsKpGj8TOkA2IyKtjDZELOXP2%2Fimages%2Fprofile?alt=media&token=4d5cdc47-7e59-4f36-b4ab-50171652525a",
+  "lastSignedInAt": "1704019515504",
+  "createdAt": "1704019515504",
+  "customAttributes": "{\"basic_info_done\":true,\"type\":\"freelancer\"}",
+  "providerUserInfo": []
+}]}

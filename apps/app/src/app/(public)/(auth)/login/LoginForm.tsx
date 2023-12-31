@@ -21,6 +21,7 @@ export const LoginForm = (props: Props) => {
   const [signInWithEmailAndPassword, _, loading, authError] = useSignInWithEmailAndPassword(auth);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log('Login Clicked -----------***************')
     event.preventDefault();
     try {
       if (formError) setFormError('');
@@ -29,6 +30,7 @@ export const LoginForm = (props: Props) => {
       }
       // Valid form inputs
       signInWithEmailAndPassword(form.email, form.password);
+      console.log('signed in.....************')
     } catch (error) {
       console.log('🚀  file: LoginForm.tsx:32  error:', error);
     }
