@@ -19,13 +19,6 @@ export enum Pronouns {
   PreferNotToSay = 'Prefer not to say',
 }
 
-// first_name: yup
-//   .string()
-//   .transform(value => startCase(camelCase(value)))
-//   .transform(curr => (curr === '' ? null : curr))
-//   .nullable()
-//   .min(3),
-
 // export const personalInfoSchema = yup.object().shape({ // old, before wrapping schema in a function
 export const personalInfoSchema = ({ initialEmail }) =>
   yup.object().shape({

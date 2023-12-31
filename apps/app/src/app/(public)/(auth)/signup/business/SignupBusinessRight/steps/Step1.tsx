@@ -75,20 +75,12 @@ export const Step1 = () => {
           <>
             <TextInput name='email' register={register} label={true} />
             <FormError formError={errors?.email?.message} />
-
             <div className='flex gap-4'>
               <TextInput name='password' register={register} label={true} />
               <FormError formError={errors?.new_password?.message} />
               <TextInput name='confirm_password' label={true} register={register} />
               <FormError formError={errors?.confirm_password?.message} />
             </div>
-
-            {/* <TextInput name='new_password' register={register} label={true} />
-            <FormError formError={errors?.new_password?.message} />
-            <TextInput name='confirm_password' label={true} register={register} />
-            <FormError formError={errors?.confirm_password?.message} /> */}
-
-
             <CheckLegal
               name='check_legal'
               register={register}
