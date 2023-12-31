@@ -22,7 +22,7 @@ export type FormValues = {
 // & FormStep3;
 
 export const wizardForm = atom<FormValues>({
-  key: 'step1',
+  key: 'step1_freelancer_signup_form',
   default: {
     email: null,
     new_password: '',

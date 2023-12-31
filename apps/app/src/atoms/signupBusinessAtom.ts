@@ -13,6 +13,7 @@ export type FormStep2 = {
   first_name: string;
   last_name: string;
   company_name: string;
+  position: string;
 };
 
 export type FormValues = {
@@ -21,14 +22,15 @@ export type FormValues = {
   FormStep2;
 
 export const wizardForm = atom<FormValues>({
-  key: 'step1',
+  key: 'step1_business_signup_form',
   default: {
     email: null,
-    company_name: '',
     provider: 'email',
+    company_name: '',
+    position: '',
     first_name: '',
     last_name: '',
     password: '',
-    step: 1,
+    step: 2,
   },
 });

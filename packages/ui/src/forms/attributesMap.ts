@@ -49,6 +49,14 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'current-password',
       };
       break;
+    case 'company_name':
+      attributes = {
+        _type: 'text',
+        _label: 'Company Name',
+        _placeholder: 'Eg. Google',
+        _autocmplete: 'organization',
+      };
+      break;
     case 'invite_link':
       attributes = {
         _type: 'text',
