@@ -1,34 +1,21 @@
 'use client';
 
-import {
-  useUpdateProfile,
-  useSignInWithGoogle,
-  useSignInWithFacebook,
-  useCreateUserWithEmailAndPassword,
-} from 'react-firebase-hooks/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { TextInput, FormError } from 'ui';
 import { wizardForm, FormStep2 } from '__atoms/signupBusinessAtom';
 import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
 import { step2Schema } from '../validation';
-import { auth, db, storage } from '__firebase/clientApp';
-import { doc, updateDoc } from 'firebase/firestore';
-import { uploadString, getDownloadURL } from 'firebase/storage';
-import { ref } from 'yup';
 import { IStep2Schema } from '../../../freelancer/signup-member-right/validation';
 
-type Props = {};
-
-export const Step2 = ({}: Props) => {
+export const Step2 = () => {
   const [, setWFormData] = useRecoilState(wizardForm);
 
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<IStep2Schema>({

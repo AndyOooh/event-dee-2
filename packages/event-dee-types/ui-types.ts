@@ -8,6 +8,8 @@ export type ThemeColors =
   | 'blue'
   | 'green'
   | 'orange'
-  | 'red'
+  | 'red';
 
 export type Direction = 'top' | 'bottom' | 'left' | 'right';
+
+export type SelectOptions = { value: string; label?: string }[] | string[];
