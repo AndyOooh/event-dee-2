@@ -17,6 +17,7 @@ import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
 import { ActionButton } from '../../../components/ActionButton';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
+import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
 
 export const Step3 = () => {
   const [selectedFile, setSelectedFile] = useState<string>();
@@ -68,8 +69,7 @@ export const Step3 = () => {
         profession: profession,
         other_skills: other_skills,
         invite_link: `${name}-${last_name}`.toLowerCase(),
-        photoURL:
-          'https://storage.cloud.google.com/event-dee-staging.appspot.com/misc/profile-photo-placeholder.jpg', // pleacholder image url in GCS
+        photoURL: DEFAULT_PROFILE_PHOTO_URL,
       };
 
       const userDocRef = doc(db, 'users', newUser?.uid);
