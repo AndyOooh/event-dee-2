@@ -145,8 +145,6 @@ Emulators are available at:
 - [localhost:9199](http://localhost:9199) - storage
 
 
-**NB: Emulators are not yet set up!**
-
 
 ## Basic Scripts
 
@@ -222,7 +220,7 @@ Once you have the development servers running, you can access the:
 - [x] Bootstrap repo, apps, packages and configs.
 - [x] Firebase set up.
 - [x] Storybook set up.
-- [ ] Emulators set up.
+- [x] Emulators set up.
 - [x] Landing page.
 - [x] Authentication flows.
 - [x] User profiles - edit, delete, view.
