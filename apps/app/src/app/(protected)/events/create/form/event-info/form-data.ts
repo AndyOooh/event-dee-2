@@ -1,12 +1,5 @@
-import thaiProvinces from '__utils/provinces.json';
 import { IeventDetailsSchema } from './validation';
 import { SelectOptions } from 'event-dee-types';
-
-const dateXYearsago = (years: number) => {
-  const date = new Date();
-  date.setFullYear(date.getFullYear() - years);
-  return date.toISOString().split('T')[0];
-};
 
 type FormInput = {
   title: keyof IeventDetailsSchema;
@@ -16,15 +9,6 @@ type FormInput = {
   prepend?: string;
   extraProps?: any;
 };
-
-// export const createEventSchema = yup.object().shape({
-//   event_header: yup.string().min(3),
-//   event_name: stringNullable(yup.string().min(2)),
-//   location: yup.string().min(3),
-//   date: yup.date().min(new Date()),
-//   description: yup.string().min(3),
-//   roles: yup.array().of(yup.string().min(2)),
-// });
 
 export const formArrayEventDetails: FormInput[] = [
   {
@@ -54,21 +38,4 @@ export const formArrayEventDetails: FormInput[] = [
     type: 'text',
     tooltip: 'Enter a description',
   },
-  /* Move this to seperate segment (same with location) */
-  // {
-  //   title: 'roles',
-  //   type: 'select',
-  //   tooltip: 'Select roles',
-  //   options: [
-  //     'Model',
-  //     'Photographer',
-  //     'Staff',
-  //     'Makeup Artist',
-  //     'Hair Stylist',
-  //     'Stylist',
-  //     'Designer',
-  //     'Videographer',
-  //     'Assistant',
-  //   ],
-  // },
 ];
