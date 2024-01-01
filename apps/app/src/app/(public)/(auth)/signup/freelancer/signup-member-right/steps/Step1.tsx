@@ -3,10 +3,9 @@ import { useForm } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { TextInput, FormError } from 'ui';
+import { TextInput, FormError, ActionButton } from 'ui';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { styles } from '__styles/styles';
-import { ActionButton } from '../../../components/ActionButton';
 import { CheckLegal } from '../../../components/CheckLegal';
 import { IStep1Schema, step1Schema } from '../validation';
 import { auth, getCloudFunction } from '__firebase/clientApp';

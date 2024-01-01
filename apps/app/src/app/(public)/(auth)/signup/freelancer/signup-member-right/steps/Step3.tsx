@@ -11,9 +11,9 @@ import { auth, db, getCloudFunction, storage } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
 import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
-import { ActionButton } from '../../../components/ActionButton';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
+import { ActionButton } from 'ui';
 
 export const Step3 = () => {
   const [authUser] = useAuthState(auth);

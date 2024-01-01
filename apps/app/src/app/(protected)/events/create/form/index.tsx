@@ -1,18 +1,15 @@
 'use client';
 
-import { DevTool } from '@hookform/devtools';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { db } from '__firebase/clientApp';
-import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { doc, updateDoc } from 'firebase/firestore';
 import React, { useContext, useEffect } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { DevTool } from '@hookform/devtools';
 import { useForm } from 'react-hook-form';
-import { GetToKnow } from './components/get-to-know';
-import { LinksInfo } from './components/links';
-import { PersonalInfo } from './components/personal-info';
-import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-info/validation';
-import { WorkInfo } from './components/work-info';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { getChangedFormData } from '__utils/helpers';
+import { db } from '__firebase/clientApp';
+import { IpersonalInfoSchema, personalInfoSchema } from './validation';
 import { ActionButton } from 'ui';
 
 export const EditProfileForm = () => {
@@ -62,14 +59,10 @@ export const EditProfileForm = () => {
 
   const onSubmit = async (data: IpersonalInfoSchema) => {
     try {
-      console.log('On submit data: ', data);
-      console.log('dirtyFields: ', dirtyFields);
       const changedData = getChangedFormData(data, dirtyFields);
 
       const userDocRef = doc(db, 'users', currentUser.uid);
-      // console.log('🚀  file: index.tsx:62  userDocRef:', userDocRef);
       const res = await updateDoc(userDocRef, data);
-      // console.log('🚀  file: index.tsx:77  res:', res);
 
       return;
     } catch (error) {
@@ -78,22 +71,14 @@ export const EditProfileForm = () => {
   };
 
   const sections = [
-    {
-      title: 'Personal information',
-      element: <PersonalInfo register={register} errors={errors} />,
-    },
-    {
-      title: 'Work information',
-      element: <WorkInfo register={register} />,
-    },
-    {
-      title: 'Links',
-      element: <LinksInfo register={register} />,
-    },
-    {
-      title: 'Getting to know you better',
-      element: <GetToKnow register={register} />,
-    },
+    // {
+    //   title: 'Personal information',
+    //   element: <PersonalInfo register={register} errors={errors} />,
+    // },
+    // {
+    //   title: 'Work information',
+    //   element: <WorkInfo register={register} />,
+    // },
   ];
 
   return currentUser ? (

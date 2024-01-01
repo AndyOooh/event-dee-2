@@ -3,11 +3,10 @@
 import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import React, { useContext, useEffect } from 'react';
 import { ErrorOption, useForm } from 'react-hook-form';
 import { IchangePasswordSchema, changePasswordSchema } from './validaton';
-import { TextInput, FormError } from 'ui';
+import { TextInput, FormError, ActionButton } from 'ui';
 import { useAuthState, useUpdatePassword } from 'react-firebase-hooks/auth';
 import { auth } from '__firebase/clientApp';
 import { reAuthenticate } from '__firebase/utilities';

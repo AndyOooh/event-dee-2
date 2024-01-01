@@ -3,11 +3,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { auth } from '__firebase/clientApp';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { IdeleteUserSchema, deleteUserSchema } from './validation';
-import { TextInput, FormError } from 'ui';
+import { TextInput, FormError, ActionButton } from 'ui';
 import { useAuthState, useDeleteUser } from 'react-firebase-hooks/auth';
 import { reAuthenticate } from '__firebase/utilities';
 import { useRouter } from 'next/navigation';

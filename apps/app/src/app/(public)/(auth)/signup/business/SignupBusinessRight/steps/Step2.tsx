@@ -4,10 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
-import { TextInput, FormError, Select } from 'ui';
+import { TextInput, FormError, Select, ActionButton } from 'ui';
 import { wizardForm } from '__atoms/signupBusinessAtom';
 import { styles } from '__styles/styles';
-import { ActionButton } from '../../../components/ActionButton';
 import { CompanyType, IStep2Schema, step2Schema } from '../validation';
 import { auth, db, getCloudFunction } from '__firebase/clientApp';
 import { doc, updateDoc } from 'firebase/firestore';

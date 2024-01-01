@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ActionButton } from '../../../components/ActionButton';
-import { Checkbox, FormError, Select, TextInput } from 'ui';
+import { ActionButton, Checkbox, FormError, Select, TextInput } from 'ui';
 
 import { styles } from '../../../../../../../styles/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';

@@ -7,9 +7,9 @@ import React, { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState 
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { BiTrashAlt } from 'react-icons/bi';
-import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { uploadString, getDownloadURL, ref } from 'firebase/storage';
+import { ActionButton } from 'ui';
 
 type Props = {};
 
