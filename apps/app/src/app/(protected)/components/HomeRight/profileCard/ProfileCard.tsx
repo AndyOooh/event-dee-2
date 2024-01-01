@@ -5,8 +5,9 @@ import Image from 'next/image';
 import { Badge } from '__components/Badge';
 import { BiLocationPlus } from 'react-icons/bi';
 import { AiOutlineInstagram, AiOutlineFacebook } from 'react-icons/ai';
-import { ProfileCompletedDetails } from './ProfileCompletedDetails';
+import { StatusListFreelancer } from './ProfileStatusList/ProfileCompletedDetails';
 import { CurrUserContext } from '../../Providers/CurrentUserProvider';
+import { ProfileStatusList } from './ProfileStatusList';
 
 export const ProfileCard = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -35,7 +36,8 @@ export const ProfileCard = () => {
         <AiOutlineInstagram size={'2rem'} />
         <AiOutlineFacebook size={'2rem'} />
       </div>
-      <ProfileCompletedDetails />
+      {/* <StatusListFreelancer /> */}
+      <ProfileStatusList />
       <button className='btn border-none bg-base-300 text-neutral font-bold w-full'>
         Complete profile
       </button>
