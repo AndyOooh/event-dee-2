@@ -1,11 +1,7 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import { uploadString, getDownloadURL, ref } from 'firebase/storage';
 import { doc, updateDoc } from 'firebase/firestore';
-import {
-  useUpdateProfile,
-  useCreateUserWithEmailAndPassword,
-  useAuthState,
-} from 'react-firebase-hooks/auth';
+import { useUpdateProfile, useAuthState } from 'react-firebase-hooks/auth';
 import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
@@ -23,37 +19,17 @@ export const Step3 = () => {
   const [selectedFile, setSelectedFile] = useState<string>();
   const selectedFileRef = useRef<HTMLInputElement>(null);
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
-  const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
+  const [authUser] = useAuthState(auth);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const [createUserWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
-    useCreateUserWithEmailAndPassword(
-      auth
-      // {sendEmailVerification: true} // implement later
-    );
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
   const { handleSubmit } = useForm();
 
   const onSubmit = async () => {
     try {
       setLoading(true);
-      const { name, last_name, email, new_password, provider, profession, other_skills } =
-        wFormData;
-
-      // const newUser =
-      // provider === 'email'
-      // ? (await createUserWithEmailAndPassword(email, new_password)).user
-      // : authUser;
-
-      const newUser = authUser;
-      console.log('🚀  file: Step3.tsx:41  newUser:', newUser);
-
-      // if (errorEmail || errorFacebook || errorGoogle) {
-      //   const error = errorEmail || errorFacebook || errorGoogle;
-      //   console.log('🚀  file: Step3.tsx:63  error:', error);
-      //   return;
-      // }
+      const { name, last_name, profession, other_skills } = wFormData;
 
       const customClaims = {
         basic_info_done: true,
@@ -72,7 +48,7 @@ export const Step3 = () => {
         photoURL: DEFAULT_PROFILE_PHOTO_URL,
       };
 
-      const userDocRef = doc(db, 'users', newUser?.uid);
+      const userDocRef = doc(db, 'users', authUser?.uid);
 
       let downloadURL = '';
       if (selectedFile) {
@@ -93,18 +69,10 @@ export const Step3 = () => {
         });
       }
 
-      // const unsubscribe = onSnapshot(userDocRef, async (doc: any) => {
-      //   if (doc.exists()) {
-      //     await updateDoc(userDocRef, userDocUpdates);
-      //     unsubscribe(); // Stop listening for further changes
-      //   }
-      // });
-
-      const updatedUserDoc = await updateDoc(userDocRef, userDocUpdates);
-      console.log('🚀  file: Step3.tsx:119  updatedUserDoc:', updatedUserDoc);
+      await updateDoc(userDocRef, userDocUpdates);
 
       const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
-      const resSetCC = await setCustomClaims({
+      await setCustomClaims({
         uid: authUser?.uid,
         payload: customClaims,
       });
@@ -121,20 +89,18 @@ export const Step3 = () => {
     }
   };
 
-  return loadingUpdate || loadingEmail || loading ? (
+  return loadingUpdate || loading ? (
     <LoaderSpinner />
   ) : (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
       <div className='flex flex-col items-center gap-2 w-full'>
         <ImageUpload
           selectedFile={selectedFile}
-          // setSelectedFile={setSelectedFile}
           selectedFileRef={selectedFileRef}
           onSelectImage={(e: ChangeEvent<HTMLInputElement>) => onSelectImage(e, setSelectedFile)}
         />
       </div>
-      {/* <FormError formError={formError} authError={authError} /> */}
-      <ActionButton loading={loadingEmail} text='Sign up' />
+      <ActionButton loading={loading} text='Sign up' />
     </form>
   );
 };

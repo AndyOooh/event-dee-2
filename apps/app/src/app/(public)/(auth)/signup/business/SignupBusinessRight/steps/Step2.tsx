@@ -10,9 +10,19 @@ import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
 import { step2Schema } from '../validation';
 import { CompanyType, IStep2Schema } from '../../../freelancer/signup-member-right/validation';
+import { auth, db, getCloudFunction } from '__firebase/clientApp';
+import { doc, updateDoc } from 'firebase/firestore';
+import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export const Step2 = () => {
-  const [, setWFormData] = useRecoilState(wizardForm);
+  const [wFormData, setWFormData] = useRecoilState(wizardForm);
+  const [authUser] = useAuthState(auth);
+  const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -23,52 +33,51 @@ export const Step2 = () => {
     resolver: yupResolver(step2Schema),
   });
 
-  const onSubmit: SubmitHandler<FormStep2> = async data => {
-    setWFormData(prev => ({
-      ...prev,
-      ...data,
-      step: prev.step + 1,
-    }));
+  const onSubmit: SubmitHandler<IStep2Schema> = async data => {
+    try {
+      setLoading(true);
+      const { first_name, last_name, company_name, company_type } = data;
+      const { provider, email, password } = wFormData;
+
+      const customClaims = {
+        basic_info_done: true,
+        type: 'business',
+      };
+
+      const photoURL = authUser?.photoURL || DEFAULT_PROFILE_PHOTO_URL;
+
+      const userDocUpdates: any = {
+        customClaims,
+        type: 'business',
+        first_name,
+        last_name,
+        displayName: first_name,
+        company_name,
+        invite_link: `${company_name}`.toLowerCase(),
+        company_type,
+        photoURL,
+      };
+
+      const userDocRef = doc(db, 'users', authUser?.uid);
+      const updatedUserDoc = await updateDoc(userDocRef, userDocUpdates);
+
+      const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
+      const resSetCC = await setCustomClaims({
+        uid: authUser?.uid,
+        payload: customClaims,
+      });
+
+      setWFormData(prev => ({
+        ...prev,
+        step: 1,
+      }));
+
+      router.push('/');
+      setLoading(false);
+    } catch (error) {
+      console.log('🚀  file: Step2.tsx:90  error:', error);
+    }
   };
-
-  //   const onSubmit: SubmitHandler<IStep2Schema> = async data => {
-  //   const { first_name, last_name, company_name, company_type } = data;
-  //   const { provider, email, password } = wizardFormData;
-
-  //   let newUser: any;
-  //   try {
-  //     if (provider === 'google') {
-  //       newUser = (await signInWithGoogle()).user;
-  //     } else if (provider === 'facebook') {
-  //       newUser = (await signInWithFacebook()).user;
-  //     } else {
-  //       newUser = (await createUserWithEmailAndPassword(email, password)).user;
-  //     }
-  //   } catch (error) {
-  //     console.log('Step3.tsx:67  error:', error);
-  //   }
-
-  //   // if (errorEmail || errorFacebook || errorGoogle) {
-  //   //   const error = errorEmail || errorFacebook || errorGoogle;
-  //   //   return;
-  //   // }
-
-  //   try {
-  //     const userDocRef = doc(db, 'users', newUser?.uid);
-  //     console.log('🚀  file: SignupMemberRight.tsx:84  userDocRef:', userDocRef);
-
-  //     await updateProfile({
-  //       displayName: first_name,
-  //     });
-  //     await updateDoc(userDocRef, {
-  //       displayName: name,
-  //       last_name: last_name,
-  //       type: 'business',
-  //     });
-  //   } catch (error) {
-  //     console.log('🚀  file: Step2.tsx:90  error:', error);
-  //   }
-  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={`${styles.formSmall} max-w-md`}>
@@ -94,18 +103,13 @@ export const Step2 = () => {
       </div>
       <TextInput name='company_name' register={register} label={true} />
       <FormError formError={errors?.company_name?.message} />
-      {/* <Select name='company_type' register={register} options={copmpanyTypes} label={true} /> */}
       <Select
         name='company_type'
         register={register}
         options={Object.values(CompanyType)}
-        // defaultValue='Select Company Type'
         label={true}
       />
       <FormError formError={errors?.company_name?.message} />
-      {/* <TextInput name='company_name' register={register} name='position' label={true} />
-        <FormError formError={errors?.company_name?.message} /> */}
-
       <ActionButton text='Get Started' />
     </form>
   );
