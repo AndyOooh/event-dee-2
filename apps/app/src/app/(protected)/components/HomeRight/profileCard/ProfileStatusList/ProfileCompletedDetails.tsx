@@ -2,17 +2,15 @@
 
 import React, { useContext } from 'react';
 import { BsFillCheckCircleFill, BsFillCircleFill } from 'react-icons/bs';
-import { CurrUserContext } from '../../Providers/CurrentUserProvider';
+import { CurrUserContext } from '../../../Providers/CurrentUserProvider';
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
-
-type Props = {};
 
 type ProfileData = {
   title: string;
   completed: boolean | 'partial';
 };
 
-export const ProfileCompletedDetails = (props: Props) => {
+export const StatusListFreelancer = () => {
   const { currentUser } = useContext(CurrUserContext);
   const {
     photoURL,

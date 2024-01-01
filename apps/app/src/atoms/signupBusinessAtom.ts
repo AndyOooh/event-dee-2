@@ -31,6 +31,6 @@ export const wizardForm = atom<FormValues>({
     first_name: '',
     last_name: '',
     password: '',
-    step: 2,
+    step: 1,
   },
 });

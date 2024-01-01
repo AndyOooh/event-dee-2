@@ -13,6 +13,7 @@ const passwordProviderWhen = {
   then: (yupBuilder: any) => yupBuilder.min(PW_MIN_LENGTH).required(),
 };
 
+/* Split up in case Oauth where email + pw not required */
 const step1SchemaEmail = yup.object().shape({
   email: yup.string().when('provider', emailProviderWhen),
   new_password: yup.string().when('provider', passwordProviderWhen),

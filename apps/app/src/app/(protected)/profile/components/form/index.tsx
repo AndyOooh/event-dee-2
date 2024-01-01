@@ -4,7 +4,6 @@ import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { db } from '__firebase/clientApp';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { ActionButton } from 'app/(public)/(auth)/signup/components/ActionButton';
 import { doc, updateDoc } from 'firebase/firestore';
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,6 +13,7 @@ import { PersonalInfo } from './components/personal-info';
 import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-info/validation';
 import { WorkInfo } from './components/work-info';
 import { getChangedFormData } from '__utils/helpers';
+import { ActionButton } from 'ui';
 
 export const EditProfileForm = () => {
   const { currentUser } = useContext(CurrUserContext);

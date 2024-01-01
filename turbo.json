@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local", "**/.env"],
-  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_FIREBASE_API_KEY"],
+  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_FIREBASE_API_KEY", "NEXT_PUBLIC_EMULATORS_ON"],
   "pipeline": {
     "build": {
       "outputs": [".next/**", "!.next/cache/**"]
