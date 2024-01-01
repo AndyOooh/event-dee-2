@@ -9,5 +9,3 @@ export default function Home() {
     </>
   );
 }
-
-// <div className='flex gap-4 p-8 max-w-7xl mx-auto'>

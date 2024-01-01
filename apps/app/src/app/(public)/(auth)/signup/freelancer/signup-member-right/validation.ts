@@ -38,6 +38,17 @@ export const step1Schema = yup
 export type IStep1Schema = yup.InferType<typeof step1Schema> & { oAuthCreds?: any };
 
 // Step 2 ------------------------------------------------------------------------
+
+export enum CompanyType {
+  Agency = 'Agency',
+  Brand = 'Brand',
+  Organizer = 'Organizer',
+  Advertisemnet = 'Advertisemnet',
+}
+
+// export const companyTypoes: CompanyType2[] = ['Agency', 'Brand', 'Organizer', 'Advertisemnet'];
+// export type CompanyType2 = 'Agency' | 'Brand' | 'Organizer' | 'Advertisemnet';
+
 export const step2Schema = yup
   .object({
     name: yup.string().required().min(2),
@@ -46,6 +57,8 @@ export const step2Schema = yup
     profession: yup.string().required().not(['Choose profession'], 'Please choose a profession'),
     other_skills: yup.array().min(1).of(yup.string()).required(),
     company_name: yup.string().min(2),
+    company_type: yup.string().oneOf(Object.values(CompanyType)),
+    // company_type: yup.string().oneOf(companyTypoes),
   })
   .required();
 export type IStep2Schema = yup.InferType<typeof step2Schema>;
