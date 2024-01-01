@@ -1,0 +1,19 @@
+{
+  "name": "misc/profile-photo-placeholder.jpg",
+  "bucket": "event-dee-staging.appspot.com",
+  "metageneration": 1,
+  "generation": 1704107122580,
+  "contentType": "image/jpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f0d4acc2-6e77-4c04-bbe6-3077fda2fd18"
+  ],
+  "etag": "TU8g3i0I2qWHu8x3BufBTY1C+KY",
+  "customMetadata": {},
+  "timeCreated": "2024-01-01T11:05:22.580Z",
+  "updated": "2024-01-01T11:05:22.580Z",
+  "size": 3028,
+  "md5Hash": "yRFjgFAmkkyCWT6+ovXQZA==",
+  "crc32c": "1263165550"
+}

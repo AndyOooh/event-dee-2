@@ -44,7 +44,7 @@ export enum CompanyType {
   Agency = 'Agency',
   Brand = 'Brand',
   Organizer = 'Organizer',
-  Advertisemnet = 'Advertisemnet',
+  Advertisement = 'Advertisement',
 }
 
 // export const companyTypoes: CompanyType2[] = ['Agency', 'Brand', 'Organizer', 'Advertisemnet'];
