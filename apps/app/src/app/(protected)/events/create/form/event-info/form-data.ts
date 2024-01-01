@@ -1,5 +1,5 @@
 import thaiProvinces from '__utils/provinces.json';
-import { IcreateEventSchema } from './validation';
+import { IeventDetailsSchema } from './validation';
 import { SelectOptions } from 'event-dee-types';
 
 const dateXYearsago = (years: number) => {
@@ -9,7 +9,7 @@ const dateXYearsago = (years: number) => {
 };
 
 type FormInput = {
-  title: keyof IcreateEventSchema;
+  title: keyof IeventDetailsSchema;
   type: 'text' | 'select' | 'date';
   tooltip: string;
   options?: SelectOptions;
@@ -17,47 +17,58 @@ type FormInput = {
   extraProps?: any;
 };
 
-export const formArrayPersonalInfo: FormInput[] = [
+// export const createEventSchema = yup.object().shape({
+//   event_header: yup.string().min(3),
+//   event_name: stringNullable(yup.string().min(2)),
+//   location: yup.string().min(3),
+//   date: yup.date().min(new Date()),
+//   description: yup.string().min(3),
+//   roles: yup.array().of(yup.string().min(2)),
+// });
+
+export const formArrayEventDetails: FormInput[] = [
+  {
+    title: 'event_header',
+    type: 'text',
+    tooltip: 'Enter a header',
+  },
+
   {
     title: 'event_name',
     type: 'text',
     tooltip: 'Enter name of the event',
   },
-
   {
-    title: 'location',
+    title: 'event_type',
     type: 'select',
-    tooltip: 'Enter your province',
-    options: thaiProvinces.map(province => ({
-      value: province.provinceNameEn,
-      label: province.provinceNameEn,
-    })),
+    tooltip: 'Select type of the event',
+    options: ['Video shoot', 'Photo shoot', 'Fashion show', 'Promotional event', 'Other'],
   },
+  {
+    title: 'date',
+    type: 'date',
+    tooltip: 'Enter date of the event',
+  },
+  {
+    title: 'description',
+    type: 'text',
+    tooltip: 'Enter a description',
+  },
+  /* Move this to seperate segment (same with location) */
   // {
-  //   title: 'gender',
+  //   title: 'roles',
   //   type: 'select',
-  //   tooltip:
-  //     'EventDee deeply values diversity and this data will only be used by Teamway for our own analytics purposes and not shared with 3rd parties without your consent. This field is optional.',
-  //   options: ['Male', 'Female', 'Non-binary', 'Prefer not to say'],
-  // },
-
-  // {
-  //   title: 'height',
-  //   type: 'select',
-  //   tooltip: 'Enter your height',
-  //   options: Array.from({ length: 100 }, (_, i) => ({
-  //     value: `${i + 100} cm`,
-  //     label: `${i + 100} cm`,
-  //   })),
-  // },
-
-  // {
-  //   title: 'dob',
-  //   type: 'date',
-  //   tooltip: 'Enter your birthdate',
-  //   extraProps: {
-  //     min: dateXYearsago(100),
-  //     max: dateXYearsago(18),
-  //   },
+  //   tooltip: 'Select roles',
+  //   options: [
+  //     'Model',
+  //     'Photographer',
+  //     'Staff',
+  //     'Makeup Artist',
+  //     'Hair Stylist',
+  //     'Stylist',
+  //     'Designer',
+  //     'Videographer',
+  //     'Assistant',
+  //   ],
   // },
 ];

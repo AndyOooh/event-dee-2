@@ -11,7 +11,7 @@ import { getChangedFormData } from '__utils/helpers';
 import { db } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
-import { IcreateEventSchema, createEventSchema } from './event-info/validation';
+import { IcreateEventSchema, createEventSchema } from './validation';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -74,7 +74,7 @@ export const CreateEventForm = () => {
 
   const sections = [
     {
-      title: 'Personal information',
+      title: 'Event details',
       element: <EventInfo register={register} errors={errors} />,
     },
     // {

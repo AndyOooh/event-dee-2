@@ -1,8 +1,4 @@
 import * as yup from 'yup';
-// import { checkEmailExists } from '__firebase/utilities';
-import { startCase, camelCase } from 'lodash';
-import { getCloudFunction } from '__firebase/clientApp';
-import { AnyObject } from 'yup';
 import { stringNullable } from '__utils/helpers';
 
 export enum Role {
@@ -26,13 +22,22 @@ export enum Role {
 //   PreferNotToSay = 'Prefer not to say',
 // }
 
-export const createEventSchema = yup.object().shape({
-  header: yup.string().min(3),
+export enum EventType {
+  VideoShoot = 'Video shoot',
+  PhotoShoot = 'Photo shoot',
+  FashionShow = 'Fashion show',
+  PromotionalEvent = 'Promotional event',
+  Other = 'Other',
+}
+
+export const eventDetailsSchema = yup.object().shape({
+  event_header: yup.string().min(3),
   event_name: stringNullable(yup.string().min(2)),
+  event_type: yup.string().oneOf(Object.values(EventType)),
   location: yup.string().min(3),
   date: yup.date().min(new Date()),
-  text: yup.string().min(3),
+  description: yup.string().min(3),
   roles: yup.array().of(yup.string().min(2)),
 });
 
-export type IcreateEventSchema = yup.InferType<typeof createEventSchema>;
+export type IeventDetailsSchema = yup.InferType<typeof eventDetailsSchema>;

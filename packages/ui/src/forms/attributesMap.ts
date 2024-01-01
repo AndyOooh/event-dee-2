@@ -4,7 +4,7 @@ export type IAttributes = {
   _type: string;
   _label: string;
   _placeholder: string;
-  _autocmplete: string;
+  _autocmplete?: string;
   _rows?: number;
   _maxLenght?: number;
 };
@@ -142,7 +142,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Profile Header',
         _placeholder: 'A one-liner about you',
-        _autocmplete: 'url',
+        // _autocmplete: 'url',
         _maxLenght: 50,
       };
       break;
@@ -151,7 +151,7 @@ export const getAttributes = (name: string) => {
         _type: 'textarea',
         _label: 'Profile Text',
         _placeholder: 'A bit more about you',
-        _autocmplete: 'url',
+        // _autocmplete: 'url',
         _rows: 5,
         _maxLenght: 250,
       };
@@ -163,6 +163,51 @@ export const getAttributes = (name: string) => {
         _label: 'Date of Birth',
         _placeholder: 'Eg. 01/01/1990',
         _autocmplete: 'bday',
+      };
+      break;
+
+    case 'event_header':
+      attributes = {
+        _type: 'text',
+        _label: 'Event Header',
+        _placeholder: 'E.g. 4 day event - need models!',
+        // _autocmplete: 'url',
+        _maxLenght: 50,
+      };
+      break;
+    case 'event_name':
+      attributes = {
+        _type: 'text',
+        _label: 'Event Name',
+        _placeholder: 'Eg. Moto Expo',
+        // _autocmplete: 'url',
+      };
+      break;
+
+    // case 'event_type':
+    //   attributes = {
+    //     _type: 'text',
+    //     _label: 'Event Type',
+    //     _placeholder: 'Eg. Video shoot',
+    //     // _autocmplete: 'url',
+    //   };
+    case 'description':
+      attributes = {
+        _type: 'textarea',
+        _label: 'Description',
+        _placeholder: 'A bit more about the event',
+        // _autocmplete: 'url',
+        _rows: 5,
+        _maxLenght: 250,
+      };
+      break;
+    case 'date':
+    case 'event_date':
+      attributes = {
+        _type: 'date',
+        _label: 'Date',
+        _placeholder: 'Eg. 01/01/2024',
+        // _autocmplete: '',
       };
       break;
 
