@@ -8,8 +8,7 @@ import { TextInput, FormError, Select } from 'ui';
 import { wizardForm } from '__atoms/signupBusinessAtom';
 import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
-import { step2Schema } from '../validation';
-import { CompanyType, IStep2Schema } from '../../../freelancer/signup-member-right/validation';
+import { CompanyType, IStep2Schema, step2Schema } from '../validation';
 import { auth, db, getCloudFunction } from '__firebase/clientApp';
 import { doc, updateDoc } from 'firebase/firestore';
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -24,18 +23,26 @@ export const Step2 = () => {
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, disabled, isValid },
   } = useForm<IStep2Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step2Schema),
   });
-
-  const onSubmit: SubmitHandler<IStep2Schema> = async data => {
+  
+  console.log('isValid:', isValid);
+  console.log('errors:', errors);
+  
+  // const onSubmit: SubmitHandler<IStep2Schema> = async data => {
+    const onSubmit = async (data: any) => {
+    console.log('🚀  file: Step2.tsx:23  authUser:', authUser)
+    console.log('isValid:', isValid);
+    console.log('errors:', errors);
     try {
+      console.log('SUBMITTING STEP 2');
       setLoading(true);
       const { first_name, last_name, company_name, company_type } = data;
 
@@ -61,11 +68,15 @@ export const Step2 = () => {
       const userDocRef = doc(db, 'users', authUser?.uid);
       await updateDoc(userDocRef, userDocUpdates);
 
+      console.log('Updated user doc');
+
       const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
       await setCustomClaims({
         uid: authUser?.uid,
         payload: customClaims,
       });
+
+      console.log('Updated custom claims');
 
       if (!authUser?.photoURL) {
         await updateProfile({
@@ -73,10 +84,14 @@ export const Step2 = () => {
         });
       }
 
+      console.log('Updated profile');
+
       setWFormData(prev => ({
         ...prev,
         step: 1,
       }));
+
+      console.log('Pushing to home page');
 
       router.push('/');
       setLoading(false);
@@ -118,6 +133,9 @@ export const Step2 = () => {
         label={true}
       />
       <FormError formError={errors?.company_name?.message} />
+      {/* <button className='btn' type='submit'>
+        Here
+      </button> */}
       <ActionButton text='Get Started' />
     </form>
   );

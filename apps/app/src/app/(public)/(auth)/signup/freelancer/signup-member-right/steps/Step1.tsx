@@ -4,7 +4,6 @@ import { useRecoilState } from 'recoil';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { TextInput, FormError } from 'ui';
-import { wizardForm } from '__atoms/signupFreelancerAtom';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
@@ -17,6 +16,7 @@ import Image from 'next/image';
 import facebookLogo from '/public/images/facebooklogo.png';
 import googleLogo from '/public/images/googlelogo.png';
 import { Providers } from 'app/types';
+import { wizardForm } from '__atoms/signupFreelancerAtom';
 
 export const Step1 = () => {
   const [, setWFormData] = useRecoilState(wizardForm);
@@ -44,9 +44,8 @@ export const Step1 = () => {
   const provider = watch('provider');
 
   const onSubmit = async (data: any) => {
-    const email = watch('email');
     const checkEmailExists = getCloudFunction('checkEmailExists');
-    const emailExists = (await checkEmailExists(email)).data;
+    const emailExists = (await checkEmailExists(data.email)).data;
     if (emailExists) {
       setError('email', { message: 'Email already exists' });
       return;
