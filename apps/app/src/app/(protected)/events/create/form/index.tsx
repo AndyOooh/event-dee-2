@@ -9,10 +9,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { getChangedFormData } from '__utils/helpers';
 import { db } from '__firebase/clientApp';
-import { IpersonalInfoSchema, personalInfoSchema } from './validation';
 import { ActionButton } from 'ui';
+import { EventInfo } from './event-info';
+import { IcreateEventSchema, createEventSchema } from './event-info/validation';
 
-export const EditProfileForm = () => {
+export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
 
   const {
@@ -30,9 +31,10 @@ export const EditProfileForm = () => {
       dirtyFields,
       defaultValues,
     },
-  } = useForm<IpersonalInfoSchema>({
+  } = useForm<IcreateEventSchema>({
     mode: 'onTouched',
-    resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
+    // resolver: yupResolver(createEventSchema({ initialEmail: currentUser?.email })),
+    resolver: yupResolver(createEventSchema),
   });
 
   useEffect(() => {
@@ -46,18 +48,18 @@ export const EditProfileForm = () => {
     console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
   };
 
-  const onTest = () => {
-    const data = watch();
-    const changedData = getChangedFormData(data, dirtyFields);
-    console.log('🚀  file: index.tsx:66  data:', data);
-    console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
-    console.log('🚀  file: index.tsx:66  filteredData:', changedData);
-    console.log('🚀  file: index.tsx:66  isValid:', isValid);
-    console.log('🚀  file: index.tsx:66  errors:', errors);
-    console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
-  };
+  //   const onTest = () => {
+  //     const data = watch();
+  //     const changedData = getChangedFormData(data, dirtyFields);
+  //     console.log('🚀  file: index.tsx:66  data:', data);
+  //     console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
+  //     console.log('🚀  file: index.tsx:66  filteredData:', changedData);
+  //     console.log('🚀  file: index.tsx:66  isValid:', isValid);
+  //     console.log('🚀  file: index.tsx:66  errors:', errors);
+  //     console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
+  //   };
 
-  const onSubmit = async (data: IpersonalInfoSchema) => {
+  const onSubmit = async (data: IcreateEventSchema) => {
     try {
       const changedData = getChangedFormData(data, dirtyFields);
 
@@ -71,10 +73,10 @@ export const EditProfileForm = () => {
   };
 
   const sections = [
-    // {
-    //   title: 'Personal information',
-    //   element: <PersonalInfo register={register} errors={errors} />,
-    // },
+    {
+      title: 'Personal information',
+      element: <EventInfo register={register} errors={errors} />,
+    },
     // {
     //   title: 'Work information',
     //   element: <WorkInfo register={register} />,
@@ -95,10 +97,9 @@ export const EditProfileForm = () => {
 
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          {/* <ActionButton text='Update' loading={isSubmitting} /> */}
-          <button type='button' onClick={onTest} className='btn btn-neutral'>
+          {/* <button type='button' onClick={onTest} className='btn btn-neutral'>
             Test
-          </button>
+          </button> */}
         </div>
       </form>
       <DevTool control={control} />
