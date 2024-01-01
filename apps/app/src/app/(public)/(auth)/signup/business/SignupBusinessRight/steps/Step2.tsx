@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
 import { TextInput, FormError, Select } from 'ui';
-import { wizardForm, FormStep2 } from '__atoms/signupBusinessAtom';
+import { wizardForm } from '__atoms/signupBusinessAtom';
 import { styles } from '__styles/styles';
 import { ActionButton } from '../../../components/ActionButton';
 import { step2Schema } from '../validation';
@@ -16,9 +16,10 @@ import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 
 export const Step2 = () => {
-  const [wFormData, setWFormData] = useRecoilState(wizardForm);
+  const [, setWFormData] = useRecoilState(wizardForm);
   const [authUser] = useAuthState(auth);
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,6 @@ export const Step2 = () => {
     try {
       setLoading(true);
       const { first_name, last_name, company_name, company_type } = data;
-      const { provider, email, password } = wFormData;
 
       const customClaims = {
         basic_info_done: true,
@@ -53,19 +53,25 @@ export const Step2 = () => {
         last_name,
         displayName: first_name,
         company_name,
-        invite_link: `${company_name}`.toLowerCase(),
         company_type,
+        invite_link: `${company_name}`.toLowerCase(),
         photoURL,
       };
 
       const userDocRef = doc(db, 'users', authUser?.uid);
-      const updatedUserDoc = await updateDoc(userDocRef, userDocUpdates);
+      await updateDoc(userDocRef, userDocUpdates);
 
       const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
-      const resSetCC = await setCustomClaims({
+      await setCustomClaims({
         uid: authUser?.uid,
         payload: customClaims,
       });
+
+      if (!authUser?.photoURL) {
+        await updateProfile({
+          photoURL,
+        });
+      }
 
       setWFormData(prev => ({
         ...prev,
@@ -79,7 +85,9 @@ export const Step2 = () => {
     }
   };
 
-  return (
+  return loadingUpdate || loading ? (
+    <LoaderSpinner />
+  ) : (
     <form onSubmit={handleSubmit(onSubmit)} className={`${styles.formSmall} max-w-md`}>
       <div className='flex gap-4'>
         <div>

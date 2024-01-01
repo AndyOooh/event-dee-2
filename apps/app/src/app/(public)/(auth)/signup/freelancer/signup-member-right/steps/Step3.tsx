@@ -16,14 +16,13 @@ import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
 
 export const Step3 = () => {
+  const [authUser] = useAuthState(auth);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
+  const [wFormData, setWFormData] = useRecoilState(wizardForm);
   const [selectedFile, setSelectedFile] = useState<string>();
   const selectedFileRef = useRef<HTMLInputElement>(null);
-  const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
-  const [authUser] = useAuthState(auth);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-
-  const [wFormData, setWFormData] = useRecoilState(wizardForm);
   const { handleSubmit } = useForm();
 
   const onSubmit = async () => {
@@ -40,10 +39,10 @@ export const Step3 = () => {
         customClaims,
         type: 'freelancer',
         first_name: name,
-        last_name: last_name,
+        last_name,
         displayName: name,
         profession: profession,
-        other_skills: other_skills,
+        other_skills,
         invite_link: `${name}-${last_name}`.toLowerCase(),
         photoURL: DEFAULT_PROFILE_PHOTO_URL,
       };
