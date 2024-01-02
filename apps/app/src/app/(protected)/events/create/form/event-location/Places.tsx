@@ -9,7 +9,8 @@ import {
 import '@reach/combobox/styles.css';
 
 type PlacesProps = {
-  setOffice: (position: google.maps.LatLngLiteral) => void;
+  // setOffice: (position: google.maps.LatLngLiteral) => void;
+  setOffice: (position: any) => void;
 };
 
 export const Places = ({ setOffice }: PlacesProps) => {
@@ -22,14 +23,15 @@ export const Places = ({ setOffice }: PlacesProps) => {
   } = usePlacesAutocomplete();
 
   const handleSelect = async (val: string) => {
-    console.log('🚀  file: places.tsx:25  val:', val)
+    console.log('🚀  file: places.tsx:25  val:', val);
     setValue(val, false);
     clearSuggestions();
 
     const results = await getGeocode({ address: val });
-    console.log('🚀  file: places.tsx:30  results:', results)
+    console.log('🚀  file: places.tsx:30  results:', results);
     const { lat, lng } = await getLatLng(results[0]);
-    setOffice({ lat, lng });
+    // setOffice({ lat, lng });
+    setOffice(val);
   };
 
   return (

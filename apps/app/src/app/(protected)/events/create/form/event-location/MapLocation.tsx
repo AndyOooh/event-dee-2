@@ -1,13 +1,15 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { GoogleMap } from '@react-google-maps/api';
-import { Places } from './places';
+import { Places } from './Places';
 
 type Props = {};
 type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
 
 export const MapLocation = (props: Props) => {
-  const [office, setOffice] = useState<LatLngLiteral>();
+  // const [office, setOffice] = useState<LatLngLiteral>();
+  const [office, setOffice] = useState<any>();
+  console.log('🚀  file: MapLocation.tsx:11  office:', office);
   const mapRef = useRef<GoogleMap>();
   // const bangkokCords = useMemo(() => ({ lat: 40, lng: -80 }), []);
   const bangkokCords = useMemo<LatLngLiteral>(() => ({ lat: 13.736717, lng: 100.523186 }), []);

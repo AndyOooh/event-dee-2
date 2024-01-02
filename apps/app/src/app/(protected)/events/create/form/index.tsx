@@ -21,6 +21,7 @@ export const CreateEventForm = () => {
     control,
     register,
     watch,
+    setValue,
     reset,
     handleSubmit,
     formState: {
@@ -80,7 +81,7 @@ export const CreateEventForm = () => {
     },
     {
       title: 'Event location',
-      element: <EventLocation register={register} />,
+      element: <EventLocation register={register} errors={errors} setValue={setValue} />,
     },
   ];
 

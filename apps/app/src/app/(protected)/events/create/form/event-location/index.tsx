@@ -1,16 +1,20 @@
 import React from 'react';
 import { MapLocation } from './MapLocation';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { useLoadScript } from '@react-google-maps/api';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { info } from 'console';
 import { TextInput, FormError } from 'ui';
 import { formArrayEventDetails } from './form-data';
 import { IeventLocationSchema } from './validation';
+import { IcreateEventSchema } from '../validation';
 
 type Props = {
   register: UseFormRegister<any>;
-  errors: FieldErrors<IeventLocationSchema>;
+  // errors: FieldErrors<IeventLocationSchema>;
+  // setValue: UseFormSetValue<IeventLocationSchema>;
+  errors: FieldErrors<IcreateEventSchema>;
+  setValue: UseFormSetValue<IcreateEventSchema>;
   // errors: any;
 };
 
@@ -18,7 +22,7 @@ type Library = 'places';
 
 const libraries: Library[] = ['places']; // have to do it outside of the component
 
-export const EventLocation = ({ register, errors }: Props) => {
+export const EventLocation = ({ register, errors, setValue }: Props) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
     libraries: libraries,
