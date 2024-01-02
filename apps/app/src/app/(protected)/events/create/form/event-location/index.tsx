@@ -11,11 +11,8 @@ import { IcreateEventSchema } from '../validation';
 
 type Props = {
   register: UseFormRegister<any>;
-  // errors: FieldErrors<IeventLocationSchema>;
-  // setValue: UseFormSetValue<IeventLocationSchema>;
   errors: FieldErrors<IcreateEventSchema>;
   setValue: UseFormSetValue<IcreateEventSchema>;
-  // errors: any;
 };
 
 type Library = 'places';
@@ -45,11 +42,10 @@ export const EventLocation = ({ register, errors, setValue }: Props) => {
           </div>
         ))}
       </div>
-      <MapLocation />
+      <MapLocation setValue={setValue} />
     </div>
   ) : (
     <>
-      Map
       <LoaderSpinner />
     </>
   );

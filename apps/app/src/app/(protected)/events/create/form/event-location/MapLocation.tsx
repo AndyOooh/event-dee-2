@@ -1,12 +1,16 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { GoogleMap } from '@react-google-maps/api';
 import { Places } from './Places';
+import { IcreateEventSchema } from '../validation';
+import { UseFormSetValue } from 'react-hook-form';
 
-type Props = {};
+type Props = {
+  setValue: UseFormSetValue<IcreateEventSchema>;
+};
 type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
 
-export const MapLocation = (props: Props) => {
+export const MapLocation = ({ setValue }: Props) => {
   // const [office, setOffice] = useState<LatLngLiteral>();
   const [office, setOffice] = useState<any>();
   console.log('🚀  file: MapLocation.tsx:11  office:', office);
@@ -32,6 +36,7 @@ export const MapLocation = (props: Props) => {
       <div className='input'>
         {/* <div className='first:bg-yellow-400 first-of-type:bg-cyan-400 p-5 border border-cyan-200 [&>input]:bg-yellow-400 [&>input]:first-of-type:bg-cyan-400'> */}
         <Places
+          setValue={setValue}
           setOffice={position => {
             setOffice(position);
             mapRef.current?.panTo(position);

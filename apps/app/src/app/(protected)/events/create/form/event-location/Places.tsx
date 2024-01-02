@@ -7,13 +7,19 @@ import {
   ComboboxOption,
 } from '@reach/combobox';
 import '@reach/combobox/styles.css';
+import { UseFormSetValue } from 'react-hook-form';
+import { IcreateEventSchema } from '../validation';
 
 type PlacesProps = {
   // setOffice: (position: google.maps.LatLngLiteral) => void;
   setOffice: (position: any) => void;
+  // setFormValue: UseFormSetValue<IcreateEventSchema>;
+  setValue: any;
 };
 
-export const Places = ({ setOffice }: PlacesProps) => {
+type GeocoderResult = google.maps.GeocoderResult;
+
+export const Places = ({ setOffice, setValue: setFormValue }: PlacesProps) => {
   const {
     ready,
     value,
@@ -22,16 +28,23 @@ export const Places = ({ setOffice }: PlacesProps) => {
     clearSuggestions,
   } = usePlacesAutocomplete();
 
+  // const setFormValues = (data: GeocoderResult) => {
+  //   console.log('🚀  file: Places.tsx:32  data:', data);
+  //   const {} = data.address_components;
+  //   setFormValue('street_name', data);
+  // };
+
   const handleSelect = async (val: string) => {
     console.log('🚀  file: places.tsx:25  val:', val);
-    setValue(val, false);
     clearSuggestions();
 
     const results = await getGeocode({ address: val });
+    // setFormValues(results[0]);
     console.log('🚀  file: places.tsx:30  results:', results);
-    const { lat, lng } = await getLatLng(results[0]);
-    // setOffice({ lat, lng });
-    setOffice(val);
+    const { lat, lng } = getLatLng(results[0]);
+    console.log('🚀  file: Places.tsx:45  lat:', lat);
+    setOffice({ lat, lng });
+    // setOffice(val);
   };
 
   return (
