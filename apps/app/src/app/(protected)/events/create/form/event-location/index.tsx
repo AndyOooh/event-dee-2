@@ -1,20 +1,24 @@
 import React from 'react';
 import { MapLocation } from './MapLocation';
-import { UseFormRegister } from 'react-hook-form';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { useLoadScript } from '@react-google-maps/api';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
+import { info } from 'console';
+import { TextInput, FormError } from 'ui';
+import { formArrayEventDetails } from './form-data';
+import { IeventLocationSchema } from './validation';
 
 type Props = {
   register: UseFormRegister<any>;
-  // errors: FieldErrors<IeventDetailsSchema>;
+  errors: FieldErrors<IeventLocationSchema>;
   // errors: any;
 };
 
 type Library = 'places';
 
-const libraries: Library[] = ['places'];
+const libraries: Library[] = ['places']; // have to do it outside of the component
 
-export const EventLocation = ({ register }: Props) => {
+export const EventLocation = ({ register, errors }: Props) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
     libraries: libraries,
@@ -23,7 +27,19 @@ export const EventLocation = ({ register }: Props) => {
   return isLoaded ? (
     <div>
       <div>
-        
+        {formArrayEventDetails.map(info => (
+          <div key={info.title}>
+            <TextInput
+              name={info.title}
+              // defaultValue={currentUser && currentUser[info.title]}
+              register={register}
+              label={true}
+              maxW='max-w-md'
+              // prepend={info.prepend}
+            />
+            <FormError formError={errors?.[info.title]?.message as string} />
+          </div>
+        ))}
       </div>
       <MapLocation />
     </div>
