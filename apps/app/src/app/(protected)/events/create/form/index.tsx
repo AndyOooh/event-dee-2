@@ -12,6 +12,7 @@ import { db } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
+import { EventLocation } from './event-location';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -77,10 +78,10 @@ export const CreateEventForm = () => {
       title: 'Event details',
       element: <EventInfo register={register} errors={errors} />,
     },
-    // {
-    //   title: 'Work information',
-    //   element: <WorkInfo register={register} />,
-    // },
+    {
+      title: 'Event location',
+      element: <EventLocation register={register} />,
+    },
   ];
 
   return currentUser ? (
