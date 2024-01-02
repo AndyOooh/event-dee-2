@@ -25,7 +25,7 @@ export const MapLocation = (props: Props) => {
   }, []);
 
   return (
-    <div className='w-4/5 h-[50rem] mx-auto flex flex-col'>
+    <div className='w-4/5 h-[40rem] mx-auto flex flex-col'>
       <div className='w-full'>Hej Hej Hej</div>
       <div className='input'>
         {/* <div className='first:bg-yellow-400 first-of-type:bg-cyan-400 p-5 border border-cyan-200 [&>input]:bg-yellow-400 [&>input]:first-of-type:bg-cyan-400'> */}

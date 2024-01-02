@@ -22,6 +22,9 @@ export const EventLocation = ({ register }: Props) => {
 
   return isLoaded ? (
     <div>
+      <div>
+        
+      </div>
       <MapLocation />
     </div>
   ) : (
