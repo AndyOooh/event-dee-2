@@ -15,11 +15,12 @@ type PlacesProps = {
   setOffice: (position: any) => void;
   // setFormValue: UseFormSetValue<IcreateEventSchema>;
   setValue: any;
+  setZoom: any;
 };
 
 type GeocoderResult = google.maps.GeocoderResult;
 
-export const Places = ({ setOffice, setValue: setFormValue }: PlacesProps) => {
+export const Places = ({ setOffice, setValue: setFormValue, setZoom }: PlacesProps) => {
   const {
     ready,
     value,
@@ -33,14 +34,15 @@ export const Places = ({ setOffice, setValue: setFormValue }: PlacesProps) => {
     clearSuggestions();
 
     const results = await getGeocode({ address: val });
-    // setFormValues(results[0]);
     console.log('🚀  file: places.tsx:30  results:', results);
-    // setFormValue('street_name', results[0].address_components[1].long_name);
-    setFormValue('street_name', results[0].formatted_address);
+    const { formatted_address, place_id } = results[0];
     const { lat, lng } = getLatLng(results[0]);
-    console.log('🚀  file: Places.tsx:45  lat:', lat);
+    setFormValue('address', formatted_address);
+    setFormValue('place_id', place_id);
+    setFormValue('coords', { lat, lng });
+
     setOffice({ lat, lng });
-    // setOffice(val);
+    setZoom(18);
   };
 
   return (

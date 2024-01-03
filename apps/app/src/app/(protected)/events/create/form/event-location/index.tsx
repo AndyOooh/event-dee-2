@@ -5,7 +5,7 @@ import { useLoadScript } from '@react-google-maps/api';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { info } from 'console';
 import { TextInput, FormError } from 'ui';
-import { formArrayEventDetails } from './form-data';
+// import { formArrayEventDetails } from './form-data';
 import { IeventLocationSchema } from './validation';
 import { IcreateEventSchema } from '../validation';
 
@@ -13,12 +13,13 @@ type Props = {
   register: UseFormRegister<any>;
   errors: FieldErrors<IcreateEventSchema>;
   setValue: UseFormSetValue<IcreateEventSchema>;
+  address?: string;
 };
 type Library = 'places';
 
 const libraries: Library[] = ['places']; // have to do it outside of the component
 
-export const EventLocation = ({ register, errors, setValue }: Props) => {
+export const EventLocation = ({ register, errors, setValue, address }: Props) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
     libraries: libraries,
@@ -26,22 +27,18 @@ export const EventLocation = ({ register, errors, setValue }: Props) => {
 
   return isLoaded ? (
     <div>
+      <MapLocation setValue={setValue} address={address} />
       <div>
-        {formArrayEventDetails.map(info => (
-          <div key={info.title}>
-            <TextInput
-              name={info.title}
-              // defaultValue={currentUser && currentUser[info.title]}
-              register={register}
-              label={true}
-              maxW='max-w-md'
-              // prepend={info.prepend}
-            />
-            <FormError formError={errors?.[info.title]?.message as string} />
-          </div>
-        ))}
+        <TextInput
+          name='description'
+          // defaultValue={currentUser && currentUser[info.title]}
+          register={register}
+          label={true}
+          maxW='max-w-md'
+          // prepend={info.prepend}
+        />
+        <FormError formError={errors?.description?.message as string} />
       </div>
-      <MapLocation setValue={setValue} />
     </div>
   ) : (
     <LoaderSpinner />

@@ -46,17 +46,14 @@ a {
   position: relative;
 }
 
-.data-reach-combobox {
-  // width: 100%;
-  background: green;
-}
+
 
 [data-reach-combobox] {
   background:transparent;
-  color: blue;
+  // color: blue;
 
   input {
     background: transparent;
-    color: yellowgreen;
+    // color: yellowgreen;
   }
 }

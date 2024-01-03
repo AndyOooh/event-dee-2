@@ -22,6 +22,7 @@ export const CreateEventForm = () => {
     register,
     watch,
     setValue,
+    getValues,
     reset,
     handleSubmit,
     formState: {
@@ -44,6 +45,13 @@ export const CreateEventForm = () => {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
+
+  const vals = getValues();
+  console.log('🚀  file: index.tsx:50  vals:', vals);
+  const vals2 = watch();
+  console.log('🚀  file: index.tsx:54  vals2:', vals2);
+
+  const address = watch('address');
 
   const onError = (errors: any, e: any) => {
     console.log('🚀  file: WorkInfo.tsx:52  data:', watch());
@@ -81,7 +89,9 @@ export const CreateEventForm = () => {
     },
     {
       title: 'Event location',
-      element: <EventLocation register={register} errors={errors} setValue={setValue} />,
+      element: (
+        <EventLocation register={register} errors={errors} setValue={setValue} address={address} />
+      ),
     },
   ];
 

@@ -42,16 +42,30 @@ import { stringNullable } from '__utils/helpers';
 
 // export type IeventDetailsSchema = yup.InferType<typeof eventDetailsSchema>;
 
-
 // create schema as above for fields: street name, street number, khet/sublocality, province, postal code
 
+// export const eventLocationSchema = yup.object().shape({
+//   search: yup.string().min(3),
+//   street_name: stringNullable(yup.string().min(2)),
+//   street_number: stringNullable(yup.string().min(2)),
+//   khet_sublocality: stringNullable(yup.string().min(2)),
+//   province: stringNullable(yup.string().min(2)),
+//   postal_code: stringNullable(yup.string().min(2)),
+// });
+
+type Coordinates = {
+  lat: number;
+  lng: number;
+};
+
 export const eventLocationSchema = yup.object().shape({
-  search: yup.string().min(3),
-  street_name: stringNullable(yup.string().min(2)),
-  street_number: stringNullable(yup.string().min(2)),
-  khet_sublocality: stringNullable(yup.string().min(2)),
-  province: stringNullable(yup.string().min(2)),
-  postal_code: stringNullable(yup.string().min(2)),
+  address: yup.string().min(10),
+  place_id: yup.string().min(10),
+  coords: yup.object().shape({
+    lat: yup.number(),
+    lng: yup.number(),
+  }),
+  description: stringNullable(yup.string().min(5)),
 });
 
 export type IeventLocationSchema = yup.InferType<typeof eventLocationSchema>;

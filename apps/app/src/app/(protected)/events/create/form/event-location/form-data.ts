@@ -10,35 +10,35 @@ type FormInput = {
   extraProps?: any;
 };
 
-export const formArrayEventDetails: FormInput[] = [
-  {
-    title: 'search',
-    type: 'text',
-    tooltip: 'Enter search',
-  },
-  {
-    title: 'street_name',
-    type: 'text',
-    tooltip: 'Enter street name',
-  },
-  {
-    title: 'street_number',
-    type: 'text',
-    tooltip: 'Enter street number',
-  },
-  {
-    title: 'khet_sublocality',
-    type: 'text',
-    tooltip: 'Enter khet/sublocality',
-  },
-  {
-    title: 'province',
-    type: 'text',
-    tooltip: 'Enter province',
-  },
-  {
-    title: 'postal_code',
-    type: 'text',
-    tooltip: 'Enter postal code',
-  },
-];
+// export const formArrayEventDetails: FormInput[] = [
+//   {
+//     title: 'search',
+//     type: 'text',
+//     tooltip: 'Enter search',
+//   },
+//   {
+//     title: 'street_name',
+//     type: 'text',
+//     tooltip: 'Enter street name',
+//   },
+//   {
+//     title: 'street_number',
+//     type: 'text',
+//     tooltip: 'Enter street number',
+//   },
+//   {
+//     title: 'khet_sublocality',
+//     type: 'text',
+//     tooltip: 'Enter khet/sublocality',
+//   },
+//   {
+//     title: 'province',
+//     type: 'text',
+//     tooltip: 'Enter province',
+//   },
+//   {
+//     title: 'postal_code',
+//     type: 'text',
+//     tooltip: 'Enter postal code',
+//   },
+// ];
