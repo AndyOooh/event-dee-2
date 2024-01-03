@@ -38,3 +38,22 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.map {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+
+
+[data-reach-combobox] {
+  background:transparent;
+  // color: blue;
+
+  input {
+    background: transparent;
+    // color: yellowgreen;
+  }
+}

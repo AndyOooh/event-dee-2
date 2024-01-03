@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useEffect } from 'react';
-import { doc, updateDoc } from 'firebase/firestore';
+import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
 import { DevTool } from '@hookform/devtools';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,6 +12,7 @@ import { db } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
+import { EventLocation } from './event-location';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -20,6 +21,8 @@ export const CreateEventForm = () => {
     control,
     register,
     watch,
+    setValue,
+    getValues,
     reset,
     handleSubmit,
     formState: {
@@ -43,6 +46,13 @@ export const CreateEventForm = () => {
     }
   }, [isSubmitSuccessful, reset]);
 
+  const vals = getValues();
+  console.log('🚀  file: index.tsx:50  vals:', vals);
+  const vals2 = watch();
+  console.log('🚀  file: index.tsx:54  vals2:', vals2);
+
+  const address = watch('address');
+
   const onError = (errors: any, e: any) => {
     console.log('🚀  file: WorkInfo.tsx:52  data:', watch());
     console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
@@ -61,26 +71,55 @@ export const CreateEventForm = () => {
 
   const onSubmit = async (data: IcreateEventSchema) => {
     try {
-      const changedData = getChangedFormData(data, dirtyFields);
+      // const changedData = getChangedFormData(data, dirtyFields);
 
+      // Step 1: Add a new entry to the "events" collection
+      const eventsCollectionRef = collection(db, 'events');
+      const newEventRef = await addDoc(eventsCollectionRef, data);
+
+      // Step 2: Get the reference to the newly created event
+      const eventDocId = newEventRef.id;
+
+      // Step 3: Update the current user's document with a reference to the new event
       const userDocRef = doc(db, 'users', currentUser.uid);
-      const res = await updateDoc(userDocRef, data);
+      await updateDoc(userDocRef, {
+        events: arrayUnion({ eventId: eventDocId }),
+      });
 
-      return;
+      console.log('Event submitted successfully!');
     } catch (error) {
-      console.log('🚀  file: WorkInfo.tsx:59  error:', error);
+      console.error('Error submitting event:', error);
     }
   };
+
+  // const onSubmit = async (data: IcreateEventSchema) => {
+  //   try {
+  //     const changedData = getChangedFormData(data, dirtyFields);
+
+  //     const userDocRef = doc(db, 'users', currentUser.uid);
+  //     const res = await updateDoc(userDocRef, {
+  //       events: {
+  //         ...changedData,
+  //       },
+  //     });
+
+  //     return;
+  //   } catch (error) {
+  //     console.log('🚀  file: WorkInfo.tsx:59  error:', error);
+  //   }
+  // };
 
   const sections = [
     {
       title: 'Event details',
       element: <EventInfo register={register} errors={errors} />,
     },
-    // {
-    //   title: 'Work information',
-    //   element: <WorkInfo register={register} />,
-    // },
+    {
+      title: 'Event location',
+      element: (
+        <EventLocation register={register} errors={errors} setValue={setValue} address={address} />
+      ),
+    },
   ];
 
   return currentUser ? (

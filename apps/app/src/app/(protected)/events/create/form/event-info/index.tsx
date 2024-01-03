@@ -20,7 +20,7 @@ export const EventInfo = ({ register, errors }: Props) => {
   return currentUser ? (
     <div className={styles.form}>
       <div className='w-full grid grid-cols-2 gap-6'>
-        {formArrayEventDetails.slice(0, 4).map((info, index) => (
+        {formArrayEventDetails.slice(0, 4).map(info => (
           <div key={info.title}>
             {info.type === 'select' ? (
               <Select
