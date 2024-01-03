@@ -26,7 +26,12 @@ export enum EventType {
   VideoShoot = 'Video shoot',
   PhotoShoot = 'Photo shoot',
   FashionShow = 'Fashion show',
-  PromotionalEvent = 'Promotional event',
+  Convention = 'Convention',
+  Exhibition = 'Exhibition',
+  Conference = 'Conference',
+  Festival = 'Festival',
+  Concert = 'Concert',
+  SportingEvent = 'Sporting event',
   Other = 'Other',
 }
 

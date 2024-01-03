@@ -33,19 +33,22 @@ export const MapLocation = ({ setValue, address }: Props) => {
 
   return (
     <div className='w-4/5 h-[40rem] mx-auto flex flex-col gap-4'>
-      {address && <div>{address}</div>}
-      {/* <div className='input'> */}
-      {/* <div className='first:bg-yellow-400 first-of-type:bg-cyan-400 p-5 border border-cyan-200 [&>input]:bg-yellow-400 [&>input]:first-of-type:bg-cyan-400'> */}
-      <Places
-        setValue={setValue}
-        setZoom={setZoom}
-        setOffice={position => {
-          setPin(position);
-          mapRef.current?.panTo(position);
-        }}
-      />
-      {/* </div> */}
-      {/* </div> */}
+      <div className='flex justify-between'>
+        {/* {address && <div className='text-lg font-semibold'>{address}</div>} */}
+        <div className='text-lg font-semibold'>{address}</div>
+        {/* <div className='input'> */}
+        {/* <div className='first:bg-yellow-400 first-of-type:bg-cyan-400 p-5 border border-cyan-200 [&>input]:bg-yellow-400 [&>input]:first-of-type:bg-cyan-400'> */}
+        <Places
+          setValue={setValue}
+          setZoom={setZoom}
+          setOffice={position => {
+            setPin(position);
+            mapRef.current?.panTo(position);
+          }}
+        />
+        {/* </div> */}
+        {/* </div> */}
+      </div>
       <GoogleMap
         zoom={zoom}
         center={bangkokCords}

@@ -37,6 +37,7 @@ export const EventLocation = ({ register, errors, setValue, address }: Props) =>
           maxW='max-w-md'
           // prepend={info.prepend}
         />
+
         <FormError formError={errors?.location_description?.message as string} />
       </div>
     </div>

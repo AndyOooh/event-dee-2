@@ -175,6 +175,7 @@ export const getAttributes = (name: string) => {
         _maxLenght: 50,
       };
       break;
+
     case 'event_name':
       attributes = {
         _type: 'text',
@@ -201,6 +202,7 @@ export const getAttributes = (name: string) => {
         _maxLenght: 250,
       };
       break;
+
     case 'date':
     case 'event_date':
       attributes = {
@@ -258,6 +260,7 @@ export const getAttributes = (name: string) => {
         _placeholder: 'Eg. back entrance, 5th floor',
         _autocmplete: 'postal-code',
       };
+      break;
 
     default:
       attributes = {
