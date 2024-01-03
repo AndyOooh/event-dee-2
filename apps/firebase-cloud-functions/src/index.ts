@@ -1,6 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 export * from './auth';
+export * from './fetch-firestore-data';
+export * from './lala';
 
 admin.initializeApp();
 export const db = admin.firestore();
