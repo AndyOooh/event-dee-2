@@ -275,6 +275,8 @@ See the [open issues](https://github.com/AndyOooh/persona/issues) for a full lis
 - [React Hook Form Playlist - Codevolution](https://www.youtube.com/playlist?list=PLC3y8-rFHvwjmgBr1327BA5bVXoQH-w5s)
 - [React Hook Form Playlist - Beier Luo](https://www.youtube.com/playlist?list=PL03g4H_exuTppOgtY-45oWvN79rvJIKzf)
 - [Google Maps React](https://youtu.be/2po9_CIRW7I?si=ApprjzCrqnuEkjPP)
+- [@reach/combobox](https://reach.tech/styling)
+- [@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

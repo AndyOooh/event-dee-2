@@ -45,3 +45,18 @@ a {
   width: 100%;
   position: relative;
 }
+
+.data-reach-combobox {
+  // width: 100%;
+  background: green;
+}
+
+[data-reach-combobox] {
+  background:transparent;
+  color: blue;
+
+  input {
+    background: transparent;
+    color: yellowgreen;
+  }
+}

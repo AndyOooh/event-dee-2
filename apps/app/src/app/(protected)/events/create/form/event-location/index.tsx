@@ -14,7 +14,6 @@ type Props = {
   errors: FieldErrors<IcreateEventSchema>;
   setValue: UseFormSetValue<IcreateEventSchema>;
 };
-
 type Library = 'places';
 
 const libraries: Library[] = ['places']; // have to do it outside of the component
@@ -45,8 +44,6 @@ export const EventLocation = ({ register, errors, setValue }: Props) => {
       <MapLocation setValue={setValue} />
     </div>
   ) : (
-    <>
-      <LoaderSpinner />
-    </>
+    <LoaderSpinner />
   );
 };

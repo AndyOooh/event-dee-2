@@ -28,12 +28,6 @@ export const Places = ({ setOffice, setValue: setFormValue }: PlacesProps) => {
     clearSuggestions,
   } = usePlacesAutocomplete();
 
-  // const setFormValues = (data: GeocoderResult) => {
-  //   console.log('🚀  file: Places.tsx:32  data:', data);
-  //   const {} = data.address_components;
-  //   setFormValue('street_name', data);
-  // };
-
   const handleSelect = async (val: string) => {
     console.log('🚀  file: places.tsx:25  val:', val);
     clearSuggestions();
@@ -41,6 +35,8 @@ export const Places = ({ setOffice, setValue: setFormValue }: PlacesProps) => {
     const results = await getGeocode({ address: val });
     // setFormValues(results[0]);
     console.log('🚀  file: places.tsx:30  results:', results);
+    // setFormValue('street_name', results[0].address_components[1].long_name);
+    setFormValue('street_name', results[0].formatted_address);
     const { lat, lng } = getLatLng(results[0]);
     console.log('🚀  file: Places.tsx:45  lat:', lat);
     setOffice({ lat, lng });
@@ -48,13 +44,17 @@ export const Places = ({ setOffice, setValue: setFormValue }: PlacesProps) => {
   };
 
   return (
-    <Combobox onSelect={handleSelect}>
+    <Combobox
+      onSelect={handleSelect}
+      // style={{ width: '100%' }}
+    >
       <ComboboxInput
         value={value}
         onChange={e => setValue(e.target.value)}
         disabled={!ready}
         className='w-full p-2'
         placeholder='Search office address'
+        // style={{ borderRadius: '0.5rem' }}
       />
       <ComboboxPopover>
         <ComboboxList>
