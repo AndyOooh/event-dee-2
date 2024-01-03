@@ -211,6 +211,49 @@ export const getAttributes = (name: string) => {
       };
       break;
 
+    // case 'location':
+    //   attributes = {
+    //     _type: 'text',
+    //     _label: 'Location',
+    //     _placeholder: 'Eg. Bangkok',
+    //     // _autocmplete: '',
+    //   };
+    //   break;
+    case 'street_name':
+      attributes = {
+        _type: 'text',
+        _label: 'Street Name',
+        _placeholder: 'Eg. Sukhumvit',
+        _autocmplete: 'street',
+      };
+      break;
+    case 'street_number':
+      attributes = {
+        _type: 'text',
+        _label: 'Street Number',
+        _placeholder: 'Eg. 123',
+        _autocmplete: 'street-number',
+      };
+      break;
+    case 'khet_sublocality':
+      attributes = {
+        _type: 'text',
+        _label: 'Khet/Sublocality',
+        _placeholder: 'Eg. Khlong Toei',
+        _autocmplete: 'address-level2',
+      };
+      break;
+    case 'postal_code':
+      attributes = {
+        _type: 'text',
+        _label: 'Postal Code',
+        _placeholder: 'Eg. 10110',
+        _autocmplete: 'postal-code',
+      };
+      break;
+
+      
+
     default:
       attributes = {
         _type: '',
@@ -222,3 +265,34 @@ export const getAttributes = (name: string) => {
 
   return attributes;
 };
+
+// {
+//   title: 'search',
+//   type: 'text',
+//   tooltip: 'Enter search',
+// },
+// {
+//   title: 'street_name',
+//   type: 'text',
+//   tooltip: 'Enter street name',
+// },
+// {
+//   title: 'street_number',
+//   type: 'text',
+//   tooltip: 'Enter street number',
+// },
+// {
+//   title: 'khet_sublocality',
+//   type: 'text',
+//   tooltip: 'Enter khet/sublocality',
+// },
+// {
+//   title: 'province',
+//   type: 'text',
+//   tooltip: 'Enter province',
+// },
+// {
+//   title: 'postal_code',
+//   type: 'text',
+//   tooltip: 'Enter postal code',
+// },
