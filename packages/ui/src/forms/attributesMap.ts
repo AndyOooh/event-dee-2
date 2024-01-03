@@ -251,8 +251,13 @@ export const getAttributes = (name: string) => {
         _autocmplete: 'postal-code',
       };
       break;
-
-      
+    case 'location_description':
+      attributes = {
+        _type: 'textarea',
+        _label: 'Location Description',
+        _placeholder: 'Eg. back entrance, 5th floor',
+        _autocmplete: 'postal-code',
+      };
 
     default:
       attributes = {

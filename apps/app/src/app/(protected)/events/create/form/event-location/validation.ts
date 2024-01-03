@@ -65,7 +65,7 @@ export const eventLocationSchema = yup.object().shape({
     lat: yup.number(),
     lng: yup.number(),
   }),
-  description: stringNullable(yup.string().min(5)),
+  location_description: stringNullable(yup.string().min(5)),
 });
 
 export type IeventLocationSchema = yup.InferType<typeof eventLocationSchema>;

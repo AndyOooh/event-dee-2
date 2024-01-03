@@ -30,14 +30,14 @@ export const EventLocation = ({ register, errors, setValue, address }: Props) =>
       <MapLocation setValue={setValue} address={address} />
       <div>
         <TextInput
-          name='description'
+          name='location_description'
           // defaultValue={currentUser && currentUser[info.title]}
           register={register}
           label={true}
           maxW='max-w-md'
           // prepend={info.prepend}
         />
-        <FormError formError={errors?.description?.message as string} />
+        <FormError formError={errors?.location_description?.message as string} />
       </div>
     </div>
   ) : (
