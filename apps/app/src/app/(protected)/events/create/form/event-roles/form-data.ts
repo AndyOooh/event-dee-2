@@ -1,4 +1,7 @@
-import { IeventRoleSchema, IeventRolesSchema } from './validation';
+import {
+  IeventRoleSchema,
+  // IeventRolesSchema
+} from './validation';
 import { SelectOptions } from 'event-dee-types';
 
 type FormInput = {

@@ -36,7 +36,8 @@ export const CreateEventForm = () => {
       dirtyFields,
       defaultValues,
     },
-  } = useForm<IcreateEventSchema>({
+    // } = useForm<IcreateEventSchema>({
+  } = useForm({
     mode: 'onTouched',
     // resolver: yupResolver(createEventSchema({ initialEmail: currentUser?.email })),
     resolver: yupResolver(createEventSchema),

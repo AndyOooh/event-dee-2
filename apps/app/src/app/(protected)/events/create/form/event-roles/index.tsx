@@ -1,8 +1,8 @@
-'use client';
+// 'use client';
 
 import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {
   Control,
   FieldErrors,
@@ -21,7 +21,8 @@ type Props = {
   errors: any;
   setValue: UseFormSetValue<IcreateEventSchema>;
   getValues: UseFormSetValue<IcreateEventSchema>;
-  control: Control<IcreateEventSchema>;
+  // control: Control<IcreateEventSchema>;
+  control: any;
 };
 
 export const EventRoles = ({ register, control, errors, setValue, getValues }: Props) => {
@@ -29,18 +30,48 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   const { currentUser } = useContext(CurrUserContext);
 
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
-    control, // control props comes from useForm (optional: if you are using FormContext)
     name: 'roles', // unique name for your Field Array
+    control, // control props comes from useForm (optional: if you are using FormContext)
   });
+
+  useEffect(() => {
+    remove()
+    append({ hourly: 1 });
+    // append({ hourly: '1' });
+    // append({ hourly: '' });
+  }, []);
+
   console.log('🚀  file: index.tsx:34  fields:', fields);
 
-  const onAddRole = () => {
+  const onAddRole = (e: any) => {
+    // e.preventDfault();
     console.log('onAddRole');
+    append({ hourly: 1 });
     // const vals = getValues();
     // console.log('🚀  file: index.tsx:27  vals:', vals)
     // setValue('roles', [...getValues().roles, { role: '', description: '' }]);
     // TODO: add role to roles array in form
   };
+
+  // return (
+  //   <div>
+  //     ahellooo
+  //     {fields.map((item, i) => {
+  //       console.log('🚀  file: index.tsx:50  item:', item);
+  //       return (
+  //         <div key={i} className='form-group col-6'>
+  //           <label>Email</label>
+  //           <input
+  //             name={`roles[${i}]hourly`}
+  //             {...register(`roles.${i}.hourly`)}
+  //             type='number'
+  //             className={`form-control ${errors.tickets?.[i]?.email ? 'is-invalid' : ''}`}
+  //           />
+  //         </div>
+  //       );
+  //     })}
+  //   </div>
+  // );
 
   return currentUser ? (
     fields.map((field: any, index: any) => (

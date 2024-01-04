@@ -42,7 +42,7 @@ export const eventDetailsSchema = yup.object().shape({
   location: yup.string().min(3),
   date: yup.date().min(new Date()),
   description: yup.string().min(3),
-  roles: yup.array().of(yup.string().min(2)),
+  // roles: yup.array().of(yup.string().min(2)),
 });
 
 export type IeventDetailsSchema = yup.InferType<typeof eventDetailsSchema>;

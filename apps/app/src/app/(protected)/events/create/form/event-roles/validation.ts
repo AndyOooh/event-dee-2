@@ -45,10 +45,10 @@ export const eventRoleSchema = yup.object().shape({
   role_description: yup.string(),
 });
 
-export const eventRolesSchema = yup.array().of(eventRoleSchema);
+// export const eventRolesSchema = yup.array().of(eventRoleSchema);
 
 export type IeventRoleSchema = yup.InferType<typeof eventRoleSchema>;
-export type IeventRolesSchema = yup.InferType<typeof eventRolesSchema>;
+// export type IeventRolesSchema = yup.InferType<typeof eventRolesSchema>;
 
 // type Role1 = {
 //   role_type: Role;
