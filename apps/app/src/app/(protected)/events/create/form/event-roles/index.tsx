@@ -35,7 +35,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   });
 
   useEffect(() => {
-    remove()
+    remove();
     append({ hourly: 1 });
     // append({ hourly: '1' });
     // append({ hourly: '' });
@@ -43,7 +43,8 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
 
   console.log('🚀  file: index.tsx:34  fields:', fields);
 
-  const onAddRole = (e: any) => {
+  // const onAddRole = (e: any) => {
+  const onAddRole = () => {
     // e.preventDfault();
     console.log('onAddRole');
     append({ hourly: 1 });
