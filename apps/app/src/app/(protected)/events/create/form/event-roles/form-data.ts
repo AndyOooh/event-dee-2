@@ -6,6 +6,7 @@ type FormInput = {
   title: keyof IeventRoleSchema;
   type: 'text' | 'select' | 'date';
   tooltip: string;
+  defaultValue?: string;
   options?: SelectOptions;
   prepend?: string;
   prependClassName?: string;
@@ -64,6 +65,7 @@ export const formArrayEventRoles: FormInput[] = [
     title: 'number_workers',
     type: 'text',
     tooltip: 'Number of workers needed',
+    defaultValue: '1',
     className: `w-${numberInputSize}`,
   },
   {
@@ -71,9 +73,7 @@ export const formArrayEventRoles: FormInput[] = [
     type: 'text',
     tooltip: 'Hourly rate',
     prepend: '$',
-    // prependClassName: `w-${numberInputSize}`,
-    // prependClassName: 'input-sm',
-    // prependClassName: `w-32 input-sm`,
+    defaultValue: '500',
     prependClassName: `input-sm`,
     className: `w-${numberInputSize}`,
   },
@@ -81,14 +81,26 @@ export const formArrayEventRoles: FormInput[] = [
     title: 'days',
     type: 'text',
     tooltip: 'Number of days',
+    defaultValue: '1',
     className: `w-${numberInputSize}`,
   },
   {
     title: 'hours_per_day',
     type: 'text',
     tooltip: 'Hours per day',
+    defaultValue: '8',
     className: `w-${numberInputSize}`,
   },
+  {
+    title: 'break_hours',
+    type: 'text',
+    tooltip: 'Break time',
+    defaultValue: '1',
+    prepend: 'hours',
+    prependClassName: `input-sm`,
+    className: `w-${numberInputSize}`,
+  },
+
   {
     title: 'transport_covered',
     type: 'select',

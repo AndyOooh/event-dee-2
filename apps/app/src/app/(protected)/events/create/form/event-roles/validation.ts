@@ -33,6 +33,7 @@ export const eventRoleSchema = yup.object().shape({
   hourly: yup.number().required(),
   days: yup.number().required(),
   hours_per_day: yup.number().required(),
+  break_hours: yup.number().required(),
   transport_covered: yup.object().shape({
     share_ride: yup.boolean(),
     amount: yup.number(),

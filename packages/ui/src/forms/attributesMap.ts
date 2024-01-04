@@ -7,6 +7,7 @@ export type IAttributes = {
   _autocomplete?: string;
   _rows?: number;
   _maxLenght?: number;
+  _step?: number;
 };
 
 export const getAttributes = (name: string) => {
@@ -264,7 +265,7 @@ export const getAttributes = (name: string) => {
     case 'number_workers':
       attributes = {
         _type: 'number',
-        _label: 'Number of Workers',
+        _label: 'Quantity',
         _placeholder: 'Eg. 2',
         _autocomplete: 'number',
       };
@@ -275,12 +276,13 @@ export const getAttributes = (name: string) => {
         _label: 'Hourly Rate',
         _placeholder: 'Eg. 500',
         _autocomplete: 'salary',
+        _step: 50,
       };
       break;
     case 'days':
       attributes = {
         _type: 'number',
-        _label: 'Number of Days',
+        _label: 'Days',
         _placeholder: 'Eg. 2',
         _autocomplete: 'days',
       };
@@ -288,8 +290,17 @@ export const getAttributes = (name: string) => {
     case 'hours_per_day':
       attributes = {
         _type: 'number',
-        _label: 'Hours per Day',
+        _label: 'Hours/Day',
         _placeholder: 'Eg. 8',
+        _autocomplete: 'hours',
+        _step: 0.5,
+      };
+      break;
+    case 'break_hours':
+      attributes = {
+        _type: 'number',
+        _label: 'Break',
+        _placeholder: 'Eg. 1',
         _autocomplete: 'hours',
       };
       break;

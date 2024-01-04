@@ -29,7 +29,7 @@ export const TextInput = ({
   prepend,
   prependClassName,
 }: Props): JSX.Element => {
-  const { _type, _label, _placeholder, _autocomplete, _rows, _maxLenght }: IAttributes =
+  const { _type, _label, _placeholder, _autocomplete, _rows, _maxLenght, _step }: IAttributes =
     getAttributes(name);
 
   let Input =
@@ -54,6 +54,7 @@ export const TextInput = ({
           placeholder={_placeholder}
           autoComplete={_autocomplete}
           defaultValue={defaultValue}
+          step={_step}
           className={`${
             prepend ? 'flex-1 pl-0 h-auto focus:border-none' : `input-bordered ${maxW}`
           } input w-full mx-auto focus:outline-none focus:border-accent ${className}`}
