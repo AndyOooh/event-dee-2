@@ -261,6 +261,14 @@ export const getAttributes = (name: string) => {
         _autocomplete: 'postal-code',
       };
       break;
+    case 'number_workers':
+      attributes = {
+        _type: 'number',
+        _label: 'Number of Workers',
+        _placeholder: 'Eg. 2',
+        _autocomplete: 'number',
+      };
+      break;
     case 'hourly':
       attributes = {
         _type: 'number',

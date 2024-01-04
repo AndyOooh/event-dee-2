@@ -29,6 +29,7 @@ export enum EventType {
 
 export const eventRoleSchema = yup.object().shape({
   role_type: yup.string().required().oneOf(Object.values(Role)),
+  number_workers: yup.number().required(),
   hourly: yup.number().required(),
   days: yup.number().required(),
   hours_per_day: yup.number().required(),

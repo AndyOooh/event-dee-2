@@ -19,8 +19,9 @@ export const EventRoles = ({ register, errors }: Props) => {
 
   return currentUser ? (
     <div className={styles.form}>
-      <div className='w-full grid grid-cols-2 gap-6'>
-        {formArrayEventRoles.slice(0, 4).map(info => (
+      {/* <div className='w-full grid grid-cols-2 gap-6'> */}
+      <div className='w-full flex gap-6'>
+        {formArrayEventRoles.slice(0, 8).map(info => (
           <div key={info.title}>
             {info.type === 'select' ? (
               <Select
@@ -29,6 +30,7 @@ export const EventRoles = ({ register, errors }: Props) => {
                 options={info.options}
                 register={register}
                 label={true}
+                className='select-sm '
                 maxW='max-w-md'
               />
             ) : info.type === 'date' ? (
@@ -46,8 +48,12 @@ export const EventRoles = ({ register, errors }: Props) => {
                 defaultValue={currentUser && currentUser[info.title]}
                 register={register}
                 label={true}
-                maxW='max-w-md'
+                // className={info.className +'input-sm'}
+                className={`${info.className} input-sm`}
+                // className='input-sm'
+                // maxW='max-w-md'
                 prepend={info.prepend}
+                prependClassName={info.prependClassName}
               />
             )}
             <FormError formError={errors?.[info.title]?.message as string} />
@@ -55,7 +61,7 @@ export const EventRoles = ({ register, errors }: Props) => {
           </div>
         ))}
       </div>
-      <div className='w-1/2 mx-auto'>
+      {/* <div className='w-1/2 mx-auto'>
         <TextInput
           name={formArrayEventRoles[4].title}
           defaultValue={currentUser && currentUser[formArrayEventRoles[4].title]}
@@ -63,7 +69,7 @@ export const EventRoles = ({ register, errors }: Props) => {
           label={true}
           maxW='max-w-md'
         />
-      </div>
+      </div> */}
     </div>
   ) : null;
 };

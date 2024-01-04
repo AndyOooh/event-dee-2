@@ -12,6 +12,7 @@ type Props = {
   className?: string;
   maxW?: string;
   prepend?: string;
+  prependClassName?: string;
 };
 
 /* Takes maxW bc unable to overwrite max-w with tailwind. This is weird as other styles can be overwritten */
@@ -26,6 +27,7 @@ export const TextInput = ({
   className,
   maxW = 'max-w-sm',
   prepend,
+  prependClassName,
 }: Props): JSX.Element => {
   const { _type, _label, _placeholder, _autocomplete, _rows, _maxLenght }: IAttributes =
     getAttributes(name);
@@ -63,7 +65,7 @@ export const TextInput = ({
     Input = (
       // <div className='input input-bordered flex gap-2 w-full focus-within:[border:1px_solid_black] pl-0'>
       <div
-        className={`input input-bordered flex gap-2 w-full focus-within:[border:1px_solid_black] pl-0 ${maxW}`}>
+        className={`input input-bordered flex gap-2 w-full focus-within:[border:1px_solid_black] pl-0 ${maxW} ${prependClassName}`}>
         <span className='text-sm bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
           {prepend}
         </span>

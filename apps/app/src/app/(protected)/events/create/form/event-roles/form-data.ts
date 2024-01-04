@@ -8,8 +8,12 @@ type FormInput = {
   tooltip: string;
   options?: SelectOptions;
   prepend?: string;
+  prependClassName?: string;
   extraProps?: any;
+  className?: string;
 };
+
+const numberInputSize = 20; // rem
 
 // const eventRolesSchema = yup.object().shape({
 //   role_type: yup.string().required().oneOf(Object.values(Role)),
@@ -57,20 +61,33 @@ export const formArrayEventRoles: FormInput[] = [
     ],
   },
   {
+    title: 'number_workers',
+    type: 'text',
+    tooltip: 'Number of workers needed',
+    className: `w-${numberInputSize}`,
+  },
+  {
     title: 'hourly',
     type: 'text',
     tooltip: 'Hourly rate',
     prepend: '$',
+    // prependClassName: `w-${numberInputSize}`,
+    // prependClassName: 'input-sm',
+    // prependClassName: `w-32 input-sm`,
+    prependClassName: `input-sm`,
+    className: `w-${numberInputSize}`,
   },
   {
     title: 'days',
     type: 'text',
     tooltip: 'Number of days',
+    className: `w-${numberInputSize}`,
   },
   {
     title: 'hours_per_day',
     type: 'text',
     tooltip: 'Hours per day',
+    className: `w-${numberInputSize}`,
   },
   {
     title: 'transport_covered',
@@ -89,5 +106,4 @@ export const formArrayEventRoles: FormInput[] = [
     type: 'text',
     tooltip: 'Description',
   },
-
 ];
