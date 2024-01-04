@@ -4,7 +4,7 @@ import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { useContext } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { DatePicker, FormError, Select, TextInput } from 'ui';
+import { ActionButton, DatePicker, FormError, Select, TextInput } from 'ui';
 import { formArrayEventRoles } from './form-data';
 import { formatDate } from '__firebase/utilities';
 
@@ -16,6 +16,14 @@ type Props = {
 
 export const EventRoles = ({ register, errors }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
+
+
+  const onAddRole = () => {
+    console.log('onAddRole');
+    // TODO: add role to roles array in form
+  };
+
+  // const descriptionData = formArrayEventRoles[8]
 
   return currentUser ? (
     <div className={styles.form}>
@@ -78,6 +86,20 @@ export const EventRoles = ({ register, errors }: Props) => {
           </div>
         ))}
       </div>
+      <div className='self-start'>
+        <TextInput
+          name={formArrayEventRoles[8].title}
+          defaultValue={formArrayEventRoles[8].defaultValue}
+          register={register}
+          label={true}
+          className={`${formArrayEventRoles[8].className}`}
+          // maxW='max-w-md'
+          prepend={formArrayEventRoles[8].prepend}
+          prependClassName={formArrayEventRoles[8].prependClassName}
+        />
+        <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
+      </div>
+      <ActionButton onClick={onAddRole} text='Add Role' />
     </div>
   ) : null;
 };
