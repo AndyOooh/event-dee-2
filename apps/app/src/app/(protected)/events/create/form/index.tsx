@@ -3,7 +3,7 @@
 import React, { useContext, useEffect } from 'react';
 import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
 import { DevTool } from '@hookform/devtools';
-import { useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
@@ -14,6 +14,7 @@ import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
 import { EventLocation } from './event-location';
 import { EventRoles } from './event-roles';
+import { TestFieldArray } from './test-field-array';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -59,16 +60,16 @@ export const CreateEventForm = () => {
     console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
   };
 
-  //   const onTest = () => {
-  //     const data = watch();
-  //     const changedData = getChangedFormData(data, dirtyFields);
-  //     console.log('🚀  file: index.tsx:66  data:', data);
-  //     console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
-  //     console.log('🚀  file: index.tsx:66  filteredData:', changedData);
-  //     console.log('🚀  file: index.tsx:66  isValid:', isValid);
-  //     console.log('🚀  file: index.tsx:66  errors:', errors);
-  //     console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
-  //   };
+  const onTest = () => {
+    const data = watch();
+    const changedData = getChangedFormData(data, dirtyFields);
+    console.log('🚀  file: index.tsx:66  data:', data);
+    console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
+    console.log('🚀  file: index.tsx:66  filteredData:', changedData);
+    console.log('🚀  file: index.tsx:66  isValid:', isValid);
+    console.log('🚀  file: index.tsx:66  errors:', errors);
+    console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
+  };
 
   const onSubmit = async (data: IcreateEventSchema) => {
     try {
@@ -113,7 +114,19 @@ export const CreateEventForm = () => {
   const sections = [
     {
       title: 'Event Roles',
-      element: <EventRoles register={register} errors={errors} />,
+      element: (
+        <EventRoles
+          register={register}
+          control={control}
+          errors={errors}
+          setValue={setValue}
+          getValues={getValues}
+        />
+      ),
+    },
+    {
+      title: 'Event detailsss',
+      element: <TestFieldArray />,
     },
     {
       title: 'Event details',
@@ -141,9 +154,9 @@ export const CreateEventForm = () => {
 
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          {/* <button type='button' onClick={onTest} className='btn btn-neutral'>
+          <button type='button' onClick={onTest} className='btn btn-neutral'>
             Test
-          </button> */}
+          </button>
         </div>
       </form>
       <DevTool control={control} />

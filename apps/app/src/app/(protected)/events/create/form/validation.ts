@@ -8,6 +8,7 @@ export const createEventSchema = yup.object().shape({
   ...eventDetailsSchema.fields,
   ...eventLocationSchema.fields,
   // ...eventRolesSchema.fields,
+  // roles: yup.array().of(eventRoleSchema),
   roles: yup.array().of(eventRoleSchema),
 // }) as yup.ObjectSchema<IeventDetailsSchema & IeventLocationSchema & IeventRolesSchema>;
 }) as yup.ObjectSchema<IeventDetailsSchema & IeventLocationSchema & IeventRoleSchema>;

@@ -4,6 +4,7 @@ import { IAttributes, getAttributes } from './attributesMap';
 
 type Props = {
   name: string;
+  reg_name?: string;
   register: any;
   registeroptions?: any;
   defaultValue?: string;
@@ -19,6 +20,7 @@ type Props = {
 /* Update: above is prob bc tw favors the more restricted of the two */
 export const TextInput = ({
   name,
+  reg_name,
   register,
   registeroptions,
   defaultValue,
@@ -32,11 +34,13 @@ export const TextInput = ({
   const { _type, _label, _placeholder, _autocomplete, _rows, _maxLenght, _step }: IAttributes =
     getAttributes(name);
 
+  const register_string = reg_name ? reg_name : name;
+
   let Input =
     _type === 'textarea' ? (
       <>
         <textarea
-          {...register(name, registeroptions)}
+          {...register(register_string, registeroptions)}
           type={_type}
           placeholder={_placeholder}
           autoComplete={_autocomplete}
@@ -49,7 +53,8 @@ export const TextInput = ({
     ) : (
       <>
         <input
-          {...register(name, registeroptions)}
+          // {...register(name, registeroptions)}
+          {...register(register_string, registeroptions)}
           type={_type}
           placeholder={_placeholder}
           autoComplete={_autocomplete}
