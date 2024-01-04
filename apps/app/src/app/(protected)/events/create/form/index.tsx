@@ -13,6 +13,7 @@ import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
 import { EventLocation } from './event-location';
+import { EventRoles } from './event-roles';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -110,6 +111,10 @@ export const CreateEventForm = () => {
   // };
 
   const sections = [
+    {
+      title: 'Event Roles',
+      element: <EventRoles register={register} errors={errors} />,
+    },
     {
       title: 'Event details',
       element: <EventInfo register={register} errors={errors} />,

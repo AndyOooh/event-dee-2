@@ -34,8 +34,14 @@ export const DatePicker = ({
   extraProps,
 }: // prepend,
 Props): JSX.Element => {
-  const { _type, _label, _placeholder, _autocmplete, _rows, _maxLenght }: IAttributes =
-    getAttributes(name);
+  const {
+    _type,
+    _label,
+    _placeholder,
+    _autocomplete: _autocmplete,
+    _rows,
+    _maxLenght,
+  }: IAttributes = getAttributes(name);
 
   let Input = (
     <>

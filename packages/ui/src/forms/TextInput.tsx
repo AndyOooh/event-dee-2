@@ -27,7 +27,7 @@ export const TextInput = ({
   maxW = 'max-w-sm',
   prepend,
 }: Props): JSX.Element => {
-  const { _type, _label, _placeholder, _autocmplete, _rows, _maxLenght }: IAttributes =
+  const { _type, _label, _placeholder, _autocomplete, _rows, _maxLenght }: IAttributes =
     getAttributes(name);
 
   let Input =
@@ -37,7 +37,7 @@ export const TextInput = ({
           {...register(name, registeroptions)}
           type={_type}
           placeholder={_placeholder}
-          autoComplete={_autocmplete}
+          autoComplete={_autocomplete}
           defaultValue={defaultValue}
           className={`textarea textarea-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className}`}
           rows={_rows}
@@ -50,7 +50,7 @@ export const TextInput = ({
           {...register(name, registeroptions)}
           type={_type}
           placeholder={_placeholder}
-          autoComplete={_autocmplete}
+          autoComplete={_autocomplete}
           defaultValue={defaultValue}
           className={`${
             prepend ? 'flex-1 pl-0 h-auto focus:border-none' : `input-bordered ${maxW}`
