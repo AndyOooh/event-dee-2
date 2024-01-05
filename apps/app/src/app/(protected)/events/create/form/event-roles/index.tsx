@@ -2,7 +2,7 @@
 
 import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   Control,
   FieldErrors,
@@ -16,6 +16,7 @@ import { IcreateEventSchema } from '../validation';
 import { IeventRoleSchema } from './validation';
 import { IeventDetailsSchema } from '../event-info/validation';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
+import { getAttributes } from 'ui/src/forms/attributesMap';
 
 type Props = {
   register: UseFormRegister<any>;
@@ -27,6 +28,7 @@ type Props = {
 
 export const EventRoles = ({ register, control, errors, setValue, getValues }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
+  const [saved, setSaved] = useState<number[]>([]);
 
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
     name: 'roles', // unique name for your Field Array
@@ -48,7 +50,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
     hourly: 1,
     days: 3,
     hours_per_day: 1,
-    break_hours: null,
+    break_hours: 0,
     transport_covered: null,
     overnight_covered: null,
     role_description: null,
@@ -57,19 +59,35 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   console.log('🚀  file: index.tsx:34  fields:', fields);
 
   // const onAddRole = (e: any) => {
-  const onAddRole = () => {
+  const onAddRole = (index: number) => {
     // e.preventDfault();
     console.log('onAddRole');
     append(baseValues);
+    setSaved(prev => [...prev, index]);
+
+    console.log('control: ', control);
+    console.log('fields: ', fields);
+
     // const vals = getValues();
     // console.log('🚀  file: index.tsx:27  vals:', vals)
     // setValue('roles', [...getValues().roles, { role: '', description: '' }]);
     // TODO: add role to roles array in form
   };
 
+  const onRemoveRole = (index: number) => {
+    console.log('onRemove');
+    remove(index);
+    setSaved(prev => prev.filter(item => item !== index));
+  };
+
+  const onUpdateRole = (index: number) => {
+    console.log('onUpdate');
+    setSaved(prev => prev.filter(item => item !== index));
+  };
+
   return currentUser ? (
-    fields.map((field: any, index: any) => (
-      <div key={field.id} className={styles.form}>
+    <>
+      <div className={styles.form}>
         {/* <div className='w-full grid grid-cols-2 gap-6'> */}
         <div className='w-full flex gap-6'>
           {formArrayEventRoles.slice(0, 6).map(info => (
@@ -77,7 +95,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               {info.type === 'select' ? (
                 <Select
                   name={info.title}
-                  reg_name={`roles.${index}.${info.title}`}
+                  reg_name={`roles.${saved.length}.${info.title}`}
                   defaultValue={info.defaultValue}
                   options={info.options}
                   register={register}
@@ -88,8 +106,8 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               ) : (
                 <TextInput
                   name={info.title}
-                  reg_name={`roles.${index}.${info.title}`}
-                  // reg_name={`roles.${index}.email`}
+                  reg_name={`roles.${saved.length}.${info.title}`}
+                  // reg_name={`roles.${saved.length}.email`}
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
@@ -109,7 +127,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               {info.type === 'select' ? (
                 <Select
                   name={info.title}
-                  reg_name={`roles.${index}.${info.title}`}
+                  reg_name={`roles.${saved.length}.${info.title}`}
                   defaultValue={info.defaultValue}
                   options={info.options}
                   register={register}
@@ -120,7 +138,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               ) : (
                 <TextInput
                   name={info.title}
-                  reg_name={`roles.${index}.${info.title}`}
+                  reg_name={`roles.${saved.length}.${info.title}`}
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
@@ -137,7 +155,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
         <div className='self-start'>
           <TextInput
             name={formArrayEventRoles[8].title}
-            reg_name={`roles.${index}.${formArrayEventRoles[8].title}`}
+            reg_name={`roles.${saved.length}.${formArrayEventRoles[8].title}`}
             defaultValue={formArrayEventRoles[8].defaultValue}
             register={register}
             label={true}
@@ -148,9 +166,28 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           />
           <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
         </div>
-        <ActionButton onClick={onAddRole} text='Add Role' />
+        <ActionButton onClick={() => onAddRole(saved.length)} text='Add Role' />
+        <ActionButton
+          onClick={() => onRemoveRole(saved.length)}
+          text='Remove'
+          className='btn-error'
+        />
       </div>
-    ))
+      {fields.slice(0, saved.length).map((field: IeventRoleSchema & { id: string }, index: any) => (
+        <div key={index} className='w-full flex justify-between border-2 border-cyan-300 py-2'>
+          {Object.entries(field).map(([key, value]: [string, any]) => {
+            return key === 'id' ? null : (
+              <div key={key} className='flex flex-col gap-2 justify-center items-center'>
+                <div>{getAttributes(key)._label}</div>
+                <div>{value}</div>
+              </div>
+            );
+          })}
+          <button onClick={() => onRemoveRole(index)}>Remove</button>
+          <button onClick={() => onUpdateRole(index)}>Update</button>
+        </div>
+      ))}
+    </>
   ) : (
     <LoaderSpinner />
   );

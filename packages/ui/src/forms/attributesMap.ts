@@ -307,9 +307,33 @@ export const getAttributes = (name: string) => {
     case 'role_description':
       attributes = {
         _type: 'textarea',
-        _label: 'Role Description',
+        _label: 'Description',
         _placeholder: 'Eg. 2',
-        _autocomplete: 'hours',
+        // _autocomplete: 'hours',
+      };
+      break;
+    case 'transport_covered':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Transport',
+        _placeholder: 'Eg. Yes',
+        // _autocomplete: 'hours',
+      };
+      break;
+    case 'overnight_covered':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Overnight',
+        _placeholder: 'Eg. Yes',
+        // _autocomplete: 'hours',
+      };
+      break;
+    case 'role_type':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Role',
+        _placeholder: 'Eg. Model',
+        // _autocomplete: 'hours',
       };
       break;
 

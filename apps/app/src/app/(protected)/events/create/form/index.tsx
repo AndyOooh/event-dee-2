@@ -125,10 +125,10 @@ export const CreateEventForm = () => {
         />
       ),
     },
-    {
-      title: 'Event detailsss',
-      element: <TestFieldArray />,
-    },
+    // {
+    //   title: 'Event detailsss',
+    //   element: <TestFieldArray />,
+    // },
     {
       title: 'Event details',
       element: <EventInfo register={register} errors={errors} />,

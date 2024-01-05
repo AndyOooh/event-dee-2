@@ -26,7 +26,6 @@ export enum EventType {
   Other = 'Other',
 }
 
-
 export const eventRoleSchema = yup.object().shape({
   role_type: yup.string().required().oneOf(Object.values(Role)),
   number_workers: yup.number().required(),
@@ -34,14 +33,20 @@ export const eventRoleSchema = yup.object().shape({
   days: yup.number().required(),
   hours_per_day: yup.number().required(),
   break_hours: yup.number().required(),
-  transport_covered: yup.object().shape({
-    share_ride: yup.boolean(),
-    amount: yup.number(),
+  transport_covered: yup.boolean().transform((value, originalValue) => {
+    return originalValue === 'Yes' ? true : false;
   }),
-  overnight_covered: yup.object().shape({
-    provided: yup.boolean(),
-    amount: yup.number(),
+  overnight_covered: yup.boolean().transform((value, originalValue) => {
+    return originalValue === 'Yes' ? true : false;
   }),
+  // transport_covered: yup.object().shape({
+  //   share_ride: yup.boolean(),
+  //   amount: yup.number(),
+  // }),
+  // overnight_covered: yup.object().shape({
+  //   provided: yup.boolean(),
+  //   amount: yup.number(),
+  // }),
   role_description: yup.string(),
 });
 
@@ -65,8 +70,3 @@ export type IeventRoleSchema = yup.InferType<typeof eventRoleSchema>;
 //   }
 //   description?: string;
 // };
-
-
-
-
-

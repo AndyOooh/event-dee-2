@@ -12,7 +12,7 @@ import {
 export const createEventSchema = yup.object().shape({
   ...eventDetailsSchema.fields,
   ...eventLocationSchema.fields,
-  roles: yup.array().of(eventRoleSchema),
+  roles: yup.array().of(eventRoleSchema).min(1),
   // ...eventRolesSchema.fields,
   // }) as yup.ObjectSchema<IeventDetailsSchema & IeventLocationSchema & IeventRolesSchema>;
   // }) as yup.ObjectSchema<IeventDetailsSchema & IeventLocationSchema & IeventRoleSchema[]>;
