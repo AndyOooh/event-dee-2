@@ -39,10 +39,10 @@ export const ReactSelect = ({
   const [selectedOption, setSelectedOption] = useState(defaultValue);
   // console.log('🚀  file: ReactSelect.tsx:39  selectedOption:', selectedOption);
 
-  const { _type, _label, _placeholder, _autocmplete } = getAttributes(name);
+  const { _type, _label, _placeholder, _autocomplete: _autocmplete } = getAttributes(name);
 
   const LALALALA = register(name);
-  console.log('🚀  file: ReactSelect.tsx:45  LALALALA:', LALALALA)
+  console.log('🚀  file: ReactSelect.tsx:45  LALALALA:', LALALALA);
 
   // console.log('LOADINGGGGG!!!!!!!!!');
   let SelectElement = (

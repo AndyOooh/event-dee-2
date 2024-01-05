@@ -4,9 +4,10 @@ export type IAttributes = {
   _type: string;
   _label: string;
   _placeholder: string;
-  _autocmplete?: string;
+  _autocomplete?: string;
   _rows?: number;
   _maxLenght?: number;
+  _step?: number;
 };
 
 export const getAttributes = (name: string) => {
@@ -20,7 +21,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: `${toTitleCase(name)}`,
         _placeholder: `Eg. ${name === 'last_name' ? 'Doe' : 'John'}`,
-        _autocmplete: name === 'last_name' ? 'family-name' : 'given-name',
+        _autocomplete: name === 'last_name' ? 'family-name' : 'given-name',
       };
       break;
     case 'email':
@@ -28,7 +29,7 @@ export const getAttributes = (name: string) => {
         _type: 'email',
         _label: 'Email',
         _placeholder: 'your@email.com',
-        _autocmplete: 'email',
+        _autocomplete: 'email',
       };
       break;
     case 'new_password':
@@ -37,7 +38,7 @@ export const getAttributes = (name: string) => {
         _type: 'password',
         _label: toTitleCase(name),
         _placeholder: '******',
-        _autocmplete: 'new-password',
+        _autocomplete: 'new-password',
       };
       break;
     case 'current_password':
@@ -46,7 +47,7 @@ export const getAttributes = (name: string) => {
         _type: 'password',
         _label: toTitleCase(name),
         _placeholder: '******',
-        _autocmplete: 'current-password',
+        _autocomplete: 'current-password',
       };
       break;
     case 'company_name':
@@ -54,7 +55,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Company Name',
         _placeholder: 'Eg. Google',
-        _autocmplete: 'organization',
+        _autocomplete: 'organization',
       };
       break;
     case 'invite_link':
@@ -62,7 +63,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Invite Link',
         _placeholder: '',
-        _autocmplete: 'url',
+        _autocomplete: 'url',
       };
       break;
     case 'province':
@@ -70,7 +71,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Province',
         _placeholder: 'Eg. Bangkpl',
-        _autocmplete: 'address-level1',
+        _autocomplete: 'address-level1',
       };
       break;
     case 'gender':
@@ -78,7 +79,7 @@ export const getAttributes = (name: string) => {
         _type: 'dropdown',
         _label: 'Gender',
         _placeholder: 'Eg. Female',
-        _autocmplete: 'address-level1',
+        _autocomplete: 'address-level1',
       };
       break;
     case 'pronouns':
@@ -86,7 +87,7 @@ export const getAttributes = (name: string) => {
         _type: 'dropdown',
         _label: 'Pronouns',
         _placeholder: 'Eg. she/Her',
-        _autocmplete: 'address-level1',
+        _autocomplete: 'address-level1',
       };
       break;
     case 'links.0':
@@ -94,7 +95,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'LinkedIn',
         _placeholder: 'https://www.linkedin.com/in/your-name',
-        _autocmplete: 'url',
+        _autocomplete: 'url',
       };
       break;
     case 'links.1':
@@ -102,7 +103,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Instagram',
         _placeholder: 'https://www.instagram.com/your-name',
-        _autocmplete: 'url',
+        _autocomplete: 'url',
       };
       break;
     case 'links.2':
@@ -110,7 +111,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Facebook',
         _placeholder: 'https://www.facebook.com/your-name',
-        _autocmplete: 'url',
+        _autocomplete: 'url',
       };
       break;
     case 'links.3':
@@ -118,7 +119,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Twitter',
         _placeholder: 'https://www.twitter.com/your-name',
-        _autocmplete: 'url',
+        _autocomplete: 'url',
       };
       break;
     case 'links.4':
@@ -126,7 +127,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'TikTok',
         _placeholder: 'https://www.tiktok.com/@your-name',
-        _autocmplete: 'url',
+        _autocomplete: 'url',
       };
       break;
     case 'links.5':
@@ -134,7 +135,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Youtube',
         _placeholder: 'https://www.youtube.com/your-name',
-        _autocmplete: 'url',
+        _autocomplete: 'url',
       };
       break;
     case 'profile_header':
@@ -162,7 +163,7 @@ export const getAttributes = (name: string) => {
         // _type: 'text',
         _label: 'Date of Birth',
         _placeholder: 'Eg. 01/01/1990',
-        _autocmplete: 'bday',
+        _autocomplete: 'bday',
       };
       break;
 
@@ -226,7 +227,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Street Name',
         _placeholder: 'Eg. Sukhumvit',
-        _autocmplete: 'street',
+        _autocomplete: 'street',
       };
       break;
     case 'street_number':
@@ -234,7 +235,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Street Number',
         _placeholder: 'Eg. 123',
-        _autocmplete: 'street-number',
+        _autocomplete: 'street-number',
       };
       break;
     case 'khet_sublocality':
@@ -242,7 +243,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Khet/Sublocality',
         _placeholder: 'Eg. Khlong Toei',
-        _autocmplete: 'address-level2',
+        _autocomplete: 'address-level2',
       };
       break;
     case 'postal_code':
@@ -250,7 +251,7 @@ export const getAttributes = (name: string) => {
         _type: 'text',
         _label: 'Postal Code',
         _placeholder: 'Eg. 10110',
-        _autocmplete: 'postal-code',
+        _autocomplete: 'postal-code',
       };
       break;
     case 'location_description':
@@ -258,7 +259,81 @@ export const getAttributes = (name: string) => {
         _type: 'textarea',
         _label: 'Location Description',
         _placeholder: 'Eg. back entrance, 5th floor',
-        _autocmplete: 'postal-code',
+        _autocomplete: 'postal-code',
+      };
+      break;
+    case 'number_workers':
+      attributes = {
+        _type: 'number',
+        _label: 'Quantity',
+        _placeholder: 'Eg. 2',
+        _autocomplete: 'number',
+      };
+      break;
+    case 'hourly':
+      attributes = {
+        _type: 'number',
+        _label: 'Hourly Rate',
+        _placeholder: 'Eg. 500',
+        _autocomplete: 'salary',
+        _step: 50,
+      };
+      break;
+    case 'days':
+      attributes = {
+        _type: 'number',
+        _label: 'Days',
+        _placeholder: 'Eg. 2',
+        _autocomplete: 'days',
+      };
+      break;
+    case 'hours_per_day':
+      attributes = {
+        _type: 'number',
+        _label: 'Hours/Day',
+        _placeholder: 'Eg. 8',
+        _autocomplete: 'hours',
+        _step: 0.5,
+      };
+      break;
+    case 'break_hours':
+      attributes = {
+        _type: 'number',
+        _label: 'Break',
+        _placeholder: 'Eg. 1',
+        _autocomplete: 'hours',
+      };
+      break;
+    case 'role_description':
+      attributes = {
+        _type: 'textarea',
+        _label: 'Description',
+        _placeholder: 'Eg. 2',
+        // _autocomplete: 'hours',
+      };
+      break;
+    case 'transport_covered':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Transport',
+        _placeholder: 'Eg. Yes',
+        // _autocomplete: 'hours',
+      };
+      break;
+    case 'overnight_covered':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Overnight',
+        _placeholder: 'Eg. Yes',
+        // _autocomplete: 'hours',
+      };
+      break;
+    case 'role_type':
+      attributes = {
+        _type: 'dropdown',
+        _label: 'Role',
+        _placeholder: 'Eg. Model',
+        // _autocomplete: 'hours',
       };
       break;
 
@@ -267,7 +342,7 @@ export const getAttributes = (name: string) => {
         _type: '',
         _label: '',
         _placeholder: '',
-        _autocmplete: '',
+        _autocomplete: '',
       };
   }
 
