@@ -10,23 +10,22 @@ import {
   UseFormSetValue,
   useFieldArray,
 } from 'react-hook-form';
-import { ActionButton, DatePicker, FormError, Select, TextInput } from 'ui';
+import { ActionButton, FormError, Select, TextInput } from 'ui';
 import { formArrayEventRoles } from './form-data';
-import { formatDate } from '__firebase/utilities';
 import { IcreateEventSchema } from '../validation';
+import { IeventRoleSchema } from './validation';
+import { IeventDetailsSchema } from '../event-info/validation';
+import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 
 type Props = {
   register: UseFormRegister<any>;
-  // errors: FieldErrors<IeventDetailsSchema>;
-  errors: any;
+  errors: FieldErrors<IeventDetailsSchema>;
   setValue: UseFormSetValue<IcreateEventSchema>;
   getValues: UseFormSetValue<IcreateEventSchema>;
-  // control: Control<IcreateEventSchema>;
-  control: any;
+  control: Control<IcreateEventSchema>;
 };
 
 export const EventRoles = ({ register, control, errors, setValue, getValues }: Props) => {
-  console.log('🚀  file: index.tsx:28  control:', control);
   const { currentUser } = useContext(CurrUserContext);
 
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
@@ -36,10 +35,24 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
 
   useEffect(() => {
     remove();
-    append({ hourly: 1 });
+    // append({ hourly: 1 });
+    // append();
+    append(baseValues);
     // append({ hourly: '1' });
     // append({ hourly: '' });
   }, []);
+
+  const baseValues: IeventRoleSchema = {
+    role_type: null,
+    number_workers: 1,
+    hourly: 1,
+    days: 3,
+    hours_per_day: 1,
+    break_hours: null,
+    transport_covered: null,
+    overnight_covered: null,
+    role_description: null,
+  };
 
   console.log('🚀  file: index.tsx:34  fields:', fields);
 
@@ -47,32 +60,12 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   const onAddRole = () => {
     // e.preventDfault();
     console.log('onAddRole');
-    append({ hourly: 1 });
+    append(baseValues);
     // const vals = getValues();
     // console.log('🚀  file: index.tsx:27  vals:', vals)
     // setValue('roles', [...getValues().roles, { role: '', description: '' }]);
     // TODO: add role to roles array in form
   };
-
-  // return (
-  //   <div>
-  //     ahellooo
-  //     {fields.map((item, i) => {
-  //       console.log('🚀  file: index.tsx:50  item:', item);
-  //       return (
-  //         <div key={i} className='form-group col-6'>
-  //           <label>Email</label>
-  //           <input
-  //             name={`roles[${i}]hourly`}
-  //             {...register(`roles.${i}.hourly`)}
-  //             type='number'
-  //             className={`form-control ${errors.tickets?.[i]?.email ? 'is-invalid' : ''}`}
-  //           />
-  //         </div>
-  //       );
-  //     })}
-  //   </div>
-  // );
 
   return currentUser ? (
     fields.map((field: any, index: any) => (
@@ -84,6 +77,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               {info.type === 'select' ? (
                 <Select
                   name={info.title}
+                  reg_name={`roles.${index}.${info.title}`}
                   defaultValue={info.defaultValue}
                   options={info.options}
                   register={register}
@@ -94,8 +88,8 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               ) : (
                 <TextInput
                   name={info.title}
-                  // reg_name={`roles_test.${index}.${info.title}`}
-                  reg_name={`roles_test.${index}.email`}
+                  reg_name={`roles.${index}.${info.title}`}
+                  // reg_name={`roles.${index}.email`}
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
@@ -115,6 +109,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               {info.type === 'select' ? (
                 <Select
                   name={info.title}
+                  reg_name={`roles.${index}.${info.title}`}
                   defaultValue={info.defaultValue}
                   options={info.options}
                   register={register}
@@ -125,7 +120,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               ) : (
                 <TextInput
                   name={info.title}
-                  reg_name={`roles_test.${index}.${info.title}`}
+                  reg_name={`roles.${index}.${info.title}`}
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
@@ -142,6 +137,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
         <div className='self-start'>
           <TextInput
             name={formArrayEventRoles[8].title}
+            reg_name={`roles.${index}.${formArrayEventRoles[8].title}`}
             defaultValue={formArrayEventRoles[8].defaultValue}
             register={register}
             label={true}
@@ -156,7 +152,6 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
       </div>
     ))
   ) : (
-    // : null;
-    <div>Lalalallala</div>
+    <LoaderSpinner />
   );
 };

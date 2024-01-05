@@ -4,6 +4,7 @@ import { SelectOptions } from 'event-dee-types';
 
 type Props = {
   name: string;
+  reg_name?: string;
   register: any;
   defaultValue?: string;
   label?: boolean;
@@ -16,6 +17,7 @@ type Props = {
 
 export const Select = ({
   name,
+  reg_name,
   value,
   label = false,
   tooltip,
@@ -28,10 +30,12 @@ export const Select = ({
   const _value = value || name;
   const _label = toTitleCase(_value);
 
+  const register_string = reg_name ? reg_name : name;
+
   let Select = (
     <>
       <select
-        {...register(name)}
+        {...register(register_string)}
         className={`select select-bordered w-full mx-auto font-normal focus:outline-none focus:border-accent ${maxW} ${className} text-inherit`}>
         {/* <option disabled selected> */}
         <option>{defaultValue}</option>
