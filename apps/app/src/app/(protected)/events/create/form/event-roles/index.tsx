@@ -17,8 +17,7 @@ import { IeventRoleSchema } from './validation';
 import { IeventDetailsSchema } from '../event-info/validation';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { getAttributes } from 'ui/src/forms/attributesMap';
-import { BiEdit, BiSolidEdit, BiTrash, BiTrashAlt } from 'react-icons/bi';
-import { MdDelete } from 'react-icons/md';
+import { BiEdit, BiTrash } from 'react-icons/bi';
 
 type Props = {
   register: UseFormRegister<any>;
@@ -113,64 +112,22 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
-                  // labelClassName='w-min whitespace-nowrap'
                   className={{
                     input: `input-sm`,
                     wrapper_div: `input-sm`,
                     label_span: 'self-center',
                   }}
-                  // className={{ input: `${info.className} input-sm` }}
                   // maxW='max-w-md'
                   prepend={info.prepend}
-                  // prependClassName={info.prependClassName}
                   digits={info.digits}
                 />
               )}
               <FormError formError={errors?.[info.title]?.message as string} />
             </div>
           ))}
-          {/* <label htmlFor='' className='label w-min flex flex-col'>
-            Num Test
-            <input type='number' className='input input-sm input-bordered pr-1 w-min' />
-          </label> */}
         </div>
         <div className='w-full flex gap-6'>
           <div className='flex flex-col gap-2 justify-center items-center'>
-            {/* {formArrayEventRoles.slice(6, 8).map(info => (
-              <div key={info.title}>
-                {info.type === 'select' ? (
-                  <Select
-                    name={info.title}
-                    reg_name={`roles.${saved.length}.${info.title}`}
-                    defaultValue={info.defaultValue}
-                    options={info.options}
-                    register={register}
-                    label={true}
-                    className='select-sm '
-                    maxW='max-w-md'
-                  />
-                ) : (
-                  <TextInput
-                    name={info.title}
-                    reg_name={`roles.${saved.length}.${info.title}`}
-                    defaultValue={info.defaultValue}
-                    register={register}
-                    label={true}
-                    // className={`${info.className} input-sm`}
-                    className={{
-                      input: `input-sm`,
-                      wrapper_div: `input-sm`,
-                      label_span: 'self-center',
-                    }}
-                    // maxW='max-w-md'
-                    prepend={info.prepend}
-                    // prependClassName={info.prependClassName}
-                  />
-                )}
-                <FormError formError={errors?.[info.title]?.message as string} />
-              </div>
-            ))} */}
-
             <label className='label flex-col'>
               Transport
               <div className='form-control'>
