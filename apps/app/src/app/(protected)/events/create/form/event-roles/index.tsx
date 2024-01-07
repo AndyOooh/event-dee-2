@@ -47,7 +47,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   const baseValues: IeventRoleSchema = {
     role_type: null,
     number_workers: 1,
-    hourly: 1,
+    hourly: 300,
     days: 3,
     hours_per_day: 1,
     break_hours: 0,
@@ -111,15 +111,22 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
-                  className={`${info.className} input-sm`}
+                  // labelClassName='w-min whitespace-nowrap'
+                  className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
+                  // className={{ input: `${info.className} input-sm` }}
                   // maxW='max-w-md'
                   prepend={info.prepend}
-                  prependClassName={info.prependClassName}
+                  // prependClassName={info.prependClassName}
+                  digits={info.digits}
                 />
               )}
               <FormError formError={errors?.[info.title]?.message as string} />
             </div>
           ))}
+          {/* <label htmlFor='' className='label w-min flex flex-col'>
+            Num Test
+            <input type='number' className='input input-sm input-bordered pr-1 w-min' />
+          </label> */}
         </div>
         <div className='w-full flex gap-6'>
           {formArrayEventRoles.slice(6, 8).map(info => (
@@ -142,10 +149,11 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
-                  className={`${info.className} input-sm`}
+                  // className={`${info.className} input-sm`}
+                  className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
                   // maxW='max-w-md'
                   prepend={info.prepend}
-                  prependClassName={info.prependClassName}
+                  // prependClassName={info.prependClassName}
                 />
               )}
               <FormError formError={errors?.[info.title]?.message as string} />
@@ -159,10 +167,11 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
             defaultValue={formArrayEventRoles[8].defaultValue}
             register={register}
             label={true}
-            className={`${formArrayEventRoles[8].className}`}
+            // className={`${formArrayEventRoles[8].className}`}
+            className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
             // maxW='max-w-md'
             prepend={formArrayEventRoles[8].prepend}
-            prependClassName={formArrayEventRoles[8].prependClassName}
+            // prependClassName={formArrayEventRoles[8].prependClassName}
           />
           <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
         </div>

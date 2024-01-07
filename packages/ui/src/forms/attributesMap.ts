@@ -302,6 +302,7 @@ export const getAttributes = (name: string) => {
         _label: 'Break',
         _placeholder: 'Eg. 1',
         _autocomplete: 'hours',
+        _step: 0.25,
       };
       break;
     case 'role_description':
