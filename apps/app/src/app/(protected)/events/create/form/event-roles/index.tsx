@@ -182,7 +182,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
       </div>
 
       {saved.length ? (
-        <div className='card w-full bg-base-200 shadow-xl text-sm'>
+        <div className='card w-full bg-base-200 shadow-xl text-sm mt-8'>
           <div className='overflow-x-auto'>
             <table className='table w-full'>
               <thead>
