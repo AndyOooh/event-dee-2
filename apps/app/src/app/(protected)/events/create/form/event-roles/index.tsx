@@ -17,6 +17,7 @@ import { IeventRoleSchema } from './validation';
 import { IeventDetailsSchema } from '../event-info/validation';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { getAttributes } from 'ui/src/forms/attributesMap';
+import { BiEdit, BiTrash } from 'react-icons/bi';
 
 type Props = {
   register: UseFormRegister<any>;
@@ -47,7 +48,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   const baseValues: IeventRoleSchema = {
     role_type: null,
     number_workers: 1,
-    hourly: 1,
+    hourly: 300,
     days: 3,
     hours_per_day: 1,
     break_hours: 0,
@@ -111,10 +112,14 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   defaultValue={info.defaultValue}
                   register={register}
                   label={true}
-                  className={`${info.className} input-sm`}
+                  className={{
+                    input: `input-sm`,
+                    wrapper_div: `input-sm`,
+                    label_span: 'self-center',
+                  }}
                   // maxW='max-w-md'
                   prepend={info.prepend}
-                  prependClassName={info.prependClassName}
+                  digits={info.digits}
                 />
               )}
               <FormError formError={errors?.[info.title]?.message as string} />
@@ -122,71 +127,107 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           ))}
         </div>
         <div className='w-full flex gap-6'>
-          {formArrayEventRoles.slice(6, 8).map(info => (
-            <div key={info.title}>
-              {info.type === 'select' ? (
-                <Select
-                  name={info.title}
-                  reg_name={`roles.${saved.length}.${info.title}`}
-                  defaultValue={info.defaultValue}
-                  options={info.options}
-                  register={register}
-                  label={true}
-                  className='select-sm '
-                  maxW='max-w-md'
-                />
-              ) : (
-                <TextInput
-                  name={info.title}
-                  reg_name={`roles.${saved.length}.${info.title}`}
-                  defaultValue={info.defaultValue}
-                  register={register}
-                  label={true}
-                  className={`${info.className} input-sm`}
-                  // maxW='max-w-md'
-                  prepend={info.prepend}
-                  prependClassName={info.prependClassName}
-                />
-              )}
-              <FormError formError={errors?.[info.title]?.message as string} />
-            </div>
-          ))}
-        </div>
-        <div className='self-start'>
-          <TextInput
-            name={formArrayEventRoles[8].title}
-            reg_name={`roles.${saved.length}.${formArrayEventRoles[8].title}`}
-            defaultValue={formArrayEventRoles[8].defaultValue}
-            register={register}
-            label={true}
-            className={`${formArrayEventRoles[8].className}`}
-            // maxW='max-w-md'
-            prepend={formArrayEventRoles[8].prepend}
-            prependClassName={formArrayEventRoles[8].prependClassName}
-          />
-          <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
-        </div>
-        <ActionButton onClick={() => onAddRole(saved.length)} text='Add Role' />
-        <ActionButton
-          onClick={() => onRemoveRole(saved.length)}
-          text='Remove'
-          className='btn-error'
-        />
-      </div>
-      {fields.slice(0, saved.length).map((field: IeventRoleSchema & { id: string }, index: any) => (
-        <div key={index} className='w-full flex justify-between border-2 border-cyan-300 py-2'>
-          {Object.entries(field).map(([key, value]: [string, any]) => {
-            return key === 'id' ? null : (
-              <div key={key} className='flex flex-col gap-2 justify-center items-center'>
-                <div>{getAttributes(key)._label}</div>
-                <div>{value}</div>
+          <div className='flex flex-col gap-2 justify-center items-center'>
+            <label className='label flex-col'>
+              Transport
+              <div className='form-control'>
+                <label className='label gap-2 cursor-pointer'>
+                  <span className='label-text'>Red pill</span>
+                  <input
+                    type='radio'
+                    name='radio-10'
+                    className='radio-xs checked:bg-red-500'
+                    checked
+                  />
+                </label>
               </div>
-            );
-          })}
-          <button onClick={() => onRemoveRole(index)}>Remove</button>
-          <button onClick={() => onUpdateRole(index)}>Update</button>
+              <div className='form-control'>
+                <label className='label gap-2 cursor-pointer'>
+                  <span className='label-text'>Blue pill</span>
+                  <input
+                    type='radio'
+                    name='radio-10'
+                    className='radio-xs checked:bg-blue-500'
+                    checked
+                  />
+                </label>
+              </div>
+            </label>
+          </div>
+          <div className='self-start'>
+            <TextInput
+              name={formArrayEventRoles[8].title}
+              reg_name={`roles.${saved.length}.${formArrayEventRoles[8].title}`}
+              defaultValue={formArrayEventRoles[8].defaultValue}
+              register={register}
+              label={true}
+              className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
+              prepend={formArrayEventRoles[8].prepend}
+            />
+            <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
+          </div>
         </div>
-      ))}
+        <div className='self-center flex justify-center gap-4'>
+          <ActionButton
+            onClick={() => onAddRole(saved.length)}
+            text='Add Role'
+            className='btn-sm max-w-[10rem]'
+          />
+          <ActionButton
+            onClick={() => onRemoveRole(saved.length)}
+            text='Cancel'
+            className='btn-sm max-w-[10rem] btn-error'
+          />
+        </div>
+      </div>
+
+      {saved.length ? (
+        <div className='card w-full bg-base-200 shadow-xl text-sm mt-8'>
+          <div className='overflow-x-auto'>
+            <table className='table w-full'>
+              <thead>
+                <tr>
+                  {Object.keys(fields[0]).map((key: string) => {
+                    return key === 'id' ? null : (
+                      <th key={key} className='text-center'>
+                        {getAttributes(key)._short_label || getAttributes(key)._label}
+                      </th>
+                    );
+                  })}
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {fields
+                  .slice(0, saved.length)
+                  .map((field: IeventRoleSchema & { id: string }, index: any) => (
+                    <tr key={field + index}>
+                      {Object.entries(field).map(([key, value]: [string, any]) => {
+                        return key === 'id' ? null : (
+                          <th
+                            key={key}
+                            className={`text-center ${
+                              key === 'role_description' ? 'truncate max-w-[4rem]' : ''
+                            }`}>
+                            {value}
+                          </th>
+                        );
+                      })}
+                      <th className='flex gap-2 justify-center items-center'>
+                        <button className='' onClick={() => onRemoveRole(index)}>
+                          <BiEdit className='text-2xl text-info' />
+                        </button>
+                        <button className='' onClick={() => onUpdateRole(index)}>
+                          <BiTrash className='text-2xl text-error' />
+                        </button>
+                      </th>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : null}
     </>
   ) : (
     <LoaderSpinner />

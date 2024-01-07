@@ -1,3 +1,4 @@
+import { TextInputClassNames } from 'ui/src/forms/TextInput_new';
 import {
   IeventRoleSchema,
   // IeventRolesSchema
@@ -12,12 +13,13 @@ type FormInput = {
   defaultValue?: string;
   options?: SelectOptions;
   prepend?: string;
-  prependClassName?: string;
+  // prependClassName?: string;
   extraProps?: any;
-  className?: string;
+  className?: TextInputClassNames;
+  digits?: number;
 };
 
-const numberInputSize = 20; // rem
+// const numberInputSize = 20; // rem
 
 // const eventRolesSchema = yup.object().shape({
 //   role_type: yup.string().required().oneOf(Object.values(Role)),
@@ -68,40 +70,49 @@ export const formArrayEventRoles: FormInput[] = [
     title: 'number_workers',
     type: 'text',
     tooltip: 'Number of workers needed',
-    defaultValue: '1',
-    className: `w-${numberInputSize}`,
+    // defaultValue: '1',
+    // className: `w-${numberInputSize}`,
+    digits: 2,
   },
   {
     title: 'hourly',
     type: 'text',
     tooltip: 'Hourly rate',
     prepend: '$',
-    defaultValue: '500',
-    prependClassName: `input-sm`,
-    className: `w-${numberInputSize}`,
+    // defaultValue: '500',
+    // prependClassName: `input-sm`,
+    // className: `w-${numberInputSize}`,
+    // className: `w-${numberInputSize} input-sm`,
+    className: { wrapper_div: `input-sm` },
+    digits: 4,
   },
   {
     title: 'days',
     type: 'text',
     tooltip: 'Number of days',
-    defaultValue: '1',
-    className: `w-${numberInputSize}`,
+    // defaultValue: '1',
+    // className: `w-${numberInputSize}`,
+    digits: 2,
   },
   {
     title: 'hours_per_day',
     type: 'text',
     tooltip: 'Hours per day',
-    defaultValue: '8',
-    className: `w-${numberInputSize}`,
+    // defaultValue: '8',
+    // className: `w-${numberInputSize}`,
+    digits: 3,
   },
   {
     title: 'break_hours',
     type: 'text',
     tooltip: 'Break time',
-    defaultValue: '1',
+    // defaultValue: '1',
     prepend: 'hours',
-    prependClassName: `input-sm`,
-    className: `w-${numberInputSize}`,
+    // prependClassName: `input-sm`,
+    // className: `w-${numberInputSize}`,
+    // className: `w-${numberInputSize} input-sm`,
+    className: { wrapper_div: `input-sm`, input: `input-sm` },
+    digits: 3,
   },
 
   {

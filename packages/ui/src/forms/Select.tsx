@@ -65,7 +65,7 @@ export const Select = ({
   if (label) {
     Select = (
       <>
-        <label className='label w-full flex flex-col'>
+        <label className='label w-full flex flex-col whitespace-nowrap'>
           <span className='label-text self-start mb-3'>{_label}</span>
           {Select}
         </label>
