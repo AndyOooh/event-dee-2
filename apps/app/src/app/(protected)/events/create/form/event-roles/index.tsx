@@ -204,11 +204,8 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               defaultValue={formArrayEventRoles[8].defaultValue}
               register={register}
               label={true}
-              // className={`${formArrayEventRoles[8].className}`}
               className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
-              // maxW='max-w-md'
               prepend={formArrayEventRoles[8].prepend}
-              // prependClassName={formArrayEventRoles[8].prependClassName}
             />
             <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
           </div>
@@ -226,83 +223,14 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           />
         </div>
       </div>
-      {/* {fields.slice(0, saved.length).map((field: IeventRoleSchema & { id: string }, index: any) => (
-        // <div key={index} className='card flex-row w-full flex justify-between border-2 border-cyan-300 py-2'>
-        <div key={index} className='card w-full bg-base-200 shadow-xl text-sm'>
-          <div className='card-body flex-row'>
-            {Object.entries(field).map(([key, value]: [string, any]) => {
-              return key === 'id' ? null : (
-                <div key={key} className='flex flex-col gap-2 justify-center items-center'>
-                  <div>{getAttributes(key)._label}</div>
-                  <div>{value}</div>
-                </div>
-              );
-            })}
-            <div className='flex flex-col gap-2'>
-              <button className='btn btn-sm' onClick={() => onRemoveRole(index)}>
-                Remove
-              </button>
-              <button className='btn btn-sm' onClick={() => onUpdateRole(index)}>
-                Update
-              </button>
-            </div>
-          </div>
-        </div>
-      ))} */}
-      {/* {fields.slice(0, saved.length).map((field: IeventRoleSchema & { id: string }, index: any) => ( */}
-      <div className='card w-full bg-base-200 shadow-xl text-sm'>
-        <div className='overflow-x-auto'>
-          <table className='table w-full'>
-            <thead>
-              <tr>
-                {Object.keys(fields[0]).map((key: string) => {
-                  return key === 'id' ? null : (
-                    <th key={key} className='text-center'>
-                      {getAttributes(key)._short_label || getAttributes(key)._label}
-                    </th>
-                  );
-                })}
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {fields
-                .slice(0, saved.length)
-                .map((field: IeventRoleSchema & { id: string }, index: any) => (
-                  <tr key={field + index}>
-                    {Object.entries(field).map(([key, value]: [string, any]) => {
-                      return key === 'id' ? null : (
-                        <th
-                          key={key}
-                          className={`text-center ${
-                            key === 'role_description' ? 'truncate max-w-[4rem]' : ''
-                          }`}>
-                          {value}
-                        </th>
-                      );
-                    })}
-                    <th className='flex gap-2 justify-center items-center'>
-                      <button className='' onClick={() => onRemoveRole(index)}>
-                        <BiEdit className='text-2xl text-info' />
-                      </button>
-                      <button className='' onClick={() => onUpdateRole(index)}>
-                        <BiTrash className='text-2xl text-error' />
-                      </button>
-                    </th>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
 
-      {/* {fields.slice(0, saved.length).map((field: IeventRoleSchema & { id: string }, index: any) => (
-        <div key={index} className='card w-full bg-base-200 shadow-xl text-sm'>
+      {saved.length ? (
+        <div className='card w-full bg-base-200 shadow-xl text-sm'>
           <div className='overflow-x-auto'>
             <table className='table w-full'>
               <thead>
                 <tr>
-                  {Object.keys(field).map((key: string) => {
+                  {Object.keys(fields[0]).map((key: string) => {
                     return key === 'id' ? null : (
                       <th key={key} className='text-center'>
                         {getAttributes(key)._short_label || getAttributes(key)._label}
@@ -313,30 +241,36 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  {Object.entries(field).map(([key, value]: [string, any]) => {
-                    return key === 'id' ? null : (
-                      <th
-                        key={key}
-                        className={`text-center ${key === 'role_description' ? 'truncate max-w-[4rem]' : ''}`}>
-                        {value}
+                {fields
+                  .slice(0, saved.length)
+                  .map((field: IeventRoleSchema & { id: string }, index: any) => (
+                    <tr key={field + index}>
+                      {Object.entries(field).map(([key, value]: [string, any]) => {
+                        return key === 'id' ? null : (
+                          <th
+                            key={key}
+                            className={`text-center ${
+                              key === 'role_description' ? 'truncate max-w-[4rem]' : ''
+                            }`}>
+                            {value}
+                          </th>
+                        );
+                      })}
+                      <th className='flex gap-2 justify-center items-center'>
+                        <button className='' onClick={() => onRemoveRole(index)}>
+                          <BiEdit className='text-2xl text-info' />
+                        </button>
+                        <button className='' onClick={() => onUpdateRole(index)}>
+                          <BiTrash className='text-2xl text-error' />
+                        </button>
                       </th>
-                    );
-                  })}
-                  <th className='flex gap-2 justify-center items-center'>
-                    <button className='' onClick={() => onRemoveRole(index)}>
-                      <BiEdit className='text-2xl text-info' />
-                    </button>
-                    <button className='' onClick={() => onUpdateRole(index)}>
-                      <BiTrash className='text-2xl text-error' />
-                    </button>
-                  </th>
-                </tr>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
         </div>
-      ))} */}
+      ) : null}
     </>
   ) : (
     <LoaderSpinner />
