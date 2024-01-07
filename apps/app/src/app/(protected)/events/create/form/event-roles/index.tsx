@@ -112,7 +112,11 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   register={register}
                   label={true}
                   // labelClassName='w-min whitespace-nowrap'
-                  className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
+                  className={{
+                    input: `input-sm`,
+                    wrapper_div: `input-sm`,
+                    label_span: 'self-center',
+                  }}
                   // className={{ input: `${info.className} input-sm` }}
                   // maxW='max-w-md'
                   prepend={info.prepend}
@@ -150,7 +154,11 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   register={register}
                   label={true}
                   // className={`${info.className} input-sm`}
-                  className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
+                  className={{
+                    input: `input-sm`,
+                    wrapper_div: `input-sm`,
+                    label_span: 'self-center',
+                  }}
                   // maxW='max-w-md'
                   prepend={info.prepend}
                   // prependClassName={info.prependClassName}
@@ -175,12 +183,14 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           />
           <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
         </div>
-        <ActionButton onClick={() => onAddRole(saved.length)} text='Add Role' />
-        <ActionButton
-          onClick={() => onRemoveRole(saved.length)}
-          text='Remove'
-          className='btn-error'
-        />
+        <div className='self-center flex justify-center gap-4'>
+          <ActionButton onClick={() => onAddRole(saved.length)} text='Add Role' className='btn-sm max-w-[10rem]' />
+          <ActionButton
+            onClick={() => onRemoveRole(saved.length)}
+            text='Cancel'
+            className='btn-sm max-w-[10rem] btn-error'
+          />
+        </div>
       </div>
       {fields.slice(0, saved.length).map((field: IeventRoleSchema & { id: string }, index: any) => (
         <div key={index} className='w-full flex justify-between border-2 border-cyan-300 py-2'>
