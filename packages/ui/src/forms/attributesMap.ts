@@ -4,6 +4,7 @@ export type IAttributes = {
   _type: string;
   _label: string;
   _placeholder: string;
+  _short_label?: string;
   _autocomplete?: string;
   _rows?: number;
   _maxLenght?: number;
@@ -266,6 +267,7 @@ export const getAttributes = (name: string) => {
       attributes = {
         _type: 'number',
         _label: 'Quantity',
+        _short_label: 'Qty',
         _placeholder: 'Eg. 2',
         _autocomplete: 'number',
       };
@@ -274,6 +276,7 @@ export const getAttributes = (name: string) => {
       attributes = {
         _type: 'number',
         _label: 'Hourly Rate',
+        _short_label: 'Hourly',
         _placeholder: 'Eg. 500',
         _autocomplete: 'salary',
         _step: 50,
@@ -291,6 +294,7 @@ export const getAttributes = (name: string) => {
       attributes = {
         _type: 'number',
         _label: 'Hours/Day',
+        _short_label: 'Hours',
         _placeholder: 'Eg. 8',
         _autocomplete: 'hours',
         _step: 0.5,
@@ -309,6 +313,7 @@ export const getAttributes = (name: string) => {
       attributes = {
         _type: 'textarea',
         _label: 'Description',
+        _short_label: 'Desc',
         _placeholder: 'Eg. 2',
         // _autocomplete: 'hours',
       };
