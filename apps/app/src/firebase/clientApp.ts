@@ -36,17 +36,17 @@ const getCloudFunction = (functionName: string) => {
   return returnedFunction;
 };
 
-if (
-  // process.env.REACT_APP_EMULATED === 'True' &&
-  // (process.env.NODE_ENV.match(/development/i) ||
-  //   window.location.hostname === 'localhost')
-  true
-) {
-  connectAuthEmulator(auth, 'http://localhost:9099');
-  connectFirestoreEmulator(db, 'localhost', 8080);
-  connectStorageEmulator(storage, 'localhost', 9199);
+// if (
+//   // process.env.REACT_APP_EMULATED === 'True' &&
+//   // (process.env.NODE_ENV.match(/development/i) ||
+//   //   window.location.hostname === 'localhost')
+//   true
+// ) {
+//   connectAuthEmulator(auth, 'http://localhost:9099');
+//   connectFirestoreEmulator(db, 'localhost', 8080);
+//   connectStorageEmulator(storage, 'localhost', 9199);
 
-  connectFunctionsEmulator(functions, 'localhost', 5001); // Replace with your emulator's host and port
-}
+//   connectFunctionsEmulator(functions, 'localhost', 5001); // Replace with your emulator's host and port
+// }
 
 export { app, db, auth, storage, getCloudFunction };
