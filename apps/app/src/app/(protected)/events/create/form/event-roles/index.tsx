@@ -128,29 +128,43 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
         </div>
         <div className='w-full flex gap-6'>
           <div className='flex flex-col gap-2 justify-center items-center'>
+            {/* <label className='label flex-col'> */}
             <label className='label flex-col'>
               Transport
-              <div className='form-control'>
-                <label className='label gap-2 cursor-pointer'>
-                  <span className='label-text'>Red pill</span>
-                  <input
-                    type='radio'
-                    name='radio-10'
-                    className='radio-xs checked:bg-red-500'
-                    checked
-                  />
-                </label>
-              </div>
-              <div className='form-control'>
-                <label className='label gap-2 cursor-pointer'>
-                  <span className='label-text'>Blue pill</span>
-                  <input
-                    type='radio'
-                    name='radio-10'
-                    className='radio-xs checked:bg-blue-500'
-                    checked
-                  />
-                </label>
+              <div className='flex'>
+                <div className='form-control'>
+                  <label className='label gap-2 cursor-pointer'>
+                    <span className='label-text'>Provided</span>
+                    <input
+                      type='radio'
+                      name='radio-10'
+                      className='radio-xs checked:bg-red-500'
+                      checked
+                    />
+                  </label>
+                </div>
+                <div className='form-control'>
+                  <label className='label gap-2 cursor-pointer'>
+                    <span className='label-text'>Not Provided</span>
+                    <input
+                      type='radio'
+                      name='radio-10'
+                      className='radio-xs checked:bg-blue-500'
+                      checked
+                    />
+                  </label>
+                </div>
+                <div className='form-control'>
+                  <label className='label gap-2 cursor-pointer'>
+                    <span className='label-text'>Amount</span>
+                    <input
+                      type='radio'
+                      name='radio-10'
+                      className='radio-xs checked:bg-blue-500'
+                      checked
+                    />
+                  </label>
+                </div>
               </div>
             </label>
           </div>
