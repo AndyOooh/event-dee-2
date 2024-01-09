@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Controller, Control, UseFormRegister } from 'react-hook-form';
+import { startCase } from 'lodash';
 
 type Props = {
   control: Control;
@@ -12,7 +13,8 @@ type Props = {
 
 /* Default checked is options[0] */
 export const RadioButtonMulti = ({ control, register, name, options }: Props) => {
-  const title = name.replace(/_/g, ' ');
+  //   const title = name.replace(/_/g, ' ');
+  const title = startCase(name);
 
   const [checked, setChecked] = useState<string>(options[0]);
 
