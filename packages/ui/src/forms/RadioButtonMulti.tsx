@@ -23,11 +23,10 @@ export const RadioButtonMulti = ({ control, register, name, reg_name, options }:
     <div className='flex flex-col gap-2 justify-center items-center'>
       <label className='label flex-col'>
         {title}
-        <div className='flex'>
+        <div className='flex-col'>
           {options.map((option, index) => (
             <div key={option} className='form-control'>
               <label className='label gap-2 cursor-pointer'>
-                <span className='label-text'>{option}</span>
                 <Controller
                   //   name={name}
                   name={reg_name}
@@ -44,6 +43,7 @@ export const RadioButtonMulti = ({ control, register, name, reg_name, options }:
                     />
                   )}
                 />
+                <span className='label-text w-full'>{option}</span>
               </label>
             </div>
           ))}

@@ -153,31 +153,46 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   control={control}
                   //   defaultValue={option}
                   render={({ field }) => (
-                    <TextInput
-                      // name={info.title}
-                      name=''
-                      // reg_name={`roles.${saved.length}.${info.title}`}
-                      reg_name=''
-                      // reg_name={`roles.${saved.length}.email`}
-                      defaultValue={200}
-                      register={register}
-                      label={true}
-                      className={{
-                        input: `input-sm`,
-                        wrapper_div: `input-sm`,
-                        label_span: 'self-center',
-                      }}
-                      prepend='$$'
-                      digits={4}
-                    />
-                    // <input
-                    //   type='number'
-                    //   //   onClick={() => setChecked(option)}
-                    //   //   {...field}
-                    //   //   value={option}
-                    //   className='radio-xs checked:bg-red-500'
-                    //   //   checked={checked === option}
+                    // <TextInput
+                    //   // name={info.title}
+
+                    //   name=''
+                    //   // reg_name={`roles.${saved.length}.${info.title}`}
+                    //   reg_name=''
+                    //   // reg_name={`roles.${saved.length}.email`}
+                    //   defaultValue={200}
+                    //   // register={register}
+                    //   label={true}
+                    //   className={{
+                    //     input: `input-sm`,
+                    //     wrapper_div: `input-sm`,
+                    //     label_span: 'self-center',
+                    //   }}
+                    //   prepend='$$'
+                    //   digits={4}
                     // />
+                    <label className={`label w-full text-center flex flex-col whitespace-nowrap `}>
+                      <span className={`label-text self-start mb-3`}>Amount</span>
+                      <div
+                        className='tooltip tooltip-info tooltip-left w-full text-xs'
+                        data-tip={'Input amount'}>
+                        <div
+                          className={`input input-sm input-bordered flex focus-within:[border:1px_solid_black] px-0 max-w-sm`}>
+                          <span className='text-xs bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
+                            $$
+                          </span>
+                          <input
+                            defaultValue={200}
+                            step={50}
+                            type='number'
+                            className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
+                            //   onClick={() => setChecked(option)}
+                            //   {...field}
+                            //   value={option}
+                          />
+                        </div>
+                      </div>
+                    </label>
                   )}
                 />
               </label>
