@@ -57,7 +57,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
     role_description: null,
   };
 
-  console.log('🚀  file: index.tsx:34  fields:', fields);
+  console.log('🚀  file: index.tsx:34  fiels:', fields);
 
   // const onAddRole = (e: any) => {
   const onAddRole = (index: number) => {

@@ -44,7 +44,15 @@ export const TextInput = ({
   const register_string = reg_name || name;
   const isNumber = _type === 'number';
   const numRem = digits + 2;
-  const numberTypeWidthRem = `w-${numRem * 4}`;
+  // const numRem = 6;
+  // const numberTypeWidthRem = `w-${numRem * 4}`;
+  const digitsToWidthClass = {
+    1: 'w-12',
+    2: 'w-16',
+    3: 'w-20',
+    4: 'w-24',
+    5: 'w-28',
+  }
 
   let Input =
     _type === 'textarea' ? (
@@ -55,7 +63,7 @@ export const TextInput = ({
           placeholder={_placeholder}
           autoComplete={_autocomplete}
           defaultValue={defaultValue}
-          className={`textarea textarea-bordered w-full mx-auto focus:outline-none w- focus:border-accent ${maxW} ${className?.input}`}
+          className={`textarea textarea-bordered w-full mx-auto focus:outline-none focus:border-accent ${maxW} ${className?.input}`}
           rows={_rows}
           maxLength={_maxLenght}
         />
@@ -76,7 +84,9 @@ export const TextInput = ({
             isNumber
               ? `flex-1 text-center h-auto focus:border-none ${
                   prepend ? 'px-0' : 'pr-0'
-                } ${numberTypeWidthRem}`
+                } ${digitsToWidthClass[digits]}`
+                // } ${numberTypeWidthRem}`
+                // } w-24`
               : `input-bordered w-full ${maxW}`
           } input mx-auto focus:outline-none focus:border-accent ${className?.input}`}
           maxLength={_maxLenght}></input>
