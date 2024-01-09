@@ -11,3 +11,4 @@ export { SearchableSelect2 } from './SearchableSelect2';
 export { ReactSelect } from './ReactSelect';
 export { DatePicker } from './DatePicker';
 export { ActionButton } from './ActionButton';
+export { RadioButtonMulti } from './RadioButtonMulti';

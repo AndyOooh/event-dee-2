@@ -10,7 +10,7 @@ import {
   UseFormSetValue,
   useFieldArray,
 } from 'react-hook-form';
-import { ActionButton, FormError, Select, TextInput } from 'ui';
+import { ActionButton, FormError, RadioButtonMulti, Select, TextInput } from 'ui';
 import { formArrayEventRoles } from './form-data';
 import { IcreateEventSchema } from '../validation';
 import { IeventRoleSchema } from './validation';
@@ -168,6 +168,12 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               </div>
             </label>
           </div>
+          <RadioButtonMulti
+            control={control}
+            register={register}
+            name='transport'
+            options={['Provided', 'Not Provided', 'Amount']}
+          />
           <div className='self-start'>
             <TextInput
               name={formArrayEventRoles[8].title}
