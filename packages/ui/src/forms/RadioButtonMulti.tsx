@@ -8,11 +8,12 @@ type Props = {
   control: Control;
   register: UseFormRegister<any>;
   name: string;
+  reg_name: string;
   options: string[];
 };
 
 /* Default checked is options[0] */
-export const RadioButtonMulti = ({ control, register, name, options }: Props) => {
+export const RadioButtonMulti = ({ control, register, name, reg_name, options }: Props) => {
   //   const title = name.replace(/_/g, ' ');
   const title = startCase(name);
 
@@ -28,7 +29,8 @@ export const RadioButtonMulti = ({ control, register, name, options }: Props) =>
               <label className='label gap-2 cursor-pointer'>
                 <span className='label-text'>{option}</span>
                 <Controller
-                  name={name}
+                  //   name={name}
+                  name={reg_name}
                   control={control}
                   defaultValue={option}
                   render={({ field }) => (

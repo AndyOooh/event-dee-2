@@ -5,10 +5,12 @@ import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUse
 import { useContext, useEffect, useState } from 'react';
 import {
   Control,
+  Controller,
   FieldErrors,
   UseFormRegister,
   UseFormSetValue,
   useFieldArray,
+  useWatch,
 } from 'react-hook-form';
 import { ActionButton, FormError, RadioButtonMulti, Select, TextInput } from 'ui';
 import { formArrayEventRoles } from './form-data';
@@ -58,6 +60,11 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   };
 
   console.log('🚀  file: index.tsx:34  fiels:', fields);
+  console.log('😍😘😍😘😍😘control: ', control);
+  console.log('😍😘😍😘😍😘control: ', control.getFieldState('roles'));
+
+  const roles = useWatch({ name: 'roles', control });
+  console.log('🚀  roles:', roles);
 
   // const onAddRole = (e: any) => {
   const onAddRole = (index: number) => {
@@ -127,64 +134,67 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           ))}
         </div>
         <div className='w-full flex gap-6'>
-          {/* <div className='flex flex-col gap-2 justify-center items-center'>
-            <label className='label flex-col'>
-              Transport
-              <div className='flex'>
-                <div className='form-control'>
-                  <label className='label gap-2 cursor-pointer'>
-                    <span className='label-text'>Provided</span>
-                    <input
-                      type='radio'
-                      name='radio-10'
-                      className='radio-xs checked:bg-red-500'
-                      checked
-                    />
-                  </label>
-                </div>
-                <div className='form-control'>
-                  <label className='label gap-2 cursor-pointer'>
-                    <span className='label-text'>Not Provided</span>
-                    <input
-                      type='radio'
-                      name='radio-10'
-                      className='radio-xs checked:bg-blue-500'
-                      checked
-                    />
-                  </label>
-                </div>
-                <div className='form-control'>
-                  <label className='label gap-2 cursor-pointer'>
-                    <span className='label-text'>Amount</span>
-                    <input
-                      type='radio'
-                      name='radio-10'
-                      className='radio-xs checked:bg-blue-500'
-                      checked
-                    />
-                  </label>
-                </div>
-              </div>
-            </label>
-          </div> */}
           <RadioButtonMulti
             control={control}
             register={register}
             name='transport'
+            reg_name={`roles.${saved.length}.transport`}
             options={['Not Provided', 'Provided', 'Amount']}
           />
-          
+
+          {/* <span className='label-text'>{option}</span> */}
+          {roles?.[saved.length]?.transport === 'Amount' && (
+            // <div>roles😍😘</div>
+            <div key={'amount_num'} className='form-control'>
+              <label className='label gap-2 cursor-pointer'>
+                <Controller
+                  // name='transport'
+                  name={`roles.${saved.length}.transport`}
+                  control={control}
+                  //   defaultValue={option}
+                  render={({ field }) => (
+                    <TextInput
+                      // name={info.title}
+                      name=''
+                      // reg_name={`roles.${saved.length}.${info.title}`}
+                      reg_name=''
+                      // reg_name={`roles.${saved.length}.email`}
+                      defaultValue={200}
+                      register={register}
+                      label={true}
+                      className={{
+                        input: `input-sm`,
+                        wrapper_div: `input-sm`,
+                        label_span: 'self-center',
+                      }}
+                      prepend='$$'
+                      digits={4}
+                    />
+                    // <input
+                    //   type='number'
+                    //   //   onClick={() => setChecked(option)}
+                    //   //   {...field}
+                    //   //   value={option}
+                    //   className='radio-xs checked:bg-red-500'
+                    //   //   checked={checked === option}
+                    // />
+                  )}
+                />
+              </label>
+            </div>
+          )}
+
           <div className='self-start'>
             <TextInput
-              name={formArrayEventRoles[8].title}
-              reg_name={`roles.${saved.length}.${formArrayEventRoles[8].title}`}
-              defaultValue={formArrayEventRoles[8].defaultValue}
+              name={formArrayEventRoles[6].title}
+              reg_name={`roles.${saved.length}.${formArrayEventRoles[6].title}`}
+              defaultValue={formArrayEventRoles[6].defaultValue}
               register={register}
               label={true}
               className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
-              prepend={formArrayEventRoles[8].prepend}
+              prepend={formArrayEventRoles[6].prepend}
             />
-            <FormError formError={errors?.[formArrayEventRoles[8].title]?.message as string} />
+            <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
           </div>
         </div>
         <div className='self-center flex justify-center gap-4'>

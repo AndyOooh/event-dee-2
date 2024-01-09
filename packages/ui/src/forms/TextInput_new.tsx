@@ -14,7 +14,7 @@ type Props = {
   reg_name?: string;
   register: any;
   registeroptions?: any;
-  defaultValue?: string;
+  defaultValue?: string | number;
   label?: boolean;
   tooltip?: string;
   className?: TextInputClassNames;
