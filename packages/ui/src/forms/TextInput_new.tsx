@@ -43,16 +43,17 @@ export const TextInput = ({
 
   const register_string = reg_name || name;
   const isNumber = _type === 'number';
-  const numRem = digits + 2;
-  // const numRem = 6;
-  // const numberTypeWidthRem = `w-${numRem * 4}`;
-  const digitsToWidthClass = {
+
+  /* (digits + 2) * 4 */
+  const digitsToWidthClass: {
+    [key: number]: string;
+  } = {
     1: 'w-12',
     2: 'w-16',
     3: 'w-20',
     4: 'w-24',
     5: 'w-28',
-  }
+  };
 
   let Input =
     _type === 'textarea' ? (
@@ -82,11 +83,9 @@ export const TextInput = ({
           step={_step}
           className={`${
             isNumber
-              ? `flex-1 text-center h-auto focus:border-none ${
-                  prepend ? 'px-0' : 'pr-0'
-                } ${digitsToWidthClass[digits]}`
-                // } ${numberTypeWidthRem}`
-                // } w-24`
+              ? `flex-1 text-center h-auto focus:border-none ${prepend ? 'px-0' : 'pr-0'} ${
+                  digitsToWidthClass[digits]
+                }`
               : `input-bordered w-full ${maxW}`
           } input mx-auto focus:outline-none focus:border-accent ${className?.input}`}
           maxLength={_maxLenght}></input>
