@@ -52,8 +52,8 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
     days: 3,
     hours_per_day: 1,
     break_hours: 0,
-    transport_covered: null,
-    overnight_covered: null,
+    transport: 'Not Provided',
+    overnight: 'Not Provided',
     role_description: null,
   };
 
@@ -127,8 +127,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           ))}
         </div>
         <div className='w-full flex gap-6'>
-          <div className='flex flex-col gap-2 justify-center items-center'>
-            {/* <label className='label flex-col'> */}
+          {/* <div className='flex flex-col gap-2 justify-center items-center'>
             <label className='label flex-col'>
               Transport
               <div className='flex'>
@@ -167,13 +166,14 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                 </div>
               </div>
             </label>
-          </div>
+          </div> */}
           <RadioButtonMulti
             control={control}
             register={register}
             name='transport'
-            options={['Provided', 'Not Provided', 'Amount']}
+            options={['Not Provided', 'Provided', 'Amount']}
           />
+          
           <div className='self-start'>
             <TextInput
               name={formArrayEventRoles[8].title}

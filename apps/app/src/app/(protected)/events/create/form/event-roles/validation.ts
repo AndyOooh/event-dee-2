@@ -26,6 +26,13 @@ export enum EventType {
   Other = 'Other',
 }
 
+// type TransportStrings = 'Provided' | 'Not provided' | 'Amount';
+export enum TransportOvernight {
+  Provided = 'Provided',
+  NotProvided = 'Not provided',
+  Amount = 'Amount',
+}
+
 export const eventRoleSchema = yup.object().shape({
   role_type: yup.string().required().oneOf(Object.values(Role)),
   number_workers: yup.number().required(),
@@ -33,12 +40,18 @@ export const eventRoleSchema = yup.object().shape({
   days: yup.number().required(),
   hours_per_day: yup.number().required(),
   break_hours: yup.number().required(),
-  transport_covered: yup.boolean().transform((value, originalValue) => {
-    return originalValue === 'Yes' ? true : false;
-  }),
-  overnight_covered: yup.boolean().transform((value, originalValue) => {
-    return originalValue === 'Yes' ? true : false;
-  }),
+  // transport: // TransportStrings or number
+  transport: yup
+    .mixed()
+    .required()
+    .oneOf([...Object.values(TransportOvernight), 'number'], 'Invalid transport value😍'),
+  overnight: yup.string().required(),
+  // transport_covered: yup.boolean().transform((value, originalValue) => {
+  //   return originalValue === 'Yes' ? true : false;
+  // }),
+  // overnight_covered: yup.boolean().transform((value, originalValue) => {
+  //   return originalValue === 'Yes' ? true : false;
+  // }),
   // transport_covered: yup.object().shape({
   //   share_ride: yup.boolean(),
   //   amount: yup.number(),
