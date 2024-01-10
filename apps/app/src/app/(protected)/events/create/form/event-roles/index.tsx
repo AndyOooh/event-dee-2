@@ -32,6 +32,8 @@ type Props = {
 export const EventRoles = ({ register, control, errors, setValue, getValues }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
   const [saved, setSaved] = useState<number[]>([]);
+  const selectOptions = ['Provided', 'Not Provided', 'Amount'];
+  // const [checked, setChecked] = useState<string>(selectOptions[0]);
 
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
     name: 'roles', // unique name for your Field Array
@@ -58,6 +60,10 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
     overnight: 'Not Provided',
     role_description: null,
   };
+
+  // const setChecked = (fn: any) => {
+  //   fn('Amount');
+  // };
 
   console.log('🚀  file: index.tsx:34  fiels:', fields);
   console.log('😍😘😍😘😍😘control: ', control);
@@ -133,47 +139,54 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
             </div>
           ))}
         </div>
-        <div className='w-full flex gap-6'>
-          <div>
-            <RadioButtonMulti
-              control={control}
-              register={register}
-              name='transport'
-              reg_name={`roles.${saved.length}.transport`}
-              options={['Not Provided', 'Provided', 'Amount']}
-            />
+        <div className='w-full min-w-max flex gap-6'>
+          {['transport', 'overnight'].map((option, index) => (
+            <div key={option} className='flex gap-2'>
+              <RadioButtonMulti
+                control={control}
+                register={register}
+                name={option}
+                // reg_name={`roles.${saved.length}.transport`}
+                reg_name={`roles.${saved.length}.${option}`}
+                options={selectOptions}
+                // checked={checked}
+                // setChecked={setChecked}
+              />
 
-            {/* <span className='label-text'>{option}</span> */}
-            {!['Provided', 'Not Provided'].includes(roles?.[saved.length]?.transport as string) && (
-              <div key={'amount_num'} className='form-control'>
-                <label className='label gap-2 cursor-pointer'>
-                  <Controller
-                    // name='transport'
-                    name={`roles.${saved.length}.transport`}
-                    control={control}
-                    defaultValue={400}
-                    render={({ field }) => (
-                      // <TextInput
-                      //   // name={info.title}
+              {/* <span className='label-text'>{option}</span> */}
+              {!['Provided', 'Not Provided'].includes(
+                // roles?.[saved.length]?.transport as string
+                roles?.[saved.length]?.[option] as string
+              ) && (
+                <div key={'amount_num'} className='form-control self-end'>
+                  <label className='label gap-2 cursor-pointer'>
+                    <Controller
+                      // name='transport'
+                      name={`roles.${saved.length}.transport`}
+                      control={control}
+                      defaultValue={400}
+                      render={({ field }) => (
+                        // <TextInput
+                        //   // name={info.title}
 
-                      //   name=''
-                      //   // reg_name={`roles.${saved.length}.${info.title}`}
-                      //   reg_name=''
-                      //   // reg_name={`roles.${saved.length}.email`}
-                      //   defaultValue={200}
-                      //   // register={register}
-                      //   label={true}
-                      //   className={{
-                      //     input: `input-sm`,
-                      //     wrapper_div: `input-sm`,
-                      //     label_span: 'self-center',
-                      //   }}
-                      //   prepend='$$'
-                      //   digits={4}
-                      // />
-                      <label
-                        className={`label w-full text-center flex flex-col whitespace-nowrap `}>
-                        <span className={`label-text self-start mb-3`}>Amount</span>
+                        //   name=''
+                        //   // reg_name={`roles.${saved.length}.${info.title}`}
+                        //   reg_name=''
+                        //   // reg_name={`roles.${saved.length}.email`}
+                        //   defaultValue={200}
+                        //   // register={register}
+                        //   label={true}
+                        //   className={{
+                        //     input: `input-sm`,
+                        //     wrapper_div: `input-sm`,
+                        //     label_span: 'self-center',
+                        //   }}
+                        //   prepend='$$'
+                        //   digits={4}
+                        // />
+                        // <label
+                        //   className={`label w-full text-center flex flex-col whitespace-nowrap `}>
+                        //   <span className={`label-text self-start mb-3`}>Amount</span>
                         <div
                           className='tooltip tooltip-info tooltip-left w-full text-xs'
                           data-tip={'Input amount'}>
@@ -187,19 +200,21 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                               step={50}
                               onChange={e => {
                                 field.onChange(e.target.value);
+                                // setChecked('Amount');
                               }}
                               type='number'
                               className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
                             />
                           </div>
                         </div>
-                      </label>
-                    )}
-                  />
-                </label>
-              </div>
-            )}
-          </div>
+                        // </label>
+                      )}
+                    />
+                  </label>
+                </div>
+              )}
+            </div>
+          ))}
 
           <div className='self-start'>
             <TextInput
