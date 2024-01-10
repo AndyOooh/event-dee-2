@@ -17,7 +17,9 @@ export default async function Events({}: Props) {
       <Link href={'/events/create'} className='btn'>
         Create New Event
       </Link>
-      <EventsLala events={data as any[]} />
+      <div className='w-full flex flex-col items-center justify-center gap-6'>
+        <EventsLala events={data as any[]} />
+      </div>
     </div>
   );
 }
