@@ -101,6 +101,53 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
 
   return currentUser ? (
     <>
+      {saved.length ? (
+        <div className='card w-full bg-base-200 shadow-xl text-sm mb-8'>
+          <div className='overflow-x-auto'>
+            <table className='table w-full'>
+              <thead>
+                <tr>
+                  {Object.keys(fields[0]).map((key: string) => {
+                    return key === 'id' ? null : (
+                      <th key={key} className='text-center'>
+                        {getAttributes(key)._short_label || getAttributes(key)._label}
+                      </th>
+                    );
+                  })}
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {fields
+                  .slice(0, saved.length)
+                  .map((field: IeventRoleSchema & { id: string }, index: any) => (
+                    <tr key={field + index}>
+                      {Object.entries(field).map(([key, value]: [string, any]) => {
+                        return key === 'id' ? null : (
+                          <th
+                            key={key}
+                            className={`text-center ${
+                              key === 'role_description' ? 'truncate max-w-[4rem]' : ''
+                            }`}>
+                            {value}
+                          </th>
+                        );
+                      })}
+                      <th className='flex gap-2 justify-center items-center'>
+                        <button className='' onClick={() => onRemoveRole(index)}>
+                          <BiEdit className='text-2xl text-info' />
+                        </button>
+                        <button className='' onClick={() => onUpdateRole(index)}>
+                          <BiTrash className='text-2xl text-error' />
+                        </button>
+                      </th>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : null}
       <div className={styles.form}>
         {/* <div className='w-full grid grid-cols-2 gap-6'> */}
         <div className='w-full flex gap-6'>
@@ -242,54 +289,6 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           />
         </div>
       </div>
-
-      {saved.length ? (
-        <div className='card w-full bg-base-200 shadow-xl text-sm mt-8'>
-          <div className='overflow-x-auto'>
-            <table className='table w-full'>
-              <thead>
-                <tr>
-                  {Object.keys(fields[0]).map((key: string) => {
-                    return key === 'id' ? null : (
-                      <th key={key} className='text-center'>
-                        {getAttributes(key)._short_label || getAttributes(key)._label}
-                      </th>
-                    );
-                  })}
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {fields
-                  .slice(0, saved.length)
-                  .map((field: IeventRoleSchema & { id: string }, index: any) => (
-                    <tr key={field + index}>
-                      {Object.entries(field).map(([key, value]: [string, any]) => {
-                        return key === 'id' ? null : (
-                          <th
-                            key={key}
-                            className={`text-center ${
-                              key === 'role_description' ? 'truncate max-w-[4rem]' : ''
-                            }`}>
-                            {value}
-                          </th>
-                        );
-                      })}
-                      <th className='flex gap-2 justify-center items-center'>
-                        <button className='' onClick={() => onRemoveRole(index)}>
-                          <BiEdit className='text-2xl text-info' />
-                        </button>
-                        <button className='' onClick={() => onUpdateRole(index)}>
-                          <BiTrash className='text-2xl text-error' />
-                        </button>
-                      </th>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      ) : null}
     </>
   ) : (
     <LoaderSpinner />
