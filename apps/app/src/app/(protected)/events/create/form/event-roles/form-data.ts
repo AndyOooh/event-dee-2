@@ -115,18 +115,18 @@ export const formArrayEventRoles: FormInput[] = [
     digits: 3,
   },
 
-  {
-    title: 'transport_covered',
-    type: 'select',
-    tooltip: 'Transport covered',
-    options: ['Yes', 'No'],
-  },
-  {
-    title: 'overnight_covered',
-    type: 'select',
-    tooltip: 'Overnight covered',
-    options: ['Yes', 'No'],
-  },
+  // {
+  //   title: 'transport_covered',
+  //   type: 'select',
+  //   tooltip: 'Transport covered',
+  //   options: ['Yes', 'No'],
+  // },
+  // {
+  //   title: 'overnight_covered',
+  //   type: 'select',
+  //   tooltip: 'Overnight covered',
+  //   options: ['Yes', 'No'],
+  // },
   {
     title: 'role_description',
     type: 'text',
