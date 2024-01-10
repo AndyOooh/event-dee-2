@@ -314,23 +314,26 @@ export const getAttributes = (name: string) => {
         _type: 'textarea',
         _label: 'Description',
         _short_label: 'Desc',
-        _placeholder: 'Eg. 2',
+        _placeholder: 'Add details about the job',
+        _rows: 5,
         // _autocomplete: 'hours',
       };
       break;
-    case 'transport_covered':
+    case 'transport':
       attributes = {
-        _type: 'dropdown',
+        _type: 'dropdown', // changed to radio
         _label: 'Transport',
         _placeholder: 'Eg. Yes',
+        _short_label: 'Transport',
         // _autocomplete: 'hours',
       };
       break;
-    case 'overnight_covered':
+    case 'overnight':
       attributes = {
-        _type: 'dropdown',
+        _type: 'dropdown', // changed to radio
         _label: 'Overnight',
         _placeholder: 'Eg. Yes',
+        _short_label: 'Overnight',
         // _autocomplete: 'hours',
       };
       break;

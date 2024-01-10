@@ -223,7 +223,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
               defaultValue={formArrayEventRoles[6].defaultValue}
               register={register}
               label={true}
-              className={{ input: `input-sm`, wrapper_div: `input-sm`, label_span: 'self-center' }}
+              className={{ input: `input-lg`, wrapper_div: `input-sm`, label_span: 'self-center' }}
               prepend={formArrayEventRoles[6].prepend}
             />
             <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
