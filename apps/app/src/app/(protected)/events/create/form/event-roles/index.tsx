@@ -72,7 +72,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
   const onAddRole = (index: number) => {
     // e.preventDfault();
     console.log('onAddRole');
-    append(baseValues);
+    // append(baseValues);
     setSaved(prev => [...prev, index]);
 
     console.log('control: ', control);
@@ -144,148 +144,156 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           </div>
         </div>
       ) : null}
-      <div className={styles.form}>
-        {/* <div className='w-full grid grid-cols-2 gap-6'> */}
-        <div className='w-full flex gap-6'>
-          {formArrayEventRoles.slice(0, 6).map(info => (
-            <div key={info.title}>
-              {info.type === 'select' ? (
-                <Select
-                  name={info.title}
-                  reg_name={`roles.${saved.length}.${info.title}`}
-                  defaultValue={info.defaultValue}
-                  options={info.options}
+      {saved.length < fields.length ? (
+        <div className={styles.form}>
+          {/* <div className='w-full grid grid-cols-2 gap-6'> */}
+          <div className='w-full flex gap-6'>
+            {formArrayEventRoles.slice(0, 6).map(info => (
+              <div key={info.title}>
+                {info.type === 'select' ? (
+                  <Select
+                    name={info.title}
+                    reg_name={`roles.${saved.length}.${info.title}`}
+                    defaultValue={info.defaultValue}
+                    options={info.options}
+                    register={register}
+                    label={true}
+                    className='select-sm '
+                    maxW='max-w-md'
+                  />
+                ) : (
+                  <TextInput
+                    name={info.title}
+                    reg_name={`roles.${saved.length}.${info.title}`}
+                    // reg_name={`roles.${saved.length}.email`}
+                    defaultValue={info.defaultValue}
+                    register={register}
+                    label={true}
+                    className={{
+                      input: `input-sm`,
+                      wrapper_div: `input-sm`,
+                      label_span: 'self-center',
+                    }}
+                    // maxW='max-w-md'
+                    prepend={info.prepend}
+                    digits={info.digits}
+                  />
+                )}
+                <FormError formError={errors?.[info.title]?.message as string} />
+              </div>
+            ))}
+          </div>
+          <div className='w-full min-w-max flex gap-6'>
+            {['transport', 'overnight'].map((option: 'transport' | 'overnight', index) => (
+              <div key={option} className='flex gap-2'>
+                <RadioButtonMulti
+                  control={control}
                   register={register}
-                  label={true}
-                  className='select-sm '
-                  maxW='max-w-md'
+                  name={option}
+                  // reg_name={`roles.${saved.length}.transport`}
+                  reg_name={`roles.${saved.length}.${option}`}
+                  options={selectOptions}
+                  // checked={checked}
+                  // setChecked={setChecked}
                 />
-              ) : (
-                <TextInput
-                  name={info.title}
-                  reg_name={`roles.${saved.length}.${info.title}`}
-                  // reg_name={`roles.${saved.length}.email`}
-                  defaultValue={info.defaultValue}
-                  register={register}
-                  label={true}
-                  className={{
-                    input: `input-sm`,
-                    wrapper_div: `input-sm`,
-                    label_span: 'self-center',
-                  }}
-                  // maxW='max-w-md'
-                  prepend={info.prepend}
-                  digits={info.digits}
-                />
-              )}
-              <FormError formError={errors?.[info.title]?.message as string} />
-            </div>
-          ))}
-        </div>
-        <div className='w-full min-w-max flex gap-6'>
-          {['transport', 'overnight'].map((option: 'transport' | 'overnight', index) => (
-            <div key={option} className='flex gap-2'>
-              <RadioButtonMulti
-                control={control}
-                register={register}
-                name={option}
-                // reg_name={`roles.${saved.length}.transport`}
-                reg_name={`roles.${saved.length}.${option}`}
-                options={selectOptions}
-                // checked={checked}
-                // setChecked={setChecked}
-              />
 
-              {/* <span className='label-text'>{option}</span> */}
-              {!['Provided', 'Not Provided'].includes(
-                // roles?.[saved.length]?.transport as string
-                roles?.[saved.length]?.[option] as string
-              ) && (
-                <div key={'amount_num'} className='form-control self-end'>
-                  <label className='label gap-2 cursor-pointer'>
-                    <Controller
-                      // name='transport'
-                      name={`roles.${saved.length}.${option}`}
-                      control={control}
-                      defaultValue={400}
-                      render={({ field }) => (
-                        // <TextInput
-                        //   // name={info.title}
+                {/* <span className='label-text'>{option}</span> */}
+                {!['Provided', 'Not Provided'].includes(
+                  // roles?.[saved.length]?.transport as string
+                  roles?.[saved.length]?.[option] as string
+                ) && (
+                  <div key={'amount_num'} className='form-control self-end'>
+                    <label className='label gap-2 cursor-pointer'>
+                      <Controller
+                        // name='transport'
+                        name={`roles.${saved.length}.${option}`}
+                        control={control}
+                        defaultValue={400}
+                        render={({ field }) => (
+                          // <TextInput
+                          //   // name={info.title}
 
-                        //   name=''
-                        //   // reg_name={`roles.${saved.length}.${info.title}`}
-                        //   reg_name=''
-                        //   // reg_name={`roles.${saved.length}.email`}
-                        //   defaultValue={200}
-                        //   // register={register}
-                        //   label={true}
-                        //   className={{
-                        //     input: `input-sm`,
-                        //     wrapper_div: `input-sm`,
-                        //     label_span: 'self-center',
-                        //   }}
-                        //   prepend='$$'
-                        //   digits={4}
-                        // />
-                        // <label
-                        //   className={`label w-full text-center flex flex-col whitespace-nowrap `}>
-                        //   <span className={`label-text self-start mb-3`}>Amount</span>
-                        <div
-                          className='tooltip tooltip-info tooltip-left w-full text-xs'
-                          data-tip={'Input amount'}>
+                          //   name=''
+                          //   // reg_name={`roles.${saved.length}.${info.title}`}
+                          //   reg_name=''
+                          //   // reg_name={`roles.${saved.length}.email`}
+                          //   defaultValue={200}
+                          //   // register={register}
+                          //   label={true}
+                          //   className={{
+                          //     input: `input-sm`,
+                          //     wrapper_div: `input-sm`,
+                          //     label_span: 'self-center',
+                          //   }}
+                          //   prepend='$$'
+                          //   digits={4}
+                          // />
+                          // <label
+                          //   className={`label w-full text-center flex flex-col whitespace-nowrap `}>
+                          //   <span className={`label-text self-start mb-3`}>Amount</span>
                           <div
-                            className={`input input-sm input-bordered flex focus-within:[border:1px_solid_black] px-0 max-w-sm`}>
-                            <span className='text-xs bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
-                              $$
-                            </span>
-                            <input
-                              defaultValue={'0'}
-                              step={50}
-                              onChange={e => {
-                                console.log('🚀  e:', e, typeof e);
-                                field.onChange(e.target.value);
-                                // setChecked('Amount');
-                              }}
-                              type='number'
-                              className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
-                            />
+                            className='tooltip tooltip-info tooltip-left w-full text-xs'
+                            data-tip={'Input amount'}>
+                            <div
+                              className={`input input-sm input-bordered flex focus-within:[border:1px_solid_black] px-0 max-w-sm`}>
+                              <span className='text-xs bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
+                                $$
+                              </span>
+                              <input
+                                defaultValue={'0'}
+                                step={50}
+                                onChange={e => {
+                                  console.log('🚀  e:', e, typeof e);
+                                  field.onChange(e.target.value);
+                                  // setChecked('Amount');
+                                }}
+                                type='number'
+                                className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
+                              />
+                            </div>
                           </div>
-                        </div>
-                        // </label>
-                      )}
-                    />
-                  </label>
-                </div>
-              )}
-            </div>
-          ))}
+                          // </label>
+                        )}
+                      />
+                    </label>
+                  </div>
+                )}
+              </div>
+            ))}
 
-          <div className='self-start'>
-            <TextInput
-              name={formArrayEventRoles[6].title}
-              reg_name={`roles.${saved.length}.${formArrayEventRoles[6].title}`}
-              defaultValue={formArrayEventRoles[6].defaultValue}
-              register={register}
-              label={true}
-              className={{ input: `input-lg`, wrapper_div: `input-sm`, label_span: 'self-center' }}
-              prepend={formArrayEventRoles[6].prepend}
+            <div className='self-start'>
+              <TextInput
+                name={formArrayEventRoles[6].title}
+                reg_name={`roles.${saved.length}.${formArrayEventRoles[6].title}`}
+                defaultValue={formArrayEventRoles[6].defaultValue}
+                register={register}
+                label={true}
+                className={{
+                  input: `input-lg`,
+                  wrapper_div: `input-sm`,
+                  label_span: 'self-center',
+                }}
+                prepend={formArrayEventRoles[6].prepend}
+              />
+              <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
+            </div>
+          </div>
+          <div className='self-center flex justify-center gap-4'>
+            <ActionButton
+              onClick={() => onAddRole(saved.length)}
+              text='Add'
+              className='btn-sm max-w-[10rem]'
             />
-            <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
+            <ActionButton
+              onClick={() => onRemoveRole(saved.length)}
+              text='Cancel'
+              className='btn-sm max-w-[10rem] btn-error'
+            />
           </div>
         </div>
-        <div className='self-center flex justify-center gap-4'>
-          <ActionButton
-            onClick={() => onAddRole(saved.length)}
-            text='Add Role'
-            className='btn-sm max-w-[10rem]'
-          />
-          <ActionButton
-            onClick={() => onRemoveRole(saved.length)}
-            text='Cancel'
-            className='btn-sm max-w-[10rem] btn-error'
-          />
-        </div>
-      </div>
+      ) : (
+        <ActionButton onClick={() => append(baseValues)} text='Add Role' />
+      )}
     </>
   ) : (
     <LoaderSpinner />

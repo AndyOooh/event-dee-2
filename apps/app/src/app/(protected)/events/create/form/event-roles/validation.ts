@@ -29,7 +29,7 @@ export enum EventType {
 // type TransportStrings = 'Provided' | 'Not provided' | 'Amount';
 export enum TransportOvernight {
   Provided = 'Provided',
-  NotProvided = 'Not provided',
+  NotProvided = 'Not Provided',
   Amount = 'Amount',
 }
 
