@@ -14,9 +14,9 @@ export default async function Events({}: Props) {
     <div className='flex flex-col gap-4 w-full'>
       <h1 className='text-3xl'>Upcoming Events</h1>
       <div className='flex flex-col'></div>
-      <div className='btn'>
-        <Link href='/events/create'>Create New Event</Link>
-      </div>
+      <Link href={'/events/create'} className='btn'>
+        Create New Event
+      </Link>
       <EventsLala events={data as any[]} />
     </div>
   );
