@@ -243,9 +243,10 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                               $$
                             </span>
                             <input
-                              defaultValue={0}
+                              defaultValue={'0'}
                               step={50}
                               onChange={e => {
+                                console.log('🚀  e:', e, typeof e)
                                 field.onChange(e.target.value);
                                 // setChecked('Amount');
                               }}

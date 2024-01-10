@@ -41,25 +41,25 @@ export const eventRoleSchema = yup.object().shape({
   hours_per_day: yup.number().required(),
   break_hours: yup.number().required(),
   // transport: // TransportStrings or number
-  transport: yup
-    .mixed()
-    .required()
-    .oneOf([...Object.values(TransportOvernight), 'number'], 'Invalid transport value😍'),
-  overnight: yup.string().required(),
-  // transport_covered: yup.boolean().transform((value, originalValue) => {
-  //   return originalValue === 'Yes' ? true : false;
-  // }),
-  // overnight_covered: yup.boolean().transform((value, originalValue) => {
-  //   return originalValue === 'Yes' ? true : false;
-  // }),
-  // transport_covered: yup.object().shape({
-  //   share_ride: yup.boolean(),
-  //   amount: yup.number(),
-  // }),
-  // overnight_covered: yup.object().shape({
-  //   provided: yup.boolean(),
-  //   amount: yup.number(),
-  // }),
+  transport: yup.mixed().test('isTransportValid', 'Invalid transport value😍', value => {
+    if (
+      typeof value === 'string' &&
+      (!isNaN(Number(value)) || (Object.values(TransportOvernight) as string[]).includes(value))
+    ) {
+      return true;
+    }
+    return false;
+  }),
+  overnight: yup.mixed().test('isOvernightValid', 'Invalid overnight value😍', value => {
+    if (
+      typeof value === 'string' &&
+      (!isNaN(Number(value)) || (Object.values(TransportOvernight) as string[]).includes(value))
+    ) {
+      return true;
+    }
+    return false;
+  }),
+
   role_description: yup.string(),
 });
 
