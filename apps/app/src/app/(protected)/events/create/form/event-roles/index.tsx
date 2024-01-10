@@ -134,70 +134,72 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           ))}
         </div>
         <div className='w-full flex gap-6'>
-          <RadioButtonMulti
-            control={control}
-            register={register}
-            name='transport'
-            reg_name={`roles.${saved.length}.transport`}
-            options={['Not Provided', 'Provided', 'Amount']}
-          />
+          <div>
+            <RadioButtonMulti
+              control={control}
+              register={register}
+              name='transport'
+              reg_name={`roles.${saved.length}.transport`}
+              options={['Not Provided', 'Provided', 'Amount']}
+            />
 
-          {/* <span className='label-text'>{option}</span> */}
-          {roles?.[saved.length]?.transport === 'Amount' && (
-            // <div>roles😍😘</div>
-            <div key={'amount_num'} className='form-control'>
-              <label className='label gap-2 cursor-pointer'>
-                <Controller
-                  // name='transport'
-                  name={`roles.${saved.length}.transport`}
-                  control={control}
-                  //   defaultValue={option}
-                  render={({ field }) => (
-                    // <TextInput
-                    //   // name={info.title}
+            {/* <span className='label-text'>{option}</span> */}
+            {!['Provided', 'Not Provided'].includes(roles?.[saved.length]?.transport as string) && (
+              <div key={'amount_num'} className='form-control'>
+                <label className='label gap-2 cursor-pointer'>
+                  <Controller
+                    // name='transport'
+                    name={`roles.${saved.length}.transport`}
+                    control={control}
+                    defaultValue={400}
+                    render={({ field }) => (
+                      // <TextInput
+                      //   // name={info.title}
 
-                    //   name=''
-                    //   // reg_name={`roles.${saved.length}.${info.title}`}
-                    //   reg_name=''
-                    //   // reg_name={`roles.${saved.length}.email`}
-                    //   defaultValue={200}
-                    //   // register={register}
-                    //   label={true}
-                    //   className={{
-                    //     input: `input-sm`,
-                    //     wrapper_div: `input-sm`,
-                    //     label_span: 'self-center',
-                    //   }}
-                    //   prepend='$$'
-                    //   digits={4}
-                    // />
-                    <label className={`label w-full text-center flex flex-col whitespace-nowrap `}>
-                      <span className={`label-text self-start mb-3`}>Amount</span>
-                      <div
-                        className='tooltip tooltip-info tooltip-left w-full text-xs'
-                        data-tip={'Input amount'}>
+                      //   name=''
+                      //   // reg_name={`roles.${saved.length}.${info.title}`}
+                      //   reg_name=''
+                      //   // reg_name={`roles.${saved.length}.email`}
+                      //   defaultValue={200}
+                      //   // register={register}
+                      //   label={true}
+                      //   className={{
+                      //     input: `input-sm`,
+                      //     wrapper_div: `input-sm`,
+                      //     label_span: 'self-center',
+                      //   }}
+                      //   prepend='$$'
+                      //   digits={4}
+                      // />
+                      <label
+                        className={`label w-full text-center flex flex-col whitespace-nowrap `}>
+                        <span className={`label-text self-start mb-3`}>Amount</span>
                         <div
-                          className={`input input-sm input-bordered flex focus-within:[border:1px_solid_black] px-0 max-w-sm`}>
-                          <span className='text-xs bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
-                            $$
-                          </span>
-                          <input
-                            defaultValue={200}
-                            step={50}
-                            type='number'
-                            className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
-                            //   onClick={() => setChecked(option)}
-                            //   {...field}
-                            //   value={option}
-                          />
+                          className='tooltip tooltip-info tooltip-left w-full text-xs'
+                          data-tip={'Input amount'}>
+                          <div
+                            className={`input input-sm input-bordered flex focus-within:[border:1px_solid_black] px-0 max-w-sm`}>
+                            <span className='text-xs bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
+                              $$
+                            </span>
+                            <input
+                              defaultValue={200}
+                              step={50}
+                              onChange={e => {
+                                field.onChange(e.target.value);
+                              }}
+                              type='number'
+                              className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </label>
-                  )}
-                />
-              </label>
-            </div>
-          )}
+                      </label>
+                    )}
+                  />
+                </label>
+              </div>
+            )}
+          </div>
 
           <div className='self-start'>
             <TextInput
