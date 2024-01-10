@@ -61,10 +61,6 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
     role_description: null,
   };
 
-  // const setChecked = (fn: any) => {
-  //   fn('Amount');
-  // };
-
   console.log('🚀  file: index.tsx:34  fiels:', fields);
   console.log('😍😘😍😘😍😘control: ', control);
   console.log('😍😘😍😘😍😘control: ', control.getFieldState('roles'));
@@ -134,10 +130,10 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                         );
                       })}
                       <th className='flex gap-2 justify-center items-center'>
-                        <button className='' onClick={() => onRemoveRole(index)}>
+                        <button type='button' className='' onClick={() => onUpdateRole(index)}>
                           <BiEdit className='text-2xl text-info' />
                         </button>
-                        <button className='' onClick={() => onUpdateRole(index)}>
+                        <button type='button' className='' onClick={() => onRemoveRole(index)}>
                           <BiTrash className='text-2xl text-error' />
                         </button>
                       </th>
@@ -246,7 +242,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                               defaultValue={'0'}
                               step={50}
                               onChange={e => {
-                                console.log('🚀  e:', e, typeof e)
+                                console.log('🚀  e:', e, typeof e);
                                 field.onChange(e.target.value);
                                 // setChecked('Amount');
                               }}
