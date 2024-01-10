@@ -12,11 +12,11 @@ type Props = {
 
 type ButtonProps = {
   onClick?: () => void;
-  type?: 'submit';
+  type?: 'submit' | 'button';
 };
 
 export const ActionButton = ({ text, onClick, loading, disabled = false, className }: Props) => {
-  const buttonProps: ButtonProps = onClick ? { onClick } : { type: 'submit' };
+  const buttonProps: ButtonProps = onClick ? { onClick, type: 'button' } : { type: 'submit' };
 
   return (
     <button
