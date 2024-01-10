@@ -1,8 +1,18 @@
 import React from 'react';
+import { BiPurchaseTag } from 'react-icons/bi';
 
 type Props = {
   events: any[];
 };
+
+const jobAttributes = [
+  'role_type',
+  'days',
+  'hours_per_day',
+  'number_workers',
+  'hourly',
+  // 'role_description',
+];
 
 export const EventsLala = ({ events }: Props) => {
   console.log('🚀  file: Events.tsx:8  events:', events);
@@ -13,40 +23,59 @@ export const EventsLala = ({ events }: Props) => {
           <div className='flex justify-between'>
             <h2 className='card-title'>{event.event_header}!</h2>
             <div className='badge badge-info gap-2'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                className='inline-block w-4 h-4 stroke-current'>
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M6 18L18 6M6 6l12 12'></path>
-              </svg>
-              info
+              <BiPurchaseTag />
+              {event.event_type}
             </div>
           </div>
           <p>{event.description}</p>
           <h1>{event.event_name}</h1>
-          <h2>{event.event_type}</h2>
           <p>{event.address}</p>
-          <p>{event.location_description}</p>
+          {/* <p>{event.location_description}</p> */}
           <p>{event.coords.lng}</p>
           <p>{event.coords.lat}</p>
           <p>{event.place_id}</p>
-          {event.roles?.map((role, idx) => (
-            <div key={idx} className='flex gap-2'>
-              <p>{role.role_type}</p>
-              <p>{role.hours_per_day}</p>
-              <p>{role.number_workers}</p>
-              <p>{role.hourly}</p>
-            </div>
-          ))}
+          <h3 className='text-lg font-semibold'>Jobs</h3>
+          {/* table of roles */}
+          {event.roles?.length && (
+            <div className='overflow-x-auto'>
+              <table className='table w-full'>
+                <thead>
+                  <tr>
+                    {jobAttributes.map((key: string) => (
+                      <th key={key} className='text-center'>
+                        {key}
+                      </th>
+                    ))}
 
-          <div className='card-actions justify-end'>
-            <button className='btn btn-primary'>Buy Now</button>
-          </div>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {event.roles.map((role: any, index: any) => (
+                    <tr key={role.role_type}>
+                      {Object.keys(role)
+                        .filter((key: string) => jobAttributes.includes(key))
+                        .map((_key: string) => (
+                          <th key={_key} className='text-center'>
+                            {role[_key]}
+                          </th>
+                        ))}
+                      {/* <th className='flex gap-2 justify-center items-center'>
+                        <button type='button' className='' 
+                        onClick={() => onUpdateRole(index)}
+                        >
+                          <BiEdit className='text-2xl text-info' />
+                        </button>
+                        <button type='button' className='' onClick={() => onRemoveRole(index)}>
+                          <BiTrash className='text-2xl text-error' />
+                        </button>
+                      </th> */}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     ))
