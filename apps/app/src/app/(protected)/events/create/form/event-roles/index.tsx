@@ -140,7 +140,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
           ))}
         </div>
         <div className='w-full min-w-max flex gap-6'>
-          {['transport', 'overnight'].map((option, index) => (
+          {['transport', 'overnight'].map((option: 'transport' | 'overnight', index) => (
             <div key={option} className='flex gap-2'>
               <RadioButtonMulti
                 control={control}
@@ -162,7 +162,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                   <label className='label gap-2 cursor-pointer'>
                     <Controller
                       // name='transport'
-                      name={`roles.${saved.length}.transport`}
+                      name={`roles.${saved.length}.${option}`}
                       control={control}
                       defaultValue={400}
                       render={({ field }) => (
@@ -196,7 +196,7 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                               $$
                             </span>
                             <input
-                              defaultValue={200}
+                              defaultValue={0}
                               step={50}
                               onChange={e => {
                                 field.onChange(e.target.value);
