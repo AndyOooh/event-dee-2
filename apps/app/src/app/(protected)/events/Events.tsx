@@ -1,9 +1,14 @@
-import React from 'react';
+'use client';
+
+import { GoogleMap, Marker } from '@react-google-maps/api';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { BiPurchaseTag } from 'react-icons/bi';
 
 type Props = {
   events: any[];
 };
+
+type MapOptions = google.maps.MapOptions;
 
 const jobAttributes = [
   'role_type',
@@ -17,6 +22,17 @@ const jobAttributes = [
 export const EventsLala = ({ events }: Props) => {
   console.log('events', events);
   console.log('🚀  file: Events.tsx:8  events:', events);
+
+  const mapRef = useRef<GoogleMap>();
+  const onLoad = useCallback(map => (mapRef.current = map), []);
+  const options = useMemo<MapOptions>(
+    () => ({
+      mapId: 'b34786d7e100891b',
+      disableDefaultUI: true,
+      zoomControl: true,
+    }),
+    []
+  );
 
   return events ? (
     events.map(event => {
@@ -39,6 +55,32 @@ export const EventsLala = ({ events }: Props) => {
             <p>{event.description}</p>
 
             <p>{location.place_id}</p>
+
+            {/* const bangkokCords = useMemo<LatLngLiteral>(() => ({ lat: 13.736717, lng: 100.523186 }), []); */}
+
+            <div className='w-32 h32'>
+              <GoogleMap
+                zoom={16}
+                center={location.coords}
+                mapContainerClassName='map'
+                options={options}
+                onLoad={onLoad}
+              >
+                {/* <Marker
+                  key={`lalalalla`}
+                  position={location.coords}
+                  icon={{
+                    // url: `/bear.svg`,
+                    url: `/logo/logo-d-trans.png`,
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(15, 15),
+                    // scaledSize: new window.google.maps.Size(30, 30),
+                    scaledSize: new window.google.maps.Size(50, 50),
+                  }}
+                /> */}
+              </GoogleMap>
+            </div>
+
             <h3 className='text-lg font-semibold'>Jobs</h3>
             {/* table of roles */}
             {roles?.length && (
