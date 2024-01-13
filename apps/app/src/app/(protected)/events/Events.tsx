@@ -32,14 +32,12 @@ export const EventsLala = ({ events }: Props) => {
               </div>
             </div>
             <h3>
-              {event.event_name}, {location.address}
+              <span className='text-primary font-semibold'>{event.event_name}</span>,{' '}
+              <span className='text-base-content'>{location.name}</span>
             </h3>
+            <div className='divider my-2' />
             <p>{event.description}</p>
-            <h1>{event.event_name}</h1>
-            <p>{location?.address}</p>
-            {/* <p>{event.location_description}</p> */}
-            <p>{location.coords.lng}</p>
-            <p>{location.coords.lat}</p>
+
             <p>{location.place_id}</p>
             <h3 className='text-lg font-semibold'>Jobs</h3>
             {/* table of roles */}
