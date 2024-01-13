@@ -12,13 +12,9 @@ type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
 
 export const MapLocation = ({ setValue, address }: Props) => {
-  // const [office, setOffice] = useState<LatLngLiteral>();
   const [pin, setPin] = useState<{ lat: number; lng: number }>({ lat: 13.736717, lng: 100.523186 });
-  console.log('🚀  file: MapLocation.tsx:16  pin:', pin);
   const [zoom, setZoom] = useState(12);
-  // console.log('🚀  file: MapLocation.tsx:11  office:', office);
   const mapRef = useRef<GoogleMap>();
-  // const bangkokCords = useMemo(() => ({ lat: 40, lng: -80 }), []);
   const bangkokCords = useMemo<LatLngLiteral>(() => ({ lat: 13.736717, lng: 100.523186 }), []);
   const options = useMemo<MapOptions>(
     () => ({
