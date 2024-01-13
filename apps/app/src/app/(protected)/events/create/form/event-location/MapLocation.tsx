@@ -41,7 +41,7 @@ export const MapLocation = ({ setValue, address }: Props) => {
         <Places
           setValue={setValue}
           setZoom={setZoom}
-          setOffice={position => {
+          setPin={position => {
             setPin(position);
             mapRef.current?.panTo(position);
           }}

@@ -38,7 +38,7 @@ export const EventLocation = ({ register, errors, setValue, address }: Props) =>
           // prepend={info.prepend}
         />
 
-        <FormError formError={errors?.location_description?.message as string} />
+        <FormError formError={errors?.location?.description?.message as string} />
       </div>
     </div>
   ) : (
