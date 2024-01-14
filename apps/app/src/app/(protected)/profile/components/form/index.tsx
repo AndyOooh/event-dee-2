@@ -12,31 +12,18 @@ import { LinksInfo } from './components/links';
 import { PersonalInfo } from './components/personal-info';
 import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-info/validation';
 import { WorkInfo } from './components/work-info';
-import { getChangedFormData } from '__utils/helpers';
+import { getChangedFormData, onTestForm } from '__utils/helpers';
 import { ActionButton } from 'ui';
 
 export const EditProfileForm = () => {
   const { currentUser } = useContext(CurrUserContext);
-
-  const {
-    control,
-    register,
-    watch,
-    reset,
-    handleSubmit,
-    formState: {
-      errors,
-      isDirty,
-      isValid,
-      isSubmitting,
-      isSubmitSuccessful,
-      dirtyFields,
-      defaultValues,
-    },
-  } = useForm<IpersonalInfoSchema>({
-    mode: 'onTouched',
-    resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
-  });
+  const { control, register, watch, reset, handleSubmit, formState } = useForm<IpersonalInfoSchema>(
+    {
+      mode: 'onTouched',
+      resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
+    }
+  );
+  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful, dirtyFields } = formState;
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -51,13 +38,7 @@ export const EditProfileForm = () => {
 
   const onTest = () => {
     const data = watch();
-    const changedData = getChangedFormData(data, dirtyFields);
-    console.log('🚀  file: index.tsx:66  data:', data);
-    console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
-    console.log('🚀  file: index.tsx:66  filteredData:', changedData);
-    console.log('🚀  file: index.tsx:66  isValid:', isValid);
-    console.log('🚀  file: index.tsx:66  errors:', errors);
-    console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
+    onTestForm(formState, data);
   };
 
   const onSubmit = async (data: IpersonalInfoSchema) => {
