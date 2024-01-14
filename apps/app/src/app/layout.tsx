@@ -1,5 +1,3 @@
-// 'use client'
-
 import { Varela } from 'next/font/google';
 
 import { RecoilProvider } from '../components/RecoilProvider';
