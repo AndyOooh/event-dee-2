@@ -3,7 +3,6 @@
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { BiPurchaseTag } from 'react-icons/bi';
-import { NotNull } from 'yup';
 
 type Props = {
   events: any[];
@@ -12,24 +11,14 @@ type Props = {
 type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
 
-const jobAttributes = [
-  'role_type',
-  'days',
-  'hours_per_day',
-  'number_workers',
-  'hourly',
-  // 'role_description',
-];
+const jobAttributes = ['', 'days', 'hours_per_day', 'number_workers', 'hourly'];
 
 export const EventsLala = ({ events }: Props) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
-  console.log('🚀  events:', events);
-  console.log('🚀  isLoaded:', isLoaded);
 
   const mapRef = useRef<GoogleMap>();
-  const bangkokCords = useMemo<LatLngLiteral>(() => ({ lat: 13.736717, lng: 100.523186 }), []);
   const options = useMemo<MapOptions>(
     () => ({
       mapId: 'b34786d7e100891b',
@@ -40,18 +29,6 @@ export const EventsLala = ({ events }: Props) => {
   );
 
   const onLoad = useCallback(map => (mapRef.current = map), []);
-
-  // return !google ? null : (
-  // return isLoaded ? (
-  //   <div className='w-72 h-44'>
-  //     <GoogleMap
-  //       zoom={16}
-  //       center={bangkokCords}
-  //       mapContainerClassName='map'
-  //       options={options}
-  //       onLoad={onLoad}></GoogleMap>
-  //   </div>
-  // ) : null;
 
   return events ? (
     events.map(event => {
@@ -79,7 +56,6 @@ export const EventsLala = ({ events }: Props) => {
                   <GoogleMap
                     zoom={12}
                     center={location.coords}
-                    // center={bangkokCords}
                     mapContainerClassName='map'
                     options={options}
                     onLoad={onLoad}>
@@ -87,10 +63,7 @@ export const EventsLala = ({ events }: Props) => {
                       key='event_position'
                       position={location.coords}
                       icon={{
-                        // url: `/pin_mint_trans.png`,
                         url: `/pin_pink_trans.png`,
-                        // origin: new google.maps.Point(0, 0),
-                        // anchor: new google.maps.Point(15, 15),
                         scaledSize: new google.maps.Size(70, 70),
                       }}
                     />
