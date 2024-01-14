@@ -71,13 +71,19 @@ export const EventsLala = ({ events }: Props) => {
               <span className='text-base-content'>{location.name}</span>
             </h3>
             <div className='divider my-2' />
-            <div className='flex justify-around border border-pink-300'>
-              <p>{event.description}</p>
+            <div className='flex justify-around'>
+              <div className='flex flex-col'>
+                <p>{event.description}</p>
+                <div className='flex flex-col'>
+                  <p>{location.address}</p>
+                  <a className='link link-secondary'>See Map</a>
+                </div>
+              </div>
 
               {isLoaded ? (
                 <div className='w-1/2 h-60 border border-pink-300'>
                   <GoogleMap
-                    zoom={12}
+                    zoom={10}
                     center={location.coords}
                     mapContainerClassName='map'
                     options={options}
