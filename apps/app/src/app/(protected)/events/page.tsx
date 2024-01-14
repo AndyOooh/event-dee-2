@@ -8,15 +8,8 @@ type Props = {};
 
 export default async function Events({}: Props) {
   const fetchDocs = getCloudFunction('fetchDocs');
-  let data: any = {}  
-  try {
-    const { data } = await fetchDocs({ collectionName: 'events' });
-    console.log('🚀  data:', data)
-    
-  } catch (error) {
-    console.log('🚀  error:', error)
-    
-  }
+  const { data } = await fetchDocs({ collectionName: 'events' });
+
 
   return (
     <div className='flex flex-col gap-4 w-full'>
@@ -26,8 +19,7 @@ export default async function Events({}: Props) {
         Create New Event
       </Link>
       <div className='w-full flex flex-col items-center justify-center gap-6'>
-        {/* <EventsLala events={data as any[]} /> */}
-        <EventsLala />
+        <EventsLala events={data as any[]} />
       </div>
     </div>
   );
