@@ -1,8 +1,10 @@
 'use client';
 
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import Image from 'next/image';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { BiPurchaseTag } from 'react-icons/bi';
+import { BiEdit, BiTrash, BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
 
 type Props = {
   events: any[];
@@ -76,7 +78,15 @@ export const EventsLala = ({ events }: Props) => {
                 <p>{event.description}</p>
                 <div className='flex flex-col'>
                   <p>{location.address}</p>
-                  <a className='link link-secondary'>See Map</a>
+                  <a
+                    className='link link-secondary'
+                    // href={`https://maps.google.com/?ll=${location.coords.lat},${location.coords.lng}`}
+                    // href={`https://www.google.com/maps/search/?api=1&query_place_id=${location.place_id}`}
+                    href={`https://www.google.com/maps/search/?api=1&query=${location.coords.lat}%2C-${location.coords.lng}&query_place_id=${location.place_id}`}
+                    target='_blank'
+                    rel='noreferrer'>
+                    See Map
+                  </a>
                 </div>
               </div>
 
@@ -103,6 +113,8 @@ export const EventsLala = ({ events }: Props) => {
               )}
             </div>
 
+            <div className='divider my-2' />
+
             <h3 className='text-lg font-semibold'>Jobs</h3>
             {/* table of roles */}
             {roles?.length && (
@@ -122,25 +134,66 @@ export const EventsLala = ({ events }: Props) => {
                   <tbody>
                     {event.roles.map((role: any, index: any) => (
                       <tr key={role.role_type}>
-                        {Object.keys(role)
+                        {jobAttributes
+                          .map(attr => {
+                            return { name: attr.field_name, value: role[attr.field_name] };
+                          })
+                          .map((field: any) => {
+                            console.log('🚀  file: Events.tsx:170  field_name:', field.name);
+                            return (
+                              <th key={field.name} className='text-center'>
+                                {field.name === 'number_workers'
+                                  ? `${role.accepted || 0}/${field.value}`
+                                  : field.value}
+                                {/* {field.name === 'number_workers' ? 'lalalal' : 'sdfsdfds'} */}
+                                {/* {field_name === 'number_workers' ? 'lalalal' : field_name} */}
+                                {/* {role[field_name]} */}
+                              </th>
+                            );
+                          })}
+
+                        {/* {Object.keys(role)
                           .filter((key: string) =>
                             jobAttributes.map(attr => attr.field_name).includes(key)
                           )
-                          .map((field_name: string) => (
-                            <th key={field_name} className='text-center'>
-                              {role[field_name]}
-                            </th>
-                          ))}
-                        {/* <th className='flex gap-2 justify-center items-center'>
-                        <button type='button' className=''
-                        onClick={() => onUpdateRole(index)}
-                        >
-                          <BiEdit className='text-2xl text-info' />
-                        </button>
-                        <button type='button' className='' onClick={() => onRemoveRole(index)}>
-                          <BiTrash className='text-2xl text-error' />
-                        </button>
-                      </th> */}
+                          .map((field_name: string) => {
+                            console.log('🚀  file: Events.tsx:170  field_name:', field_name);
+                            return (
+                              <th key={field_name} className='text-center'>
+                                {field_name === 'number_workers' ? `${role.accepted}/${role[field_name]}` : role[field_name]}
+                                {field_name === 'number_workers' ? 'lalalal' : role[field_name]}
+                                {field_name === 'number_workers' ? 'lalalal' : field_name}
+                                {role[field_name]}
+                              </th>
+                            );
+                          })} */}
+
+                        <th className='flex gap-2 justify-center items-center'>
+                          <button
+                            type='button'
+                            // className='relative h-6 w-12'
+                            className='btn btn-sm btn-info'
+                            // onClick={() => onUpdateRole(index)}
+                          >
+                            Apply
+                            {/* <Image
+                              alt=''
+                              src={'/logo/combi/logo_symbol_black.png'}
+                              className='text-2xl text-info'
+                              fill={true}
+                              objectFit='contain'
+                            /> */}
+                          </button>
+                          <button
+                            type='button'
+                            className='btn btn-sm btn-error'
+                            // onClick={() => onRemoveRole(index)}
+                          >
+                            Save
+                            {/* <BiBookmarkHeart className='text-2xl text-error' /> */}
+                            {/* <BiBookmark className='text-2xl text-error' /> */}
+                          </button>
+                        </th>
                       </tr>
                     ))}
                   </tbody>
