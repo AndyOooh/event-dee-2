@@ -12,13 +12,10 @@ type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
 
 export const MapLocation = ({ setValue, address }: Props) => {
-  // const [office, setOffice] = useState<LatLngLiteral>();
-  const [pin, setPin] = useState<{ lat: number; lng: number }>({ lat: 13.736717, lng: 100.523186 });
-  console.log('🚀  file: MapLocation.tsx:16  pin:', pin);
+  // const [pin, setPin] = useState<{ lat: number; lng: number }>({ lat: 13.736717, lng: 100.523186 });
+  const [pin, setPin] = useState<{ lat: number; lng: number }>(null);
   const [zoom, setZoom] = useState(12);
-  // console.log('🚀  file: MapLocation.tsx:11  office:', office);
   const mapRef = useRef<GoogleMap>();
-  // const bangkokCords = useMemo(() => ({ lat: 40, lng: -80 }), []);
   const bangkokCords = useMemo<LatLngLiteral>(() => ({ lat: 13.736717, lng: 100.523186 }), []);
   const options = useMemo<MapOptions>(
     () => ({
@@ -41,7 +38,7 @@ export const MapLocation = ({ setValue, address }: Props) => {
         <Places
           setValue={setValue}
           setZoom={setZoom}
-          setOffice={position => {
+          setPin={position => {
             setPin(position);
             mapRef.current?.panTo(position);
           }}
@@ -60,12 +57,12 @@ export const MapLocation = ({ setValue, address }: Props) => {
             key={`lalalalla`}
             position={pin}
             icon={{
-              // url: `/bear.svg`,
-              url: `/logo/logo-d-trans.png`,
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
+              // url: `/logo/logo-d-trans.png`,
+              url: `/pin_pink_trans.png`,
+              // origin: new window.google.maps.Point(0, 0),
+              // anchor: new window.google.maps.Point(15, 15),
               // scaledSize: new window.google.maps.Size(30, 30),
-              scaledSize: new window.google.maps.Size(50, 50),
+              scaledSize: new window.google.maps.Size(90, 90),
             }}
           />
         )}

@@ -10,6 +10,7 @@ export default async function Events({}: Props) {
   const fetchDocs = getCloudFunction('fetchDocs');
   const { data } = await fetchDocs({ collectionName: 'events' });
 
+
   return (
     <div className='flex flex-col gap-4 w-full'>
       <h1 className='text-3xl'>Upcoming Events</h1>

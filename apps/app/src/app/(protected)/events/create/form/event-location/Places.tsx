@@ -12,7 +12,7 @@ import { IcreateEventSchema } from '../validation';
 
 type PlacesProps = {
   // setOffice: (position: google.maps.LatLngLiteral) => void;
-  setOffice: (position: any) => void;
+  setPin: (position: any) => void;
   // setFormValue: UseFormSetValue<IcreateEventSchema>;
   setValue: any;
   setZoom: any;
@@ -20,7 +20,7 @@ type PlacesProps = {
 
 type GeocoderResult = google.maps.GeocoderResult;
 
-export const Places = ({ setOffice, setValue: setFormValue, setZoom }: PlacesProps) => {
+export const Places = ({ setPin, setValue: setFormValue, setZoom }: PlacesProps) => {
   const {
     ready,
     value,
@@ -35,14 +35,15 @@ export const Places = ({ setOffice, setValue: setFormValue, setZoom }: PlacesPro
 
     const results = await getGeocode({ address: val });
     console.log('🚀  file: places.tsx:30  results:', results);
-    const { formatted_address, place_id } = results[0];
+    const { formatted_address, place_id, address_components } = results[0];
     const { lat, lng } = getLatLng(results[0]);
-    setFormValue('address', formatted_address);
-    setFormValue('place_id', place_id);
-    setFormValue('coords', { lat, lng });
+    setFormValue('location.address', formatted_address);
+    setFormValue('location.place_id', place_id);
+    setFormValue('location.coords', { lat, lng });
+    setFormValue('location.name', address_components[0].short_name);
 
-    setOffice({ lat, lng });
-    setZoom(18);
+    setPin({ lat, lng });
+    setZoom(15);
   };
 
   return (

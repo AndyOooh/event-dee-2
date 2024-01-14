@@ -58,14 +58,27 @@ type Coordinates = {
   lng: number;
 };
 
+// export const eventLocationSchema = yup.object().shape({
+//   address: yup.string().min(10),
+//   place_id: yup.string().min(10),
+//   coords: yup.object().shape({
+//     lat: yup.number(),
+//     lng: yup.number(),
+//   }),
+//   location_description: stringNullable(yup.string().min(5)),
+// });
+
 export const eventLocationSchema = yup.object().shape({
-  address: yup.string().min(10),
-  place_id: yup.string().min(10),
-  coords: yup.object().shape({
-    lat: yup.number(),
-    lng: yup.number(),
+  location: yup.object().shape({
+    address: yup.string().min(10),
+    place_id: yup.string().min(10),
+    coords: yup.object().shape({
+      lat: yup.number(),
+      lng: yup.number(),
+    }),
+    description: stringNullable(yup.string().min(5)),
   }),
-  location_description: stringNullable(yup.string().min(5)),
 });
+
 
 export type IeventLocationSchema = yup.InferType<typeof eventLocationSchema>;

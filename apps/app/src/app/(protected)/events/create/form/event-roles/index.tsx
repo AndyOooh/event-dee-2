@@ -32,7 +32,7 @@ type Props = {
 export const EventRoles = ({ register, control, errors, setValue, getValues }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
   const [saved, setSaved] = useState<number[]>([]);
-  const selectOptions = ['Provided', 'Not Provided', 'Amount'];
+  const selectOptions = ['Not Provided', 'Provided', 'Amount'];
   // const [checked, setChecked] = useState<string>(selectOptions[0]);
 
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
@@ -114,8 +114,8 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                 </tr>
               </thead>
               <tbody>
-                {fields
-                  .slice(0, saved.length)
+                {roles
+                  ?.slice(0, saved.length)
                   .map((field: IeventRoleSchema & { id: string }, index: any) => (
                     <tr key={field + index}>
                       {Object.entries(field).map(([key, value]: [string, any]) => {
