@@ -1,5 +1,3 @@
-// 'use client';
-
 import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { useContext, useEffect, useState } from 'react';
