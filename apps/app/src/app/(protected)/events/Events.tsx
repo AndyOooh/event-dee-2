@@ -11,7 +11,30 @@ type Props = {
 type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
 
-const jobAttributes = ['', 'days', 'hours_per_day', 'number_workers', 'hourly'];
+const jobAttributes = [
+  {
+    title: '',
+    field_name: 'role_type',
+  },
+  {
+    title: 'Days',
+    field_name: 'days',
+  },
+  {
+    title: 'Hours',
+    field_name: 'hours_per_day',
+  },
+  {
+    title: 'Qty.',
+    field_name: 'number_workers',
+  },
+  {
+    title: 'Hourly',
+    field_name: 'hourly',
+  },
+];
+
+// 'role_type', 'days', 'hours_per_day', 'number_workers', 'hourly'];
 
 export const EventsLala = ({ events }: Props) => {
   const { isLoaded } = useLoadScript({
@@ -74,9 +97,6 @@ export const EventsLala = ({ events }: Props) => {
               )}
             </div>
 
-            <p>{location.place_id}</p>
-            <p>{location.place_id}</p>
-
             <h3 className='text-lg font-semibold'>Jobs</h3>
             {/* table of roles */}
             {roles?.length && (
@@ -84,9 +104,9 @@ export const EventsLala = ({ events }: Props) => {
                 <table className='table w-full'>
                   <thead>
                     <tr>
-                      {jobAttributes.map((key: string) => (
-                        <th key={key} className='text-center'>
-                          {key}
+                      {jobAttributes.map((attr: any) => (
+                        <th key={attr.title} className='text-center'>
+                          {attr.title}
                         </th>
                       ))}
 
@@ -97,10 +117,12 @@ export const EventsLala = ({ events }: Props) => {
                     {event.roles.map((role: any, index: any) => (
                       <tr key={role.role_type}>
                         {Object.keys(role)
-                          .filter((key: string) => jobAttributes.includes(key))
-                          .map((_key: string) => (
-                            <th key={_key} className='text-center'>
-                              {role[_key]}
+                          .filter((key: string) =>
+                            jobAttributes.map(attr => attr.field_name).includes(key)
+                          )
+                          .map((field_name: string) => (
+                            <th key={field_name} className='text-center'>
+                              {role[field_name]}
                             </th>
                           ))}
                         {/* <th className='flex gap-2 justify-center items-center'>
