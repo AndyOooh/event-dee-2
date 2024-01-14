@@ -7,7 +7,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { getChangedFormData, onTestForm } from '__utils/helpers';
+import { getChangedFormData, onError, onTestForm } from '__utils/helpers';
 import { db } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
@@ -43,11 +43,6 @@ export const CreateEventForm = () => {
   }, [isSubmitSuccessful, reset]);
 
   const address = watch('location.address');
-
-  const onError = (errors: any, e: any) => {
-    console.log('🚀  file: WorkInfo.tsx:52  data:', watch());
-    console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
-  };
 
   const onSubmit = async (data: IcreateEventSchema) => {
     try {

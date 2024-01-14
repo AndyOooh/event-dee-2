@@ -41,3 +41,8 @@ export const onTestForm = (formState, data) => {
   console.log('❤️ isValid', isValid);
   console.log('😒 errors', errors);
 };
+
+/* For logging form erros */
+export const onError = (errors: any, e: any) => {
+  console.log('🚫 errors:', errors, e);
+};

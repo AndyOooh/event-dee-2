@@ -12,7 +12,7 @@ import { LinksInfo } from './components/links';
 import { PersonalInfo } from './components/personal-info';
 import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-info/validation';
 import { WorkInfo } from './components/work-info';
-import { onTestForm } from '__utils/helpers';
+import { onError, onTestForm } from '__utils/helpers';
 import { ActionButton } from 'ui';
 
 export const EditProfileForm = () => {
@@ -29,10 +29,6 @@ export const EditProfileForm = () => {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
-
-  const onError = (errors: any, e: any) => {
-    console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
-  };
 
   const onSubmit = async (data: IpersonalInfoSchema) => {
     try {
