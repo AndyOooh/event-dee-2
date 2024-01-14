@@ -3,46 +3,34 @@
 import React, { useContext, useEffect } from 'react';
 import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
 import { DevTool } from '@hookform/devtools';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { getChangedFormData, onError, onTestForm } from '__utils/helpers';
+import { onError, onTestForm } from '__utils/helpers';
 import { db } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
 import { EventLocation } from './event-location';
 import { EventRoles } from './event-roles';
-import { TestFieldArray } from './test-field-array';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
 
-  const {
-    control,
-    register,
-    watch,
-    setValue,
-    getValues,
-    reset,
-    handleSubmit,
-    formState,
-    // } = useForm<IcreateEventSchema>({
-  } = useForm({
-    mode: 'onTouched',
-    // resolver: yupResolver(createEventSchema({ initialEmail: currentUser?.email })),
-    resolver: yupResolver(createEventSchema),
-  });
+  const { control, register, watch, setValue, getValues, reset, handleSubmit, formState } =
+    useForm<IcreateEventSchema>({
+      mode: 'onTouched',
+      resolver: yupResolver(createEventSchema),
+    });
   const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful } = formState;
+  const address = watch('location.address');
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
-
-  const address = watch('location.address');
 
   const onSubmit = async (data: IcreateEventSchema) => {
     try {
@@ -108,7 +96,6 @@ export const CreateEventForm = () => {
 
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          {/* <button type='button' onClick={onTest} className='btn btn-neutral'> */}
           <button
             type='button'
             onClick={() => onTestForm(formState, getValues())}
