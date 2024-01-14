@@ -49,15 +49,8 @@ export const CreateEventForm = () => {
     console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
   };
 
-  const onTest = () => {
-    const data = watch();
-    onTestForm(formState, data);
-  };
-
   const onSubmit = async (data: IcreateEventSchema) => {
     try {
-      // const changedData = getChangedFormData(data, dirtyFields);
-
       // Step 1: Add a new entry to the "events" collection
       const eventsCollectionRef = collection(db, 'events');
       const newEventRef = await addDoc(eventsCollectionRef, data);
@@ -120,7 +113,11 @@ export const CreateEventForm = () => {
 
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          <button type='button' onClick={onTest} className='btn btn-neutral'>
+          {/* <button type='button' onClick={onTest} className='btn btn-neutral'> */}
+          <button
+            type='button'
+            onClick={() => onTestForm(formState, getValues())}
+            className='btn btn-neutral'>
             Test
           </button>
         </div>

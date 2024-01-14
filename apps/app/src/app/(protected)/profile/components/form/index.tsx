@@ -17,12 +17,11 @@ import { ActionButton } from 'ui';
 
 export const EditProfileForm = () => {
   const { currentUser } = useContext(CurrUserContext);
-  const { control, register, watch, reset, handleSubmit, formState } = useForm<IpersonalInfoSchema>(
-    {
+  const { control, register, getValues, reset, handleSubmit, formState } =
+    useForm<IpersonalInfoSchema>({
       mode: 'onTouched',
       resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
-    }
-  );
+    });
   const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful, dirtyFields } = formState;
 
   useEffect(() => {
@@ -32,13 +31,7 @@ export const EditProfileForm = () => {
   }, [isSubmitSuccessful, reset]);
 
   const onError = (errors: any, e: any) => {
-    console.log('🚀  file: WorkInfo.tsx:52  data:', watch());
     console.log('🚀  file: WorkInfo.tsx:52  errors:', errors, e);
-  };
-
-  const onTest = () => {
-    const data = watch();
-    onTestForm(formState, data);
   };
 
   const onSubmit = async (data: IpersonalInfoSchema) => {
@@ -85,7 +78,10 @@ export const EditProfileForm = () => {
 
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          <button type='button' onClick={onTest} className='btn btn-neutral'>
+          <button
+            type='button'
+            onClick={() => onTestForm(formState, getValues())}
+            className='btn btn-neutral'>
             Test
           </button>
         </div>
