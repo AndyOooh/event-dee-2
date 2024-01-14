@@ -12,7 +12,7 @@ import { LinksInfo } from './components/links';
 import { PersonalInfo } from './components/personal-info';
 import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-info/validation';
 import { WorkInfo } from './components/work-info';
-import { getChangedFormData, onTestForm } from '__utils/helpers';
+import { onTestForm } from '__utils/helpers';
 import { ActionButton } from 'ui';
 
 export const EditProfileForm = () => {
@@ -43,14 +43,8 @@ export const EditProfileForm = () => {
 
   const onSubmit = async (data: IpersonalInfoSchema) => {
     try {
-      console.log('On submit data: ', data);
-      console.log('dirtyFields: ', dirtyFields);
-      const changedData = getChangedFormData(data, dirtyFields);
-
       const userDocRef = doc(db, 'users', currentUser.uid);
-      // console.log('🚀  file: index.tsx:62  userDocRef:', userDocRef);
-      const res = await updateDoc(userDocRef, data);
-      // console.log('🚀  file: index.tsx:77  res:', res);
+      await updateDoc(userDocRef, data);
 
       return;
     } catch (error) {
@@ -91,7 +85,6 @@ export const EditProfileForm = () => {
 
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          {/* <ActionButton text='Update' loading={isSubmitting} /> */}
           <button type='button' onClick={onTest} className='btn btn-neutral'>
             Test
           </button>
