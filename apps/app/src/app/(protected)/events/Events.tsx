@@ -77,7 +77,7 @@ export const EventsLala = ({ events }: Props) => {
               {isLoaded ? (
                 <div className='w-1/2 h-60 border border-pink-300'>
                   <GoogleMap
-                    zoom={10}
+                    zoom={12}
                     center={location.coords}
                     // center={bangkokCords}
                     mapContainerClassName='map'
@@ -87,12 +87,11 @@ export const EventsLala = ({ events }: Props) => {
                       key='event_position'
                       position={location.coords}
                       icon={{
-                        // url: `/bear.svg`,
-                        url: `/logo/logo-d-trans.png`,
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(15, 15),
-                        // scaledSize: new window.google.maps.Size(30, 30),
-                        scaledSize: new google.maps.Size(50, 50),
+                        // url: `/pin_mint_trans.png`,
+                        url: `/pin_pink_trans.png`,
+                        // origin: new google.maps.Point(0, 0),
+                        // anchor: new google.maps.Point(15, 15),
+                        scaledSize: new google.maps.Size(70, 70),
                       }}
                     />
                   </GoogleMap>

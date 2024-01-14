@@ -43,7 +43,7 @@ export const Places = ({ setPin, setValue: setFormValue, setZoom }: PlacesProps)
     setFormValue('location.name', address_components[0].short_name);
 
     setPin({ lat, lng });
-    setZoom(18);
+    setZoom(15);
   };
 
   return (
