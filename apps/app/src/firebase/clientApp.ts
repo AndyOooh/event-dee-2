@@ -12,6 +12,11 @@ import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { connectStorageEmulator, getStorage } from 'firebase/storage';
 import { connectFunctionsEmulator, getFunctions, httpsCallable } from 'firebase/functions';
 
+/*
+ * Do NOT use window object or other browser specific objects here
+ * server components may use this file and buld will fail
+ */
+
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: 'event-dee-staging.firebaseapp.com',
@@ -36,7 +41,7 @@ const getCloudFunction = (functionName: string) => {
   return returnedFunction;
 };
 
-if (process.env.NODE_ENV.match(/development/i) || window.location.hostname === 'localhost') {
+if (process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_EMULATORS_ON === 'true') {
   connectAuthEmulator(auth, 'http://localhost:9099');
   connectFirestoreEmulator(db, 'localhost', 8080);
   connectStorageEmulator(storage, 'localhost', 9199);
