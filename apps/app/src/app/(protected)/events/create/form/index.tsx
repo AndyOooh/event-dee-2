@@ -7,7 +7,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
-import { getChangedFormData } from '__utils/helpers';
+import { getChangedFormData, onTestForm } from '__utils/helpers';
 import { db } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
@@ -27,21 +27,14 @@ export const CreateEventForm = () => {
     getValues,
     reset,
     handleSubmit,
-    formState: {
-      errors,
-      isDirty,
-      isValid,
-      isSubmitting,
-      isSubmitSuccessful,
-      dirtyFields,
-      defaultValues,
-    },
+    formState,
     // } = useForm<IcreateEventSchema>({
   } = useForm({
     mode: 'onTouched',
     // resolver: yupResolver(createEventSchema({ initialEmail: currentUser?.email })),
     resolver: yupResolver(createEventSchema),
   });
+  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful } = formState;
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -58,13 +51,7 @@ export const CreateEventForm = () => {
 
   const onTest = () => {
     const data = watch();
-    const changedData = getChangedFormData(data, dirtyFields);
-    console.log('🚀  file: index.tsx:66  data:', data);
-    console.log('🚀  file: index.tsx:66  dirtyFields:', dirtyFields);
-    console.log('🚀  file: index.tsx:66  filteredData:', changedData);
-    console.log('🚀  file: index.tsx:66  isValid:', isValid);
-    console.log('🚀  file: index.tsx:66  errors:', errors);
-    console.log('🚀  file: index.tsx:66  defaultValues*********************:', defaultValues);
+    onTestForm(formState, data);
   };
 
   const onSubmit = async (data: IcreateEventSchema) => {
@@ -89,23 +76,6 @@ export const CreateEventForm = () => {
       console.error('Error submitting event:', error);
     }
   };
-
-  // const onSubmit = async (data: IcreateEventSchema) => {
-  //   try {
-  //     const changedData = getChangedFormData(data, dirtyFields);
-
-  //     const userDocRef = doc(db, 'users', currentUser.uid);
-  //     const res = await updateDoc(userDocRef, {
-  //       events: {
-  //         ...changedData,
-  //       },
-  //     });
-
-  //     return;
-  //   } catch (error) {
-  //     console.log('🚀  file: WorkInfo.tsx:59  error:', error);
-  //   }
-  // };
 
   const sections = [
     {
