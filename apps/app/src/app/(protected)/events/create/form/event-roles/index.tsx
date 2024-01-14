@@ -36,6 +36,7 @@ export const EventRoles = ({ register, control, errors }: Props) => {
     control,
   });
   const roles = useWatch({ name: 'roles', control });
+  const radioFields: ('transport' | 'overnight')[] = ['transport', 'overnight'];
 
   useEffect(() => {
     remove();
@@ -120,42 +121,65 @@ export const EventRoles = ({ register, control, errors }: Props) => {
       ) : null}
       {saved.length < fields.length ? (
         <div className={styles.form}>
-          <div className='w-full flex gap-6'>
-            {formArrayEventRoles.slice(0, 6).map(info => (
-              <div key={info.title}>
-                {info.type === 'select' ? (
-                  <Select
-                    name={info.title}
-                    reg_name={`roles.${saved.length}.${info.title}`}
-                    defaultValue={info.defaultValue}
-                    options={info.options}
-                    register={register}
-                    label={true}
-                    className='select-sm '
-                    maxW='max-w-md'
-                  />
-                ) : (
-                  <TextInput
-                    name={info.title}
-                    reg_name={`roles.${saved.length}.${info.title}`}
-                    defaultValue={info.defaultValue}
-                    register={register}
-                    label={true}
-                    className={{
-                      input: `input-sm`,
-                      wrapper_div: `input-sm`,
-                      label_span: 'self-center',
-                    }}
-                    prepend={info.prepend}
-                    digits={info.digits}
-                  />
-                )}
-                <FormError formError={errors?.[info.title]?.message as string} />
+          <div className='flex justify-between'>
+            <div>
+              <div className='w-full flex gap-6'>
+                {formArrayEventRoles.slice(0, 3).map(info => (
+                  <div key={info.title}>
+                    {info.type === 'select' ? (
+                      <Select
+                        name={info.title}
+                        reg_name={`roles.${saved.length}.${info.title}`}
+                        defaultValue={info.defaultValue}
+                        options={info.options}
+                        register={register}
+                        label={true}
+                        className='select-sm '
+                        maxW='max-w-md'
+                      />
+                    ) : (
+                      <TextInput
+                        name={info.title}
+                        reg_name={`roles.${saved.length}.${info.title}`}
+                        defaultValue={info.defaultValue}
+                        register={register}
+                        label={true}
+                        className={{
+                          input: `input-sm`,
+                          wrapper_div: `input-sm`,
+                          label_span: 'self-center',
+                        }}
+                        prepend={info.prepend}
+                        digits={info.digits}
+                      />
+                    )}
+                    <FormError formError={errors?.[info.title]?.message as string} />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className='w-full min-w-max flex gap-6'>
-            {['transport', 'overnight'].map((option: 'transport' | 'overnight', index) => (
+              <div className='w-full flex gap-6'>
+                {formArrayEventRoles.slice(3, 6).map(info => (
+                  <div key={info.title}>
+                    <TextInput
+                      name={info.title}
+                      reg_name={`roles.${saved.length}.${info.title}`}
+                      defaultValue={info.defaultValue}
+                      register={register}
+                      label={true}
+                      className={{
+                        input: `input-sm`,
+                        wrapper_div: `input-sm`,
+                        label_span: 'self-center',
+                      }}
+                      prepend={info.prepend}
+                      digits={info.digits}
+                    />
+                    <FormError formError={errors?.[info.title]?.message as string} />
+                  </div>
+                ))}
+              </div>
+            </div>
+            {radioFields.map((option) => (
               <div key={option} className='flex gap-2'>
                 <RadioButtonMulti
                   control={control}
@@ -202,7 +226,6 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                 )}
               </div>
             ))}
-
             <div className='self-start'>
               <TextInput
                 name={formArrayEventRoles[6].title}
@@ -220,6 +243,11 @@ export const EventRoles = ({ register, control, errors }: Props) => {
               <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
             </div>
           </div>
+
+          {/* <div className='w-full min-w-max flex gap-6'> */}
+
+          {/* </div> */}
+
           <div className='self-center flex justify-center gap-4'>
             <ActionButton
               onClick={() => onAddRole(saved.length)}
