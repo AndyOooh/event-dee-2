@@ -40,7 +40,8 @@ export const eventDetailsSchema = yup.object().shape({
   event_name: stringNullable(yup.string().min(2)),
   event_type: yup.string().oneOf(Object.values(EventType)),
   // location: yup.string().min(3),
-  date: yup.date().min(new Date()),
+  start_date: yup.date().min(new Date()),
+  end_date: yup.date().min(new Date()),
   description: yup.string().min(3),
   // roles: yup.array().of(yup.string().min(2)),
 });

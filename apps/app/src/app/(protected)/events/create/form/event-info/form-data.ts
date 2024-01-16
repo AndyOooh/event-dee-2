@@ -40,9 +40,14 @@ export const formArrayEventDetails: FormInput[] = [
     ],
   },
   {
-    title: 'date',
+    title: 'start_date',
     type: 'date',
-    tooltip: 'Enter date of the event',
+    tooltip: 'Enter start date of the event',
+  },
+  {
+    title: 'end_date',
+    type: 'date',
+    tooltip: 'Enter end date of the event',
   },
   {
     title: 'description',
