@@ -80,8 +80,6 @@ export const EventsLala = ({ events }: Props) => {
                   <p>{location.address}</p>
                   <a
                     className='link link-secondary'
-                    // href={`https://maps.google.com/?ll=${location.coords.lat},${location.coords.lng}`}
-                    // href={`https://www.google.com/maps/search/?api=1&query_place_id=${location.place_id}`}
                     href={`https://www.google.com/maps/search/?api=1&query=${location.coords.lat}%2C-${location.coords.lng}&query_place_id=${location.place_id}`}
                     target='_blank'
                     rel='noreferrer'>
@@ -145,9 +143,6 @@ export const EventsLala = ({ events }: Props) => {
                                 {field.name === 'number_workers'
                                   ? `${role.accepted || 0}/${field.value}`
                                   : field.value}
-                                {/* {field.name === 'number_workers' ? 'lalalal' : 'sdfsdfds'} */}
-                                {/* {field_name === 'number_workers' ? 'lalalal' : field_name} */}
-                                {/* {role[field_name]} */}
                               </th>
                             );
                           })}

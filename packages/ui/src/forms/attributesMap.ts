@@ -206,10 +206,12 @@ export const getAttributes = (name: string) => {
       break;
 
     case 'date':
+    case 'start_date':
+    case 'end_date':
     case 'event_date':
       attributes = {
         _type: 'date',
-        _label: 'Date',
+        _label: name === 'start_date' ? 'Start date' : name === 'end_date' ? 'End Date' : 'Date',
         _placeholder: 'Eg. 01/01/2024',
         // _autocmplete: '',
       };

@@ -7,10 +7,7 @@ export default function Loading() {
   // Or a custom loading skeleton component
   return (
     <div className='flex-center min-h-screen w-full bg-base-300 absolute z-10 top-0'>
-      {/* <div className='w-screen h-screen flex-center text-4xl bg-purple-400'>
-        Root Loading page ROOT...
-      </div> */}
-      <h1 className='text-4xl'>Root Loading page ROOT...</h1>
+      <h1 className='text-4xl'>Loading page ROOT...</h1>
       <ColoredDiv
         color='pink'
         direction='top'
@@ -24,7 +21,6 @@ export default function Loading() {
         direction='bottom'
         height={15}
         width={15}
-        // rotateZ={45}
         className='absolute z-20 left-12 top-[20%] rounded-full'
       />
       <ColoredDiv

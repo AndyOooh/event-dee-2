@@ -30,3 +30,19 @@ export const getChangedFormData = (data: any, dirtyFields: any) => {
 /* Converts empty string to null and makes yup ignore null value */
 export const stringNullable = (field: AnyObject) =>
   field.transform((value: any) => (value === '' ? null : value)).nullable();
+
+/* For logging form state and data */
+export const onTestForm = (formState, data) => {
+  const { dirtyFields, isValid, errors } = formState;
+  const changedData = getChangedFormData(data, dirtyFields);
+  console.log('😁 data', data);
+  console.log('💕 changedData', changedData);
+  console.log('🤣 dirtyFields', dirtyFields);
+  console.log('❤️ isValid', isValid);
+  console.log('😒 errors', errors);
+};
+
+/* For logging form erros */
+export const onError = (errors: any, e: any) => {
+  console.log('🚫 errors:', errors, e);
+};

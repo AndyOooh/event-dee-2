@@ -1,5 +1,3 @@
-// 'use client';
-
 import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { useContext, useEffect, useState } from 'react';
@@ -29,24 +27,20 @@ type Props = {
   control: Control<IcreateEventSchema>;
 };
 
-export const EventRoles = ({ register, control, errors, setValue, getValues }: Props) => {
+export const EventRoles = ({ register, control, errors }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
   const [saved, setSaved] = useState<number[]>([]);
   const selectOptions = ['Not Provided', 'Provided', 'Amount'];
-  // const [checked, setChecked] = useState<string>(selectOptions[0]);
-
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
-    name: 'roles', // unique name for your Field Array
-    control, // control props comes from useForm (optional: if you are using FormContext)
+  const { fields, append, remove } = useFieldArray({
+    name: 'roles',
+    control,
   });
+  const roles = useWatch({ name: 'roles', control });
+  const radioFields: ('transport' | 'overnight')[] = ['transport', 'overnight'];
 
   useEffect(() => {
     remove();
-    // append({ hourly: 1 });
-    // append();
     append(baseValues);
-    // append({ hourly: '1' });
-    // append({ hourly: '' });
   }, []);
 
   const baseValues: IeventRoleSchema = {
@@ -61,27 +55,8 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
     role_description: null,
   };
 
-  console.log('🚀  file: index.tsx:34  fiels:', fields);
-  console.log('😍😘😍😘😍😘control: ', control);
-  console.log('😍😘😍😘😍😘control: ', control.getFieldState('roles'));
-
-  const roles = useWatch({ name: 'roles', control });
-  console.log('🚀  roles:', roles);
-
-  // const onAddRole = (e: any) => {
   const onAddRole = (index: number) => {
-    // e.preventDfault();
-    console.log('onAddRole');
-    // append(baseValues);
     setSaved(prev => [...prev, index]);
-
-    console.log('control: ', control);
-    console.log('fields: ', fields);
-
-    // const vals = getValues();
-    // console.log('🚀  file: index.tsx:27  vals:', vals)
-    // setValue('roles', [...getValues().roles, { role: '', description: '' }]);
-    // TODO: add role to roles array in form
   };
 
   const onRemoveRole = (index: number) => {
@@ -146,91 +121,87 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
       ) : null}
       {saved.length < fields.length ? (
         <div className={styles.form}>
-          {/* <div className='w-full grid grid-cols-2 gap-6'> */}
-          <div className='w-full flex gap-6'>
-            {formArrayEventRoles.slice(0, 6).map(info => (
-              <div key={info.title}>
-                {info.type === 'select' ? (
-                  <Select
-                    name={info.title}
-                    reg_name={`roles.${saved.length}.${info.title}`}
-                    defaultValue={info.defaultValue}
-                    options={info.options}
-                    register={register}
-                    label={true}
-                    className='select-sm '
-                    maxW='max-w-md'
-                  />
-                ) : (
-                  <TextInput
-                    name={info.title}
-                    reg_name={`roles.${saved.length}.${info.title}`}
-                    // reg_name={`roles.${saved.length}.email`}
-                    defaultValue={info.defaultValue}
-                    register={register}
-                    label={true}
-                    className={{
-                      input: `input-sm`,
-                      wrapper_div: `input-sm`,
-                      label_span: 'self-center',
-                    }}
-                    // maxW='max-w-md'
-                    prepend={info.prepend}
-                    digits={info.digits}
-                  />
-                )}
-                <FormError formError={errors?.[info.title]?.message as string} />
+          <div className='flex justify-between'>
+            <div>
+              <div className='w-full flex gap-6'>
+                {formArrayEventRoles.slice(0, 3).map(info => (
+                  <div key={info.title}>
+                    {info.type === 'select' ? (
+                      <Select
+                        name={info.title}
+                        reg_name={`roles.${saved.length}.${info.title}`}
+                        defaultValue={info.defaultValue}
+                        options={info.options}
+                        register={register}
+                        label={true}
+                        className='select-sm '
+                        maxW='max-w-md'
+                        tooltip={info.tooltip}
+                      />
+                    ) : (
+                      <TextInput
+                        name={info.title}
+                        reg_name={`roles.${saved.length}.${info.title}`}
+                        defaultValue={info.defaultValue}
+                        register={register}
+                        label={true}
+                        className={{
+                          input: `input-sm`,
+                          wrapper_div: `input-sm`,
+                          label_span: 'self-center',
+                        }}
+                        prepend={info.prepend}
+                        digits={info.digits}
+                        tooltip={info.tooltip}
+                      />
+                    )}
+                    <FormError formError={errors?.[info.title]?.message as string} />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className='w-full min-w-max flex gap-6'>
-            {['transport', 'overnight'].map((option: 'transport' | 'overnight', index) => (
+              <div className='w-full flex gap-6'>
+                {formArrayEventRoles.slice(3, 6).map(info => (
+                  <div key={info.title}>
+                    <TextInput
+                      name={info.title}
+                      reg_name={`roles.${saved.length}.${info.title}`}
+                      defaultValue={info.defaultValue}
+                      register={register}
+                      label={true}
+                      className={{
+                        input: `input-sm`,
+                        wrapper_div: `input-sm`,
+                        label_span: 'self-center',
+                      }}
+                      prepend={info.prepend}
+                      digits={info.digits}
+                      tooltip={info.tooltip}
+                    />
+                    <FormError formError={errors?.[info.title]?.message as string} />
+                  </div>
+                ))}
+              </div>
+            </div>
+            {radioFields.map(option => (
               <div key={option} className='flex gap-2'>
                 <RadioButtonMulti
                   control={control}
                   register={register}
                   name={option}
-                  // reg_name={`roles.${saved.length}.transport`}
                   reg_name={`roles.${saved.length}.${option}`}
                   options={selectOptions}
-                  // checked={checked}
-                  // setChecked={setChecked}
                 />
 
-                {/* <span className='label-text'>{option}</span> */}
                 {!['Provided', 'Not Provided'].includes(
-                  // roles?.[saved.length]?.transport as string
                   roles?.[saved.length]?.[option] as string
                 ) && (
                   <div key={'amount_num'} className='form-control self-end'>
                     <label className='label gap-2 cursor-pointer'>
                       <Controller
-                        // name='transport'
                         name={`roles.${saved.length}.${option}`}
                         control={control}
                         defaultValue={400}
                         render={({ field }) => (
-                          // <TextInput
-                          //   // name={info.title}
-
-                          //   name=''
-                          //   // reg_name={`roles.${saved.length}.${info.title}`}
-                          //   reg_name=''
-                          //   // reg_name={`roles.${saved.length}.email`}
-                          //   defaultValue={200}
-                          //   // register={register}
-                          //   label={true}
-                          //   className={{
-                          //     input: `input-sm`,
-                          //     wrapper_div: `input-sm`,
-                          //     label_span: 'self-center',
-                          //   }}
-                          //   prepend='$$'
-                          //   digits={4}
-                          // />
-                          // <label
-                          //   className={`label w-full text-center flex flex-col whitespace-nowrap `}>
-                          //   <span className={`label-text self-start mb-3`}>Amount</span>
                           <div
                             className='tooltip tooltip-info tooltip-left w-full text-xs'
                             data-tip={'Input amount'}>
@@ -245,14 +216,12 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                                 onChange={e => {
                                   console.log('🚀  e:', e, typeof e);
                                   field.onChange(e.target.value);
-                                  // setChecked('Amount');
                                 }}
                                 type='number'
                                 className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
                               />
                             </div>
                           </div>
-                          // </label>
                         )}
                       />
                     </label>
@@ -260,24 +229,28 @@ export const EventRoles = ({ register, control, errors, setValue, getValues }: P
                 )}
               </div>
             ))}
-
-            <div className='self-start'>
-              <TextInput
-                name={formArrayEventRoles[6].title}
-                reg_name={`roles.${saved.length}.${formArrayEventRoles[6].title}`}
-                defaultValue={formArrayEventRoles[6].defaultValue}
-                register={register}
-                label={true}
-                className={{
-                  input: `input-lg`,
-                  wrapper_div: `input-sm`,
-                  label_span: 'self-center',
-                }}
-                prepend={formArrayEventRoles[6].prepend}
-              />
-              <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
-            </div>
           </div>
+          <TextInput
+            name={formArrayEventRoles[6].title}
+            reg_name={`roles.${saved.length}.${formArrayEventRoles[6].title}`}
+            defaultValue={formArrayEventRoles[6].defaultValue}
+            register={register}
+            label={true}
+            className={{
+              // input: `input-lg`,
+              wrapper_div: `input-sm`,
+              label_span: 'self-center',
+            }}
+            prepend={formArrayEventRoles[6].prepend}
+          />
+          <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
+
+          {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
+
+          {/* <div className='w-full min-w-max flex gap-6'> */}
+
+          {/* </div> */}
+
           <div className='self-center flex justify-center gap-4'>
             <ActionButton
               onClick={() => onAddRole(saved.length)}

@@ -29,7 +29,7 @@ export const CurrentUserProvider = ({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     if (userDoc) {
-      console.log('user detected..........');
+      console.log('currentUser detected..........');
       setCurrentUser(userDoc.data());
     }
   }, [userDoc]);

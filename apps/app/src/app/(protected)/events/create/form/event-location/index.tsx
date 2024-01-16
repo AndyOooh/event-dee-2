@@ -35,6 +35,7 @@ export const EventLocation = ({ register, errors, setValue, address }: Props) =>
           register={register}
           label={true}
           maxW='max-w-md'
+          tooltip='Describe the location of the event.'
           // prepend={info.prepend}
         />
 
