@@ -16,7 +16,7 @@ type Props = {
 
 export const EventInfo = ({ register, errors }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
-  const dateIndex = 4;
+  const dateIndex = 3;
   const descriptionIndex = 5;
 
   return currentUser ? (
@@ -47,15 +47,15 @@ export const EventInfo = ({ register, errors }: Props) => {
             {/* <FormError formError={errors?.[info.title]?.message} /> */}
           </div>
         ))}
-        <div className='flex justify-between'>
+        <div className='w-full flex gap-4'>
           {formArrayEventDetails.slice(dateIndex, descriptionIndex).map(info => (
-            <div key={info.title}>
+            <div key={info.title} className='w-full'>
               <DatePicker
                 name={info.title}
                 defaultValue={currentUser && formatDate(currentUser[info.title], true)}
                 register={register}
                 label={true}
-                maxW='max-w-md'
+                maxW='max-w-[75%]'
                 extraProps={info.extraProps}
               />
             </div>
