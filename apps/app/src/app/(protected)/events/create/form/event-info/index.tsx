@@ -18,6 +18,7 @@ export const EventInfo = ({ register, errors }: Props) => {
   const { currentUser } = useContext(CurrUserContext);
   const dateIndex = 3;
   const descriptionIndex = 5;
+  const descriptionFormData = formArrayEventDetails[descriptionIndex];
 
   return currentUser ? (
     <div className={styles.form}>
@@ -32,6 +33,7 @@ export const EventInfo = ({ register, errors }: Props) => {
                 register={register}
                 label={true}
                 maxW='max-w-md'
+                tooltip={info.tooltip}
               />
             ) : (
               <TextInput
@@ -41,6 +43,7 @@ export const EventInfo = ({ register, errors }: Props) => {
                 label={true}
                 maxW='max-w-md'
                 prepend={info.prepend}
+                tooltip={info.tooltip}
               />
             )}
             <FormError formError={errors?.[info.title]?.message as string} />
@@ -57,6 +60,7 @@ export const EventInfo = ({ register, errors }: Props) => {
                 label={true}
                 maxW='max-w-[75%]'
                 extraProps={info.extraProps}
+                tooltip={info.tooltip}
               />
             </div>
           ))}
@@ -64,11 +68,12 @@ export const EventInfo = ({ register, errors }: Props) => {
       </div>
       <div className='w-1/2 mx-auto'>
         <TextInput
-          name={formArrayEventDetails[descriptionIndex].title}
-          defaultValue={currentUser && currentUser[formArrayEventDetails[descriptionIndex].title]}
+          name={descriptionFormData.title}
+          defaultValue={currentUser && currentUser[descriptionFormData.title]}
           register={register}
           label={true}
           maxW='max-w-md'
+          tooltip={descriptionFormData.tooltip}
         />
       </div>
     </div>

@@ -136,6 +136,7 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                         label={true}
                         className='select-sm '
                         maxW='max-w-md'
+                        tooltip={info.tooltip}
                       />
                     ) : (
                       <TextInput
@@ -151,6 +152,7 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                         }}
                         prepend={info.prepend}
                         digits={info.digits}
+                        tooltip={info.tooltip}
                       />
                     )}
                     <FormError formError={errors?.[info.title]?.message as string} />
@@ -173,6 +175,7 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                       }}
                       prepend={info.prepend}
                       digits={info.digits}
+                      tooltip={info.tooltip}
                     />
                     <FormError formError={errors?.[info.title]?.message as string} />
                   </div>
