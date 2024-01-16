@@ -179,7 +179,7 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                 ))}
               </div>
             </div>
-            {radioFields.map((option) => (
+            {radioFields.map(option => (
               <div key={option} className='flex gap-2'>
                 <RadioButtonMulti
                   control={control}
@@ -226,23 +226,23 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                 )}
               </div>
             ))}
-            <div className='self-start'>
-              <TextInput
-                name={formArrayEventRoles[6].title}
-                reg_name={`roles.${saved.length}.${formArrayEventRoles[6].title}`}
-                defaultValue={formArrayEventRoles[6].defaultValue}
-                register={register}
-                label={true}
-                className={{
-                  input: `input-lg`,
-                  wrapper_div: `input-sm`,
-                  label_span: 'self-center',
-                }}
-                prepend={formArrayEventRoles[6].prepend}
-              />
-              <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
-            </div>
           </div>
+          <TextInput
+            name={formArrayEventRoles[6].title}
+            reg_name={`roles.${saved.length}.${formArrayEventRoles[6].title}`}
+            defaultValue={formArrayEventRoles[6].defaultValue}
+            register={register}
+            label={true}
+            className={{
+              // input: `input-lg`,
+              wrapper_div: `input-sm`,
+              label_span: 'self-center',
+            }}
+            prepend={formArrayEventRoles[6].prepend}
+          />
+          <FormError formError={errors?.[formArrayEventRoles[6].title]?.message as string} />
+
+          {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
 
           {/* <div className='w-full min-w-max flex gap-6'> */}
 
