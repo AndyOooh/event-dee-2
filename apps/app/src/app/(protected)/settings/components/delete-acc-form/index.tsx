@@ -98,12 +98,13 @@ export const DeleteAccountForm = () => {
               />
             </div>
           </div>
-          <div></div>
-          <div className='w-full sticky bottom-0 p-4'>
-            <button type='button' onClick={onTest} className='btn btn-neutral'>
-              Test
-            </button>
-          </div>
+          {process.env.NODE_ENV === 'development' && (
+            <div className='w-full sticky bottom-0 p-4'>
+              <button type='button' onClick={onTest} className='btn btn-neutral'>
+                Test
+              </button>
+            </div>
+          )}
         </form>
       </div>
       {/* <DevTool control={control} /> */}
