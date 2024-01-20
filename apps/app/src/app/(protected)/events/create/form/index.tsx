@@ -117,7 +117,7 @@ export const CreateEventForm = () => {
           )}
         </div>
       </form>
-      <DevTool control={control} />
+      {process.env.NODE_ENV === 'development' && <DevTool control={control} />}
     </>
   ) : null;
 };
