@@ -4,12 +4,22 @@ import React from 'react';
 import { Stats } from './stats/Stats';
 import { ReferralAd } from './referralAd/ReferralAd';
 import { createDocument } from '__firebase/utilities';
+import { getCloudFunction } from '__firebase/clientApp';
 
 export const HomeMain = () => {
   const submitHandler = async () => {
     try {
       console.log('submitHandler');
-      await createDocument('emul-test', { test: 'it works' });
+      // await createDocument('emul-test', {id: 123, test: 'it works' });
+      const fetchDocs = getCloudFunction('fetchDocs');
+      const { data: eventsMetadata }: any = await fetchDocs({
+        collectionName: 'metaData',
+        field: 'id',
+        operator: '==',
+        value: 'events',
+        limit: 1,
+      });
+      console.log('🚀🚫🚫🚫🚫🚫  eventsMetadata:', eventsMetadata)
       console.log('Check the database');
     } catch (error) {
       console.log('🚀  file: HomeMain.tsx:17  error:', error);

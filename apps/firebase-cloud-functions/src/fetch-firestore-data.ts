@@ -23,7 +23,7 @@ type Return = Promise<DocumentData[]>;
  * @param {number} [limit] - Number of documents to limit the result to.
  * @returns {Promise<Array>} - Array of documents matching the query or the entire collection.
  */
-export const fetchDocs = https.onCall(
+export const fetchDocsWithQuery = https.onCall(
   async ({ collectionName, field, operator, value, limit = 10 }: Params): Return => {
     try {
       console.log('in fetchDocs 😍😂😍😂😍😂😍😂😍😂😍😂😍😂');

@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { onError, onTestForm } from '__utils/helpers';
-import { db } from '__firebase/clientApp';
+import { db, getCloudFunction } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
@@ -36,7 +36,18 @@ export const CreateEventForm = () => {
     try {
       // Step 1: Add a new entry to the "events" collection
       const eventsCollectionRef = collection(db, 'events');
-      const newEventRef = await addDoc(eventsCollectionRef, data);
+      const fetchDocs = getCloudFunction('fetchDocs');
+      const { data: eventsMetadata }: any = await fetchDocs({
+        collectionName: 'metaData',
+        field: 'id',
+        operator: '==',
+        value: 'events',
+        limit: 1,
+      });
+      const newEventRef = await addDoc(eventsCollectionRef, {
+        ...data,
+        event_id: eventsMetadata.currentId,
+      });
 
       // Step 2: Get the reference to the newly created event
       const eventDocId = newEventRef.id;

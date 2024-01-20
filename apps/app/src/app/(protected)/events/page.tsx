@@ -7,8 +7,8 @@ import { CreateEventButton } from './components/create-event-button';
 type Props = {};
 
 export default async function Events({}: Props) {
-  const fetchDocs = getCloudFunction('fetchDocs');
-  const { data } = await fetchDocs({ collectionName: 'events' });
+  const fetchDocsWithQuery = getCloudFunction('fetchDocsWithQuery');
+  const { data } = await fetchDocsWithQuery({ collectionName: 'events' });
 
   return (
     <div className='flex flex-col gap-4 w-full'>
