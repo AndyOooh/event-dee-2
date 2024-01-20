@@ -24,7 +24,7 @@ export const DeleteAccountForm = () => {
       mode: 'onTouched',
       resolver: providerId === 'password' ? yupResolver(deleteUserSchema) : null,
     });
-  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful, dirtyFields } = formState;
+  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful } = formState;
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -36,13 +36,10 @@ export const DeleteAccountForm = () => {
     try {
       const result =
         providerId === 'password' ? await reAuthenticate(data.password) : await reAuthenticate();
-
       result instanceof Error
         ? setError('password', { message: 'Incorrect password' })
         : await deleteUser();
-
       router.push('/');
-
       return;
     } catch (error) {
       console.log('🚀  file: WorkInfo.tsx:59  error:', error);
