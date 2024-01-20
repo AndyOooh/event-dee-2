@@ -1,8 +1,14 @@
-import { BiHome, BiSearchAlt, BiDollarCircle, BiCalendarCheck, BiCog } from 'react-icons/bi';
+import {
+  BiHome,
+  BiSearchAlt,
+  BiDollarCircle,
+  BiCalendarCheck,
+  BiCog,
+  BiTestTube,
+} from 'react-icons/bi';
 import Image from 'next/image';
 import combi_mint from '/public/logo/combi/combi_mint.png';
 import Link from 'next/link';
-// import { useState } from 'react';
 
 type Props = {};
 
@@ -59,11 +65,20 @@ function Sidebar({}: Props) {
               <span className='title'>{item.title}</span>
             </a>
           ))}
+          {process.env.NEXT_PUBLIC_EMULATORS_ON === 'true' && (
+            <a
+              key={'emulator-test'}
+              href={'/emulator-test'}
+              className='text-xs pl-2 mb-2 hover:scale-110 hover:font-semibold'>
+              <span className=''>
+                <BiTestTube size={iconSize} />
+              </span>
+              <span className='title'>Emulator Test</span>
+            </a>
+          )}
         </li>
       </ul>
     </aside>
-    // <div></div>
-    // </div>
   );
 }
 

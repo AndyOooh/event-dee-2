@@ -22,7 +22,7 @@ export const EditProfileForm = () => {
       mode: 'onTouched',
       resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
     });
-  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful, dirtyFields } = formState;
+  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful } = formState;
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -84,7 +84,7 @@ export const EditProfileForm = () => {
           )}
         </div>
       </form>
-      <DevTool control={control} />
+      {process.env.NODE_ENV === 'development' && <DevTool control={control} />}
     </>
   ) : null;
 };

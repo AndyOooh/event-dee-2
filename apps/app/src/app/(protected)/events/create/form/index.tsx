@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useContext, useEffect } from 'react';
-import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, arrayUnion, collection, doc, increment, updateDoc } from 'firebase/firestore';
 import { DevTool } from '@hookform/devtools';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { onError, onTestForm } from '__utils/helpers';
-import { db } from '__firebase/clientApp';
+import { db, getCloudFunction } from '__firebase/clientApp';
 import { ActionButton } from 'ui';
 import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
@@ -36,7 +36,21 @@ export const CreateEventForm = () => {
     try {
       // Step 1: Add a new entry to the "events" collection
       const eventsCollectionRef = collection(db, 'events');
-      const newEventRef = await addDoc(eventsCollectionRef, data);
+
+      /*
+       * Fetch metaData/events doc to get currentId for events.
+       * Perhaps this can be done using const eventsDocRef = doc(db, 'metaData', 'events') ??
+       */
+      const fetchDocById = getCloudFunction('fetchDocById');
+      const { data: eventsMetadata }: any = await fetchDocById({
+        collectionName: 'metaData',
+        id: 'events',
+      });
+
+      const newEventRef = await addDoc(eventsCollectionRef, {
+        ...data,
+        event_id: eventsMetadata.currentId + 1,
+      });
 
       // Step 2: Get the reference to the newly created event
       const eventDocId = newEventRef.id;
@@ -45,6 +59,12 @@ export const CreateEventForm = () => {
       const userDocRef = doc(db, 'users', currentUser.uid);
       await updateDoc(userDocRef, {
         events: arrayUnion({ eventId: eventDocId }),
+      });
+
+      /* update metaData/events */
+      const eventsDocRef = doc(db, 'metaData', 'events');
+      await updateDoc(eventsDocRef, {
+        currentId: increment(1),
       });
 
       console.log('Event submitted successfully!');
@@ -106,7 +126,7 @@ export const CreateEventForm = () => {
           )}
         </div>
       </form>
-      <DevTool control={control} />
+      {process.env.NODE_ENV === 'development' && <DevTool control={control} />}
     </>
   ) : null;
 };
