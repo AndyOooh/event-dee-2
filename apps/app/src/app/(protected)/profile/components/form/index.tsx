@@ -22,7 +22,7 @@ export const EditProfileForm = () => {
       mode: 'onTouched',
       resolver: yupResolver(personalInfoSchema({ initialEmail: currentUser?.email })),
     });
-  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful, dirtyFields } = formState;
+  const { errors, isDirty, isValid, isSubmitting, isSubmitSuccessful } = formState;
 
   useEffect(() => {
     if (isSubmitSuccessful) {
