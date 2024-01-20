@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useEffect } from 'react';
-import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
+import { addDoc, arrayUnion, collection, doc, increment, updateDoc } from 'firebase/firestore';
 import { DevTool } from '@hookform/devtools';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -42,11 +42,10 @@ export const CreateEventForm = () => {
         collectionName: 'metaData',
         id: 'events',
       });
-      console.log('🚀  eventsMetadata:', eventsMetadata);
 
       const newEventRef = await addDoc(eventsCollectionRef, {
         ...data,
-        event_id: eventsMetadata.currentId,
+        event_id: eventsMetadata.currentId + 1,
       });
 
       // Step 2: Get the reference to the newly created event
@@ -56,6 +55,13 @@ export const CreateEventForm = () => {
       const userDocRef = doc(db, 'users', currentUser.uid);
       await updateDoc(userDocRef, {
         events: arrayUnion({ eventId: eventDocId }),
+      });
+
+      /* update metaData/events */
+      const eventsDocRef = doc(db, 'mataData', 'events');
+      console.log('🚀  eventsDocRef:', eventsDocRef);
+      await updateDoc(eventsDocRef, {
+        currentId: increment(1),
       });
 
       console.log('Event submitted successfully!');
