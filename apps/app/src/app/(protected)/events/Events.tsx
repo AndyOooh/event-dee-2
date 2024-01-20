@@ -167,7 +167,7 @@ export const EventsLala = ({ events }: Props) => {
                           <button
                             type='button'
                             // className='relative h-6 w-12'
-                            className='btn btn-sm btn-info'
+                            className='btn btn-sm btn-info w-16'
                             // onClick={() => onUpdateRole(index)}
                           >
                             Apply
@@ -181,7 +181,7 @@ export const EventsLala = ({ events }: Props) => {
                           </button>
                           <button
                             type='button'
-                            className='btn btn-sm btn-error'
+                            className='btn btn-sm btn-error w-16'
                             // onClick={() => onRemoveRole(index)}
                           >
                             Save
