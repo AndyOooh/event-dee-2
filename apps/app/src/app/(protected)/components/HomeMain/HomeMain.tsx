@@ -22,9 +22,11 @@ export const HomeMain = () => {
       <Stats />
       <ReferralAd />
 
-      <button className='btn' onClick={submitHandler}>
-        Test Emulator
-      </button>
+      {process.env.NEXT_PUBLIC_EMULATORS_ON === 'true' && (
+        <button className='btn' onClick={submitHandler}>
+          Test Emulator
+        </button>
+      )}
     </div>
   );
 };

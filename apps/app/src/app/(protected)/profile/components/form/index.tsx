@@ -74,12 +74,14 @@ export const EditProfileForm = () => {
 
         <div className='w-full sticky bottom-0 p-4'>
           <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
-          <button
-            type='button'
-            onClick={() => onTestForm(formState, getValues())}
-            className='btn btn-neutral'>
-            Test
-          </button>
+          {process.env.NODE_ENV === 'development' && (
+            <button
+              type='button'
+              onClick={() => onTestForm(formState, getValues())}
+              className='btn btn-neutral'>
+              Test
+            </button>
+          )}
         </div>
       </form>
       <DevTool control={control} />
