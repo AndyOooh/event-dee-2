@@ -37,6 +37,10 @@ export const CreateEventForm = () => {
       // Step 1: Add a new entry to the "events" collection
       const eventsCollectionRef = collection(db, 'events');
 
+      /*
+       * Fetch metaData/events doc to get currentId for events.
+       * Perhaps this can be done using const eventsDocRef = doc(db, 'metaData', 'events') ??
+       */
       const fetchDocById = getCloudFunction('fetchDocById');
       const { data: eventsMetadata }: any = await fetchDocById({
         collectionName: 'metaData',
@@ -58,8 +62,7 @@ export const CreateEventForm = () => {
       });
 
       /* update metaData/events */
-      const eventsDocRef = doc(db, 'mataData', 'events');
-      console.log('🚀  eventsDocRef:', eventsDocRef);
+      const eventsDocRef = doc(db, 'metaData', 'events');
       await updateDoc(eventsDocRef, {
         currentId: increment(1),
       });

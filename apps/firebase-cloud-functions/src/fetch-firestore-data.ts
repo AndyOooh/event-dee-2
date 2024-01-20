@@ -81,10 +81,8 @@ export const fetchDocById = https.onCall(
       const querySnapshot = await collectionRef
         .doc(id) // Assuming 'value' is the document ID
         .get();
-      console.log('🚀  querySnapshot:', querySnapshot);
 
       const document = querySnapshot.data()!;
-      console.log('🚀  document:', document)
       return document;
     } catch (error) {
       console.error('Error fetching documents, fetchDocById:', error);
