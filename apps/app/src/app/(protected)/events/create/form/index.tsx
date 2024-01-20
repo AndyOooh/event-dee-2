@@ -36,14 +36,14 @@ export const CreateEventForm = () => {
     try {
       // Step 1: Add a new entry to the "events" collection
       const eventsCollectionRef = collection(db, 'events');
-      const fetchDocs = getCloudFunction('fetchDocs');
-      const { data: eventsMetadata }: any = await fetchDocs({
+
+      const fetchDocById = getCloudFunction('fetchDocById');
+      const { data: eventsMetadata }: any = await fetchDocById({
         collectionName: 'metaData',
-        field: 'id',
-        operator: '==',
-        value: 'events',
-        limit: 1,
+        id: 'events',
       });
+      console.log('🚀  eventsMetadata:', eventsMetadata);
+
       const newEventRef = await addDoc(eventsCollectionRef, {
         ...data,
         event_id: eventsMetadata.currentId,
