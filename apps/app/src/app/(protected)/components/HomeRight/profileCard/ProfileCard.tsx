@@ -14,7 +14,6 @@ export const ProfileCard = () => {
   const cardHeight = 'h-[56.125rem]';
 
   return currentUser ? (
-    // <div className='flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4'>
     <div className={`${cardHeight} flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4`}>
       <div className='avatar'>
         <div className='w-32 relative'>
@@ -45,6 +44,6 @@ export const ProfileCard = () => {
       </button>
     </div>
   ) : (
-    <div className={`${cardHeight} skeleton w-full`}></div>
+    <div className={`${cardHeight} skeleton w-full bg-pink-400`}></div>
   );
 };

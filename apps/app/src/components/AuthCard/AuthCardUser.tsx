@@ -6,6 +6,7 @@ import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUse
 
 export const AuthCardUser = () => {
   const { currentUser } = useContext(CurrUserContext);
+  console.log('🚀  currentUser:', currentUser);
 
   return currentUser ? (
     <div className='flex gap-1'>
@@ -19,5 +20,7 @@ export const AuthCardUser = () => {
         <span className='text-[0.625rem] text-info'>{currentUser?.customClaims?.type}</span>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <div className='skeleton w-[4.8rem] h-full' />
+  );
 };
