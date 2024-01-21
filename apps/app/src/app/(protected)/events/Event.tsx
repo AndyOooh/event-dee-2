@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { BiPurchaseTag } from 'react-icons/bi';
 import { BiEdit, BiTrash, BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
 
-type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
 
 const jobAttributes = [
@@ -33,6 +32,7 @@ const jobAttributes = [
 ];
 
 export const Event = ({ event }: any) => {
+  const { location, roles } = event;
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
@@ -47,10 +47,11 @@ export const Event = ({ event }: any) => {
     []
   );
 
+  const cardWithAndHeight = 'w-4/5 h-[40rem]';
+
   const onLoad = useCallback(map => (mapRef.current = map), []);
-  const { location, roles } = event;
   return event ? (
-    <div key={event.id} className='card w-4/5 h-[40rem] bg-base-100 shadow-xl'>
+    <div key={event.id} className={`${cardWithAndHeight} bg-base-100 shadow-xl`}>
       <div className='card-body'>
         <div className='flex justify-between'>
           <h2 className='card-title'>{event.event_header}!</h2>
@@ -187,8 +188,6 @@ export const Event = ({ event }: any) => {
       </div>
     </div>
   ) : (
-    <div key={event.id} className='w-4/5 h-[40rem] skeleton shadow-xl'>
-      SKeleton????
-    </div>
+    <div key={event.id} className={`${cardWithAndHeight} skeleton shadow-xl`} />
   );
 };

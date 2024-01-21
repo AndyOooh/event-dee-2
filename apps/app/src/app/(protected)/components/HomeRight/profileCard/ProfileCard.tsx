@@ -11,9 +11,11 @@ import { ProfileStatusList } from './ProfileStatusList';
 
 export const ProfileCard = () => {
   const { currentUser } = useContext(CurrUserContext);
+  const cardHeight = 'h-[56.125rem]';
 
   return currentUser ? (
-    <div className='flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4'>
+    // <div className='flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4'>
+    <div className={`${cardHeight} flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4`}>
       <div className='avatar'>
         <div className='w-32 relative'>
           <Image
@@ -42,5 +44,7 @@ export const ProfileCard = () => {
         Complete profile
       </button>
     </div>
-  ) : null;
+  ) : (
+    <div className={`${cardHeight} skeleton w-full`}></div>
+  );
 };
