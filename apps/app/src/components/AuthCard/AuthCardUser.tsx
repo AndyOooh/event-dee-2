@@ -6,7 +6,6 @@ import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUse
 
 export const AuthCardUser = () => {
   const { currentUser } = useContext(CurrUserContext);
-  console.log('🚀  currentUser:', currentUser);
 
   return currentUser ? (
     <div className='flex gap-1'>

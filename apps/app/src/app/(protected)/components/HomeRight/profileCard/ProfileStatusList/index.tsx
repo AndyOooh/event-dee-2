@@ -5,9 +5,7 @@ import { BsFillCheckCircleFill, BsFillCircleFill } from 'react-icons/bs';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { getStatusList } from './util';
 
-type Props = {};
-
-export const ProfileStatusList = (props: Props) => {
+export const ProfileStatusList = () => {
   const { currentUser } = useContext(CurrUserContext);
 
   const profileDatailsData = getStatusList(currentUser);

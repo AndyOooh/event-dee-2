@@ -24,7 +24,7 @@ export const Stats = () => {
     // },
     {
       title: 'Completed Jobs',
-      value: 55,
+      value: 50,
     },
   ];
 
