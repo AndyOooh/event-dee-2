@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useMemo, useRef, memo } from 'react';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Image from 'next/image';
 import { BiPurchaseTag } from 'react-icons/bi';
@@ -31,7 +31,7 @@ const jobAttributes = [
   },
 ];
 
-export const Event = ({ event }: any) => {
+const Event = ({ event }: any) => {
   const { location, roles } = event;
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
@@ -50,6 +50,7 @@ export const Event = ({ event }: any) => {
   const cardWithAndHeight = 'w-4/5 h-[40rem]';
 
   const onLoad = useCallback(map => (mapRef.current = map), []);
+
   return event ? (
     <div key={event.id} className={`${cardWithAndHeight} bg-base-100 shadow-xl`}>
       <div className='card-body'>
@@ -191,3 +192,5 @@ export const Event = ({ event }: any) => {
     <div key={event.id} className={`${cardWithAndHeight} skeleton shadow-xl`} />
   );
 };
+
+export const MemoizedEvent = memo(Event);
