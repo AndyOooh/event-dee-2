@@ -52,7 +52,7 @@ const Event = ({ event }: any) => {
   const onLoad = useCallback(map => (mapRef.current = map), []);
 
   return event ? (
-    <div key={event.id} className={`${cardWithAndHeight} bg-base-100 shadow-xl`}>
+    <div key={event.id} className={`${cardWithAndHeight} card bg-base-100 shadow-xl`}>
       <div className='card-body'>
         <div className='flex justify-between'>
           <h2 className='card-title'>{event.event_header}!</h2>
