@@ -13,6 +13,7 @@ type Props = {};
 //   const item = await db.item.findUnique({ id })
 //   return item
 // })
+export const revalidate = 3600 // revalidate the data at most every hour
 
 const getEvents = cache(async () => {
   const fetchDocsWithQuery = getCloudFunction('fetchDocsWithQuery');
