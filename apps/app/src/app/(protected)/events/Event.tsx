@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useCallback, useMemo, useRef } from 'react';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Image from 'next/image';
@@ -30,7 +32,7 @@ const jobAttributes = [
   },
 ];
 
-export const Event = (event: any) => {
+export const Event = ({ event }: any) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
   });
@@ -47,7 +49,7 @@ export const Event = (event: any) => {
 
   const onLoad = useCallback(map => (mapRef.current = map), []);
   const { location, roles } = event;
-  return (
+  return false ? (
     <div key={event.id} className='card w-4/5 bg-base-100 shadow-xl'>
       <div className='card-body'>
         <div className='flex justify-between'>
@@ -184,5 +186,12 @@ export const Event = (event: any) => {
         )}
       </div>
     </div>
+  ) : (
+    <div className="skeleton w-32 h-32">
+        skeleton
+    </div>
+    // <div key={event.id} className='w-4/5 h-64 skeleton shadow-xl'>
+    //     SKeleton????
+    // </div>
   );
 };
