@@ -1,55 +1,14 @@
-import {
-  BiHome,
-  BiSearchAlt,
-  BiDollarCircle,
-  BiCalendarCheck,
-  BiCog,
-  BiTestTube,
-} from 'react-icons/bi';
+import { BiTestTube } from 'react-icons/bi';
 import Image from 'next/image';
 import combi_mint from '/public/logo/combi/combi_mint.png';
 import Link from 'next/link';
+import { iconSize, menuItems } from './menu-items';
 
-type Props = {};
-
-function Sidebar({}: Props) {
-  const iconSize = '1.4rem';
-
-  const menuItems = [
-    {
-      icon: <BiHome size={iconSize} />,
-      title: 'Home',
-      link: '/',
-    },
-    {
-      icon: <BiSearchAlt size={iconSize} />,
-      title: 'Search',
-      link: '/search',
-    },
-    {
-      icon: <BiCalendarCheck size={iconSize} />,
-      title: 'Events',
-      link: '/events',
-    },
-    {
-      icon: <BiDollarCircle size={iconSize} />,
-      title: 'Payments',
-      link: '/payments',
-    },
-    {
-      icon: <BiCog size={iconSize} />,
-      title: 'Settings',
-      link: '/settings',
-    },
-  ];
-
-  // const [first, setfirst] = useState('second');
-
+export const Sidebar = () => {
   // TODO: On small screens show a hamburger menu which pushes sidebar in
   // from the left, pushing dashboard content to the right with a dark overlay
 
   return (
-    // <div className='h-screen sticky top-0'>
     <aside className='w-[15.5rem] h-screen sticky top-0 hidden lg:flex flex-col p-4'>
       <Link href={'/'} className='px-2 py-6'>
         <Image src={combi_mint} alt='logo' width={800} height={800} />
@@ -80,6 +39,4 @@ function Sidebar({}: Props) {
       </ul>
     </aside>
   );
-}
-
-export default Sidebar;
+};

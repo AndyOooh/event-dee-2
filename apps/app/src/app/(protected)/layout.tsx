@@ -1,5 +1,5 @@
 import { PageWithAuthCard } from '__components/PageWithAuthCard';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { CurrentUserProvider } from './components/Providers/CurrentUserProvider';
 import { PrivateRoutes } from './components/Providers/PrivateRoutes';
 
