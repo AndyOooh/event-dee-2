@@ -49,8 +49,8 @@ export const Event = ({ event }: any) => {
 
   const onLoad = useCallback(map => (mapRef.current = map), []);
   const { location, roles } = event;
-  return false ? (
-    <div key={event.id} className='card w-4/5 bg-base-100 shadow-xl'>
+  return event ? (
+    <div key={event.id} className='card w-4/5 h-[40rem] bg-base-100 shadow-xl'>
       <div className='card-body'>
         <div className='flex justify-between'>
           <h2 className='card-title'>{event.event_header}!</h2>
@@ -80,7 +80,7 @@ export const Event = ({ event }: any) => {
           </div>
 
           {isLoaded ? (
-            <div className='w-1/2 h-60 border border-pink-300'>
+            <div className='w-1/2 h-60'>
               <GoogleMap
                 zoom={10}
                 center={location.coords}
@@ -98,7 +98,7 @@ export const Event = ({ event }: any) => {
               </GoogleMap>
             </div>
           ) : (
-            <div className='text-emerald-500 text-2xl'>Not loaded</div>
+            <div className='w-1/2 h-60 skeleton' />
           )}
         </div>
 
@@ -187,18 +187,8 @@ export const Event = ({ event }: any) => {
       </div>
     </div>
   ) : (
-    <div className='flex flex-col gap-4 w-52'>
-      <div className='flex gap-4 items-center'>
-        <div className='skeleton w-16 h-16 rounded-full shrink-0'></div>
-        <div className='flex flex-col gap-4'>
-          <div className='skeleton h-4 w-20'></div>
-          <div className='skeleton h-4 w-28'></div>
-        </div>
-      </div>
-      <div className='skeleton h-32 w-full'></div>
+    <div key={event.id} className='w-4/5 h-[40rem] skeleton shadow-xl'>
+      SKeleton????
     </div>
-    // <div key={event.id} className='w-4/5 h-64 skeleton shadow-xl'>
-    //     SKeleton????
-    // </div>
   );
 };
