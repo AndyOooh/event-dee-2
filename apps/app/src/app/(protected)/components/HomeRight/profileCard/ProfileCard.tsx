@@ -42,6 +42,6 @@ export const ProfileCard = () => {
       </button>
     </div>
   ) : (
-    <div className={`${cardHeight} skeleton w-full bg-pink-400`}></div>
+    <div className={`${cardHeight} skeleton w-full`}></div>
   );
 };
