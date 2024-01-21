@@ -19,5 +19,7 @@ export const AuthCardUser = () => {
         <span className='text-[0.625rem] text-info'>{currentUser?.customClaims?.type}</span>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <div className='skeleton w-[4.8rem] h-full' />
+  );
 };

@@ -21,7 +21,6 @@ export const AuthCard = () => {
   const onSignOut = async () => {
     const succes = await signOut();
     if (succes) router.push('/');
-    console.log('🚀  file: index.tsx:20  succes:', succes);
   };
 
   // const onDeleteUser = async (password?: string) => {
@@ -72,7 +71,6 @@ export const AuthCard = () => {
         </div>
       </div>
       <div className='divider divider-horizontal m-0 p-0'></div>
-      {/* {currentUser && <AuthCardUser currentUser={currentUser} />} */}
       <AuthCardUser />
       <div className='dropdown dropdown-end'>
         <label tabIndex={0} className='btn btn-circle btn-ghost btn-xs text-info'>

@@ -7,7 +7,6 @@ type Props = {};
 
 export const FreelancerStatsCard = (props: Props) => {
   const { user } = useContext(UserContext);
-  console.log('🚀  file: FreelancerStatsCard.tsx:10  user:', user)
 
   const stats = [
     {
@@ -61,7 +60,6 @@ export const FreelancerStatsCard = (props: Props) => {
               <span className=''>{stat.value}</span>
             </div>
           ))}
-
         <div className='card-actions justify-end'>
           {/* <div className='badge badge-outline'>Fashion</div>
           <div className='badge badge-outline'>Products</div> */}

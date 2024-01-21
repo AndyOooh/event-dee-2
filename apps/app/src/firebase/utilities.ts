@@ -41,10 +41,8 @@ export const formatDate = (_date: any, isUnixSeconds: boolean = false) => {
 
 export const timeDiff = (unixSeconds: number) => {
   if (!unixSeconds) return null;
-  console.log('🚀  file: utilities.ts:28  unixSeconds:', unixSeconds);
   const now = new Date();
   const then = new Date(unixSeconds * 1000);
-  console.log('🚀  file: utilities.ts:30  then:', then);
   const diff = intervalToDuration({ start: then, end: now });
   return diff;
 };
@@ -52,9 +50,7 @@ export const timeDiff = (unixSeconds: number) => {
 export const reAuthenticate = async (password?: string) => {
   try {
     const authUser = auth.currentUser;
-    console.log('🚀  file: utilities.ts:45  user:', authUser);
     const { providerId } = authUser.providerData[0];
-    console.log('🚀  file: utilities.ts:48  providerId:', providerId);
 
     if (providerId === 'password') {
       const userProvidedPassword = password;
@@ -68,7 +64,7 @@ export const reAuthenticate = async (password?: string) => {
       return true;
     }
   } catch (error) {
-    console.log('lalalal');
+    console.error('🚫 reAuthenticate error', error);
     return error;
   }
 };

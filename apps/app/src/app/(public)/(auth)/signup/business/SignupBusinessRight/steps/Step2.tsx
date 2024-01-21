@@ -22,7 +22,7 @@ export const Step2 = () => {
   const [updateProfile, loadingUpdate, errorUpdate] = useUpdateProfile(auth);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  
+
   const {
     register,
     handleSubmit,
@@ -31,17 +31,10 @@ export const Step2 = () => {
     mode: 'onTouched',
     resolver: yupResolver(step2Schema),
   });
-  
-  console.log('isValid:', isValid);
-  console.log('errors:', errors);
-  
+
   // const onSubmit: SubmitHandler<IStep2Schema> = async data => {
-    const onSubmit = async (data: any) => {
-    console.log('🚀  file: Step2.tsx:23  authUser:', authUser)
-    console.log('isValid:', isValid);
-    console.log('errors:', errors);
+  const onSubmit = async (data: any) => {
     try {
-      console.log('SUBMITTING STEP 2');
       setLoading(true);
       const { first_name, last_name, company_name, company_type } = data;
 
@@ -67,15 +60,11 @@ export const Step2 = () => {
       const userDocRef = doc(db, 'users', authUser?.uid);
       await updateDoc(userDocRef, userDocUpdates);
 
-      console.log('Updated user doc');
-
       const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
       await setCustomClaims({
         uid: authUser?.uid,
         payload: customClaims,
       });
-
-      console.log('Updated custom claims');
 
       if (!authUser?.photoURL) {
         await updateProfile({
@@ -83,19 +72,15 @@ export const Step2 = () => {
         });
       }
 
-      console.log('Updated profile');
-
       setWFormData(prev => ({
         ...prev,
         step: 1,
       }));
 
-      console.log('Pushing to home page');
-
       router.push('/');
       setLoading(false);
     } catch (error) {
-      console.log('🚀  file: Step2.tsx:90  error:', error);
+      console.error('🚀  file: Step2.tsx:90  error:', error);
     }
   };
 

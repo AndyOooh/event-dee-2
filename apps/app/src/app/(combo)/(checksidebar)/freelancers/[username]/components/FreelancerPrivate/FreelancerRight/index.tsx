@@ -8,9 +8,7 @@ import { ColoredDiv } from 'ui';
 type Props = {};
 
 export const FreelancerRight = (props: Props) => {
-  // const { currentUser } = useContext(CurrUserContext);
   const { user } = useContext(UserContext);
-  console.log('🚀  file: FreelancerRight.tsx:14  user:', user)
 
   const sections = [
     // {

@@ -5,15 +5,15 @@ import Image from 'next/image';
 import { Badge } from '__components/Badge';
 import { BiLocationPlus } from 'react-icons/bi';
 import { AiOutlineInstagram, AiOutlineFacebook } from 'react-icons/ai';
-import { StatusListFreelancer } from './ProfileStatusList/ProfileCompletedDetails';
 import { CurrUserContext } from '../../Providers/CurrentUserProvider';
 import { ProfileStatusList } from './ProfileStatusList';
 
 export const ProfileCard = () => {
   const { currentUser } = useContext(CurrUserContext);
+  const cardHeight = 'h-[56.125rem]';
 
   return currentUser ? (
-    <div className='flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4'>
+    <div className={`${cardHeight} flex-center flex-col gap-3 rounded-3xl bg-base-100 p-4`}>
       <div className='avatar'>
         <div className='w-32 relative'>
           <Image
@@ -36,11 +36,12 @@ export const ProfileCard = () => {
         <AiOutlineInstagram size={'2rem'} />
         <AiOutlineFacebook size={'2rem'} />
       </div>
-      {/* <StatusListFreelancer /> */}
       <ProfileStatusList />
       <button className='btn border-none bg-base-300 text-neutral font-bold w-full'>
         Complete profile
       </button>
     </div>
-  ) : null;
+  ) : (
+    <div className={`${cardHeight} skeleton w-full`}></div>
+  );
 };

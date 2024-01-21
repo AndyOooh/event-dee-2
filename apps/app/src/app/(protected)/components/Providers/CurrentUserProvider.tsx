@@ -29,25 +29,25 @@ export const CurrentUserProvider = ({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     if (userDoc) {
-      console.log('currentUser detected..........');
       setCurrentUser(userDoc.data());
     }
   }, [userDoc]);
 
   // Just for logging
   useEffect(() => {
-    if (loadingState) {
-      console.log('Fetching user from AuthState..........');
-    }
-    if (loadingDoc) {
-      console.log('Fetching user from Firestore..........');
+    if (process.env.NODE_ENV === 'development') {
+      if (loadingState) {
+        console.log('🚀 Fetching user from AuthState..........');
+      }
+      if (loadingDoc) {
+        console.log('🚀 Fetching user from Firestore..........');
+      }
     }
   }, [loadingState, loadingDoc]);
 
   /* Alternative not using firestore hooks. Function not finished */
   // const fetchCurrentUser = async (userId: string) => {
   //   const userDocRef = doc(db, 'users', userId as string);
-  //   console.log('🚀  file: PrivateRoutesContextProvider.tsx:45  userDoc:', userDocRef);
   //   // setCurrentUser(userDoc.converter.fromFirestore());
   // };
 

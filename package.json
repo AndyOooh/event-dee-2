@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@yarnpkg/plugin-workspace-tools": "^4.0.0-rc.42",
-    "daisyui": "^2.51.5",
+    "daisyui": "4.6.0",
     "dotenv-cli": "^7.2.1",
     "next": "latest",
     "react": "^18.2.0",

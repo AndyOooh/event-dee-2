@@ -1,5 +1,4 @@
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
-console.log('🚀  file: util.ts:2  DEFAULT_PROFILE_PHOTO_URL:', DEFAULT_PROFILE_PHOTO_URL);
 
 type ProfileFieldStatus = {
   title: string;
