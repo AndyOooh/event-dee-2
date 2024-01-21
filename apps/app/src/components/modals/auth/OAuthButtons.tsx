@@ -32,7 +32,6 @@ export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props)
   const onClick = (provider: Providers) => async (e: MouseEvent<HTMLButtonElement>) => {
     try {
       e.preventDefault();
-      console.log('🚀  file: OAuthButtons.tsx:28  provider:', provider);
 
       // const cusParams: CustomParameters = {
       //   tlalallallay: 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
@@ -41,18 +40,14 @@ export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props)
       // const scopes = ['email', 'profile', 'testtttttttttttttttttttttttttttttttttttttttt'];
       // const creds: UserCredential =
       //   provider === 'google' ? await signInWithGoogle([], cusParams) : await signInWithFacebook();
-      // console.log('🚀  file: OAuthButtons.tsx:49  creds:', creds);
 
       const creds: UserCredential =
         // provider === 'google' ? await signInWithGoogle([], cusParams) : await signInWithFacebook();
         provider === 'google' ? await signInWithGoogle() : await signInWithFacebook();
-      console.log('🚀  file: OAuthButtons.tsx:49  creds:', creds);
 
       const token = await creds.user.getIdTokenResult(true);
-      console.log('🚀  file: OAuthButtons.tsx:51  token:', token);
 
       if (isSignUp && token?.claims.basic_info_done) {
-        console.log('😒😒😒😒😒😒😒😒😒😒😒');
         /* race condition with PublicRoutes. Can't get this error message to ui as we redirect to / and then to /login */
         // await signOut(auth); // ends up on /login with no message to user
         setError({ message: 'Email already exists' });
@@ -60,14 +55,13 @@ export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props)
       } else if (!isSignUp && !token?.claims.basic_info_done) {
         /* this works work */
         await deleteUser();
-        console.log('User deleted: ❤️❤️❤️❤️❤️❤️❤️❤️');
         setError({ message: 'Email does not exist' });
         return;
       }
 
       setSelected && setSelected('provider', provider);
     } catch (error) {
-      console.log('🚀  file: OAuthButtons.tsx:75  error:', error);
+      console.error('🚫 file: OAuthButtons.tsx:75  error:', error);
     }
   };
 

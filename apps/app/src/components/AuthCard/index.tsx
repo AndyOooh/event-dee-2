@@ -21,7 +21,6 @@ export const AuthCard = () => {
   const onSignOut = async () => {
     const succes = await signOut();
     if (succes) router.push('/');
-    console.log('🚀  file: index.tsx:20  succes:', succes);
   };
 
   // const onDeleteUser = async (password?: string) => {

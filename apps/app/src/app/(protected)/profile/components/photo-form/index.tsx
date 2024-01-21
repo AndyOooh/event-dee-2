@@ -56,7 +56,7 @@ export const PhotoForm = (props: Props) => {
       setSelectedFile(null);
       // selectedFileRef.current.value = null;
     } catch (error) {
-      console.log('🚀  file: index.tsx:65  error:', error);
+      console.error('🚀  file: index.tsx:65  error:', error);
     }
   };
 

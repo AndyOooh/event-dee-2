@@ -17,23 +17,19 @@ type Props = {};
 export const Step2 = ({}: Props) => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
   const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
-  console.log('🚀  file: Step2.tsx:21  authUser:', authUser)
-  
+
   const {
     register,
     watch,
     handleSubmit,
     formState: { errors },
-  // } = useForm<FormStep2>({
+    // } = useForm<FormStep2>({
   } = useForm<IStep2Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step2Schema),
   });
-  console.log('🚀  file: Step1.tsx:52  errors:', errors);
-  console.log('🚀  file: Step1.tsx:52  data:', watch());
 
   const onSubmit: SubmitHandler<FormStep2> = data => {
-    console.log('ONSUBMIT data:, data')
     setWFormData(prev => ({
       ...prev,
       ...data,
@@ -54,7 +50,7 @@ export const Step2 = ({}: Props) => {
       label: 'MC',
       value: 'MC',
     },
-  ]
+  ];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
@@ -79,7 +75,7 @@ export const Step2 = ({}: Props) => {
         defaultValue='Choose profession'
       />
       {/*as string is a quick fix. check it later */}
-      <FormError formError={errors?.profession?.message as string} /> 
+      <FormError formError={errors?.profession?.message as string} />
 
       <div className='form-control'>
         <label className='label'>

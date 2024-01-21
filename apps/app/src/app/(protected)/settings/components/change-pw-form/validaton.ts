@@ -8,12 +8,11 @@ const debounceReAuthenticate = debounce(reAuthenticate, 1500);
 export const changePasswordSchema = yup.object().shape({
   // current_password: yup.string().test('current_password', 'Incorrect password', async value => {
   //   try {
-  //     // console.log('🚀 🚀 🚀 🚀 🚀  in current_password check');
   //     // await reAuthenticate(value);
   //     await debounceReAuthenticate(value);
   //     return true;
   //   } catch (error) {
-  //     console.log('🚀  file: validaton.ts:11  error:', error);
+  //     console.error('🚀  file: validaton.ts:11  error:', error);
   //     return false;
   //   }
   // }),

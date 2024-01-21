@@ -55,7 +55,6 @@ export const Step3 = () => {
           const imageRef = ref(storage, `users/${userDocRef.id}/images/profile`);
           await uploadString(imageRef, selectedFile, 'data_url');
           downloadURL = await getDownloadURL(imageRef);
-          console.log('Image uploaded successfully: ', downloadURL);
         } catch (error) {
           throw error;
         }
@@ -84,7 +83,7 @@ export const Step3 = () => {
       router.push('/');
       setLoading(false);
     } catch (error) {
-      console.log('🚀  file: Step3.tsx:116  error:', error);
+      console.error('🚀  file: Step3.tsx:116  error:', error);
     }
   };
 

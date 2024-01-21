@@ -42,7 +42,7 @@ export const DeleteAccountForm = () => {
       router.push('/');
       return;
     } catch (error) {
-      console.log('🚀  file: WorkInfo.tsx:59  error:', error);
+      console.log('🚫  file: WorkInfo.tsx:59  error:', error);
     }
   };
 

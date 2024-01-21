@@ -3,10 +3,9 @@ import { createDocument } from '__firebase/utilities';
 export default function TestEmulatorPage() {
   const submitHandler = async () => {
     try {
-      console.log('submitHandler');
       await createDocument('emul-test', { id: 123, test: 'it works' });
     } catch (error) {
-      console.log('🚀  file: HomeMain.tsx:17  error:', error);
+      console.error('🚀  file: HomeMain.tsx:17  error:', error);
     }
   };
   return (

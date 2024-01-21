@@ -50,17 +50,11 @@ export const Step1 = () => {
       return;
     }
 
-    const resEmailSignup = await createUserWithEmailAndPassword(data.email, data.new_password);
-    console.log('🚀  file: Step1.tsx:56  resEmailSignup:', resEmailSignup);
-
-    console.log('wData:', wData);
-
     setWFormData(prev => ({
       ...prev,
       ...data,
       step: prev.step + 1,
     }));
-    console.log('wData:', wData);
     return;
   };
 

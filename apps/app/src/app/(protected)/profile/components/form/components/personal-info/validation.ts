@@ -38,7 +38,6 @@ export const personalInfoSchema = ({ initialEmail }) =>
       .string()
       .email()
       .test('email', 'Email already exists', async value => {
-        console.log('🚀  file: validation.ts:39  initialEmail:', initialEmail);
         if (initialEmail === value) return true;
         // const exists = await checkEmailExists(email);
         // return !exists;

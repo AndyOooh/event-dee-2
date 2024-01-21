@@ -66,8 +66,6 @@ export const CreateEventForm = () => {
       await updateDoc(eventsDocRef, {
         currentId: increment(1),
       });
-
-      console.log('Event submitted successfully!');
     } catch (error) {
       console.error('Error submitting event:', error);
     }

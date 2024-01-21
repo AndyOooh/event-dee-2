@@ -137,7 +137,6 @@ export const EventsLala = ({ events }: Props) => {
                             return { name: attr.field_name, value: role[attr.field_name] };
                           })
                           .map((field: any) => {
-                            console.log('🚀  file: Events.tsx:170  field_name:', field.name);
                             return (
                               <th key={field.name} className='text-center'>
                                 {field.name === 'number_workers'
@@ -152,7 +151,6 @@ export const EventsLala = ({ events }: Props) => {
                             jobAttributes.map(attr => attr.field_name).includes(key)
                           )
                           .map((field_name: string) => {
-                            console.log('🚀  file: Events.tsx:170  field_name:', field_name);
                             return (
                               <th key={field_name} className='text-center'>
                                 {field_name === 'number_workers' ? `${role.accepted}/${role[field_name]}` : role[field_name]}

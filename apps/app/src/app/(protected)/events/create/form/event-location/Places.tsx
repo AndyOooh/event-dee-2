@@ -30,11 +30,9 @@ export const Places = ({ setPin, setValue: setFormValue, setZoom }: PlacesProps)
   } = usePlacesAutocomplete();
 
   const handleSelect = async (val: string) => {
-    console.log('🚀  file: places.tsx:25  val:', val);
     clearSuggestions();
 
     const results = await getGeocode({ address: val });
-    console.log('🚀  file: places.tsx:30  results:', results);
     const { formatted_address, place_id, address_components } = results[0];
     const { lat, lng } = getLatLng(results[0]);
     setFormValue('location.address', formatted_address);

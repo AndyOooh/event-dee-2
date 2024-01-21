@@ -37,7 +37,7 @@ export const EditProfileForm = () => {
 
       return;
     } catch (error) {
-      console.log('🚀  file: WorkInfo.tsx:59  error:', error);
+      console.error('🚀  file: WorkInfo.tsx:59  error:', error);
     }
   };
 

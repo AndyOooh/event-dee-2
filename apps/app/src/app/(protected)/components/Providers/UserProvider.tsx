@@ -35,38 +35,23 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [userDoc, loadingDoc, errorDoc] = useCollectionData(
     query(collection(db, 'users'), where('displayName', '==', displayName))
   );
-  console.log('🚀  file: UserProvider.tsx:39  userDoc:', userDoc);
 
   // const [userDoc, loadingDoc, errorDoc] = useDocument(doc(db, 'users', user?.uid), {});
-  // console.log('🚀  file: UserProvider.tsx:37  userDoc:', userDoc)
 
   // const userDocRef = doc(db, 'users.displayName', user?.uid);
   // const [userDoc, loadingDoc, errorDoc] = useDocumentData(doc(db, 'users', user?.uid), {});
-  // console.log('🚀  file: UserProvider.tsx:37  userDoc:', userDoc)
 
   // ---------------------------------- New ----------------------------------
 
   useEffect(() => {
     if (userDoc) {
-      console.log('user detected..........');
       setUser(userDoc[0]);
     }
   }, [userDoc]);
 
-  // Just for logging
-  // useEffect(() => {
-  //   if (loadingState) {
-  //     console.log('Fetching user from AuthState..........');
-  //   }
-  //   if (loadingDoc) {
-  //     console.log('Fetching user from Firestore..........');
-  //   }
-  // }, [loadingState, loadingDoc]);
-
   /* Alternative not using firestore hooks. Function not finished */
   // const fetchUser = async (userId: string) => {
   //   const userDocRef = doc(db, 'users', userId as string);
-  //   console.log('🚀  file: PrivateRoutesContextProvider.tsx:45  userDoc:', userDocRef);
   //   // setUser(userDoc.converter.fromFirestore());
   // };
 

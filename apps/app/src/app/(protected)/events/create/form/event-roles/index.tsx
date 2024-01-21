@@ -60,13 +60,11 @@ export const EventRoles = ({ register, control, errors }: Props) => {
   };
 
   const onRemoveRole = (index: number) => {
-    console.log('onRemove');
     remove(index);
     setSaved(prev => prev.filter(item => item !== index));
   };
 
   const onUpdateRole = (index: number) => {
-    console.log('onUpdate');
     setSaved(prev => prev.filter(item => item !== index));
   };
 
@@ -214,7 +212,6 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                                 defaultValue={'0'}
                                 step={50}
                                 onChange={e => {
-                                  console.log('🚀  e:', e, typeof e);
                                   field.onChange(e.target.value);
                                 }}
                                 type='number'

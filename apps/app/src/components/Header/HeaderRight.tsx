@@ -12,11 +12,9 @@ type Props = {};
 
 function HeaderRight({}: Props) {
   const [modalState, setModalState] = useRecoilState(authModalState);
-  console.log('🚀  file: HeaderRight.tsx:12  modalState:', modalState);
   const [user, loading, error] = useAuthState(auth);
 
   const handleClick = (view: ModalView) => {
-    console.log('handleClick!!!!');
     setModalState({
       open: true,
       view: view,
@@ -28,7 +26,6 @@ function HeaderRight({}: Props) {
       <AuthModal />
       {user ? (
         <Usermenu />
-        // <Menu />
       ) : (
         <div className='flex gap-2 navbar-end'>
           <button className='btn btn-outline' onClick={() => handleClick('login')}>
