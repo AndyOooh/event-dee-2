@@ -41,7 +41,7 @@ const getCloudFunction = (functionName: string) => {
   return returnedFunction;
 };
 
-if (process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_EMULATORS_ON === 'true') {
+if (process.env.NEXT_PUBLIC_EMULATORS_ON === 'true') {
   connectAuthEmulator(auth, 'http://localhost:9099');
   connectFirestoreEmulator(db, 'localhost', 8080);
   connectStorageEmulator(storage, 'localhost', 9199);

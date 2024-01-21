@@ -1,3 +1,4 @@
+import { Sidebar } from '__components/Sidebar/Sidebar';
 import { ComboSidebarLayoutProvider } from '../../LayoutProvider';
 import { FreelancerPrivate } from './components/FreelancerPrivate/FreelancerPrivate';
 import { FreelancerPublic } from './components/FreelancerPublic/FreelancerPublic';
@@ -10,6 +11,7 @@ export default function FreelancerPage() {
     <ComboSidebarLayoutProvider
       privatePage={<FreelancerPrivate />}
       publicPage={<FreelancerPublic />}
+      sideBar={<Sidebar />}
     />
   );
 }

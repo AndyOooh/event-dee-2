@@ -4,7 +4,7 @@ import combi_mint from '/public/logo/combi/combi_mint.png';
 import Link from 'next/link';
 import { iconSize, menuItems } from './menu-items';
 
-function Sidebar() {
+export const Sidebar = () => {
   // TODO: On small screens show a hamburger menu which pushes sidebar in
   // from the left, pushing dashboard content to the right with a dark overlay
 
@@ -39,6 +39,4 @@ function Sidebar() {
       </ul>
     </aside>
   );
-}
-
-export default Sidebar;
+};
