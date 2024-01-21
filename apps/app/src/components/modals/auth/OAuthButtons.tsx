@@ -65,7 +65,7 @@ export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props)
     }
   };
 
-  if (errorGoogle) console.log('🚀  file: OAuthButtons.tsx:55  errorGoogle:', errorGoogle);
+  if (errorGoogle) console.error('🚫  file: OAuthButtons.tsx:55  errorGoogle:', errorGoogle);
 
   return (
     <div className='w-full flex-center flex-col gap-4'>

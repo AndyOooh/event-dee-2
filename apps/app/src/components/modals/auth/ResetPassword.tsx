@@ -19,7 +19,6 @@ export const ResetPassword = ({ toggleView }: Props) => {
   const [email, setEmail] = useState('');
   const [success, setSuccess] = useState(false);
   const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
-  console.log('🚀  file: ResetPassword.tsx:21  error:', error);
 
   const handleSubmitReset = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,12 +27,10 @@ export const ResetPassword = ({ toggleView }: Props) => {
         url: 'http://localhost:3000', // should be set in .env and depends on the environment
         handleCodeInApp: true,
       };
-      console.log('sending email...');
       const isSent = await sendPasswordResetEmail(email, actionCodeSettings);
-      console.log('🚀  file: ResetPassword.tsx:27  isSent:', isSent);
       setSuccess(true);
     } catch (error) {
-      console.log('handleSubmitReset error: ', error);
+      console.error('🚫 handleSubmitReset error: ', error);
     }
   };
 
