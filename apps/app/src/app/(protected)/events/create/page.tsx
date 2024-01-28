@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { CreateEventForm } from './form';
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 import LoginLeft from './left/LoginLeft';
 import LoginRight from './LoginRight';
 import { DividedPage } from '../components/DividedPage';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Login',

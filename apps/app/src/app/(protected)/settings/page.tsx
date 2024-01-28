@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChangePasswordForm } from './components/change-pw-form';
 import { DeleteAccountForm } from './components/delete-acc-form';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Settings',

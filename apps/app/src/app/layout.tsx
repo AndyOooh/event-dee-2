@@ -2,7 +2,7 @@ import { Varela } from 'next/font/google';
 
 import { RecoilProvider } from '../components/RecoilProvider';
 import '../styles/globals.scss';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 const varela = Varela({
   weight: ['400'],
