@@ -1,9 +1,9 @@
 import React from 'react';
 import { privacyPolicy } from './privacyPolicy';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Event Dee - Privacy Policy',
+  title: 'Privacy Policy',
 };
 
 export default function PrivacyPolicy() {

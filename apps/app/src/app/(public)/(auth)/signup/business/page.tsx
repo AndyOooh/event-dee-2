@@ -1,6 +1,10 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { SignupBusinessLeft } from './SignupBusinessLeft/SignupBusinessLeft';
 import { SignupBusinessRight } from './SignupBusinessRight/SignupBusinessRight';
+
+export const metadata: Metadata = {
+  title: 'Sign-up - Business',
+};
 
 function SignupBusiness() {
   return (

@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Event Dee - Search',
+  title: 'Search',
 };
 
 export default function SearchPage() {

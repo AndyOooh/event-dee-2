@@ -24,17 +24,18 @@ export const Sidebar = () => {
               <span className='title'>{item.title}</span>
             </a>
           ))}
-          {process.env.NEXT_PUBLIC_EMULATORS_ON === 'true' && (
-            <a
-              key={'emulator-test'}
-              href={'/emulator-test'}
-              className='text-xs pl-2 mb-2 hover:scale-110 hover:font-semibold'>
-              <span className=''>
-                <BiTestTube size={iconSize} />
-              </span>
-              <span className='title'>Emulator Test</span>
-            </a>
-          )}
+          {process.env.NEXT_PUBLIC_EMULATORS_ON === 'true' &&
+            process.env.NODE_ENV === 'development' && (
+              <a
+                key={'emulator-test'}
+                href={'/emulator-test'}
+                className='text-xs pl-2 mb-2 hover:scale-110 hover:font-semibold'>
+                <span className=''>
+                  <BiTestTube size={iconSize} />
+                </span>
+                <span className='title'>Emulator Test</span>
+              </a>
+            )}
         </li>
       </ul>
     </aside>
