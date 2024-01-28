@@ -1,6 +1,12 @@
 import { SignupMemberLeft } from './signup-member-left/SignupMemberLeft';
 import { SignupMemberRight } from './signup-member-right/SignupMemberRight';
 import { DividedPage } from '../../components/DividedPage';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sign-up - Freelancer',
+};
+
 
 function SignupFreelancer() {
   return (

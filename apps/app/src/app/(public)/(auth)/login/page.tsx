@@ -4,7 +4,7 @@ import { DividedPage } from '../components/DividedPage';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Event Dee - Login',
+  title: 'Login',
 };
 
 function Login() {

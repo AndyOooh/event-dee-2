@@ -4,7 +4,7 @@ import { DeleteAccountForm } from './components/delete-acc-form';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Event Dee - Settings',
+  title: 'Settings',
 };
 
 export default function SettingsPage() {
