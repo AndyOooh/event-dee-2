@@ -2,10 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
-export const metadata: Metadata = {
-  title: 'Event Dee - Login',
-};
-
 // Th9is page could ask if user wants to signuo as freelancer or company and procide links. Or it ciuld be deleted.
 
 function Signup() {

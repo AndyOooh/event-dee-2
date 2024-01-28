@@ -1,9 +1,12 @@
+import { Metadata } from 'next';
 import { SignupBusinessLeft } from './SignupBusinessLeft/SignupBusinessLeft';
-import {SignupBusinessRight} from './SignupBusinessRight/SignupBusinessRight';
+import { SignupBusinessRight } from './SignupBusinessRight/SignupBusinessRight';
 
-type Props = {};
+export const metadata: Metadata = {
+  title: 'Event Dee - Signup',
+};
 
-function SignupBusiness({}: Props) {
+function SignupBusiness() {
   return (
     // <DividedPage left={<SignupMemberLeft />} right={<SignupMemberRight />} leftColor='secondary' />
     <div className='flex min-h-screen'>

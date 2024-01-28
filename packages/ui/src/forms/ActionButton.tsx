@@ -20,7 +20,7 @@ export const ActionButton = ({ text, onClick, loading, disabled = false, classNa
 
   return (
     <button
-      className={`btn w-full max-w-xs mx-auto flex-center ${className}`}
+      className={`btn btn-neutral w-full max-w-xs mx-auto flex-center ${className}`}
       {...buttonProps}
       disabled={disabled}>
       {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
