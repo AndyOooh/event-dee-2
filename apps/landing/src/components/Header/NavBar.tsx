@@ -13,11 +13,13 @@ function NavBar({}: Props) {
       <ul className='menu menu-horizontal px-1'>
         {menuItems.map(item =>
           item.subItems ? (
-            <li tabIndex={0} key={item.title}>
-              <a>
+            <li tabIndex={0} key={item.title} className='dropdown dropdown-hover'>
+              <a tabIndex={0} role='button' className='btn m-1'>
                 {item.title} <RiArrowDropDownLine />
               </a>
-              <ul className='p-2 bg-base-100'>
+              <ul
+                tabIndex={0}
+                className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'>
                 {item.subItems.map(subItem => (
                   <li key={subItem.title}>
                     <Link href={subItem.link}>{subItem.title}</Link>
