@@ -1,9 +1,7 @@
-import React from 'react';
-
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import { menuItems } from './menuItems';
 import Link from 'next/link';
-import { appUrl } from '../../consts';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+
+import { menuItems } from './menuItems';
 
 type Props = {};
 
