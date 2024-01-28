@@ -9,9 +9,7 @@ import { auth } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
 import { FormError } from 'ui';
 
-type Props = {};
-
-export const LoginForm = (props: Props) => {
+export const LoginForm = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -68,7 +66,7 @@ export const LoginForm = (props: Props) => {
             }
           />
         ) : null}
-        <button className='btn w-full max-w-xs' type='submit'>
+        <button className='btn btn-neutral w-full max-w-xs' type='submit'>
           Log in
         </button>
       </div>

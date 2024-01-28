@@ -7,7 +7,7 @@ import React, { useContext } from 'react';
 export const CreateEventButton = () => {
   const { currentUser } = useContext(CurrUserContext);
   return currentUser?.customClaims.type === 'business' ? (
-    <Link href={'/events/create'} className='btn'>
+    <Link href={'/events/create'} className='btn btn-neutral'>
       Create Event
     </Link>
   ) : null;

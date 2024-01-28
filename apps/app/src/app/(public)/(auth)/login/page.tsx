@@ -1,17 +1,14 @@
-'use client';
-
 import LoginLeft from './left/LoginLeft';
 import LoginRight from './LoginRight';
 import { DividedPage } from '../components/DividedPage';
+import { Metadata } from 'next';
 
-type Props = {};
+export const metadata: Metadata = {
+  title: 'Event Dee - Login',
+};
 
-function Login({}: Props) {
-  return (
-    <>
-      <DividedPage left={<LoginLeft />} right={<LoginRight />} leftColor='secondary' />
-    </>
-  );
+function Login() {
+  return <DividedPage left={<LoginLeft />} right={<LoginRight />} leftColor='secondary' />;
 }
 
 export default Login;

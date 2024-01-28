@@ -2,13 +2,14 @@ import { Varela } from 'next/font/google';
 
 import { RecoilProvider } from '../components/RecoilProvider';
 import '../styles/globals.scss';
+import { Metadata } from 'next';
 
 const varela = Varela({
   weight: ['400'],
   subsets: ['latin'],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Event Dee - App',
   description: 'Connecting events',
   icons: {
