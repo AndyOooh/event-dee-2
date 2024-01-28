@@ -8,11 +8,7 @@ export const metadata: Metadata = {
 };
 
 function Login() {
-  return (
-    <>
-      <DividedPage left={<LoginLeft />} right={<LoginRight />} leftColor='secondary' />
-    </>
-  );
+  return <DividedPage left={<LoginLeft />} right={<LoginRight />} leftColor='secondary' />;
 }
 
 export default Login;

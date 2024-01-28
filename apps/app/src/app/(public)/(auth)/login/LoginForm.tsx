@@ -68,7 +68,7 @@ export const LoginForm = (props: Props) => {
             }
           />
         ) : null}
-        <button className='btn w-full max-w-xs' type='submit'>
+        <button className='btn btn-neutral w-full max-w-xs' type='submit'>
           Log in
         </button>
       </div>
