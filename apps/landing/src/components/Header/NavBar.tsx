@@ -8,11 +8,11 @@ type Props = {};
 function NavBar({}: Props) {
   return (
     <nav className='navbar-center hidden md:flex'>
-      <ul className='menu menu-horizontal px-1'>
+      <ul className='menu menu-horizontal items-center  px-1'>
         {menuItems.map(item =>
           item.subItems ? (
             <li tabIndex={0} key={item.title} className='dropdown dropdown-hover'>
-              <a tabIndex={0} role='button' className='btn m-1'>
+              <a tabIndex={0} role='button'>
                 {item.title} <RiArrowDropDownLine />
               </a>
               <ul
