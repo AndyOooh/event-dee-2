@@ -3,7 +3,7 @@ import { EditProfileForm } from './components/form';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Event Dee - Profile',
+  title: 'Profile',
 };
 
 /*

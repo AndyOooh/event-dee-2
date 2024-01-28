@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Event Dee - Events',
+  title: 'Events',
 };
 
 export default function EventsLayout({ children }: { children: React.ReactNode }) {

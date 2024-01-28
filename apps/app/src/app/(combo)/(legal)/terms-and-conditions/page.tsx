@@ -3,7 +3,7 @@ import { termsAndConditions } from './termsAndConditions';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Event Dee - terms and conditions',
+  title: 'Terms & Conditions',
 };
 
 export default function TermsAndCoonditions() {
