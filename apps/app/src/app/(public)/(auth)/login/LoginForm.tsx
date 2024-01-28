@@ -9,9 +9,7 @@ import { auth } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
 import { FormError } from 'ui';
 
-type Props = {};
-
-export const LoginForm = (props: Props) => {
+export const LoginForm = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
