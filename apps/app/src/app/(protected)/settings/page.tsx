@@ -1,10 +1,13 @@
 import React from 'react';
 import { ChangePasswordForm } from './components/change-pw-form';
 import { DeleteAccountForm } from './components/delete-acc-form';
+import { Metadata } from 'next';
 
-type Props = {};
+export const metadata: Metadata = {
+  title: 'Event Dee - Settings',
+};
 
-export default function SettingsPage(props: Props) {
+export default function SettingsPage() {
   return (
     <div className='flex flex-col gap-4 w-full'>
       <h1 className='text-3xl'>Account Settings</h1>

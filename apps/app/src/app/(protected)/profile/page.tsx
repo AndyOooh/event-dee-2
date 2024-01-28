@@ -1,5 +1,10 @@
 import { PhotoForm } from './components/photo-form';
 import { EditProfileForm } from './components/form';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Event Dee - Profile',
+};
 
 /*
  * This is the Profile page as seen from the user's perspective with edittable fields

@@ -1,9 +1,12 @@
 import React from 'react';
 import { termsAndConditions } from './termsAndConditions';
+import { Metadata } from 'next';
 
-type Props = {};
+export const metadata: Metadata = {
+  title: 'Event Dee - terms and conditions',
+};
 
-export default function TermsAndCoonditions({}: Props) {
+export default function TermsAndCoonditions() {
   return (
     <>
       <h1>TermsAndCoonditions</h1>
