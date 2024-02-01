@@ -224,10 +224,12 @@ Once you have the development servers running, you can access the:
 - [x] Landing page.
 - [x] Authentication flows.
 - [x] User profiles - edit, delete, view.
-- [ ] Event creation - create, edit, delete, view.
+- [x] Event creation - create, edit, delete, view.
+- [x] Event feed.
+- [ ] Contract - create, edit, delete, view.
+- [ ] Contract - sign.
 - [ ] Video upload, storage and viewing.
 - [ ] Search.
-- [ ] Event feed.
 - [ ] Payment.
 - [ ] ...
 
