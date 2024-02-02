@@ -12,6 +12,9 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
+    "start": {
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": true
