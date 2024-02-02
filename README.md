@@ -226,6 +226,7 @@ Once you have the development servers running, you can access the:
 - [x] User profiles - edit, delete, view.
 - [x] Event creation - create, edit, delete, view.
 - [x] Event feed.
+- [x] Optimize SSG.
 - [ ] Contract - create, edit, delete, view.
 - [ ] Contract - sign.
 - [ ] Video upload, storage and viewing.
