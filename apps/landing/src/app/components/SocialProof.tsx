@@ -47,7 +47,7 @@ export const SocialProof = () => {
       {companies.map(company => {
         return (
           <div key={company.name} className='relative h-12 md:h-16 lg:h-20 w-full'>
-            <Image src={company.imgUrl} alt={company.name} fill={true} className='object-contain' />
+            <Image src={company.imgUrl} alt={company.name} fill={true} sizes='4rem, 6rem, 10rem' className='object-contain' />
           </div>
         );
       })}
