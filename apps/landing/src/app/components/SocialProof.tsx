@@ -8,12 +8,7 @@ import mercedes from '../../../public/carPngs/mercedes2.png';
 import porsche from '../../../public/carPngs/porsche.png';
 import Image from 'next/image';
 
-// import hero from '../../public/hero/yeshi-kangrang-iuqxv7kFj64-unsplash.jpg';
-
-type Props = {};
-
-export const SocialProof = (props: Props) => {
-  console.log('🚀  props:', props);
+export const SocialProof = () => {
   const logoSize = '4rem';
   const companies = [
     {
@@ -52,16 +47,7 @@ export const SocialProof = (props: Props) => {
       {companies.map(company => {
         return (
           <div key={company.name} className='relative h-12 md:h-16 lg:h-20 w-full'>
-            <Image
-              src={company.imgUrl}
-              // src={porsche}
-              alt={company.name}
-              fill={true}
-              // width={100}
-              // height={200}
-              // className='h-12 md:h-16 lg:h-20'
-              className='object-contain'
-            />
+            <Image src={company.imgUrl} alt={company.name} fill={true} className='object-contain' />
           </div>
         );
       })}
