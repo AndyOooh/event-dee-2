@@ -74,15 +74,13 @@ function HeaderLeft({}: Props) {
           </li>
         </ul>
       </div>
-      <Link href={'/'}>
-        <div className='relative w-1/2 rounded-lg p-3 hover:scale-105 hover:bg-base-300'>
-          <Image src={logoMint} alt='logo' width={800} height={800} />
-        </div>
+      <Link
+        href={'/'}
+        className='relative flex items-center w-full min-w-fit h-8 min-h-[2rem] hover:scale-105 hover:bg-base-300'>
+        <Image src={logoMint} alt='logo' width={800} height={800} className='h-4 w-fit' />
       </Link>
     </div>
   );
 }
 
 export default HeaderLeft;
-
-
