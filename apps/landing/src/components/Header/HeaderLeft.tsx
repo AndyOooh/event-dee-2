@@ -1,30 +1,23 @@
-import Image from 'next/image';
-import React from 'react';
-
-// import profilePic from '../../../public/logo/logo-d-trans.png';
-import profilePic from '../../../public/logo/logo-pink-trans.png';
-import logoMint from '../../../public/logo/combi_mint.png';
-// import profilePic from '/logo/logo-d-trans.png';
-
 import { Gruppo, Barlow_Condensed } from 'next/font/google';
-import { colorMap } from 'ui';
+import Image from 'next/image';
 import Link from 'next/link';
+
 import { BurgerMenu } from './BurgerMenu';
+import logoMint from '../../../public/logo/combi_mint.png';
+// import { colorMap } from 'ui';
 
-const gruppo = Gruppo({
-  weight: ['400'],
-  subsets: ['latin'],
-});
+// const gruppo = Gruppo({
+//   weight: ['400'],
+//   subsets: ['latin'],
+// });
 
-// If loading a variable font, you don't need to specify the font weight
-const barlowCondensed = Barlow_Condensed({
-  weight: ['400', '700', '900'],
-  subsets: ['latin'],
-});
+// // If loading a variable font, you don't need to specify the font weight
+// const barlowCondensed = Barlow_Condensed({
+//   weight: ['400', '700', '900'],
+//   subsets: ['latin'],
+// });
 
-type Props = {};
-
-function HeaderLeft({}: Props) {
+function HeaderLeft() {
   return (
     <div className='navbar-start'>
       <BurgerMenu />

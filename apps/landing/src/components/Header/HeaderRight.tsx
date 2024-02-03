@@ -4,12 +4,12 @@ import { appUrl } from '../../consts';
 function HeaderRight() {
   return (
     <>
-      <div className='flex gap-2 navbar-end'>
+      <div className='flex gap-2 navbar-end mr-4 md:mr-0'>
         <Link
           role='button'
           href={appUrl}
           target='_blank'
-          className='btn btn-neutral btn-sm rounded-3xl normal-case'>
+          className='btn btn-neutral btn-xs md:btn-sm rounded-3xl normal-case'>
           Hire Talent
         </Link>
       </div>
