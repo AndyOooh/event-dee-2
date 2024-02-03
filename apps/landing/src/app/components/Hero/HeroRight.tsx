@@ -21,6 +21,7 @@ export const HeroRight = () => {
           title='Model'
           textLocation='right'
           className='w-[110%] -top-[10%] left-0'
+          textClassName='left-2/3 top-3 md:right-1/2 md:bottom-0'
         />
       ),
     },
@@ -84,6 +85,7 @@ export const HeroRight = () => {
           title='Photographer'
           textLocation='left'
           className='-top-[40%] -right-[2%]'
+          textClassName='right-3/4 bottom-3 md:left-1/2 md:bottom-0'
         />
       ),
     },
@@ -97,7 +99,7 @@ export const HeroRight = () => {
           height={24}
           width={6}
           rotateZ={-25}
-          className='relative z-10 rounded-full bottom-[40%] left-[25%]'
+          className='relative z-10 rounded-full bottom-[40%] left-[25%] hidden md:block'
         />
       ),
     },
@@ -119,6 +121,7 @@ export const HeroRight = () => {
           title='Moto Expo 2022'
           textLocation='left'
           className='w-[150%] right-[50%]'
+          textClassName='-right-5 -bottom-7 md:left-1/2 md:bottom-0'
         />
       ),
     },
@@ -131,8 +134,9 @@ export const HeroRight = () => {
           direction='left'
           height={24}
           width={8}
-          rotateZ={90}
-          className='relative z-10 right-[20%] bottom-[35%]'
+          rotateZ={80}
+          // className='relative z-10 right-[20%] bottom-[35%] hidden md:block'
+          className='relative z-10 right-[150%] md:right-[20%] bottom-[120%] md:bottom-[35%]'
         />
       ),
     },
