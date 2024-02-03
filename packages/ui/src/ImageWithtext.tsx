@@ -7,7 +7,7 @@ type Props = {
   image: React.ReactNode;
   name: string;
   title: string;
-  textLocation: 'left' | 'right';
+  // textLocation: 'left' | 'right';
   className?: string;
   textClassName?: string;
 };
@@ -16,7 +16,7 @@ export const ImageWithtext = ({
   image,
   name,
   title,
-  textLocation = 'left',
+  // textLocation = 'left',
   className,
   textClassName,
 }: Props) => {

@@ -19,9 +19,10 @@ export const HeroRight = () => {
           }
           name='Chompuu'
           title='Model'
-          textLocation='right'
+          // textLocation='right'
           className='w-[110%] -top-[10%] left-0'
-          textClassName='left-2/3 top-3 md:right-1/2 md:bottom-0'
+          // textClassName='left-2/3 top-3 md:right-1/2 md:bottom-0'
+          textClassName='left-2/3 top-3 md:right-1/2 md:top-0'
         />
       ),
     },
@@ -83,9 +84,10 @@ export const HeroRight = () => {
           }
           name='John'
           title='Photographer'
-          textLocation='left'
+          // textLocation='left'
           className='-top-[40%] -right-[2%]'
-          textClassName='right-3/4 bottom-3 md:left-1/2 md:bottom-0'
+          // textClassName='right-3/4 bottom-3 md:left-1/2 md:bottom-0'
+          textClassName='right-3/4 bottom-3 md:right-1/2 md:bottom-1/3'
         />
       ),
     },
@@ -111,7 +113,7 @@ export const HeroRight = () => {
           image={
             <Image
               src={motorshowMerc.src}
-              alt='photographer'
+              alt='motorshow mercedes'
               height={900}
               width={900}
               priority={true}
@@ -119,7 +121,7 @@ export const HeroRight = () => {
           }
           name='Mercedes'
           title='Moto Expo 2022'
-          textLocation='left'
+          // textLocation='left'
           className='w-[150%] right-[50%]'
           textClassName='-right-5 -bottom-7 md:left-1/2 md:bottom-0'
         />
