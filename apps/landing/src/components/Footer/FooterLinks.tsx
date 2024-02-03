@@ -83,7 +83,7 @@ export const FooterLinks = () => {
   };
   return (
     <div className='flex flex-col gap-4 py-10'>
-      <div className='flex justify-between gap-16 w-5/6 mx-auto'>
+      <div className='flex flex-col md:flex-row justify-between gap-8 md:gap-16 w-5/6 mx-auto'>
         {links.slice(0, 3).map((link, index) => (
           <div
             key={link.title + index}
@@ -93,9 +93,11 @@ export const FooterLinks = () => {
           </div>
         ))}
       </div>
-      <div className='flex justify-between gap-16 w-5/6 mx-auto'>
+      <div className='flex flex-col md:flex-row justify-between gap-8 md:gap-16 w-5/6 mx-auto'>
         {links.slice(3).map((link, index) => (
-          <div key={link.title + index} className='flex justify-between w-full pb-4'>
+          <div
+            key={link.title + index}
+            className='flex justify-between w-full pb-4 border-b border-base-content/50 md:border-none'>
             {/* <LinkComponent link={link} /> */}
             {linkComponent(link)}
           </div>
