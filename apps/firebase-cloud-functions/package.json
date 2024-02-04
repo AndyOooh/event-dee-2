@@ -2,6 +2,7 @@
   "name": "firebase-cloud-functions",
   "version": "1.0.0",
   "scripts": {
+    "lint": "tsc --noEmit && eslint \"src/**/*.ts*\" --max-warnings 0",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "serve": "yarn build && firebase emulators:start --only functions",

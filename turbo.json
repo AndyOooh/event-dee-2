@@ -8,10 +8,14 @@
     "NEXT_PUBLIC_MAPS_API_KEY"
   ],
   "pipeline": {
+    "lint": {},
     "build": {
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "lint": {},
+    "test": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
     "start": {
       "cache": false
     },

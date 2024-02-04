@@ -8,9 +8,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "dotenv -- turbo dev",
     "lint": "turbo run lint",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "dev": "dotenv -- turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "turbo run clean && rm -rf node_modules",
     "emulators": "turbo run emulators"
