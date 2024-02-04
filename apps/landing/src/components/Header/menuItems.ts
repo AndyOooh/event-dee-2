@@ -3,7 +3,7 @@ import { appUrl } from '../../consts';
 export const menuItems = [
   {
     title: 'Companies',
-    link: '/',
+    link: '/companies',
   },
   {
     title: 'Members',
@@ -15,7 +15,7 @@ export const menuItems = [
       },
       {
         title: 'Society',
-        link: '/profile',
+        link: '/society',
       },
     ],
   },

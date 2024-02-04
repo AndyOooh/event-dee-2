@@ -46,16 +46,25 @@ const karla = Karla({
 
 // Figure this out. New way to do head I think - instead of file
 export const metadata = {
-  title: 'Event Dee - Landing',
+  title: 'Event Dee',
   description: 'Connecting events',
   icons: {
     icon: '/favicon.ico',
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export async function generateStaticParams() {
+  return [{ lang: 'en-US' }, { lang: 'de' }];
+}
+
+type Props = {
+  children: React.ReactNode;
+  params: { lang: string };
+};
+
+export default function RootLayout({ children, params }: Props) {
   return (
-    <html lang='en' className={`${inter.className} bg-base-200 text-black`}>
+    <html lang={params.lang} className={`${inter.className} bg-base-200 text-black`}>
       {/* Best so far */}
       {/* <html lang='en' className={`${gantari.className} text-black`}> */}
       {/* decent */}

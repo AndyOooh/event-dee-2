@@ -1,12 +1,10 @@
 import React from 'react';
 import { appUrl } from '../../../consts';
 
-type Props = {};
-
-export const HeroLeft = (props: Props) => {
+export const HeroLeft = () => {
   return (
-    <div className=' lg:w-1/2'>
-      <h1 className='text-7xl font-semibold '>
+    <div className='mt-4 md:mt-0 lg:w-1/2'>
+      <h1 className='text-3xl md:text-7xl font-semibold '>
         Hire event
         <br />
         professionals

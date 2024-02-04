@@ -2,9 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import { ColoredDiv, ImageWithtext } from 'ui';
-import motorshow1 from '../../../../public/events/motorshow1.jpg';
 import motorshowMerc from '../../../../public/events/motorshow_mercedes.jpeg';
-import motorshowTop from '../../../../public/events/motorshow_top.jpg';
 import chomPortait from '../../../../public/talent/chom_white_12_17.jpg';
 import photographerPortrait from '../../../../public/talent/photographer1_1point4.jpg';
 
@@ -17,18 +15,13 @@ export const HeroRight = () => {
       comp: (
         <ImageWithtext
           image={
-            <Image
-              src={chomPortait.src}
-              alt='model'
-              height={900}
-              width={900}
-              // fill={true}
-            />
+            <Image src={chomPortait.src} alt='model' height={900} width={900} priority={true} />
           }
           name='Chompuu'
           title='Model'
-          textLocation='right'
+          // textLocation='right'
           className='w-[110%] -top-[10%] left-0'
+          textClassName='left-2/3 top-3 md:-right-1/3 md:top-4'
         />
       ),
     },
@@ -41,7 +34,6 @@ export const HeroRight = () => {
           height={12}
           width={24}
           rotateZ={45}
-          // className='absolute z-10 -right-12'
           className='relative z-10 right-[15%]'
         />
       ),
@@ -55,9 +47,7 @@ export const HeroRight = () => {
           direction='bottom'
           height={10}
           width={10}
-          // rotateZ={45}
           className='relative z-10 left-12 -top-6 rounded-full'
-          // className='absolute z-10 left-12 -top-6 rounded-full'
         />
       ),
     },
@@ -70,15 +60,14 @@ export const HeroRight = () => {
           height={10}
           width={16}
           className='relative z-10 bottom-[5%] left-[20%]'
-          // className='absolute z-20 bottom-12'
         />
       ),
     },
     {
       name: 'empty',
-      comp: (<div></div> )
+      comp: <div></div>,
     },
-   
+
     {
       name: 'Photographer',
       comp: (
@@ -89,33 +78,33 @@ export const HeroRight = () => {
               alt='photographer'
               height={900}
               width={900}
-              // fill={true}
+              priority={true}
             />
           }
           name='John'
           title='Photographer'
-          textLocation='left'
+          // textLocation='left'
           className='-top-[40%] -right-[2%]'
+          // textClassName='right-3/4 bottom-3 md:left-1/2 md:bottom-0'
+          textClassName='right-3/4 bottom-3 md:right-3/4 md:bottom-1/3'
         />
       ),
     },
-   
 
     {
-      name: 'orange square',
+      name: 'purple rect',
       comp: (
         <ColoredDiv
-          color='pink'
+          color='purple'
           direction='top'
           height={24}
           width={6}
           rotateZ={-25}
-          className='relative z-10 rounded-full bottom-[40%] left-[25%]'
-          // className='absolute z-10 right-16 -bottom-24'
+          className='relative z-10 rounded-full bottom-[40%] left-[25%] hidden md:block'
         />
       ),
     },
-    
+
     {
       name: 'event',
       comp: (
@@ -123,22 +112,21 @@ export const HeroRight = () => {
           image={
             <Image
               src={motorshowMerc.src}
-              // src={motorshowTop.src}
-              // src={motorshow1.src}
-              alt='photographer'
+              alt='motorshow mercedes'
               height={900}
               width={900}
-              // fill={true}
+              priority={true}
             />
           }
           name='Mercedes'
           title='Moto Expo 2022'
-          textLocation='left'
+          // textLocation='left'
           className='w-[150%] right-[50%]'
+          textClassName='-right-1/2 -bottom-7 md:-right-1/4 md:bottom-2'
         />
       ),
     },
- 
+
     {
       name: 'orange square 2',
       comp: (
@@ -147,19 +135,17 @@ export const HeroRight = () => {
           direction='left'
           height={24}
           width={8}
-          rotateZ={90}
-          className='relative z-10 right-[20%] bottom-[35%]'
-          // className='absolute z-10 right-16 -bottom-24'
+          rotateZ={80}
+          // className='relative z-10 right-[20%] bottom-[35%] hidden md:block'
+          className='relative z-10 right-[150%] md:right-[20%] bottom-[120%] md:bottom-[35%]'
         />
       ),
     },
   ];
 
-  // self-stretch
   return (
     <div className='grid grid-cols-3 lg:w-1/2 min-h-96 lg:h-auto'>
       {components.map(comp => {
-        // return <div key={comp.name} className='relative aspect-square border-2 border-cyan-500' >{comp.comp}</div>;
         return (
           <div key={comp.name} className='relative aspect-square'>
             <div className='w-full h-full'>{comp.comp}</div>
@@ -169,90 +155,3 @@ export const HeroRight = () => {
     </div>
   );
 };
-
-{
-  /* <div className='grid grid-cols-3 self-stretch lg:w-1/2 h-96 lg:h-auto border-8 border-purple-500'>
-  <ColoredDiv
-    color='pink'
-    direction='top'
-    height={12}
-    width={28}
-    rotateZ={45}
-    // className='absolute z-10 -right-12'
-    className=' z-10 -right-12'
-  />
-  <ColoredDiv
-    color='blue'
-    direction='bottom'
-    height={10}
-    width={10}
-    // rotateZ={45}
-    className=' z-10 left-12 -top-6 rounded-full'
-    // className='absolute z-10 left-12 -top-6 rounded-full'
-  />
-  <ColoredDiv
-    color='green'
-    direction='bottom'
-    height={10}
-    width={16}
-    className=' z-20 bottom-12'
-    // className='absolute z-20 bottom-12'
-  />
-  <ColoredDiv
-    color='orange'
-    direction='top'
-    height={32}
-    width={10}
-    rotateZ={15}
-    className=' z-10 right-16 -bottom-24'
-    // className='absolute z-10 right-16 -bottom-24'
-  />
-  <ImageWithtext
-    image={
-      <Image
-        src={chomPortait.src}
-        alt='model'
-        height={900}
-        width={900}
-        // fill={true}
-      />
-    }
-    name='Chompuu'
-    title='Model'
-    textLocation='right'
-    className='static w-44 top-10 left-0'
-  />
-  <ImageWithtext
-    image={
-      <Image
-        src={photographerPortrait.src}
-        alt='photographer'
-        height={900}
-        width={900}
-        // fill={true}
-      />
-    }
-    name='John'
-    title='Photographer'
-    textLocation='left'
-    className='w-36 -top-14 right-0'
-  />
-  <ImageWithtext
-    image={
-      <Image
-        src={motorshowMerc.src}
-        // src={motorshowTop.src}
-        // src={motorshow1.src}
-        alt='photographer'
-        height={900}
-        width={900}
-        // fill={true}
-      />
-    }
-    name='Mercedes'
-    title='Moto Expo 2022'
-    textLocation='left'
-    className='w-48 bottom-0 right-10'
-  />
-</div>; */
-}
