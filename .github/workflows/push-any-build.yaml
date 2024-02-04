@@ -9,6 +9,7 @@ on:
   push:
     branches-ignore:
       - main
+  workflow_dispatch:
 
 env:
   # To use Remote Caching, uncomment the next lines and follow the steps below.
