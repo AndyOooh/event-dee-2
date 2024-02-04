@@ -58,6 +58,10 @@ jobs:
         uses: actions/checkout@v4.1.1
         with:
           fetch-depth: 2
+      - name: Install Node.js v20.10
+        uses: actions/setup-node@v4.0.1
+        with:
+          node-version: '20.10'
       - name: Get node_modules cache
         uses: actions/cache@v4.0.0
         # id: node_modules
@@ -84,6 +88,10 @@ jobs:
         uses: actions/checkout@v4.1.1
         with:
           fetch-depth: 2
+      - name: Install Node.js v20.10
+        uses: actions/setup-node@v4.0.1
+        with:
+          node-version: '20.10'
       - name: Get node_modules cache
         uses: actions/cache@v4.0.0
         # id: node_modules
