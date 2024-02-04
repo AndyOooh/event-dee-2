@@ -33,7 +33,7 @@ export const ComingSoon = ({ pageName }: Props) => {
           className='rounded-3xl'
         />
         <ColoredDiv color='white' direction='bottom' height={10} width={14} rotateZ={15} />
-        <ColoredDiv color='orange' direction='bottom' height={16} width={6} rotateZ={90} />
+        <ColoredDiv color='orange' direction='top' height={16} width={6} rotateZ={90} />
         <ColoredDiv
           color='purple'
           direction='top'
