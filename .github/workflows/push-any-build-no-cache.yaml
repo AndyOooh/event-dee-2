@@ -22,11 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.0.0
         with:
           fetch-depth: 2
       - name: Install Node.js v20.10
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4.0.1
         with:
           node-version: '20.10'
       - name: Install TurboRepo CLI
