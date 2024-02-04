@@ -10,7 +10,7 @@ function NavBar() {
     <>
       <Link
         href={'/'}
-        className='relative flex md:hidden items-center justify-center w-full min-w-fit h-8 min-h-[2rem] hover:scale-105 hover:bg-base-300'>
+        className='relative flex md:hidden items-center justify-center w-full min-w-fit h-8 min-h-[2rem] hover:bg-base-300'>
         <Image src={logoMint} alt='logo' width={800} height={800} className='h-4 w-fit' />
       </Link>
       <nav className='navbar-center hidden md:flex'>

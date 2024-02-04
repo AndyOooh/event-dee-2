@@ -86,7 +86,7 @@ export const HeroRight = () => {
           // textLocation='left'
           className='-top-[40%] -right-[2%]'
           // textClassName='right-3/4 bottom-3 md:left-1/2 md:bottom-0'
-          textClassName='right-3/4 bottom-3 md:right-1/2 md:bottom-1/3'
+          textClassName='right-3/4 bottom-3 md:right-3/4 md:bottom-1/3'
         />
       ),
     },

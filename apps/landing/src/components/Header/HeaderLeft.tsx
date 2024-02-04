@@ -23,7 +23,7 @@ function HeaderLeft() {
       <BurgerMenu />
       <Link
         href={'/'}
-        className='relative md:flex hidden items-center w-full min-w-fit h-8 min-h-[2rem] hover:scale-105 hover:bg-base-300'>
+        className='relative md:flex hidden items-center w-fit p-2 rounded min-w-fit h-8 min-h-[2rem]'>
         <Image src={logoMint} alt='logo' width={800} height={800} className='h-4 w-fit' />
       </Link>
     </div>
