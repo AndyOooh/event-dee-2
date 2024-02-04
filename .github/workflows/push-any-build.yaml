@@ -100,8 +100,8 @@ jobs:
             **/node_modules
           # Adding node version as cache key
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}-${{ steps.node.outputs.version }}
-      # - name: Install TurboRepo CLI
-      #   run: yarn global add turbo
+      - name: Install TurboRepo CLI
+        run: yarn global add turbo
       - name: Test
         run: |
           # turbo run test --filter=...[origin/main]
