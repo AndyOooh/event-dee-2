@@ -54,6 +54,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: checkout_install_lint
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 2
+      - name: Get node_modules cache
+        uses: actions/cache@v4.0.0
+        # id: node_modules
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}-${{ steps.node.outputs.version }}
+      - name: Install TurboRepo CLI
+        run: yarn global add turbo
       - name: Build
         run: |
           # yarn workspaces foreach --verbose --since --no-private info
@@ -61,6 +75,7 @@ jobs:
           # yarn workspaces foreach install
           # turbo run build --filter="...[HEAD^1]"
           turbo run build
+          
   test:
     runs-on: ubuntu-latest
     needs: checkout_install_lint
@@ -77,8 +92,8 @@ jobs:
             **/node_modules
           # Adding node version as cache key
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}-${{ steps.node.outputs.version }}
-      - name: Install TurboRepo CLI
-        run: yarn global add turbo
+      # - name: Install TurboRepo CLI
+      #   run: yarn global add turbo
       - name: Test
         run: |
           # turbo run test --filter=...[origin/main]
