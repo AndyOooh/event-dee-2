@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { appUrl } from '../../consts';
+import { appUrl } from '../../../consts';
 
 function HeaderRight() {
   return (

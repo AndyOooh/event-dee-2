@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
 import NavBar from './NavBar';
-import { containerHeader } from '../../styles/styles';
+import { containerHeader } from '../../../styles/styles';
 
 type Props = {};
 

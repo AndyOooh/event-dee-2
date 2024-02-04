@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { BurgerMenu } from './BurgerMenu';
-import logoMint from '../../../public/logo/combi_mint.png';
+import logoMint from '../../../../public/logo/combi_mint.png';
 // import { colorMap } from 'ui';
 
 // const gruppo = Gruppo({
