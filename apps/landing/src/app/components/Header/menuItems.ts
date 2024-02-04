@@ -1,4 +1,4 @@
-import { appUrl } from '../../consts';
+import { appUrl } from '../../../consts';
 
 export const menuItems = [
   {

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 
 import { menuItems } from './menuItems';
-import logoMint from '../../../public/logo/combi_mint.png';
+import logoMint from '../../../../public/logo/combi_mint.png';
 
 function NavBar() {
   return (
