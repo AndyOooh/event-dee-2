@@ -21,8 +21,7 @@ export const HeroRight = () => {
           title='Model'
           // textLocation='right'
           className='w-[110%] -top-[10%] left-0'
-          // textClassName='left-2/3 top-3 md:right-1/2 md:bottom-0'
-          textClassName='left-2/3 top-3 md:right-1/2 md:top-0'
+          textClassName='left-2/3 top-3 md:-right-1/3 md:top-4'
         />
       ),
     },
@@ -93,10 +92,10 @@ export const HeroRight = () => {
     },
 
     {
-      name: 'orange square',
+      name: 'purple rect',
       comp: (
         <ColoredDiv
-          color='pink'
+          color='purple'
           direction='top'
           height={24}
           width={6}
@@ -123,7 +122,7 @@ export const HeroRight = () => {
           title='Moto Expo 2022'
           // textLocation='left'
           className='w-[150%] right-[50%]'
-          textClassName='-right-5 -bottom-7 md:left-1/2 md:bottom-0'
+          textClassName='-right-1/2 -bottom-7 md:-right-1/4 md:bottom-2'
         />
       ),
     },
