@@ -47,7 +47,8 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Lint
-        run: turbo run lint --filter="...[HEAD^1]"
+        # run: turbo run lint --filter="...[HEAD^1]"
+        run: turbo run lint
 
   build:
     runs-on: ubuntu-latest
@@ -58,13 +59,13 @@ jobs:
           # yarn workspaces foreach --verbose --since --no-private info
           # yarn workspaces info
           # yarn workspaces foreach install
-          turbo run build --filter="...[HEAD^1]"
-          # turbo run build
+          # turbo run build --filter="...[HEAD^1]"
+          turbo run build
   test:
     runs-on: ubuntu-latest
     needs: checkout_install_lint
     steps:
       - name: Test
         run: |
-          turbo run test --filter=...[origin/main]
+          # turbo run test --filter=...[origin/main]
           # turbo run test
