@@ -26,10 +26,10 @@ jobs:
           # yarn workspaces foreach --verbose --since --no-private info
           # yarn workspaces info
           # yarn workspaces foreach install
-          # turbo run lint --filter="...[HEAD^1]"
+          turbo run lint --filter="...[HEAD^1]"
           # turbo run build --filter="...[HEAD^1]"
-          turbo run lint
-          turbo run build 
+          # turbo run lint
+          # turbo run build 
           # turbo run test --filter=...[origin/main]
 
 
