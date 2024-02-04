@@ -52,7 +52,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: checkout_install_lint
     steps:
+      - name: Install TurboRepo CLI
+        run: yarn global add turbo
       - name: Test
         run: |
           # turbo run test --filter=...[origin/main]
           # turbo run test
+          turbo run lint
