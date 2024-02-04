@@ -4,6 +4,7 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint \"src/**/*.ts*\" --max-warnings 0",
     "build": "tsc",
+    "test": "echo 'Jest not yet set up in FCF app...'",
     "build:watch": "tsc --watch",
     "serve": "yarn build && firebase emulators:start --only functions",
     "shell": "yarn run build && firebase functions:shell",
