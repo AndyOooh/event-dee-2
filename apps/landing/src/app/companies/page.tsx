@@ -1,9 +1,10 @@
-import { ComingSoon } from '../components/ComingSoon';
+import { ComingSoon } from 'ui';
+import { container } from '../../styles/styles';
 
 export default function CompaniesPage() {
   return (
     <div>
-      <ComingSoon pageName='Companies' />
+      <ComingSoon pageName='Companies' containerClass={container} />
     </div>
   );
 }

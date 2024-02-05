@@ -3,7 +3,7 @@ import { SignupBusinessLeft } from './SignupBusinessLeft/SignupBusinessLeft';
 import { SignupBusinessRight } from './SignupBusinessRight/SignupBusinessRight';
 
 export const metadata: Metadata = {
-  title: 'Sign-up - Business',
+  title: 'Signup - Business',
 };
 
 function SignupBusiness() {
