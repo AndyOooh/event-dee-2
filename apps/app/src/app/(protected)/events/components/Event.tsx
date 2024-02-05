@@ -47,7 +47,7 @@ const Event = ({ event }: any) => {
     []
   );
 
-  const cardWithAndHeight = 'w-4/5 h-[40rem]';
+  const cardWithAndHeight = 'w-4/5 min-h-[40rem]';
 
   const onLoad = useCallback(map => (mapRef.current = map), []);
 
