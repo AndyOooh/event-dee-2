@@ -1,15 +1,14 @@
-import React from 'react';
 import { ColoredDiv } from 'ui';
-
-import { container } from '../../styles/styles';
 
 type Props = {
   pageName: string;
+  containerClass: string;
 };
-export const ComingSoon = ({ pageName }: Props) => {
+
+export const ComingSoon = ({ pageName, containerClass }: Props) => {
   return (
     <section
-      className={`main-height mt-16 flex flex-col justify-center items-center gap-4 ${container}`}>
+      className={`main-height mt-16 flex flex-col justify-center items-center gap-4 ${containerClass}`}>
       <h1 className='text-5xl'>{pageName}</h1>
       <h1 className='text-3xl'>Coming Soon..</h1>
       <div className='grid grid-cols-5 w-3/4'>

@@ -4,7 +4,7 @@ import { DividedPage } from '../../components/DividedPage';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sign-up - Freelancer',
+  title: 'Signup - Freelancer',
 };
 
 function SignupFreelancer() {
