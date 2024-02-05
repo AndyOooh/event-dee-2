@@ -7,7 +7,7 @@ function HeaderRight() {
       <div className='flex gap-2 navbar-end mr-4 md:mr-0'>
         <Link
           role='button'
-          href={`${appUrl}/signup`}
+          href={`${appUrl}/signup/business`}
           target='_blank'
           className='btn btn-neutral btn-xs md:btn-sm rounded-3xl normal-case'>
           Hire Talent

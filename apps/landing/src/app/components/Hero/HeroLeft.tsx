@@ -14,7 +14,7 @@ export const HeroLeft = () => {
       <div className='divider' />
       {/* add endpoint to this link: signup/company */}
       <a
-        href={`${appUrl}/signup`}
+        href={`${appUrl}/signup/business`}
         className='btn btn-neutral hover:text-accent-content hover:bg-gradient-to-tr from-accent/80 to-primary hover:border-none'>
         Get Started
       </a>
