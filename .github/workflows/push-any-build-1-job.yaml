@@ -2,9 +2,9 @@ name: Push to any - 1 Job
 run-name: Lint, Build, Test
 
 on:
-  # push:
-  #   branches-ignore:
-  #     - main
+  push:
+    branches-ignore:
+      - main
   workflow_dispatch:
 
 env:

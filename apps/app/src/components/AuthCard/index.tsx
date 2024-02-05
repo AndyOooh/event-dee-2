@@ -61,7 +61,7 @@ export const AuthCard = () => {
   ];
 
   return (
-    <div className='flex-center gap-2 bg-white p-4 rounded-[1rem] w-fit'>
+    <div className='flex-center gap-2 bg-white p-4 rounded-[1rem] w-fit z-50'>
       <div className='flex-center gap-4'>
         <div className='flex-center bg-black rounded-lg w-8 h-8 p-1'>
           <BsBellFill color='white' />
