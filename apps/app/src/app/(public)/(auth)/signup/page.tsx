@@ -13,7 +13,7 @@ function Signup() {
         </Link>
         <br />
         Or as{' '}
-        <Link href={'/signup/freelancer'} className='link link-primary'>
+        <Link href={'/signup/business'} className='link link-primary'>
           Businesss?
         </Link>
       </p>
