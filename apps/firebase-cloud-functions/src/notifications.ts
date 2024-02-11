@@ -20,6 +20,7 @@ export const eventCreated = functions.firestore
   .onCreate(async (snapshot, context) => {
     // sent noti to all users
     const event = snapshot.data();
+    console.log('🟣🟣🟣🟣🟣  event:', event)
     const notification = {
       title: 'New event!',
       body: `A new event has been created: ${event.title}`,

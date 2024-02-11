@@ -5,22 +5,30 @@ import { useRouter } from 'next/navigation';
 import { AuthCardUser } from './AuthCardUser';
 import { MdArrowDropDown } from 'react-icons/md';
 import { BsBellFill, BsFillChatFill } from 'react-icons/bs';
-import { auth } from '../../firebase/clientApp';
+import { auth, db } from '../../firebase/clientApp';
 import { useSignOut } from 'react-firebase-hooks/auth';
 import { BiLogOut, BiUser, BiUserCheck, BiCog } from 'react-icons/bi';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
+import { doc, onSnapshot } from "firebase/firestore";
+
+
 
 // TODO: Error and loading state
 
 export const AuthCard = () => {
   const { currentUser } = useContext(CurrUserContext);
+  console.log('🤢  currentUser:', currentUser)
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
   const router = useRouter();
   // const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
 
+//   const unsub = onSnapshot(doc(db, "notifications", "SF"), (doc) => {
+//     console.log("Current data: ", doc.data());
+// });
+
   useEffect(() => {
     // TODO: sunscribe to changes in user notifications.
-    
+
    
   }, [])
   
