@@ -90,3 +90,11 @@ export const fetchDocById = https.onCall(
     }
   }
 );
+
+
+// TODO: update user doc
+export const updateDoc = async (collection: string, docId: string, field: string, data: any) => {
+  const docRef = db.collection(collection).doc(docId);
+  await docRef.update({ [field]: data });
+}
+

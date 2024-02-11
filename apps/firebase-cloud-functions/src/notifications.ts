@@ -21,12 +21,19 @@ export const eventCreated = functions.firestore
     // sent noti to all users
     const event = snapshot.data();
     console.log('🟣🟣🟣🟣🟣  event:', event)
+    
     const notification = {
       title: 'New event!',
       body: `A new event has been created: ${event.title}`,
     };
     const users = await db.collection('users').get();
     users.forEach(user => {
-      createNotification(user.id, 'event', notification);
+      const notification = createNotification(user.id, 'newEvent', {});
+      // todo: update user doc with new notification pushed to aray
+
+      
+
+
+      
     });
   });
