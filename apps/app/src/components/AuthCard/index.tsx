@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthCardUser } from './AuthCardUser';
 import { MdArrowDropDown } from 'react-icons/md';
@@ -17,6 +17,13 @@ export const AuthCard = () => {
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
   const router = useRouter();
   // const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
+
+  useEffect(() => {
+    // TODO: sunscribe to changes in user notifications.
+    
+   
+  }, [])
+  
 
   const onSignOut = async () => {
     const succes = await signOut();
