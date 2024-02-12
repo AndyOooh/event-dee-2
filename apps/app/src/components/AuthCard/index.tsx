@@ -10,6 +10,7 @@ import { useSignOut } from 'react-firebase-hooks/auth';
 import { BiLogOut, BiUser, BiUserCheck, BiCog } from 'react-icons/bi';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { doc, onSnapshot } from 'firebase/firestore';
+import { NotificationCounter } from 'ui';
 
 // TODO: Error and loading state
 
@@ -18,6 +19,11 @@ export const AuthCard = () => {
   console.log('🤢  currentUser:', currentUser);
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
   const router = useRouter();
+  const unreadNotifications = currentUser?.notifications?.filter((n) => !n.read).length;
+  console.log('🚀  unreadNotifications:', unreadNotifications)
+
+
+
   // const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
 
   //   const unsub = onSnapshot(doc(db, "notifications", "SF"), (doc) => {
@@ -75,7 +81,7 @@ export const AuthCard = () => {
       <div className='flex-center gap-4'>
         <div className='flex-center relative bg-black rounded-lg w-8 h-8 p-1'>
           <BsBellFill color='white' />
-         
+          <NotificationCounter notifications={unreadNotifications} />
         </div>
         <div className='flex-center bg-black rounded-lg w-8 h-8 p-1'>
           <BsFillChatFill color='white' />

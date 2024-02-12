@@ -56,6 +56,7 @@ export const onCreateEvent = functions.firestore
         updateDoc('users', user.id, 'notifications', [newUserNotification, ...notifications]);
       });
     } catch (error) {
+      console.log('🚀  error:', error)
       throw error;
     }
   });
