@@ -3,34 +3,20 @@ import * as admin from 'firebase-admin';
 import { db } from '..';
 import { getAuth } from 'firebase-admin/auth';
 
-// listener
+/*
+ * listener - on create user (auth)
+ * Creates a new user doc
+ */
 export const onCreateUser = functions.auth.user().onCreate(async (user: any, ctx) => {
-  console.log('🚀  file: crud-user.ts:8  ctx:', ctx);
-  console.log('createUserDocument called!');
-  console.log('🚀  file: index.ts:39  user:', user);
-  if (!user.displayName) {
-    // delete user in auh and return email + photo
-    // return { email: user.email, photoURL: user.providerData[0].photoURL };
-  }
   db.collection('users')
     .doc(user.uid)
     .set(JSON.parse(JSON.stringify(user)));
 });
 
-// export const createUserDocument = functions.auth.user().onCreate(async user => {
-//   const userRef = db.doc(`users/${user.uid}`);
-//   const snapshot = await userRef.get();
-//   if (!snapshot.exists) {
-//     await userRef.set({
-//       displayName: user.displayName,
-//       email: user.email,
-//       photoURL: user.photoURL,
-//       createdAt: admin.firestore.FieldValue.serverTimestamp(),
-//     });
-//   }
-// });
-
-// Can be called from client
+/*
+ * Callable
+ * Checks if email exists in auth
+ */
 export const checkEmailExists = functions.https.onCall(async email => {
   try {
     console.log('checkEmailExists called!');
@@ -51,6 +37,10 @@ export const checkEmailExists = functions.https.onCall(async email => {
 //   // do your stuff here
 // })
 
+/*
+ * Listener - on delete user (auth)
+ * Deletes user doc
+ */
 export const deleteUser = functions.auth.user().onDelete(async (user: any) => {
   try {
     console.log('deleting user..: user.uid ');
@@ -66,21 +56,22 @@ export const deleteUser = functions.auth.user().onDelete(async (user: any) => {
   }
 });
 
+/*
+ * Callable
+ * Sets custom claims on auth user
+ */
 export const setCustomClaims = functions.https.onCall(async (data, context) => {
   try {
     const { uid, payload } = data;
-    console.log('🚀  file: crud-user.ts:78  payload:', payload);
-    console.log('🚀  file: crud-user.ts:78  uid:', uid);
-    const res = await getAuth().setCustomUserClaims(uid, payload);
-    console.log('🚀  file: crud-user.ts:78  res:', res);
-    // Lookup the user associated with the specified uid.
-    const userNew = await getAuth()
-      .getUser(uid)
-      .then(userRecord => {
-        // The claims can be accessed on the user record.
-        console.log(userRecord?.customClaims);
-      });
-    console.log('🚀  file: crud-user.ts:85  userNew:', userNew);
+    await getAuth().setCustomUserClaims(uid, payload);
+    // /* Lookup the user associated with the specified uid. */
+    // const userNew = await getAuth()
+    //   .getUser(uid)
+    //   .then(userRecord => {
+    //     // The claims can be accessed on the user record.
+    //     console.log(userRecord?.customClaims);
+    //   });
+    // console.log('🚀  file: crud-user.ts:85  userNew:', userNew);
 
     return { message: `Custom claims set on uid: ${data.uid}` };
   } catch (error) {
