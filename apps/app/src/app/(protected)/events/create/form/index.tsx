@@ -50,6 +50,7 @@ export const CreateEventForm = () => {
       const newEventRef = await addDoc(eventsCollectionRef, {
         ...data,
         event_id: eventsMetadata.currentId + 1,
+        creatorUid: currentUser.uid,
       });
 
       // Step 2: Get the reference to the newly created event
