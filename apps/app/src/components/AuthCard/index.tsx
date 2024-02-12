@@ -19,10 +19,7 @@ export const AuthCard = () => {
   console.log('🤢  currentUser:', currentUser);
   const [signOut, loading_signout, error_signout] = useSignOut(auth);
   const router = useRouter();
-  const unreadNotifications = currentUser?.notifications?.filter((n) => !n.read).length;
-  console.log('🚀  unreadNotifications:', unreadNotifications)
-
-
+  const unreadNotifications = currentUser?.notifications?.filter((n: any) => !n.read).length;
 
   // const [deleteUser, loading_delete, error_delete] = useDeleteUser(auth);
 
@@ -81,7 +78,7 @@ export const AuthCard = () => {
       <div className='flex-center gap-4'>
         <div className='flex-center relative bg-black rounded-lg w-8 h-8 p-1'>
           <BsBellFill color='white' />
-          <NotificationCounter notifications={unreadNotifications} />
+          {unreadNotifications > 0 && <NotificationCounter notifications={unreadNotifications} />}
         </div>
         <div className='flex-center bg-black rounded-lg w-8 h-8 p-1'>
           <BsFillChatFill color='white' />
