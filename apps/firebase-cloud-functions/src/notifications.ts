@@ -1,7 +1,8 @@
 // import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { db, updateDoc } from '.';
+import { db } from '.';
 import { Timestamp } from 'firebase-admin/firestore';
+import { updateDoc } from './helpers';
 
 // export const createNotification = async (userId: string, type: string, data: any) => {
 export const createNotification = (userId: string, type: string, data: any) => {

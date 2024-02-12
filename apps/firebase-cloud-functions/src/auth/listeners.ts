@@ -16,7 +16,7 @@ export const onCreateUser = functions.auth.user().onCreate(async (user: any, ctx
  * Listener - on delete user (auth)
  * Deletes user doc
  */
-export const deleteUser = functions.auth.user().onDelete(async (user: any) => {
+export const onDeleteUser = functions.auth.user().onDelete(async (user: any) => {
   try {
     console.log('deleting user..: user.uid ');
     // TODOD: delete user folder in storage. Also, is user deleted in auth??

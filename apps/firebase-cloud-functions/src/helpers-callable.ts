@@ -14,6 +14,7 @@ type FetchDocsWithQueryParams = {
 };
 
 /**
+ * Callable
  * Fetch documents based on a query or fetch entire collection.
  * @param {string} collectionName - Name of the Firestore collection.
  * @param {string} [field] - Field to query on.
@@ -31,12 +32,10 @@ export const fetchDocsWithQuery = https.onCall(
     limit = 10,
   }: FetchDocsWithQueryParams): Promise<DocData[]> => {
     try {
-      console.log('in fetchDocs 😍😂😍😂😍😂😍😂😍😂😍😂😍😂');
-
       const collectionRef = db.collection(collectionName);
 
       if (field && operator && value) {
-        // Fetch based on query
+        /* Fetch based on query */
         const querySnapshot = await collectionRef
           .where(field, operator, value)
           .limit(limit || Infinity)
@@ -50,7 +49,7 @@ export const fetchDocsWithQuery = https.onCall(
         console.log('Fetched documents:', documents);
         return documents;
       } else {
-        // Fetch entire collection
+        /* Fetch entire collection */
         const querySnapshot = await collectionRef.limit(limit).get();
 
         const documents: DocData[] = [];
@@ -73,14 +72,16 @@ type fetchDocByIdParams = {
   id: string;
 };
 
+/*
+ * Callable
+ * Fetch a document by its ID.
+ */
 export const fetchDocById = https.onCall(
   async ({ collectionName, id }: fetchDocByIdParams): Promise<DocumentData> => {
     try {
       const collectionRef = db.collection(collectionName);
 
-      const querySnapshot = await collectionRef
-        .doc(id) // Assuming 'value' is the document ID
-        .get();
+      const querySnapshot = await collectionRef.doc(id).get();
 
       const document = querySnapshot.data()!;
       return document;
@@ -91,12 +92,4 @@ export const fetchDocById = https.onCall(
   }
 );
 
-
-// TODO: update user doc
-export const updateDoc = async (collection: string, docId: string, field: string, data: any) => {
-  console.log('🚀  data:', data)
-  console.log('🚀  field:', field)
-  const docRef = db.collection(collection).doc(docId);
-  await docRef.update({ [field]: data });
-}
 
