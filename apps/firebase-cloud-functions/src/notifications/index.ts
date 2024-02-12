@@ -48,15 +48,18 @@ export const onCreateEvent = functions.firestore
       /* This can be filtered, e.g. to users in same province */
       const users = await db.collection('users').get();
       users.forEach(user => {
-        const newUserNotification = {
-          id: res.id,
-          read: false,
-        };
-        const notifications = user.data().notifications || [];
-        updateDoc('users', user.id, 'notifications', [newUserNotification, ...notifications]);
+        /* Skip creator */
+        if (user.id !== event.creatorId) {
+          const newUserNotification = {
+            id: res.id,
+            read: false,
+          };
+          const notifications = user.data().notifications || [];
+          updateDoc('users', user.id, 'notifications', [newUserNotification, ...notifications]);
+        }
       });
     } catch (error) {
-      console.log('🚀  error:', error)
+      console.log('🚀  error:', error);
       throw error;
     }
   });
