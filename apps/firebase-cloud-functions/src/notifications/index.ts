@@ -1,7 +1,7 @@
 // import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { Timestamp } from 'firebase-admin/firestore';
-// import { updateDoc } from '../helpers';
+import { updateDoc } from '../helpers';
 import { db } from '..';
 
 // export const createNotification = async (userId: string, type: string, data: any) => {
@@ -40,24 +40,22 @@ const createNotificationDoc = (
 export const onCreateEvent = functions.firestore
   .document('events/{eventId}')
   .onCreate(async (snapshot, context) => {
-    console.log('🚀  context:', context);
-    const event = snapshot.data();
-    console.log('🚀  event:', event);
+    try {
+      const event = snapshot.data();
+      const newNotification = createNotificationDoc(event.creatorId, 'event', 'newEvent', event);
+      const res = await db.collection('notifications').add(newNotification);
 
-    const newNotification = createNotificationDoc(event.creatorId, 'event', 'newEvent', context);
-    console.log('🚀  newNotification:', newNotification);
-    const res = await db.collection('notifications').add(newNotification);
-    const notification = (await res.get()).data();
-    console.log('🚀  notification:', notification);
-
-    // /* This can be filtered, e.g. to users in same province */
-    // const users = await db.collection('users').get();
-    // users.forEach(user => {
-    //   const newNotification = {
-    //     notification.id,
-    //     read: false,
-    //   }
-    //   const notifications = user.data().notifications || [];
-    //   updateDoc('users', user.id, 'notifications', [newNotification, ...notifications]);
-    // });
+      /* This can be filtered, e.g. to users in same province */
+      const users = await db.collection('users').get();
+      users.forEach(user => {
+        const newUserNotification = {
+          id: res.id,
+          read: false,
+        };
+        const notifications = user.data().notifications || [];
+        updateDoc('users', user.id, 'notifications', [newUserNotification, ...notifications]);
+      });
+    } catch (error) {
+      throw error;
+    }
   });
