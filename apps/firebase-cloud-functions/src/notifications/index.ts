@@ -1,42 +1,12 @@
-// import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { Timestamp } from 'firebase-admin/firestore';
 import { updateDoc } from '../helpers';
 import { db } from '..';
-
-// export const createNotification = async (userId: string, type: string, data: any) => {
-// const createUserNotification = (docId: string) => {
-//   return  {
-//     docId,
-//     read: false,
-//   };
-// };
+import { createNotificationDoc } from './helpers';
 
 /*
- * What the notification is about
- * event, comment on event, invite to contract, contract signed, etc.
+ * Listener - on create event
+ * Creates a new notification for all users
  */
-type Entity = 'event' | 'comment';
-type NotificationType = 'newEvent' | 'newComment' | 'newContract' | 'contractSigned';
-
-const createNotificationDoc = (
-  actorId: string, // useerId of the user initiating the action
-  entity: Entity,
-  type: NotificationType,
-  data: any
-) => {
-  const notification = {
-    actorId,
-    entity,
-    type,
-    data,
-    // read: false,
-    createdAt: Timestamp.now(),
-  };
-  return notification;
-};
-
-// listener for events creation, executes createNotification
 export const onCreateEvent = functions.firestore
   .document('events/{eventId}')
   .onCreate(async (snapshot, context) => {
