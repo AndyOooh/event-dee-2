@@ -4,7 +4,7 @@ import { db } from '..';
 import { getAuth } from 'firebase-admin/auth';
 
 // listener
-export const createUserDocument = functions.auth.user().onCreate(async (user: any, ctx) => {
+export const onCreateUser = functions.auth.user().onCreate(async (user: any, ctx) => {
   console.log('🚀  file: crud-user.ts:8  ctx:', ctx);
   console.log('createUserDocument called!');
   console.log('🚀  file: index.ts:39  user:', user);

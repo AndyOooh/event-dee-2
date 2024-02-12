@@ -29,7 +29,7 @@ export const createNotification = (userId: string, type: string, data: any) => {
 };
 
 // listener for events creation, executes createNotification
-export const eventCreated = functions.firestore
+export const onCreateEvent = functions.firestore
   .document('events/{eventId}')
   .onCreate(async (snapshot, context) => {
     console.log('🚀  context:', context);
