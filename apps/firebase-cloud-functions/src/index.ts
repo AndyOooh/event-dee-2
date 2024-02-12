@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 export * from './auth';
-export * from './helpers-callable';
+export * from './callable';
 export * from './notifications';
 
 admin.initializeApp();
