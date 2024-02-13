@@ -11,7 +11,6 @@
     "start": "yarn run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "emulatorsOLD": "firebase emulators:start",
     "emulators": "firebase emulators:start --import=emulator-data",
     "emulators_with_export": "firebase emulators:start --export-on-exit=emulator-data --import=emulator-data",
     "clean": "rm -rf node_modules && rm -rf lib && rm -rf ui-debug.log && rm -rf .turbo",
