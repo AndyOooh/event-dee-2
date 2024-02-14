@@ -13,13 +13,13 @@ addons.setConfig({
   panelPosition: 'bottom',
   enableShortcuts: true,
   showToolbar: true,
-//   theme: themes.light,
+  //   theme: themes.light,
   theme: eventDeeTheme,
   selectedPanel: undefined,
   initialActive: 'sidebar',
   sidebar: {
-    showRoots: false,
-    collapsedRoots: ['other'],
+    // showRoots: false, // if true, creates top-level folders
+    // collapsedRoots: ['other'],
   },
   toolbar: {
     title: { hidden: false },

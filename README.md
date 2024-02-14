@@ -7,19 +7,24 @@
 
 <img src="https://github.com/AndyOooh/event-dee-2/assets/60953822/47df893b-42af-426c-9a5b-b1108c83bd96" alt="Logo" width="" height="70">
 
-<!-- <h1>Event Dee</h3> -->
-<!-- <h4>Connecting events - An event workers platform.</h4> -->
-
 ### _Connecting events_
 
   <p>
+    <!-- <a href="https://app-event-dee2.vercel.app/">View Demo</a>
+    <a href="https://event-dee2.vercel.app/">View Demo</a> -->
     <!-- <a href="https://app-event-dee2.vercel.app/">View Demo</a> -->
-    <a href="https://event-dee2.vercel.app/">View Demo</a>
+    <a href="https://event-dee2.vercel.app/">Landing</a>
     ·
-    <a href="https://github.com/AndyOooh/repo_name/issues">Report Bug</a>
+    <a href="https://app.event-dee2.vercel.app/">App</a>
     ·
-    <a href="https://github.com/AndyOooh/repo_name/issues">Request Feature</a>
+    <a href="https://storybook-eventdee.netlify.app/">Storybook</a>
+    |
+    <a href="https://github.com/AndyOooh/event-dee-2/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/AndyOooh/event-dee-2/issues">Request Feature</a>
+
   </p>
+  
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -63,6 +68,7 @@
 <!-- * [![Next][Next.js]][Next-url] -->
 <!-- - ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) -->
 <!-- - ![Jest](https://img.shields.io/static/v1?style=for-the-badge&message=Jest&color=C21325&logo=Jest&logoColor=FFFFFF&label=) -->
+
 - ![Turborepo](https://img.shields.io/static/v1?style=for-the-badge&message=Turborepo&color=9E4C96&logo=Turborepo&logoColor=FFFFFF&label=)
 - ![Firebase](https://img.shields.io/static/v1?style=for-the-badge&message=Firebase&color=222222&logo=Firebase&logoColor=FFCA28&label=)
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
@@ -107,7 +113,7 @@ You must be running **node v.18.17** or higher.
 
 1. Clone the repo:
    ```sh
-   git@github.com:AndyOooh/event-dee-2.git
+   git clone git@github.com:AndyOooh/event-dee-2.git
    ```
 2. Install packages:
    ```sh
@@ -119,11 +125,13 @@ You must be running **node v.18.17** or higher.
 # Usage
 
 To have a functioning backend you have two options:
+
 - Ceate a Firebase project
 - Run with emulators
 
 ## Firebase project
- Create a firebase project and add the api key to _apps/app/.env_ and other configurations in _apps/app/firebase/clientApp.ts_. Lastly, log in to your firebase account:
+
+Create a firebase project and add the api key to _apps/app/.env_ and other configurations in _apps/app/firebase/clientApp.ts_. Lastly, log in to your firebase account:
 
 ```sh
 yarn firebase login
@@ -144,18 +152,18 @@ Emulators are available at:
 - [localhost:9099](http://localhost:9099) - auth
 - [localhost:9199](http://localhost:9199) - storage
 
-
-
 ## Basic Scripts
 
 For running tests and starting the development servers, turborepo is used. It is configured to run all apps concurrently. The commands are:
 
 Run dev servers:
+
 ```sh
 turbo dev
 ```
 
 Lint
+
 ```sh
 turbo lint
 ```
@@ -209,7 +217,6 @@ Once you have the development servers running, you can access the:
 - landing page at [localhost:3000](http://localhost:3000)
 - app at [localhost:3001](http://localhost:3001)
 - storybook at [localhost:6006](http://localhost:6006)
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -280,7 +287,6 @@ See the [open issues](https://github.com/AndyOooh/persona/issues) for a full lis
 - [Google Maps React](https://youtu.be/2po9_CIRW7I?si=ApprjzCrqnuEkjPP)
 - [@reach/combobox](https://reach.tech/styling)
 - [@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
