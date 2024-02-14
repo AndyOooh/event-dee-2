@@ -1,4 +1,3 @@
-import React from 'react';
 import { PulseLoader } from 'react-spinners';
 import { colorMap } from 'ui';
 
@@ -23,16 +22,6 @@ export const ActionButton = ({ text, onClick, loading, disabled = false, classNa
       className={`btn btn-neutral w-full max-w-xs mx-auto flex-center ${className}`}
       {...buttonProps}
       disabled={disabled}>
-      {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
-    </button>
-  );
-
-  return disabled ? (
-    <button className='btn w-full max-w-xs mx-auto flex-center' {...buttonProps} disabled>
-      {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
-    </button>
-  ) : (
-    <button className={`btn w-full max-w-xs mx-auto flex-center ${className}`} {...buttonProps}>
       {loading ? <PulseLoader color={colorMap.white} size={8} speedMultiplier={0.5} /> : text}
     </button>
   );
