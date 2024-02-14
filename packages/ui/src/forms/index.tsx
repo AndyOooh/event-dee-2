@@ -1,6 +1,5 @@
 export * from './Button';
 export * from './FormError';
-export * from './[old]TextInput';
 // export * from './TextInputRHF'
 // export { TextInput } from './TextInput';
 export { TextInput } from './TextInput_new';
