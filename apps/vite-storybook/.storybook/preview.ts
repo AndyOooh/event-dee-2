@@ -12,6 +12,11 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    options: {
+      storySort: {
+        order: ['Get Started', 'Examples', '*', 'Design System'],
+      },
+    },
     docs: {
       theme: eventDeeTheme,
     },

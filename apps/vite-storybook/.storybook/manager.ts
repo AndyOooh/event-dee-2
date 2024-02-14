@@ -13,7 +13,7 @@ addons.setConfig({
   panelPosition: 'bottom',
   enableShortcuts: true,
   showToolbar: true,
-//   theme: themes.light,
+  //   theme: themes.light,
   theme: eventDeeTheme,
   selectedPanel: undefined,
   initialActive: 'sidebar',
