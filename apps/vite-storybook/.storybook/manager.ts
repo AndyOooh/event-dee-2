@@ -18,8 +18,8 @@ addons.setConfig({
   selectedPanel: undefined,
   initialActive: 'sidebar',
   sidebar: {
-    showRoots: false,
-    collapsedRoots: ['other'],
+    // showRoots: false, // if true, creates top-level folders
+    // collapsedRoots: ['other'],
   },
   toolbar: {
     title: { hidden: false },
