@@ -1,8 +1,6 @@
 export * from './Button';
 export * from './FormError';
-// export * from './TextInputRHF'
-// export { TextInput } from './TextInput';
-export { TextInput } from './TextInput_new';
+export { TextInput } from './TextInput';
 export { Checkbox } from './Checkbox';
 export { Select } from './Select';
 export { SearchableSelect } from './SearchableSelect';
