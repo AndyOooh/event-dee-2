@@ -1,4 +1,5 @@
 import React from 'react';
+import { Stat } from 'ui';
 
 export const Stats = () => {
   const statsData = [
@@ -32,11 +33,8 @@ export const Stats = () => {
     <div>
       <div className='grid grid-cols-4 gap-2'>
         {statsData.map(stat => (
-          <div
-            key={stat.title}
-            className='flex flex-col justify-center items-center gap-4 bg-base-100 p-4 rounded-3xl shadow-md'>
-            <p className='stat-title text-sm font-semibold'>{stat.title}</p>
-            <p className='text-3xl stat-value text-neutral'>{stat.value}</p>
+          <div key={stat.title}>
+            <Stat stat={stat} />
           </div>
         ))}
       </div>
