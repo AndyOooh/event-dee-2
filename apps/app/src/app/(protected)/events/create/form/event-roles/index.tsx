@@ -184,7 +184,7 @@ export const EventRoles = ({ register, control, errors }: Props) => {
               <div key={option} className='flex gap-2'>
                 <RadioButtonMulti
                   control={control}
-                  register={register}
+                  // register={register}
                   name={option}
                   reg_name={`roles.${saved.length}.${option}`}
                   options={selectOptions}

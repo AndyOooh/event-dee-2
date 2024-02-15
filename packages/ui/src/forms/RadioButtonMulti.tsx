@@ -1,20 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { Controller, Control, UseFormRegister } from 'react-hook-form';
+import { Controller, Control } from 'react-hook-form';
 import { startCase } from 'lodash';
 
 type Props = {
-  control: Control;
-  register: UseFormRegister<any>;
+  // control: Control;
+  control: any;
   name: string;
   reg_name: string;
   options: string[];
 };
 
 /* Default checked is options[0] */
-export const RadioButtonMulti = ({ control, register, name, reg_name, options }: Props) => {
-  //   const title = name.replace(/_/g, ' ');
+export const RadioButtonMulti = ({ control, name, reg_name, options }: Props) => {
   const title = startCase(name);
 
   const [checked, setChecked] = useState<string>(options[0]);
@@ -28,7 +27,6 @@ export const RadioButtonMulti = ({ control, register, name, reg_name, options }:
             <div key={option} className='form-control'>
               <label className='label gap-2 cursor-pointer'>
                 <Controller
-                  //   name={name}
                   name={reg_name}
                   control={control}
                   defaultValue={option}
