@@ -9,21 +9,31 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { IStep2Schema, step2Schema } from '../validation';
 import { useRecoilState } from 'recoil';
 import { FormStep2, wizardForm } from '../../../../../../../atoms/signupFreelancerAtom';
-import { auth } from '__firebase/clientApp';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 type Props = {};
 
+const professionOptions = [
+  {
+    label: 'Model',
+    value: 'Model',
+  },
+  {
+    label: 'Photographer',
+    value: 'Photographer',
+  },
+  {
+    label: 'MC',
+    value: 'MC',
+  },
+];
+
 export const Step2 = ({}: Props) => {
   const [wFormData, setWFormData] = useRecoilState(wizardForm);
-  const [authUser, sadasdsadsad2, asdasdsadsad3] = useAuthState(auth);
 
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
-    // } = useForm<FormStep2>({
   } = useForm<IStep2Schema>({
     mode: 'onTouched',
     resolver: yupResolver(step2Schema),
@@ -36,21 +46,6 @@ export const Step2 = ({}: Props) => {
       step: prev.step + 1,
     }));
   };
-
-  const professionOptions = [
-    {
-      label: 'Model',
-      value: 'Model',
-    },
-    {
-      label: 'Photographer',
-      value: 'Photographer',
-    },
-    {
-      label: 'MC',
-      value: 'MC',
-    },
-  ];
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>

@@ -16,7 +16,7 @@ import { IcreateEventSchema } from '../validation';
 import { IeventRoleSchema } from './validation';
 import { IeventDetailsSchema } from '../event-info/validation';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
-import { getAttributes } from 'ui/src/forms/attributesMap';
+import { getAttributes } from 'ui/src/form-elements/attributesMap';
 import { BiEdit, BiTrash } from 'react-icons/bi';
 
 type Props = {
@@ -184,7 +184,7 @@ export const EventRoles = ({ register, control, errors }: Props) => {
               <div key={option} className='flex gap-2'>
                 <RadioButtonMulti
                   control={control}
-                  register={register}
+                  // register={register}
                   name={option}
                   reg_name={`roles.${saved.length}.${option}`}
                   options={selectOptions}

@@ -3,7 +3,7 @@
 // https://codesandbox.io/s/searchable-dropdown-forked-9nt7n9?file=/src/SearchableDropdown.js:0-1920
 
 import { useEffect, useRef, useState, ChangeEvent } from 'react';
-import { toTitleCase } from '../utils/helpers';
+import { toTitleCase } from '../../utils/helpers';
 
 type Props = {
   name: string;

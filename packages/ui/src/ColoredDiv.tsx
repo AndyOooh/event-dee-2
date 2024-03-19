@@ -1,5 +1,4 @@
 import { colorMap } from './utils/brandColors';
-
 import { ThemeColors } from 'event-dee-types';
 
 type ColoredDivProps = {
@@ -17,7 +16,7 @@ type ColoredDivProps = {
   // toColor?: string;
 };
 
-// Maybe we can remove w and h and just pack it into divs always?
+/* Maybe we can remove w and h and always wrap in divs instead? */
 
 export const ColoredDiv = ({
   children,

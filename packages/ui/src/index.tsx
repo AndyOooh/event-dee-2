@@ -5,4 +5,4 @@ export * from './ImageWithtext';
 export * from './ComingSoon';
 export * from './NotificationCounter';
 
-export * from './forms';
+export * from './form-elements';
