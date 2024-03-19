@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Controller, Control } from 'react-hook-form';
 import { startCase } from 'lodash';
+import { Controller } from 'react-hook-form';
 
 type Props = {
   // control: Control;
