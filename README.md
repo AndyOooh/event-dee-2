@@ -15,7 +15,7 @@
     <!-- <a href="https://app-event-dee2.vercel.app/">View Demo</a> -->
     <a href="https://event-dee2.vercel.app/">Landing</a>
     ·
-    <a href="https://app.event-dee2.vercel.app/">App</a>
+    <a href="https://app-event-dee2.vercel.app/">App</a>
     ·
     <a href="https://storybook-eventdee.netlify.app/">Storybook</a>
     |
