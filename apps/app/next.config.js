@@ -3,9 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['ui'],
   experimental: {
-    // appDir: true,
-  },
-  experimental: {
     optimizePackageImports: [
       'react-icons/*',
       '@hookform/resolvers',

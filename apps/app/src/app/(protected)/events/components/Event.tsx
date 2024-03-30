@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { BiPurchaseTag } from 'react-icons/bi';
 import { BiEdit, BiTrash, BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
 import { EventTag } from 'ui';
+// import { EventTag } from 'ui';
 
 type MapOptions = google.maps.MapOptions;
 
