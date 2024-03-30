@@ -1,5 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: [
+    /* include packages if not transpiling - IMPORTANT for uisng ui package when transpiling it inside apps */
+    './src/**/*.{js,ts,jsx,tsx}',
+  ],
   // content: [
   //   './app/**/*.{js,ts,jsx,tsx}',
   //   './pages/**/*.{js,ts,jsx,tsx}',
