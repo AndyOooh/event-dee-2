@@ -12,7 +12,7 @@ export const onCreateEvent = functions.firestore
   .onCreate(async (snapshot, context) => {
     try {
       const event = snapshot.data();
-      const newNotification = createNotificationDoc(event.creatorId, 'event', 'newEvent', event);
+      const newNotification = createNotificationDoc(event.creatorUid, 'event', 'newEvent', event);
       const res = await db.collection('notifications').add(newNotification);
 
       /* This can be filtered, e.g. to users in the same province */
