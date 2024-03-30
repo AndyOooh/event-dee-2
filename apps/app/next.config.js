@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  sentry: {
-    hideSourceMaps: process.env.NEXT_PUBLIC_VERCEL_ENV === 'production', // hide source maps in production
-  },
   reactStrictMode: true,
   transpilePackages: ['ui'],
   experimental: {

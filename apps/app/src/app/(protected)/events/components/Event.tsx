@@ -62,12 +62,17 @@ const Event = ({ event }: any) => {
           </div>
         </div>
         <h3>
-          <span className='text-primary font-semibold'>{event.event_name}</span>,{' '}
+          {event.event_name ? (
+            <>
+              <span className='text-primary font-semibold'>{event.event_name}</span>,{' '}
+            </>
+          ) : null}
           <span className='text-base-content'>{location.name}</span>
         </h3>
         <div className='divider my-2' />
         <div className='flex justify-around'>
           <div className='flex flex-col'>
+            <p>Organizor: {event.creatorUid}</p>
             <p>{event.description}</p>
             <div className='flex flex-col'>
               <p>{location.address}</p>
