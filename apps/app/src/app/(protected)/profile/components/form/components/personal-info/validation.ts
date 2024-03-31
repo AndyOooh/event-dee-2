@@ -42,8 +42,8 @@ export const personalInfoSchema = ({ initialEmail }) =>
         // const exists = await checkEmailExists(email);
         // return !exists;
         // return !(await checkEmailExists(value));
-        const checkEmailExists = getCloudFunction('checkEmailExists'); // Our custom function
-        const emailExists = (await checkEmailExists(value)).data;
+        const checkEmailExists = getCloudFunction<string, boolean>('checkEmailExists');
+        const emailExists = await checkEmailExists(value);
         return !emailExists;
       }),
     invite_link: yup

@@ -15,6 +15,7 @@ import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
+import { CustomClaims, SetCustomClaimsParams } from 'event-dee-types';
 
 export const Step2 = () => {
   const [, setWFormData] = useRecoilState(wizardForm);
@@ -38,7 +39,7 @@ export const Step2 = () => {
       setLoading(true);
       const { first_name, last_name, company_name, company_type } = data;
 
-      const customClaims = {
+      const customClaims: CustomClaims = {
         basic_info_done: true,
         type: 'business',
       };
@@ -60,10 +61,14 @@ export const Step2 = () => {
       const userDocRef = doc(db, 'users', authUser?.uid);
       await updateDoc(userDocRef, userDocUpdates);
 
-      const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
+      const setCustomClaims = getCloudFunction<SetCustomClaimsParams, Promise<{ message: string }>>(
+        'setCustomClaims'
+      );
       await setCustomClaims({
-        uid: authUser?.uid,
-        payload: customClaims,
+        data: {
+          uid: authUser?.uid,
+          payload: customClaims,
+        },
       });
 
       if (!authUser?.photoURL) {

@@ -14,6 +14,7 @@ import { ImageUpload } from '__components/ImageUpload';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
 import { ActionButton } from 'ui';
+import { SetCustomClaimsParams } from 'event-dee-types';
 
 export const Step3 = () => {
   const [authUser] = useAuthState(auth);
@@ -69,10 +70,14 @@ export const Step3 = () => {
 
       await updateDoc(userDocRef, userDocUpdates);
 
-      const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
+      const setCustomClaims = getCloudFunction<SetCustomClaimsParams, { message: string }>(
+        'setCustomClaims'
+      );
       await setCustomClaims({
-        uid: authUser?.uid,
-        payload: customClaims,
+        data: {
+          uid: authUser?.uid,
+          payload: customClaims,
+        },
       });
 
       setWFormData(prev => ({

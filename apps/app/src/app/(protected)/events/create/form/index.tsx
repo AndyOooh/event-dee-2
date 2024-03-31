@@ -1,7 +1,16 @@
 'use client';
 
 import React, { useContext, useEffect } from 'react';
-import { addDoc, arrayUnion, collection, doc, increment, updateDoc } from 'firebase/firestore';
+import {
+  DocumentData,
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  increment,
+  serverTimestamp,
+  updateDoc,
+} from 'firebase/firestore';
 import { DevTool } from '@hookform/devtools';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,6 +23,7 @@ import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
 import { EventLocation } from './event-location';
 import { EventRoles } from './event-roles';
+import { FetchDocByIdParams } from 'event-dee-types';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -41,8 +51,8 @@ export const CreateEventForm = () => {
        * Fetch metaData/events doc to get currentId for events.
        * Perhaps this can be done using const eventsDocRef = doc(db, 'metaData', 'events') ??
        */
-      const fetchDocById = getCloudFunction('fetchDocById');
-      const { data: eventsMetadata }: any = await fetchDocById({
+      const fetchDocById = getCloudFunction<FetchDocByIdParams, DocumentData>('fetchDocById');
+      const eventsMetadata = await fetchDocById({
         collectionName: 'metaData',
         id: 'events',
       });
@@ -51,6 +61,7 @@ export const CreateEventForm = () => {
         ...data,
         event_id: eventsMetadata.currentId + 1,
         creatorUid: currentUser.uid,
+        createdAt: serverTimestamp(),
       });
 
       // Step 2: Get the reference to the newly created event

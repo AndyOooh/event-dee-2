@@ -43,8 +43,8 @@ export const Step1 = () => {
   const provider = watch('provider');
 
   const onSubmit = async (data: any) => {
-    const checkEmailExists = getCloudFunction('checkEmailExists');
-    const emailExists = (await checkEmailExists(data.email)).data;
+    const checkEmailExists = getCloudFunction<string, boolean>('checkEmailExists');
+    const emailExists = await checkEmailExists(data.email);
     if (emailExists) {
       setError('email', { message: 'Email already exists' });
       return;
