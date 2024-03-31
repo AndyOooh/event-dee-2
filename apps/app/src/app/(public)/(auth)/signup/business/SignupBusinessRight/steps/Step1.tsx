@@ -50,6 +50,8 @@ export const Step1 = () => {
       return;
     }
 
+    await createUserWithEmailAndPassword(data.email, data.new_password);
+
     setWFormData(prev => ({
       ...prev,
       ...data,
