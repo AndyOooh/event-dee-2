@@ -1,7 +1,12 @@
 import { https } from 'firebase-functions';
-import { WhereFilterOp } from '@google-cloud/firestore';
+// import { WhereFilterOp } from '@google-cloud/firestore';
 import { db } from '.';
 import { DocumentData } from 'firebase-admin/firestore';
+import {
+  DocData,
+  // FetchDocsWithQueryFunction,
+  FetchDocsWithQueryParams,
+} from 'event-dee-types';
 
 // type DocData = { id: string; [key: string]: any };
 
@@ -28,7 +33,8 @@ import { DocumentData } from 'firebase-admin/firestore';
  * @param {object} [orderBy] - Field to order by and direction.
  * @returns {Promise<DocData[]>} - Array of documents matching the query or the entire collection.
  */
-export const fetchDocsWithQuery: FetchDocsWithQueryFunction = https.onCall(
+
+export const fetchDocsWithQuery = https.onCall(
   async ({
     collectionName,
     field,
@@ -36,8 +42,7 @@ export const fetchDocsWithQuery: FetchDocsWithQueryFunction = https.onCall(
     value,
     limit = 10,
     orderBy,
-  // }: FetchDocsWithQueryParams): Promise<DocData[]> => {
-  } => {
+  }: FetchDocsWithQueryParams): Promise<DocData[]> => {
     try {
       const collectionRef = db.collection(collectionName);
       let query: FirebaseFirestore.Query<FirebaseFirestore.DocumentData> = collectionRef;
@@ -47,7 +52,7 @@ export const fetchDocsWithQuery: FetchDocsWithQueryFunction = https.onCall(
       }
 
       if (orderBy) {
-        query = query.orderBy(orderBy.field, orderBy.direction);
+        query = query.orderBy(orderBy.field, orderBy.direction || 'asc');
       }
 
       const querySnapshot = await query.limit(limit || Infinity).get();

@@ -10,7 +10,14 @@ import {
 } from 'firebase/auth';
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { connectStorageEmulator, getStorage } from 'firebase/storage';
-import { connectFunctionsEmulator, getFunctions, httpsCallable } from 'firebase/functions';
+import {
+  connectFunctionsEmulator,
+  getFunctions,
+  httpsCallable,
+  HttpsCallable,
+  HttpsCallableResult,
+} from 'firebase/functions';
+import { DocData } from 'event-dee-types';
 
 /*
  * Do NOT use window object or other browser specific objects here
@@ -36,10 +43,23 @@ const auth = getAuth(app);
 //   popupRedirectResolver: browserPopupRedirectResolver,
 // });
 const functions = getFunctions();
-const getCloudFunction = (functionName: string) => {
-  const returnedFunction = httpsCallable(functions, functionName);
-  return returnedFunction;
+
+const getCloudFunction = <Params, Result = DocData[]>(
+  functionName: string
+): ((params: Params) => Promise<Result>) => {
+  const callable: HttpsCallable<Params, Result> = httpsCallable(functions, functionName);
+
+  return async (params: Params) => {
+    const result = await callable(params);
+    return result.data;
+  };
 };
+
+/* OLD */
+// const getCloudFunction = (functionName: string) => {
+//   const returnedFunction = httpsCallable(functions, functionName);
+//   return returnedFunction;
+// };
 
 if (process.env.NEXT_PUBLIC_EMULATORS_ON === 'true' && process.env.NODE_ENV === 'development') {
   connectAuthEmulator(auth, 'http://localhost:9099');

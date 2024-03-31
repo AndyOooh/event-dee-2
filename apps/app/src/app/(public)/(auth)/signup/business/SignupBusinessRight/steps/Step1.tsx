@@ -44,7 +44,8 @@ export const Step1 = () => {
 
   const onSubmit = async (data: any) => {
     const checkEmailExists = getCloudFunction('checkEmailExists');
-    const emailExists = (await checkEmailExists(data.email)).data;
+    // const emailExists = (await checkEmailExists(data.email)).data;
+    const emailExists = (await checkEmailExists(data.email));
     if (emailExists) {
       setError('email', { message: 'Email already exists' });
       return;

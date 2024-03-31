@@ -4,12 +4,21 @@ import { getCloudFunction } from '__firebase/clientApp';
 import { Events as EventComp } from './components/Events';
 import { CreateEventButton } from './components/create-event-button';
 import { cache } from 'react';
+import { HttpsCallable } from 'firebase/functions';
+import { DocData, FetchDocsWithQueryParams } from 'event-dee-types';
 
+// type FetchDocsWithQueryFunction = (params: FetchDocsWithQueryParams) => Promise<DocData[]>;
 export const revalidate = 3600; // revalidate the data at most every hour
 
 const getEvents = cache(async () => {
-  const fetchDocsWithQuery = getCloudFunction('fetchDocsWithQuery');
-  const { data } = await fetchDocsWithQuery({ collectionName: 'events' });
+  const fetchDocsWithQuery = getCloudFunction<FetchDocsWithQueryParams>('fetchDocsWithQuery');
+  const data = await fetchDocsWithQuery({
+    collectionName: 'events',
+    orderBy: {
+      field: 'createdAt',
+      direction: 'desc',
+    },
+  });
   return data;
 });
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useEffect } from 'react';
-import { addDoc, arrayUnion, collection, doc, increment, updateDoc } from 'firebase/firestore';
+import { addDoc, arrayUnion, collection, doc, increment, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { DevTool } from '@hookform/devtools';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -51,6 +51,7 @@ export const CreateEventForm = () => {
         ...data,
         event_id: eventsMetadata.currentId + 1,
         creatorUid: currentUser.uid,
+        createdAt: serverTimestamp()
       });
 
       // Step 2: Get the reference to the newly created event

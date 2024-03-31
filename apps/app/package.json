@@ -27,8 +27,9 @@
     "yup": "1.3.2"
   },
   "devDependencies": {
-    "@hookform/devtools": "^4.3.1",
     "eslint-config-custom": "*",
+    "event-dee-types": "*",
+    "@hookform/devtools": "^4.3.1",
     "tsconfig": "*"
   }
 }
