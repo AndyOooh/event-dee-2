@@ -121,7 +121,7 @@ export const CreateEventForm = () => {
         ))}
 
         <div className='w-full sticky bottom-0 p-4'>
-          <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
+          <ActionButton text='Create' disabled={!isDirty || !isValid} loading={isSubmitting} />
           {process.env.NODE_ENV === 'development' && (
             <button
               type='button'

@@ -26,7 +26,7 @@ export default async function Events() {
   return (
     <div className='flex flex-col gap-4 w-full'>
       <div className='flex justify-between'>
-        <h1 className='text-3xl'>Upcoming Events</h1>
+        <h1 className='text-3xl'>Events</h1>
         <CreateEventButton />
       </div>
       <div className='flex flex-col'></div>

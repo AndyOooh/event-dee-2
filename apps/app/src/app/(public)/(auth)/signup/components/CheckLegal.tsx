@@ -15,7 +15,7 @@ export const CheckLegal = ({ name, register, error }: Props) => {
   const CheckBoxWIthText = (
     <div className='flex-center text-[0.625rem] gap-2 w-full'>
       <input {...register(name)} type='checkbox' className='checkbox checkbox-xs bg-white' />
-      <p>
+      <div>
         <span>By signing up you agree to the </span>
         <Link href={'terms-and-conditions'} className='link'>
           Terms of Service
@@ -25,7 +25,7 @@ export const CheckLegal = ({ name, register, error }: Props) => {
           {' '}
           Privacy Statement
         </Link>
-      </p>
+      </div>
     </div>
   );
   return CheckBoxWIthText;

@@ -5,6 +5,8 @@ import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Image from 'next/image';
 import { BiPurchaseTag } from 'react-icons/bi';
 import { BiEdit, BiTrash, BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
+import { EventTag } from 'ui';
+// import { EventTag } from 'ui';
 
 type MapOptions = google.maps.MapOptions;
 
@@ -56,18 +58,22 @@ const Event = ({ event }: any) => {
       <div className='card-body'>
         <div className='flex justify-between'>
           <h2 className='card-title'>{event.event_header}!</h2>
-          <div className='badge badge-info gap-2'>
-            <BiPurchaseTag />
-            {event.event_type}
+          <div>
+            <EventTag text={event.event_type} />
           </div>
         </div>
         <h3>
-          <span className='text-primary font-semibold'>{event.event_name}</span>,{' '}
+          {event.event_name ? (
+            <>
+              <span className='text-primary font-semibold'>{event.event_name}</span>,{' '}
+            </>
+          ) : null}
           <span className='text-base-content'>{location.name}</span>
         </h3>
         <div className='divider my-2' />
         <div className='flex justify-around'>
           <div className='flex flex-col'>
+            <p>Organizor: {event.creatorUid}</p>
             <p>{event.description}</p>
             <div className='flex flex-col'>
               <p>{location.address}</p>

@@ -11,6 +11,7 @@ type Props = {};
 export const LoaderSpinner = (props: Props) => {
   return (
     <div className='flex-center min-h-screen w-full bg-base-300 absolute z-10 top-0'>
+      <h1 className='text-4xl text-warning'>Loading...</h1>
       <ColoredDiv
         color='pink'
         direction='top'

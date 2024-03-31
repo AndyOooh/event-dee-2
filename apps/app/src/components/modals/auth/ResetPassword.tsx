@@ -38,7 +38,7 @@ export const ResetPassword = ({ toggleView }: Props) => {
     <div className='flex flex-col gap-4 items-center w-full'>
       <BsReddit size={'3rem'} />
       {success ? (
-        <p>Check your email :)</p>
+        <p>Check your email.</p>
       ) : (
         <>
           <p className='text-sm text-center'>

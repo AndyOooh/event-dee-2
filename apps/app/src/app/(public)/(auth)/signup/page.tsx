@@ -6,7 +6,7 @@ import React from 'react';
 function Signup() {
   return (
     <section className='min-h-screen flex-center bg-primary/20 text-3xl'>
-      <p>
+      <div>
         Sign up as{' '}
         <Link href={'/signup/freelancer'} className='link link-primary'>
           freelancer?
@@ -16,7 +16,7 @@ function Signup() {
         <Link href={'/signup/business'} className='link link-primary'>
           Businesss?
         </Link>
-      </p>
+      </div>
     </section>
   );
 }
