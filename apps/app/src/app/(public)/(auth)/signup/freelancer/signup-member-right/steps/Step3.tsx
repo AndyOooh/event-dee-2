@@ -69,7 +69,7 @@ export const Step3 = () => {
 
       await updateDoc(userDocRef, userDocUpdates);
 
-      const setCustomClaims = getCloudFunction('setCustomClaims'); // Our custom function
+      const setCustomClaims = getCloudFunction('setCustomClaims');
       await setCustomClaims({
         uid: authUser?.uid,
         payload: customClaims,

@@ -1,6 +1,5 @@
 import { WhereFilterOp } from '@google-cloud/firestore';
-
-// export type DocData = { id: string; [key: string]: any };
+import { CustomClaims } from '.';
 
 export type FetchDocsWithQueryParams = {
   collectionName: string;
@@ -14,7 +13,12 @@ export type FetchDocsWithQueryParams = {
   };
 };
 
-export type fetchDocByIdParams = {
+export type FetchDocByIdParams = {
   collectionName: string;
   id: string;
+};
+
+export type SetCustomClaimsParams = {
+  data: { uid: string; payload: CustomClaims };
+  context?: any; // not in use, if needed find type in fb.
 };

@@ -4,7 +4,7 @@ import { DocumentData, Query } from 'firebase-admin/firestore';
 import {
   // DocData,
   FetchDocsWithQueryParams,
-  fetchDocByIdParams,
+  FetchDocByIdParams,
 } from 'event-dee-types';
 
 /**
@@ -27,8 +27,7 @@ export const fetchDocsWithQuery = https.onCall(
     value,
     limit = 10,
     orderBy,
-  }: // }: FetchDocsWithQueryParams): Promise<DocData[]> => {
-  FetchDocsWithQueryParams): Promise<DocumentData[]> => {
+  }: FetchDocsWithQueryParams): Promise<DocumentData[]> => {
     try {
       const collectionRef = db.collection(collectionName);
       let query: Query<DocumentData> = collectionRef;
@@ -63,7 +62,7 @@ export const fetchDocsWithQuery = https.onCall(
  * @param {string} id - ID of the document to fetch.
  */
 export const fetchDocById = https.onCall(
-  async ({ collectionName, id }: fetchDocByIdParams): Promise<DocumentData> => {
+  async ({ collectionName, id }: FetchDocByIdParams): Promise<DocumentData> => {
     try {
       const collectionRef = db.collection(collectionName);
 
