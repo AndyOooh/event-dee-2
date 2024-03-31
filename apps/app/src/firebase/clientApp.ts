@@ -1,12 +1,12 @@
 import { initializeApp, getApp, getApps, FirebaseOptions } from 'firebase/app';
 import {
-  browserLocalPersistence,
-  browserPopupRedirectResolver,
-  browserSessionPersistence,
+  // browserLocalPersistence,
+  // browserPopupRedirectResolver,
+  // browserSessionPersistence,
+  // indexedDBLocalPersistence,
+  // initializeAuth,
   connectAuthEmulator,
   getAuth,
-  indexedDBLocalPersistence,
-  initializeAuth,
 } from 'firebase/auth';
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { connectStorageEmulator, getStorage } from 'firebase/storage';
@@ -15,7 +15,6 @@ import {
   getFunctions,
   httpsCallable,
   HttpsCallable,
-  HttpsCallableResult,
 } from 'firebase/functions';
 import { DocData } from 'event-dee-types';
 
@@ -44,6 +43,11 @@ const auth = getAuth(app);
 // });
 const functions = getFunctions();
 
+/* OLD */
+// const getCloudFunction = (functionName: string) => {
+//   const returnedFunction = httpsCallable(functions, functionName);
+//   return returnedFunction;
+// };
 const getCloudFunction = <Params, Result = DocData[]>(
   functionName: string
 ): ((params: Params) => Promise<Result>) => {
@@ -54,12 +58,6 @@ const getCloudFunction = <Params, Result = DocData[]>(
     return result.data;
   };
 };
-
-/* OLD */
-// const getCloudFunction = (functionName: string) => {
-//   const returnedFunction = httpsCallable(functions, functionName);
-//   return returnedFunction;
-// };
 
 if (process.env.NEXT_PUBLIC_EMULATORS_ON === 'true' && process.env.NODE_ENV === 'development') {
   connectAuthEmulator(auth, 'http://localhost:9099');

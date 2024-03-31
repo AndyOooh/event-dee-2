@@ -1,26 +1,7 @@
 import { https } from 'firebase-functions';
-// import { WhereFilterOp } from '@google-cloud/firestore';
 import { db } from '.';
 import { DocumentData } from 'firebase-admin/firestore';
-import {
-  DocData,
-  // FetchDocsWithQueryFunction,
-  FetchDocsWithQueryParams,
-} from 'event-dee-types';
-
-// type DocData = { id: string; [key: string]: any };
-
-// type FetchDocsWithQueryParams = {
-//   collectionName: string;
-//   field?: string;
-//   operator?: WhereFilterOp;
-//   value?: any;
-//   limit?: number;
-//   orderBy?: {
-//     field: string;
-//     direction: 'asc' | 'desc';
-//   };
-// };
+import { DocData, FetchDocsWithQueryParams } from 'event-dee-types';
 
 /**
  * Callable

@@ -13,5 +13,3 @@ export type FetchDocsWithQueryParams = {
     direction?: 'asc' | 'desc';
   };
 };
-
-export type FetchDocsWithQueryFunction = (params: FetchDocsWithQueryParams) => Promise<DocData[]>;
