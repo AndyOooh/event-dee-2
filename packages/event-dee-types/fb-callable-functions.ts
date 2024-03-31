@@ -1,6 +1,6 @@
 import { WhereFilterOp } from '@google-cloud/firestore';
 
-export type DocData = { id: string; [key: string]: any };
+// export type DocData = { id: string; [key: string]: any };
 
 export type FetchDocsWithQueryParams = {
   collectionName: string;
@@ -12,4 +12,9 @@ export type FetchDocsWithQueryParams = {
     field: string;
     direction?: 'asc' | 'desc';
   };
+};
+
+export type fetchDocByIdParams = {
+  collectionName: string;
+  id: string;
 };

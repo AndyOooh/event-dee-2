@@ -1,7 +1,11 @@
 import { https } from 'firebase-functions';
 import { db } from '.';
-import { DocumentData } from 'firebase-admin/firestore';
-import { DocData, FetchDocsWithQueryParams } from 'event-dee-types';
+import { DocumentData, Query } from 'firebase-admin/firestore';
+import {
+  // DocData,
+  FetchDocsWithQueryParams,
+  fetchDocByIdParams,
+} from 'event-dee-types';
 
 /**
  * Callable
@@ -23,10 +27,11 @@ export const fetchDocsWithQuery = https.onCall(
     value,
     limit = 10,
     orderBy,
-  }: FetchDocsWithQueryParams): Promise<DocData[]> => {
+  }: // }: FetchDocsWithQueryParams): Promise<DocData[]> => {
+  FetchDocsWithQueryParams): Promise<DocumentData[]> => {
     try {
       const collectionRef = db.collection(collectionName);
-      let query: FirebaseFirestore.Query<FirebaseFirestore.DocumentData> = collectionRef;
+      let query: Query<DocumentData> = collectionRef;
 
       if (field && operator && value) {
         query = query.where(field, operator, value);
@@ -37,7 +42,7 @@ export const fetchDocsWithQuery = https.onCall(
       }
 
       const querySnapshot = await query.limit(limit || Infinity).get();
-      const documents: DocData[] = [];
+      const documents: DocumentData[] = [];
       querySnapshot.forEach(doc => {
         documents.push({ id: doc.id, ...doc.data() });
       });
@@ -51,58 +56,11 @@ export const fetchDocsWithQuery = https.onCall(
   }
 );
 
-// export const fetchDocsWithQuery = https.onCall(
-//   async ({
-//     collectionName,
-//     field,
-//     operator,
-//     value,
-//     limit = 10,
-//   }: FetchDocsWithQueryParams): Promise<DocData[]> => {
-//     try {
-//       const collectionRef = db.collection(collectionName);
-
-//       if (field && operator && value) {
-//         /* Fetch based on query */
-//         const querySnapshot = await collectionRef
-//           .where(field, operator, value)
-//           .limit(limit || Infinity)
-//           .get();
-
-//         const documents: DocData[] = [];
-//         querySnapshot.forEach(doc => {
-//           documents.push({ id: doc.id, ...doc.data() });
-//         });
-
-//         console.log('Fetched documents:', documents);
-//         return documents;
-//       } else {
-//         /* Fetch entire collection */
-//         const querySnapshot = await collectionRef.limit(limit).get();
-
-//         const documents: DocData[] = [];
-//         querySnapshot.forEach(doc => {
-//           documents.push({ id: doc.id, ...doc.data() });
-//         });
-
-//         console.log('Fetched entire collection:', documents);
-//         return documents;
-//       }
-//     } catch (error) {
-//       console.error('Error fetching documents, fetchDocsWithQuery:', error);
-//       throw new https.HttpsError('internal', 'Error fetching documents', error);
-//     }
-//   }
-// );
-
-type fetchDocByIdParams = {
-  collectionName: string;
-  id: string;
-};
-
 /*
  * Callable
  * Fetch a document by its ID.
+ * @param {string} collectionName - Name of the Firestore collection.
+ * @param {string} id - ID of the document to fetch.
  */
 export const fetchDocById = https.onCall(
   async ({ collectionName, id }: fetchDocByIdParams): Promise<DocumentData> => {

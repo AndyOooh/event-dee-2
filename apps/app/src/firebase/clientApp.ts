@@ -8,7 +8,7 @@ import {
   connectAuthEmulator,
   getAuth,
 } from 'firebase/auth';
-import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
+import { DocumentData, connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { connectStorageEmulator, getStorage } from 'firebase/storage';
 import {
   connectFunctionsEmulator,
@@ -16,7 +16,7 @@ import {
   httpsCallable,
   HttpsCallable,
 } from 'firebase/functions';
-import { DocData } from 'event-dee-types';
+// import { DocData } from 'event-dee-types';
 
 /*
  * Do NOT use window object or other browser specific objects here
@@ -48,7 +48,7 @@ const functions = getFunctions();
 //   const returnedFunction = httpsCallable(functions, functionName);
 //   return returnedFunction;
 // };
-const getCloudFunction = <Params, Result = DocData[]>(
+const getCloudFunction = <Params, Result = DocumentData[]>(
   functionName: string
 ): ((params: Params) => Promise<Result>) => {
   const callable: HttpsCallable<Params, Result> = httpsCallable(functions, functionName);
