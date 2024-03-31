@@ -10,11 +10,11 @@
     "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode"
   },
   "dependencies": {
-    "ui": "*"
+    "ui": "workspace:*"
   },
   "devDependencies": {
-    "event-dee-types": "*",
-    "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "event-dee-types": "workspace:*",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*"
   }
 }

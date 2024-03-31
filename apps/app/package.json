@@ -21,15 +21,15 @@
     "react-spinners": "^0.13.8",
     "recoil": "^0.7.7",
     "server-only": "^0.0.1",
-    "ui": "*",
+    "ui": "workspace:*",
     "use-places-autocomplete": "^4.0.1",
     "usehooks-ts": "^2.9.1",
     "yup": "1.3.2"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "event-dee-types": "*",
+    "eslint-config-custom": "workspace:*",
+    "event-dee-types": "workspace:*",
     "@hookform/devtools": "^4.3.1",
-    "tsconfig": "*"
+    "tsconfig": "workspace:*"
   }
 }

@@ -12,10 +12,10 @@
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.3",
     "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
-    "event-dee-types": "*",
+    "eslint-config-custom": "workspace:*",
+    "event-dee-types": "workspace:*",
     "react": "^18.2.0",
-    "tsconfig": "*",
+    "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
   },
   "dependencies": {
