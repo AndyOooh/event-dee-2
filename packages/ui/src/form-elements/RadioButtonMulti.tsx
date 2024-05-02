@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { startCase } from 'lodash';
-import { Controller } from 'react-hook-form';
+import { startCase } from "lodash";
+import { useState } from "react";
+import { Controller } from "react-hook-form";
 
 type Props = {
   // control: Control;

@@ -17,6 +17,9 @@ importers:
       dotenv-cli:
         specifier: ^7.2.1
         version: 7.4.1
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       next:
         specifier: latest
         version: 14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.76.0)
@@ -27,6 +30,9 @@ importers:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@types/lodash':
+        specifier: ^4.17.0
+        version: 4.17.0
       '@types/node':
         specifier: ^20.10.4
         version: 20.12.8
@@ -78,9 +84,6 @@ importers:
       firebase:
         specifier: ^10.7.1
         version: 10.11.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       react-firebase-hooks:
         specifier: ^5.1.1
         version: 5.1.1(firebase@10.11.1)(react@18.3.1)

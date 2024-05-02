@@ -1,7 +1,7 @@
-import { reAuthenticate } from '__firebase/utilities';
-import { PW_MIN_LENGTH } from '__utils/global-consts';
-import { debounce } from 'lodash';
-import * as yup from 'yup';
+import { reAuthenticate } from "__firebase/utilities";
+import { PW_MIN_LENGTH } from "__utils/global-consts";
+import { debounce } from "lodash";
+import * as yup from "yup";
 
 const debounceReAuthenticate = debounce(reAuthenticate, 1500);
 
@@ -20,7 +20,7 @@ export const changePasswordSchema = yup.object().shape({
   current_password: yup.string().when({
     is: (exists: boolean) => !!exists,
     then: schema =>
-      schema.min(PW_MIN_LENGTH, 'Passwords are minimum 6 characters long.').required(),
+      schema.min(PW_MIN_LENGTH, "Passwords are minimum 6 characters long.").required(),
     // schema.transform(curr => null).nullable(),
     // schema.default(null).nullable(),
     // otherwise: schema => schema.nullable().default(null),
@@ -31,7 +31,7 @@ export const changePasswordSchema = yup.object().shape({
 
   new_password: yup
     .string()
-    .min(PW_MIN_LENGTH, 'Password must be minimum 6 characters.')
+    .min(PW_MIN_LENGTH, "Password must be minimum 6 characters.")
     .required(),
   // .when('current_password', {
   //   is: exists => exists,
@@ -40,7 +40,7 @@ export const changePasswordSchema = yup.object().shape({
   // }),
   confirm_password: yup
     .string()
-    .equals([yup.ref('new_password')], 'Must match new password.')
+    .equals([yup.ref("new_password")], "Must match new password.")
     .required(),
 });
 
