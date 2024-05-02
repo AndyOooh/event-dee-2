@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@firebase/firestore-types": "^3.0.1"
+  }
 }
