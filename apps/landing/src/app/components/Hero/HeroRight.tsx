@@ -34,7 +34,7 @@ export const HeroRight = () => {
           height={12}
           width={24}
           rotateZ={45}
-          className='relative z-10 right-[15%]'
+          className='relative -z-10 right-[15%]'
         />
       ),
     },
@@ -47,7 +47,7 @@ export const HeroRight = () => {
           direction='bottom'
           height={10}
           width={10}
-          className='relative z-10 left-12 -top-6 rounded-full'
+          className='relative -z-10 left-12 -top-6 rounded-full'
         />
       ),
     },
@@ -59,7 +59,7 @@ export const HeroRight = () => {
           direction='bottom'
           height={10}
           width={16}
-          className='relative z-10 bottom-[5%] left-[20%]'
+          className='relative -z-10 bottom-[5%] left-[20%]'
         />
       ),
     },
@@ -100,7 +100,7 @@ export const HeroRight = () => {
           height={24}
           width={6}
           rotateZ={-25}
-          className='relative z-10 rounded-full bottom-[40%] left-[25%] hidden md:block'
+          className='relative -z-10 rounded-full bottom-[40%] left-[25%] hidden md:block'
         />
       ),
     },
@@ -136,8 +136,8 @@ export const HeroRight = () => {
           height={24}
           width={8}
           rotateZ={80}
-          // className='relative z-10 right-[20%] bottom-[35%] hidden md:block'
-          className='relative z-10 right-[150%] md:right-[20%] bottom-[120%] md:bottom-[35%]'
+          // className='relative -z-10 right-[20%] bottom-[35%] hidden md:block'
+          className='relative -z-10 right-[150%] md:right-[20%] bottom-[120%] md:bottom-[35%]'
         />
       ),
     },
