@@ -1,10 +1,7 @@
-'use client' // Not sure if this is needed
+"use client"; // Not sure if this is needed
 
-import React from 'react';
-import { HashLoader } from 'react-spinners';
-
-import GridLoader from 'react-spinners/GridLoader';
-import { ColoredDiv, colorMap } from 'ui';
+import React from "react";
+import { ColoredDiv, colorMap } from "ui";
 
 type Props = {};
 

@@ -2,11 +2,7 @@
   "name": "turbo-tw-daisy-sb",
   "version": "0.2.2",
   "private": true,
-  "packageManager": "yarn@1.22.19",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "packageManager": "pnpm@9.0.6+sha256.0624e30eff866cdeb363b15061bdb7fd9425b17bc1bb42c22f5f4efdea21f6b3",
   "scripts": {
     "lint": "turbo run lint",
     "build": "turbo run build",
@@ -14,6 +10,7 @@
     "dev": "dotenv -- turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "turbo run clean && rm -rf node_modules",
+    "clean:root": "rm -r node_modules && rm -r .turbo",
     "emulators": "turbo run emulators"
   },
   "dependencies": {

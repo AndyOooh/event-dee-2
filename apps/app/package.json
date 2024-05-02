@@ -18,7 +18,6 @@
     "lodash": "^4.17.21",
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "7.48.2",
-    "react-spinners": "^0.13.8",
     "recoil": "^0.7.7",
     "server-only": "^0.0.1",
     "ui": "workspace:*",
@@ -27,9 +26,9 @@
     "yup": "1.3.2"
   },
   "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
     "eslint-config-custom": "workspace:*",
     "event-dee-types": "workspace:*",
-    "@hookform/devtools": "^4.3.1",
     "tsconfig": "workspace:*"
   }
 }
