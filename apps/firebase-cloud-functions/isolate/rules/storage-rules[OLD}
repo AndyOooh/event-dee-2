@@ -1,0 +1,7 @@
+
+
+service cloud.storage {
+  match / {
+    allow read, write: if true;
+  }
+}
