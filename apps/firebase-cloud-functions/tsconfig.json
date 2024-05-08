@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    // "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "outDir": "lib",
-    "sourceMap": true,
+    // "outDir": "lib",
+    // "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "dist",
+    "lib": ["esnext"],
+    "sourceMap": true,
+    "types": ["node"]
   },
   "compileOnSave": true,
+  
   "include": [
-    "src"
+    "src",
+    "../../packages/event-dee-types/src" // Add this line to include the event-dee-types package
   ]
 }
