@@ -13,7 +13,7 @@ import { PersonalInfo } from './components/personal-info';
 import { IpersonalInfoSchema, personalInfoSchema } from './components/personal-info/validation';
 import { WorkInfo } from './components/work-info';
 import { onError, onTestForm } from '__utils/helpers';
-import { ActionButton } from 'ui';
+import { ActionButton } from '@repo/ui';
 
 export const EditProfileForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -63,22 +63,23 @@ export const EditProfileForm = () => {
   return currentUser ? (
     <>
       <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-        {sections.map(section => (
-          <div key={section.title} className='flex flex-col gap-2 mt-4'>
-            <h2 className='text-xl'>{section.title}</h2>
-            <div className='card bg-base-100'>
-              <div className='card-body'>{section.element}</div>
+        {sections.map((section) => (
+          <div key={section.title} className="flex flex-col gap-2 mt-4">
+            <h2 className="text-xl">{section.title}</h2>
+            <div className="card bg-base-100">
+              <div className="card-body">{section.element}</div>
             </div>
           </div>
         ))}
 
-        <div className='w-full sticky bottom-0 p-4'>
-          <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
+        <div className="w-full sticky bottom-0 p-4">
+          <ActionButton text="Update" disabled={!isDirty || !isValid} loading={isSubmitting} />
           {process.env.NODE_ENV === 'development' && (
             <button
-              type='button'
+              type="button"
               onClick={() => onTestForm(formState, getValues())}
-              className='btn btn-neutral'>
+              className="btn btn-neutral"
+            >
               Test
             </button>
           )}

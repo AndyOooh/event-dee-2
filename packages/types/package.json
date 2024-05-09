@@ -1,7 +1,7 @@
 {
   "name": "@repo/types",
   "version": "1.0.0",
-  "type": "module", 
+  "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
@@ -10,10 +10,13 @@
   "files": [
     "src"
   ],
+  "scripts": {
+    "clean": "rm -rf node_modules"
+  },
   "license": "MIT",
   "devDependencies": {
     "@firebase/firestore-types": "^3.0.1",
-    "tsconfig": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "typescript": "^5.4.5"
   }
 }

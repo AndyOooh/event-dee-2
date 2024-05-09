@@ -1,10 +1,10 @@
-import { ComingSoon } from 'ui';
+import { ComingSoon } from '@repo/ui';
 import { container } from '../../styles/styles';
 
 export default function AboutPage() {
   return (
     <div>
-      <ComingSoon pageName='About' containerClass={container} />
+      <ComingSoon pageName="About" containerClass={container} />
     </div>
   );
 }

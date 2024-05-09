@@ -5,8 +5,8 @@ import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Image from 'next/image';
 import { BiPurchaseTag } from 'react-icons/bi';
 import { BiEdit, BiTrash, BiBookmark, BiBookmarkHeart } from 'react-icons/bi';
-import { EventTag } from 'ui';
-// import { EventTag } from 'ui';
+import { EventTag } from '@repo/ui';
+// import { EventTag } from '@repo/ui';
 
 type MapOptions = google.maps.MapOptions;
 
@@ -51,13 +51,13 @@ const Event = ({ event }: any) => {
 
   const cardWithAndHeight = 'w-4/5 min-h-[40rem]';
 
-  const onLoad = useCallback(map => (mapRef.current = map), []);
+  const onLoad = useCallback((map) => (mapRef.current = map), []);
 
   return event ? (
     <div key={event.id} className={`${cardWithAndHeight} card bg-base-100 shadow-xl`}>
-      <div className='card-body'>
-        <div className='flex justify-between'>
-          <h2 className='card-title'>{event.event_header}!</h2>
+      <div className="card-body">
+        <div className="flex justify-between">
+          <h2 className="card-title">{event.event_header}!</h2>
           <div>
             <EventTag text={event.event_type} />
           </div>
@@ -65,38 +65,40 @@ const Event = ({ event }: any) => {
         <h3>
           {event.event_name ? (
             <>
-              <span className='text-primary font-semibold'>{event.event_name}</span>,{' '}
+              <span className="text-primary font-semibold">{event.event_name}</span>,{' '}
             </>
           ) : null}
-          <span className='text-base-content'>{location.name}</span>
+          <span className="text-base-content">{location.name}</span>
         </h3>
-        <div className='divider my-2' />
-        <div className='flex justify-around'>
-          <div className='flex flex-col'>
+        <div className="divider my-2" />
+        <div className="flex justify-around">
+          <div className="flex flex-col">
             <p>Organizor: {event.creatorUid}</p>
             <p>{event.description}</p>
-            <div className='flex flex-col'>
+            <div className="flex flex-col">
               <p>{location.address}</p>
               <a
-                className='link link-secondary'
+                className="link link-secondary"
                 href={`https://www.google.com/maps/search/?api=1&query=${location.coords.lat}%2C-${location.coords.lng}&query_place_id=${location.place_id}`}
-                target='_blank'
-                rel='noreferrer'>
+                target="_blank"
+                rel="noreferrer"
+              >
                 See Map
               </a>
             </div>
           </div>
 
           {isLoaded ? (
-            <div className='w-1/2 h-60'>
+            <div className="w-1/2 h-60">
               <GoogleMap
                 zoom={10}
                 center={location.coords}
-                mapContainerClassName='map'
+                mapContainerClassName="map"
                 options={options}
-                onLoad={onLoad}>
+                onLoad={onLoad}
+              >
                 <Marker
-                  key='event_position'
+                  key="event_position"
                   position={location.coords}
                   icon={{
                     url: `/pin_pink_trans.png`,
@@ -106,21 +108,21 @@ const Event = ({ event }: any) => {
               </GoogleMap>
             </div>
           ) : (
-            <div className='w-1/2 h-60 skeleton' />
+            <div className="w-1/2 h-60 skeleton" />
           )}
         </div>
 
-        <div className='divider my-2' />
+        <div className="divider my-2" />
 
-        <h3 className='text-lg font-semibold'>Jobs</h3>
+        <h3 className="text-lg font-semibold">Jobs</h3>
         {/* table of roles */}
         {roles?.length && (
-          <div className='overflow-x-auto'>
-            <table className='table w-full'>
+          <div className="overflow-x-auto">
+            <table className="table w-full">
               <thead>
                 <tr>
                   {jobAttributes.map((attr: any) => (
-                    <th key={attr.title} className='text-center'>
+                    <th key={attr.title} className="text-center">
                       {attr.title}
                     </th>
                   ))}
@@ -132,12 +134,12 @@ const Event = ({ event }: any) => {
                 {event.roles.map((role: any, index: any) => (
                   <tr key={role.role_type}>
                     {jobAttributes
-                      .map(attr => {
+                      .map((attr) => {
                         return { name: attr.field_name, value: role[attr.field_name] };
                       })
                       .map((field: any) => {
                         return (
-                          <th key={field.name} className='text-center'>
+                          <th key={field.name} className="text-center">
                             {field.name === 'number_workers'
                               ? `${role.accepted || 0}/${field.value}`
                               : field.value}
@@ -160,11 +162,11 @@ const Event = ({ event }: any) => {
                         );
                       })} */}
 
-                    <th className='flex gap-2 justify-center items-center'>
+                    <th className="flex gap-2 justify-center items-center">
                       <button
-                        type='button'
+                        type="button"
                         // className='relative h-6 w-12'
-                        className='btn btn-sm btn-info w-16'
+                        className="btn btn-sm btn-info w-16"
                         // onClick={() => onUpdateRole(index)}
                       >
                         Apply
@@ -177,8 +179,8 @@ const Event = ({ event }: any) => {
                         /> */}
                       </button>
                       <button
-                        type='button'
-                        className='btn btn-sm btn-error w-16'
+                        type="button"
+                        className="btn btn-sm btn-error w-16"
                         // onClick={() => onRemoveRole(index)}
                       >
                         Save

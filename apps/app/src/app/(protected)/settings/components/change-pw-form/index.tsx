@@ -6,7 +6,7 @@ import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUse
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { IchangePasswordSchema, changePasswordSchema } from './validaton';
-import { TextInput, FormError, ActionButton } from 'ui';
+import { TextInput, FormError, ActionButton } from '@repo/ui';
 import { useAuthState, useUpdatePassword } from 'react-firebase-hooks/auth';
 import { auth } from '__firebase/clientApp';
 import { reAuthenticate } from '__firebase/utilities';
@@ -60,11 +60,11 @@ export const ChangePasswordForm = () => {
   return currentUser ? (
     <>
       <div>
-        <div className='flex flex-col gap-2 mt-4'>
-          <h2 className='text-xl'>Change Password</h2>
-          <div className='card bg-base-100'>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate className='card-body'>
-              <div className='w-full grid grid-cols-2 gap-6'>
+        <div className="flex flex-col gap-2 mt-4">
+          <h2 className="text-xl">Change Password</h2>
+          <div className="card bg-base-100">
+            <form onSubmit={handleSubmit(onSubmit)} noValidate className="card-body">
+              <div className="w-full grid grid-cols-2 gap-6">
                 {inputArray.map((input: string, idx: number) => {
                   return inputArray.length === 4 && idx === 1 ? (
                     <div key={input}></div>
@@ -75,14 +75,14 @@ export const ChangePasswordForm = () => {
                         // defaultValue={currentUser && currentUser[input]}
                         register={register}
                         label={true}
-                        maxW='max-w-md'
+                        maxW="max-w-md"
                       />
                       <FormError formError={errors?.[input]?.message} />
                     </div>
                   );
                 })}
               </div>
-              <ActionButton text='Update' disabled={!isDirty || !isValid} loading={isSubmitting} />
+              <ActionButton text="Update" disabled={!isDirty || !isValid} loading={isSubmitting} />
             </form>
           </div>
         </div>

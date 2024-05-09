@@ -4,7 +4,7 @@ import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import React, { useContext } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { Select, TextInput } from 'ui';
+import { Select, TextInput } from '@repo/ui';
 import { formArrayWorkInfo } from './form-data';
 
 type Props = {
@@ -16,7 +16,7 @@ export const WorkInfo = ({ register }: Props) => {
 
   return (
     <div className={styles.form}>
-      <div className='w-full grid grid-cols-2 gap-6'>
+      <div className="w-full grid grid-cols-2 gap-6">
         {currentUser
           ? formArrayWorkInfo.map((info, index) => {
               return info.type === 'text' ? (
@@ -26,7 +26,7 @@ export const WorkInfo = ({ register }: Props) => {
                     defaultValue={currentUser && currentUser[info.title]}
                     register={register}
                     label={true}
-                    maxW='max-w-md'
+                    maxW="max-w-md"
                   />
                   {/* <FormError formError={errors?.email?.message} /> */}
                 </div>
@@ -38,8 +38,8 @@ export const WorkInfo = ({ register }: Props) => {
                     options={info.options}
                     register={register}
                     label={true}
-                    className=''
-                    maxW='max-w-md'
+                    className=""
+                    maxW="max-w-md"
                   />
                 </div>
               );

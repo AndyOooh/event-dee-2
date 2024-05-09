@@ -10,11 +10,11 @@
     "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode"
   },
   "dependencies": {
-    "ui": "workspace:*"
+    "@repo/ui": "workspace:*"
   },
   "devDependencies": {
     "@repo/types": "workspace:*",
     "@repo/eslint-config": "workspace:*",
-    "tsconfig": "workspace:*"
+    "@repo/tsconfig": "workspace:*"
   }
 }

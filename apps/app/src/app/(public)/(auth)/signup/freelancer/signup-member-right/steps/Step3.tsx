@@ -13,7 +13,7 @@ import { onSelectImage } from '__utils/helpers';
 import { ImageUpload } from '__components/ImageUpload';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
-import { ActionButton } from 'ui';
+import { ActionButton } from '@repo/ui';
 import { SetCustomClaimsParams } from '@repo/types';
 
 export const Step3 = () => {

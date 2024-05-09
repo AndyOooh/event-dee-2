@@ -7,7 +7,7 @@ import { FIREBASE_ERRORS } from 'ui/src/utils/firebaseErrors';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { auth } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
-import { FormError } from 'ui';
+import { FormError } from '@repo/ui';
 
 export const LoginForm = () => {
   const [form, setForm] = useState({
@@ -33,7 +33,7 @@ export const LoginForm = () => {
   };
 
   const handleChange = ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement>) => {
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -42,22 +42,22 @@ export const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.formSmall}>
       {/* <form> */}
-      <div className='flex flex-col items-center gap-4 w-full'>
+      <div className="flex flex-col items-center gap-4 w-full">
         <input
-          type='text'
-          name='email'
-          placeholder='email'
+          type="text"
+          name="email"
+          placeholder="email"
           onChange={handleChange}
-          className='input input-bordered w-full max-w-xs focus:outline-none focus:border-accent'
+          className="input input-bordered w-full max-w-xs focus:outline-none focus:border-accent"
         />
 
         <input
-          type='password'
-          name='password'
-          autoComplete='on'
-          placeholder='password'
+          type="password"
+          name="password"
+          autoComplete="on"
+          placeholder="password"
           onChange={handleChange}
-          className='input input-bordered w-full max-w-xs focus:outline-none focus:border-accent'
+          className="input input-bordered w-full max-w-xs focus:outline-none focus:border-accent"
         />
         {formError || authError ? (
           <FormError
@@ -66,27 +66,27 @@ export const LoginForm = () => {
             }
           />
         ) : null}
-        <button className='btn btn-neutral w-full max-w-xs' type='submit'>
+        <button className="btn btn-neutral w-full max-w-xs" type="submit">
           Log in
         </button>
       </div>
-      <div className='flex gap-2 w-fit mx-auto text-[0.625rem]'>
-        <Link className='underline' href={'/reset-password'}>
-          <p className=''>Forgot your password?</p>
+      <div className="flex gap-2 w-fit mx-auto text-[0.625rem]">
+        <Link className="underline" href={'/reset-password'}>
+          <p className="">Forgot your password?</p>
         </Link>
       </div>
-      <div className='divider'>Or login with</div>
+      <div className="divider">Or login with</div>
       <OAuthButtons />
 
-      <div className='flex flex-col items-center justify-center gap-2 w-fit mx-auto'>
-        <p className='text-sm'>
-          New here? <span className=' font-bold'>Sign up:</span>
+      <div className="flex flex-col items-center justify-center gap-2 w-fit mx-auto">
+        <p className="text-sm">
+          New here? <span className=" font-bold">Sign up:</span>
         </p>
-        <Link href={'/signup/business'} className='hover:scale-110'>
-          as <span className='text-warning/80 font-bold underline'>Business</span>
+        <Link href={'/signup/business'} className="hover:scale-110">
+          as <span className="text-warning/80 font-bold underline">Business</span>
         </Link>
-        <Link href={'/signup/freelancer'} className='hover:scale-110'>
-          as <span className='text-warning/80 font-bold underline'>Freelancer</span>
+        <Link href={'/signup/freelancer'} className="hover:scale-110">
+          as <span className="text-warning/80 font-bold underline">Freelancer</span>
         </Link>
       </div>
     </form>

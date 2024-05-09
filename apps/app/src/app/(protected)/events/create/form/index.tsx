@@ -18,7 +18,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { onError, onTestForm } from '__utils/helpers';
 import { db, getCloudFunction } from '__firebase/clientApp';
-import { ActionButton } from 'ui';
+import { ActionButton } from '@repo/ui';
 import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
 import { EventLocation } from './event-location';

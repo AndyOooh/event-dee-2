@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "@repo/ui",
   "version": "0.0.0",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
@@ -15,7 +15,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/types": "workspace:*",
     "react": "^18.2.0",
-    "tsconfig": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "typescript": "^4.5.2"
   },
   "dependencies": {

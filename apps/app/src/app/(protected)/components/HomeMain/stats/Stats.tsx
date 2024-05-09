@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stat } from 'ui';
+import { Stat } from '@repo/ui';
 
 export const Stats = () => {
   const statsData = [
@@ -31,8 +31,8 @@ export const Stats = () => {
 
   return (
     <div>
-      <div className='grid grid-cols-4 gap-2'>
-        {statsData.map(stat => (
+      <div className="grid grid-cols-4 gap-2">
+        {statsData.map((stat) => (
           <div key={stat.title}>
             <Stat stat={stat} />
           </div>

@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
-import { TextInput, FormError, Select, ActionButton } from 'ui';
+import { TextInput, FormError, Select, ActionButton } from '@repo/ui';
 import { wizardForm } from '__atoms/signupBusinessAtom';
 import { styles } from '__styles/styles';
 import { CompanyType, IStep2Schema, step2Schema } from '../validation';

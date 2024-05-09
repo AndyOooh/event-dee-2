@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { TextInput, FormError, ActionButton } from 'ui';
+import { TextInput, FormError, ActionButton } from '@repo/ui';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { styles } from '__styles/styles';
 import { CheckLegal } from '../../../components/CheckLegal';
@@ -52,7 +52,7 @@ export const Step1 = () => {
 
     await createUserWithEmailAndPassword(data.email, data.new_password);
 
-    setWFormData(prev => ({
+    setWFormData((prev) => ({
       ...prev,
       ...data,
       step: prev.step + 1,
@@ -62,61 +62,62 @@ export const Step1 = () => {
 
   return (
     <>
-      <p className='px-[10%]'>
+      <p className="px-[10%]">
         Access the highly curated society of top event workers. Find the talent you need for your
         next event.
       </p>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={provider === 'email' ? styles.formSmall : styles.form}>
+        className={provider === 'email' ? styles.formSmall : styles.form}
+      >
         {provider === 'email' ? (
           <>
-            <TextInput name='email' register={register} label={true} />
+            <TextInput name="email" register={register} label={true} />
             <FormError formError={errors?.email?.message} />
-            <div className='flex gap-4'>
+            <div className="flex gap-4">
               <div>
-                <TextInput name='new_password' register={register} label={true} />
+                <TextInput name="new_password" register={register} label={true} />
                 <FormError formError={errors?.new_password?.message} />
               </div>
               <div>
-                <TextInput name='confirm_password' label={true} register={register} />
+                <TextInput name="confirm_password" label={true} register={register} />
                 <FormError formError={errors?.confirm_password?.message} />
               </div>
             </div>
             <CheckLegal
-              name='check_legal'
+              name="check_legal"
               register={register}
               error={errors?.check_legal?.message}
             />
             <FormError formError={errors?.check_legal?.message} />
-            <div className='divider'>Or sign up with</div>
+            <div className="divider">Or sign up with</div>
             <OAuthButtons isSignUp={true} setSelected={setValue} selected={provider} />
-            <ActionButton text='Step 2' />
+            <ActionButton text="Step 2" />
             <SwitchToLogin />
           </>
         ) : (
-          <div className='w-4/5 mx-auto flex flex-col items-center gap-4 bg-cyan-200/30'>
-            <p className='self-start font-semibold'>Signing up with</p>
-            <div className='relative flex items-center gap-4'>
-              <div className='avatar'>
-                <div className='w-16'>
+          <div className="w-4/5 mx-auto flex flex-col items-center gap-4 bg-cyan-200/30">
+            <p className="self-start font-semibold">Signing up with</p>
+            <div className="relative flex items-center gap-4">
+              <div className="avatar">
+                <div className="w-16">
                   <Image
                     src={authUser?.photoURL || '/images/profile-photo-placeholder.jpg'}
                     alt={provider}
                     fill={true}
-                    sizes='3rem'
-                    className='rounded-xl'
+                    sizes="3rem"
+                    className="rounded-xl"
                   />
                 </div>
               </div>
-              <div className='relative h-16 flex items-center gap-3 border border-gray-500 px-4 py-2 rounded-lg'>
-                <div className='avatar'>
-                  <div className='w-8'>
+              <div className="relative h-16 flex items-center gap-3 border border-gray-500 px-4 py-2 rounded-lg">
+                <div className="avatar">
+                  <div className="w-8">
                     <Image
                       src={provider === 'google' ? googleLogo : facebookLogo}
-                      alt='google'
+                      alt="google"
                       fill={true}
-                      sizes='3rem'
+                      sizes="3rem"
                     />
                   </div>
                 </div>
@@ -124,12 +125,12 @@ export const Step1 = () => {
               </div>
             </div>
             <CheckLegal
-              name='check_legal'
+              name="check_legal"
               register={register}
               error={errors?.check_legal?.message}
             />
             <FormError formError={errors?.check_legal?.message} />
-            <ActionButton text='Step 2' />
+            <ActionButton text="Step 2" />
           </div>
         )}
       </form>

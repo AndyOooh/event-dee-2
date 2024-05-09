@@ -4,7 +4,7 @@ import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import React, { useContext } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { TextInput } from 'ui';
+import { TextInput } from '@repo/ui';
 import { formArrayGetToKnow } from './form-data';
 
 type Props = {
@@ -16,16 +16,16 @@ export const GetToKnow = ({ register }: Props) => {
 
   return (
     <div className={styles.form}>
-      <div className='w-full flex flex-col gap-6'>
+      <div className="w-full flex flex-col gap-6">
         {currentUser
           ? formArrayGetToKnow.map((info, index) => (
-              <div key={info.title} className='w-1/2 self-center'>
+              <div key={info.title} className="w-1/2 self-center">
                 <TextInput
                   name={info.title}
                   defaultValue={currentUser && currentUser[info.title]}
                   register={register}
                   label={true}
-                  maxW='max-w-md'
+                  maxW="max-w-md"
                 />
               </div>
             ))

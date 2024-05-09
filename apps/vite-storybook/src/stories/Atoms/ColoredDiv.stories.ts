@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ColoredDiv, colorMap } from 'ui';
+import { ColoredDiv, colorMap } from '@repo/ui';
 
 const meta = {
   title: 'Atoms/ColoredDiv',

@@ -9,7 +9,7 @@ import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUse
 import { BiTrashAlt } from 'react-icons/bi';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { uploadString, getDownloadURL, ref } from 'firebase/storage';
-import { ActionButton } from 'ui';
+import { ActionButton } from '@repo/ui';
 
 type Props = {};
 
@@ -61,9 +61,9 @@ export const PhotoForm = (props: Props) => {
   };
 
   const indicator = (
-    <div className='absolute top-[25%] right-0 rounded-full bg-primary border border-error z-10 p-1 hover:cursor-pointer hover:scale-110'>
+    <div className="absolute top-[25%] right-0 rounded-full bg-primary border border-error z-10 p-1 hover:cursor-pointer hover:scale-110">
       <BiTrashAlt
-        className='text-2xl text-error font-semibold'
+        className="text-2xl text-error font-semibold"
         size={'1rem'}
         onClick={onRemoveImage}
       />
@@ -78,9 +78,9 @@ export const PhotoForm = (props: Props) => {
         indicator={indicator}
         selectedFileRef={selectedFileRef}
         onSelectImage={(e: ChangeEvent<HTMLInputElement>) => onSelectImage(e, setSelectedFile)}
-        label='Change your profile photo'
+        label="Change your profile photo"
       />
-      <ActionButton text='Update' disabled={!selectedFile} />
+      <ActionButton text="Update" disabled={!selectedFile} />
     </form>
   );
 };
