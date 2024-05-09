@@ -54,6 +54,9 @@ importers:
       eslint-config-custom:
         specifier: workspace:*
         version: link:packages/eslint-config-custom
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
       postcss:
         specifier: ^8.4.21
         version: 8.4.38
@@ -146,9 +149,6 @@ importers:
       firebase-tools-with-isolate:
         specifier: ^13.7.3
         version: 13.7.3(encoding@0.1.13)
-      npm-run-all:
-        specifier: ^4.1.5
-        version: 4.1.5
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(postcss@8.4.38)(typescript@4.9.5)
