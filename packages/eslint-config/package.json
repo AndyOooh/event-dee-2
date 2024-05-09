@@ -1,8 +1,15 @@
 {
-  "name": "eslint-config-custom",
+  "name": "@repo/eslint-config",
   "version": "0.0.0",
+  "private": true,
   "main": "index.js",
   "license": "MIT",
+  "files": [
+    "library.js",
+    "next.js",
+    "react-internal.js",
+    "node.js"
+  ],
   "dependencies": {
     "eslint-config-next": "latest",
     "eslint-config-prettier": "^8.3.0",
@@ -16,3 +23,5 @@
     "clean": "rm -rf node_modules"
   }
 }
+
+

@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "event-dee-types": "workspace:*",
-    "eslint-config-custom": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
     "tsconfig": "workspace:*"
   }
 }
