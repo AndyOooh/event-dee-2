@@ -5,7 +5,7 @@ import {
   // DocData,
   FetchDocsWithQueryParams,
   FetchDocByIdParams,
-} from 'event-dee-types';
+} from '@repo/types';
 
 /**
  * Callable

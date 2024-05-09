@@ -1,6 +1,6 @@
 import React from 'react';
 import { toTitleCase } from '../utils/helpers';
-import { SelectOptions } from 'event-dee-types';
+import { SelectOptions } from '@repo/types';
 
 type Props = {
   name: string;
@@ -10,7 +10,7 @@ type Props = {
   label?: boolean;
   tooltip?: string;
   className?: string;
-  options: SelectOptions
+  options: SelectOptions;
   value?: string;
   maxW?: string;
 };
@@ -36,16 +36,17 @@ export const Select = ({
     <>
       <select
         {...register(register_string)}
-        className={`select select-bordered w-full mx-auto font-normal focus:outline-none focus:border-accent ${maxW} ${className} text-inherit`}>
+        className={`select select-bordered w-full mx-auto font-normal focus:outline-none focus:border-accent ${maxW} ${className} text-inherit`}
+      >
         {/* <option disabled selected> */}
         <option>{defaultValue}</option>
-        {options.map(opt => {
+        {options.map((opt) => {
           const isString = typeof opt === 'string';
           const value = isString ? opt : opt.value;
           // const label = isString ? opt : opt.label || opt.value;
           const label = isString ? opt : opt.label;
           return (
-            <option key={value} value={value} className='text-inherit'>
+            <option key={value} value={value} className="text-inherit">
               {label}
             </option>
           );
@@ -56,7 +57,7 @@ export const Select = ({
 
   if (tooltip) {
     Select = (
-      <div className='tooltip tooltip-info tooltip-left w-full text-xs' data-tip={tooltip}>
+      <div className="tooltip tooltip-info tooltip-left w-full text-xs" data-tip={tooltip}>
         {Select}
       </div>
     );
@@ -65,8 +66,8 @@ export const Select = ({
   if (label) {
     Select = (
       <>
-        <label className='label w-full flex flex-col whitespace-nowrap'>
-          <span className='label-text self-start mb-3'>{_label}</span>
+        <label className="label w-full flex flex-col whitespace-nowrap">
+          <span className="label-text self-start mb-3">{_label}</span>
           {Select}
         </label>
       </>

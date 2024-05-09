@@ -13,7 +13,7 @@
     "@types/react-dom": "^18.2.3",
     "eslint": "^7.32.0",
     "@repo/eslint-config": "workspace:*",
-    "event-dee-types": "workspace:*",
+    "@repo/types": "workspace:*",
     "react": "^18.2.0",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"

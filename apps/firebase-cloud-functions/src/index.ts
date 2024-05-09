@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 // import * as admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 import { initializeApp } from 'firebase-admin/app';
-import { testFuncFromUi } from 'event-dee-types';
+import { testFuncFromUi } from '@repo/types';
 
 export * from './auth/index.js';
 export * from './callable.js';

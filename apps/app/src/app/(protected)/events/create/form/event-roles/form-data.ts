@@ -3,7 +3,7 @@ import {
   IeventRoleSchema,
   // IeventRolesSchema
 } from './validation';
-import { SelectOptions } from 'event-dee-types';
+import { SelectOptions } from '@repo/types';
 
 type FormInput = {
   // title: keyof IeventRoleSchema;

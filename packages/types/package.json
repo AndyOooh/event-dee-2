@@ -1,5 +1,5 @@
 {
-  "name": "event-dee-types",
+  "name": "@repo/types",
   "version": "1.0.0",
   "type": "module", 
   "main": "./src/index.ts",

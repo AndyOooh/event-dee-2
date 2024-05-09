@@ -14,7 +14,7 @@ import { ImageUpload } from '__components/ImageUpload';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
 import { ActionButton } from 'ui';
-import { SetCustomClaimsParams } from 'event-dee-types';
+import { SetCustomClaimsParams } from '@repo/types';
 
 export const Step3 = () => {
   const [authUser] = useAuthState(auth);
@@ -80,7 +80,7 @@ export const Step3 = () => {
         },
       });
 
-      setWFormData(prev => ({
+      setWFormData((prev) => ({
         ...prev,
         step: 1,
       }));
@@ -96,14 +96,14 @@ export const Step3 = () => {
     <LoaderSpinner />
   ) : (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
-      <div className='flex flex-col items-center gap-2 w-full'>
+      <div className="flex flex-col items-center gap-2 w-full">
         <ImageUpload
           selectedFile={selectedFile}
           selectedFileRef={selectedFileRef}
           onSelectImage={(e: ChangeEvent<HTMLInputElement>) => onSelectImage(e, setSelectedFile)}
         />
       </div>
-      <ActionButton loading={loading} text='Sign up' />
+      <ActionButton loading={loading} text="Sign up" />
     </form>
   );
 };

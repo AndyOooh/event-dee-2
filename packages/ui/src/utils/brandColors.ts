@@ -1,4 +1,4 @@
-import { ThemeColors } from 'event-dee-types';
+import { ThemeColors } from '@repo/types';
 
 export const colorMap = {
   pink: '#f9b1cc', //primary - soft

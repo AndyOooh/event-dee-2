@@ -23,7 +23,7 @@ import { EventInfo } from './event-info';
 import { IcreateEventSchema, createEventSchema } from './validation';
 import { EventLocation } from './event-location';
 import { EventRoles } from './event-roles';
-import { FetchDocByIdParams } from 'event-dee-types';
+import { FetchDocByIdParams } from '@repo/types';
 
 export const CreateEventForm = () => {
   const { currentUser } = useContext(CurrUserContext);
@@ -111,22 +111,23 @@ export const CreateEventForm = () => {
   return currentUser ? (
     <>
       <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-        {sections.map(section => (
-          <div key={section.title} className='flex flex-col gap-2 mt-4'>
-            <h2 className='text-xl'>{section.title}</h2>
-            <div className='card bg-base-100'>
-              <div className='card-body'>{section.element}</div>
+        {sections.map((section) => (
+          <div key={section.title} className="flex flex-col gap-2 mt-4">
+            <h2 className="text-xl">{section.title}</h2>
+            <div className="card bg-base-100">
+              <div className="card-body">{section.element}</div>
             </div>
           </div>
         ))}
 
-        <div className='w-full sticky bottom-0 p-4'>
-          <ActionButton text='Create' disabled={!isDirty || !isValid} loading={isSubmitting} />
+        <div className="w-full sticky bottom-0 p-4">
+          <ActionButton text="Create" disabled={!isDirty || !isValid} loading={isSubmitting} />
           {process.env.NODE_ENV === 'development' && (
             <button
-              type='button'
+              type="button"
               onClick={() => onTestForm(formState, getValues())}
-              className='btn btn-neutral'>
+              className="btn btn-neutral"
+            >
               Test
             </button>
           )}

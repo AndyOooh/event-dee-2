@@ -13,7 +13,7 @@
     "ui": "workspace:*"
   },
   "devDependencies": {
-    "event-dee-types": "workspace:*",
+    "@repo/types": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "tsconfig": "workspace:*"
   }

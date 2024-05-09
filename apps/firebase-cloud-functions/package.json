@@ -28,7 +28,7 @@
     "firebase-functions": "^4.2.0"
   },
   "devDependencies": {
-    "event-dee-types": "workspace:*",
+    "@repo/types": "workspace:*",
     "firebase-functions-test": "^3.0.0",
     "firebase-tools-with-isolate": "^13.7.3",
     "tsup": "^8.0.2",

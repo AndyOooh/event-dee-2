@@ -94,7 +94,7 @@ It also includes five **packages** for shared configurations, types and UI compo
 - @repo/eslint-config
 - @repo/tsconfig
 - @repo/tailwind-config
-- @repo/event-dee-types
+- @repo/types
 - @repo/ui (React component library)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
