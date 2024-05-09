@@ -1,3 +1,17 @@
+// {
+//   "compilerOptions": {
+//     "module": "commonjs",
+//     "noImplicitReturns": true,
+//     "noUnusedLocals": true,
+//     "outDir": "dist",
+//     "sourceMap": true,
+//     "strict": true,
+//     "target": "es2017"
+//   },
+//   "compileOnSave": true,
+//   "include": ["src", "../../packages/event-dee-types/src"] // Add this line to include the event-dee-types package
+// }
+
 {
   "compilerOptions": {
     // "module": "commonjs",
@@ -15,7 +29,7 @@
     "types": ["node"]
   },
   "compileOnSave": true,
-  
+
   "include": [
     "src",
     "../../packages/event-dee-types/src" // Add this line to include the event-dee-types package
