@@ -6,5 +6,7 @@ export * from './ComingSoon';
 export * from './NotificationCounter';
 export * from './EventTag';
 
+/* Folders */
 export * from './form-elements';
+export * from './utils';
 

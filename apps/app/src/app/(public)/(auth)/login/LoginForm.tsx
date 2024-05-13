@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
-import { FIREBASE_ERRORS } from 'ui/src/utils/firebaseErrors';
+import { FIREBASE_ERRORS } from '@repo/ui/src/utils/firebaseErrors';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { auth } from '__firebase/clientApp';
 import { styles } from '__styles/styles';

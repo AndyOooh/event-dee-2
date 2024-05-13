@@ -10,13 +10,13 @@ import {
   useFieldArray,
   useWatch,
 } from 'react-hook-form';
-import { ActionButton, FormError, RadioButtonMulti, Select, TextInput } from '@repo/ui';
+import { ActionButton, FormError, RadioButtonMulti, Select, TextInput, getAttributes } from '@repo/ui';
 import { formArrayEventRoles } from './form-data';
 import { IcreateEventSchema } from '../validation';
 import { IeventRoleSchema } from './validation';
 import { IeventDetailsSchema } from '../event-info/validation';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
-import { getAttributes } from 'ui/src/form-elements/attributesMap';
+// import { getAttributes } from '@repo/ui'; // problematic
 import { BiEdit, BiTrash } from 'react-icons/bi';
 
 type Props = {
