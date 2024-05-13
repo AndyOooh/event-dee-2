@@ -19,7 +19,7 @@ export const testDebugger = functions.https.onRequest((req, res) => {
   const a = 22;
   const b = 138;
   const c = a + b;
-  const d = testFuncFromUi(10);
+  const d = testFuncFromUi(22);
   console.log('🚀  c:', c);
   res.send({ message: 'Hello from Firebase!', data: c, thisisD: d });
   // res.send({ message: 'Hello from Firebase!', data: c });

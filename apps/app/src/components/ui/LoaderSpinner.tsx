@@ -1,7 +1,7 @@
 "use client"; // Not sure if this is needed
 
 import React from "react";
-import { ColoredDiv, colorMap } from "ui";
+import { ColoredDiv, colorMap } from "@repo/ui";
 
 type Props = {};
 
