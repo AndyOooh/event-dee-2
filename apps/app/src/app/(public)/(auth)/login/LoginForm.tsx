@@ -3,11 +3,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
-import { FIREBASE_ERRORS } from '@repo/ui/src/utils/firebaseErrors';
 import { OAuthButtons } from '__components/modals/auth/OAuthButtons';
 import { auth } from '__firebase/clientApp';
 import { styles } from '__styles/styles';
-import { FormError } from '@repo/ui';
+import { FIREBASE_ERRORS, FormError } from '@repo/ui';
 
 export const LoginForm = () => {
   const [form, setForm] = useState({

@@ -1,4 +1,4 @@
-import { TextInputClassNames } from '@repo/ui/src/form-elements/TextInput';
+import { TextInputClassNames } from '@repo/ui';
 import {
   IeventRoleSchema,
   // IeventRolesSchema

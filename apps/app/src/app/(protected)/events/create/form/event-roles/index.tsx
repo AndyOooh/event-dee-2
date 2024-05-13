@@ -16,7 +16,6 @@ import { IcreateEventSchema } from '../validation';
 import { IeventRoleSchema } from './validation';
 import { IeventDetailsSchema } from '../event-info/validation';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
-// import { getAttributes } from '@repo/ui'; // problematic
 import { BiEdit, BiTrash } from 'react-icons/bi';
 
 type Props = {
