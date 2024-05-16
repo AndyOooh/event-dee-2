@@ -2,14 +2,14 @@ name: Deploy on Changes to Next.js Apps
 on:
   # pull_request:
   #   types: [opened, reopened]
-  push:
-    branches:
-      - main
-    paths:
-      - 'apps/app/**'
-      - 'apps/app/*'
-      - 'apps/landing/**'
-      - 'apps/landing/*'
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'apps/app/**'
+  #     - 'apps/app/*'
+  #     - 'apps/landing/**'
+  #     - 'apps/landing/*'
   workflow_dispatch:
 
 jobs:
