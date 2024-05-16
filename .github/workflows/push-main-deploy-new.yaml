@@ -21,40 +21,27 @@ jobs:
         with:
           fetch-depth: 0 # Necessary for comparing changes to past commits
 
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v3
-      #   with:
-      #     version: 9
-
-      # - name: Install TurboRepo CLI
-      #   run: pnpm i turbo --global
-
-      # - name: Verify pnpm and turbo versions
-      #   run: |
-      #     pnpm --version
-      #     turbo --version
-
-      - name: app changed in last commit?
+      - name: App changed in last commit?
         id: changedActionApp
         uses: Trampoline-CX/action-turbo-changed@v1
         with:
           workspace: app
           from: HEAD^1 # Check for changes since previous commit (feel free to put a branch name instead in the form of origin/<branchName>)
 
-      - name: Validate Action Output
+      - name: Deploy app to dev.domain.com
         if: steps.changedActionApp.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
         run: |
           echo "Detected changes in app: App. Deploying to Vercel"
           curl https://api.vercel.com/v1/integrations/deploy/prj_pIjgANGuuYB6DTezAaPiHYcBJerb/5PICX8gHCa
 
-      - name: landing changed in last commit?
+      - name: Landing changed in last commit?
         id: changedActionLanding
         uses: Trampoline-CX/action-turbo-changed@v1
         with:
           workspace: landing
           from: HEAD^1 # Check for changes since previous commit (feel free to put a branch name instead in the form of origin/<branchName>)
 
-      - name: Validate Action Output
+      - name: Deploy landing to domain.com
         if: steps.changedActionLanding.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
         run: |
           echo "Detected changes in app: Landing. Deploying to Vercel"
