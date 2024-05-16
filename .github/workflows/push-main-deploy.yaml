@@ -30,8 +30,9 @@ jobs:
         run: pnpm i turbo --global
 
       - name: Verify pnpm and turbo versions
-        run: pnpm --version
-        run: trubo --version
+        run: |
+          pnpm --version
+          trubo --version
 
       - name: Get changed packages
         id: turborepoChanges
