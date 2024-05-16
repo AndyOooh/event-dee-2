@@ -20,6 +20,14 @@ jobs:
         with:
           fetch-depth: 0 # Necessary for comparing changes to past commits
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          
+      - name: Install TurboRepo CLI
+        run: pnpm i turbo --global
+
       - name: Get changed packages
         id: turborepoChanges
         # uses: 94726/action-turborepo-changes@v1.0.0
