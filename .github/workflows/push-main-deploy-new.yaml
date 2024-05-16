@@ -44,7 +44,7 @@ jobs:
       - name: Validate Action Output
         if: steps.changedActionApp.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
         run: |
-          echo: "Detected changes in app: App. Deploying to Vercel"
+          echo "Detected changes in app: App. Deploying to Vercel"
           curl https://api.vercel.com/v1/integrations/deploy/prj_pIjgANGuuYB6DTezAaPiHYcBJerb/5PICX8gHCa
 
       - name: landing changed in last commit?
@@ -57,5 +57,5 @@ jobs:
       - name: Validate Action Output
         if: steps.changedActionLanding.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
         run: |
-          echo: "Detected changes in app: Landing. Deploying to Vercel"
+          echo "Detected changes in app: Landing. Deploying to Vercel"
           curl https://api.vercel.com/v1/integrations/deploy/prj_ZuS0TyO3wfg89YoINFUPuyqyTvl9/tMNpP6nB0Q
