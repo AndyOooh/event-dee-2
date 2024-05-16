@@ -3,10 +3,10 @@
 
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { LoaderSpinner } from '__components/@repo/ui/LoaderSpinner';
 import { auth } from '__firebase/clientApp';
 import { PageWithAuthCard } from '__components/PageWithAuthCard';
 import { CurrentUserProvider } from 'app/(protected)/components/Providers/CurrentUserProvider';
+import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 
 type Props = {
   privatePage: React.ReactNode;
