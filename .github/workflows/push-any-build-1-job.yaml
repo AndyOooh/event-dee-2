@@ -38,12 +38,12 @@ jobs:
           path: |
             **/node_modules
           # Adding node version as cache key
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}-${{ steps.node.outputs.node_version }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ steps.node.outputs.node_version }}
 
       - name: Install TurboRepo CLI
-        run: yarn global add turbo
+        run: pnpm i turbo --global
       - name: Install dependencies
-        run: yarn
+        run: pnpm i
       - name: Lint, Build, Test
         # run: turbo run lint --filter="...[HEAD^1]"
         run: |
