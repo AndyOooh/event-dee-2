@@ -39,6 +39,10 @@ jobs:
             **/node_modules
           # Adding node version as cache key
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ steps.node.outputs.node_version }}
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Install TurboRepo CLI
         run: pnpm i turbo --global
