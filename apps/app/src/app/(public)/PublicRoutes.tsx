@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { auth } from '__firebase/clientApp';
-// force workflow test 2
+// force workflow test 3
 
 export const PublicRoutes = ({ children }: { children: React.ReactNode }) => {
   const [user, loading, error] = useAuthState(auth);
