@@ -32,7 +32,7 @@ jobs:
       - name: Verify pnpm and turbo versions
         run: |
           pnpm --version
-          trubo --version
+          turbo --version
 
       - name: Get changed packages
         id: turborepoChanges
