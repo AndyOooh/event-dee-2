@@ -1,5 +1,11 @@
 import { defineConfig } from 'tsup';
 
+/*
+ * Using tsup mainly to be able to compile ts from internal package in this app and thereby also be able to deploy.
+ * Althernatively I could compile in the internal packages themselves.
+ * See noExternal
+ */
+
 export default defineConfig({
   entry: ['src/index.ts'],
   format: ['esm'],
