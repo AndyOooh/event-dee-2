@@ -24,3 +24,13 @@ export const testDebugger = functions.https.onRequest((req, res) => {
   res.send({ message: 'Hello from Firebase!', data: c, thisisD: d });
   // res.send({ message: 'Hello from Firebase!', data: c });
 });
+
+export const testDeploy = functions.https.onRequest((req, res) => {
+  const a = 22;
+  const b = 138;
+  const c = a + b;
+  const d = testFuncFromUi(22);
+  console.log('🚀  c:', c);
+  res.send({ message: 'Hello from Firebase - deploy works in new!', data: c, thisisD: d });
+  // res.send({ message: 'Hello from Firebase!', data: c });
+});
