@@ -29,6 +29,10 @@ jobs:
       - name: Install TurboRepo CLI
         run: pnpm i turbo --global
 
+      - name: Verify pnpm and turbo versions
+        run: pnpm --version
+        run: trubo --version
+
       - name: Get changed packages
         id: turborepoChanges
         # uses: 94726/action-turborepo-changes@v1.0.0
