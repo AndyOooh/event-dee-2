@@ -1,5 +1,5 @@
 {
   "extends": "@repo/tsconfig/react-library.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", "build", "node_modules"] // dist and build are not required as it's an internal package (not compiled inside itself)
 }

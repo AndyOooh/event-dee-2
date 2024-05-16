@@ -2,26 +2,25 @@
   "name": "@repo/eslint-config",
   "version": "0.0.0",
   "private": true,
-  "main": "index.js",
-  "license": "MIT",
   "files": [
     "library.js",
     "next.js",
     "react-internal.js",
     "node.js"
   ],
-  "dependencies": {
-    "eslint-config-next": "latest",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react": "7.28.0",
-    "eslint-config-turbo": "latest"
+  "scripts": {
+    "clean": "rm -rf node_modules"
   },
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "clean": "rm -rf node_modules"
+  "devDependencies": {
+    "@vercel/style-guide": "^5.2.0",
+    "eslint-config-turbo": "^1.12.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "typescript": "^5.3.3"
   }
 }
-
-
