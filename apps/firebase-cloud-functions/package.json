@@ -19,7 +19,7 @@
     "deploy": "firebase deploy --only functions",
     "emulate": "firebase emulators:start --import=emulator-data",
     "emulate_with_export": "firebase emulators:start --export-on-exit=emulator-data --import=emulator-data",
-    "lint": "eslint . --max-warnings 0",
+    "lint-remove-after-config-setup": "eslint . --max-warnings 0",
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
