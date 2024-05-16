@@ -25,7 +25,7 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           version: 9
-          
+
       - name: Install TurboRepo CLI
         run: pnpm i turbo --global
 
@@ -33,6 +33,11 @@ jobs:
         id: turborepoChanges
         # uses: 94726/action-turborepo-changes@v1.0.0
         uses: 94726/action-turborepo-changes@2f392aee0d6b90803c0551ea774c254451fd92be
+
+      - name: Log changed package names
+        run: |
+          echo "Changed package names:"
+          echo '${{ fromJson(steps.turborepoChanges.outputs.package_names) }}' | tr ',' '\n'
 
       - name: Deploy app to dev.domain.com
         if: contains(fromJson(steps.turborepoChanges.outputs.package_names), 'app')
