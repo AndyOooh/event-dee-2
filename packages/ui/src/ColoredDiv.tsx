@@ -1,5 +1,5 @@
 import { colorMap } from './utils/brandColors';
-import { ThemeColors } from 'event-dee-types';
+import { ThemeColors } from '@repo/types';
 
 type ColoredDivProps = {
   children?: React.ReactNode;
@@ -36,13 +36,14 @@ export const ColoredDiv = ({
 
   return (
     <div
-      className={`${className} rounded-3xl`}
+      className={`${className} rounded-3xl -z-50`}
       style={{
         transform: `skew(${skew[0]}deg, ${skew[1]}deg) rotateY(${rotateY}deg) rotateX(${rotateX}deg) rotateZ(${rotateZ}deg)`,
         width: calcWidth,
         height: calcHeight,
         background: `linear-gradient(to ${direction}, ${hexColor}80, ${hexColor}10`,
-      }}>
+      }}
+    >
       {children}
     </div>
   );

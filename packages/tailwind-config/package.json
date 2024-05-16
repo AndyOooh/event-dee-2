@@ -1,5 +1,5 @@
 {
-    "name": "tailwind-config",
+    "name": "@repo/tailwind-config",
     "version": "1.0.0",
     "private": true,
     "license": "ISC"

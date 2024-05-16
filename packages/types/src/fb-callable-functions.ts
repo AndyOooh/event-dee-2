@@ -1,4 +1,4 @@
-import { WhereFilterOp } from '@google-cloud/firestore';
+import { WhereFilterOp } from '@firebase/firestore-types';
 import { CustomClaims } from '.';
 
 export type FetchDocsWithQueryParams = {

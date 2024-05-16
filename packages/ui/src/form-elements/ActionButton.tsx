@@ -1,5 +1,5 @@
-import { PulseLoader } from 'react-spinners';
-import { colorMap } from 'ui';
+import { PulseLoader } from "react-spinners";
+import { colorMap } from "../utils/brandColors";
 
 type Props = {
   text: string;
@@ -11,11 +11,11 @@ type Props = {
 
 type ButtonProps = {
   onClick?: () => void;
-  type?: 'submit' | 'button';
+  type?: "submit" | "button";
 };
 
 export const ActionButton = ({ text, onClick, loading, disabled = false, className }: Props) => {
-  const buttonProps: ButtonProps = onClick ? { onClick, type: 'button' } : { type: 'submit' };
+  const buttonProps: ButtonProps = onClick ? { onClick, type: "button" } : { type: "submit" };
 
   return (
     <button

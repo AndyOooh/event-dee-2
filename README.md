@@ -91,11 +91,11 @@ This project is bootstrapped as a monorepo with [turborepo](https://turbo.build/
 
 It also includes five **packages** for shared configurations, types and UI components:
 
-- eslint-config-custom
-- tsconfig
-- tailwind-config
-- event-dee-types
-- ui (React component library)
+- @repo/eslint-config
+- @repo/tsconfig
+- @repo/tailwind-config
+- @repo/types
+- @repo/ui (React component library)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

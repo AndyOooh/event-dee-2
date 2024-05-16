@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { getAuth } from 'firebase-admin/auth';
-import { SetCustomClaimsParams } from 'event-dee-types';
+import { SetCustomClaimsParams } from '@repo/types';
 
 /*
  * Callable

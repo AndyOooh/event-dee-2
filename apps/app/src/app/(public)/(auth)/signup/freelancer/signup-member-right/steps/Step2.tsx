@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ActionButton, Checkbox, FormError, Select, TextInput } from 'ui';
+import { ActionButton, Checkbox, FormError, Select, TextInput } from '@repo/ui';
 
 import { styles } from '../../../../../../../styles/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -39,8 +39,8 @@ export const Step2 = ({}: Props) => {
     resolver: yupResolver(step2Schema),
   });
 
-  const onSubmit: SubmitHandler<FormStep2> = data => {
-    setWFormData(prev => ({
+  const onSubmit: SubmitHandler<FormStep2> = (data) => {
+    setWFormData((prev) => ({
       ...prev,
       ...data,
       step: prev.step + 1,
@@ -50,40 +50,40 @@ export const Step2 = ({}: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSmall}>
       <TextInput
-        name='name'
-        tooltip='Real name looks more professional and could result in more job opportunitues.'
+        name="name"
+        tooltip="Real name looks more professional and could result in more job opportunitues."
         register={register}
       />
       <FormError formError={errors?.name?.message} />
       <TextInput
         register={register}
-        name='last_name'
-        tooltip='This is only for official use and will not be public.'
+        name="last_name"
+        tooltip="This is only for official use and will not be public."
       />
       <FormError formError={errors?.last_name?.message} />
 
       <Select
-        name='profession'
+        name="profession"
         options={professionOptions}
         register={register}
-        className=''
-        defaultValue='Choose profession'
+        className=""
+        defaultValue="Choose profession"
       />
       {/*as string is a quick fix. check it later */}
       <FormError formError={errors?.profession?.message as string} />
 
-      <div className='form-control'>
-        <label className='label'>
-          <span className='label-text'>What jobs are you intested in?</span>
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">What jobs are you intested in?</span>
         </label>
-        <div className='flex justify-around'>
-          <Checkbox name='other_skills' value='model' register={register} className='' />
-          <Checkbox name='other_skills' value='photographer' register={register} className='' />
-          <Checkbox name='other_skills' value='MC' register={register} className='' />
+        <div className="flex justify-around">
+          <Checkbox name="other_skills" value="model" register={register} className="" />
+          <Checkbox name="other_skills" value="photographer" register={register} className="" />
+          <Checkbox name="other_skills" value="MC" register={register} className="" />
         </div>
       </div>
       <FormError formError={errors?.other_skills?.message} />
-      <ActionButton text='Step 3' />
+      <ActionButton text="Step 3" />
     </form>
   );
 };

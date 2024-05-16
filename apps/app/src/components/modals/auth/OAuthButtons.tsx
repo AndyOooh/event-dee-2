@@ -11,7 +11,7 @@ import {
   useAuthState,
   useDeleteUser,
 } from 'react-firebase-hooks/auth';
-import { FormError } from 'ui';
+import { FormError } from '@repo/ui';
 import { UserCredential, signOut } from 'firebase/auth';
 
 export type Providers = 'google' | 'facebook';
@@ -68,23 +68,25 @@ export const OAuthButtons = ({ selected, setSelected, isSignUp = false }: Props)
   if (errorGoogle) console.error('🚫  file: OAuthButtons.tsx:55  errorGoogle:', errorGoogle);
 
   return (
-    <div className='w-full flex-center flex-col gap-4'>
-      <div className='w-full flex-center gap-4'>
+    <div className="w-full flex-center flex-col gap-4">
+      <div className="w-full flex-center gap-4">
         {selected !== 'google' && (
           <button
-            type='button'
-            className='btn btn-sm btn-circle relative border-none bg-transparent hover:bg-transparent hover:scale-110'
-            onClick={onClick('facebook')}>
-            <Image src={facebookLogo} alt='facebook' fill={true} sizes='3rem' />
+            type="button"
+            className="btn btn-sm btn-circle relative border-none bg-transparent hover:bg-transparent hover:scale-110"
+            onClick={onClick('facebook')}
+          >
+            <Image src={facebookLogo} alt="facebook" fill={true} sizes="3rem" />
           </button>
         )}
         {selected !== 'facebook' && (
           <button
-            type='button'
-            className='btn btn-sm btn-circle relative border-none bg-transparent hover:bg-transparent hover:scale-110'
+            type="button"
+            className="btn btn-sm btn-circle relative border-none bg-transparent hover:bg-transparent hover:scale-110"
             // onClick={() => onClick('google')}
-            onClick={onClick('google')}>
-            <Image src={googleLogo} alt='google' fill={true} sizes='3rem' />
+            onClick={onClick('google')}
+          >
+            <Image src={googleLogo} alt="google" fill={true} sizes="3rem" />
           </button>
         )}
       </div>

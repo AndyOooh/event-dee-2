@@ -3,7 +3,7 @@
 
 import { create } from '@storybook/theming/create';
 
-import { colorMap } from 'ui';
+import { colorMap } from '@repo/ui';
 
 export const eventDeeTheme = create({
   base: 'light',

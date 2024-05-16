@@ -1,6 +1,7 @@
 {
-  "name": "ui",
+  "name": "@repo/ui",
   "version": "0.0.0",
+  "private": true,
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "license": "MIT",
@@ -9,18 +10,18 @@
     "clean": "rm -rf node_modules"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
+    "@repo/types": "workspace:*",
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.3",
     "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
-    "event-dee-types": "*",
     "react": "^18.2.0",
-    "tsconfig": "*",
     "typescript": "^4.5.2"
   },
   "dependencies": {
     "react-hook-form": "^7.43.9",
-    "react-icons": "^4.8.0",
-    "react-select": "^5.7.3"
+    "react-select": "^5.7.3",
+    "react-spinners": "^0.13.8"
   }
 }

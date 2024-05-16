@@ -5,7 +5,7 @@ import {
   // DocData,
   FetchDocsWithQueryParams,
   FetchDocByIdParams,
-} from 'event-dee-types';
+} from '@repo/types';
 
 /**
  * Callable
@@ -42,7 +42,7 @@ export const fetchDocsWithQuery = https.onCall(
 
       const querySnapshot = await query.limit(limit || Infinity).get();
       const documents: DocumentData[] = [];
-      querySnapshot.forEach(doc => {
+      querySnapshot.forEach((doc) => {
         documents.push({ id: doc.id, ...doc.data() });
       });
 

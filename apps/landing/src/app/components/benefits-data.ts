@@ -1,4 +1,4 @@
-import { Direction, ThemeColors } from 'event-dee-types';
+import { Direction, ThemeColors } from '@repo/types';
 
 type Benefits = {
   title: string;
@@ -44,5 +44,4 @@ export const benefits: Benefits[] = [
     color: 'red',
     direction: 'bottom',
   },
-
 ];

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['ui'],
+  transpilePackages: ['@repo/ui'],
   experimental: {
     optimizePackageImports: [
       'react-icons/*',
@@ -16,7 +16,7 @@ const nextConfig = {
       'react-spinners',
       'recoil',
       'server-only',
-      'ui',
+      '@repo/ui',
       'use-places-autocomplete',
       'usehooks-ts',
       'yup',

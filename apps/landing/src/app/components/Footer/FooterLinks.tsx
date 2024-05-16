@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import React from 'react';
-import { RiArticleFill } from 'react-icons/ri';
-import { RxArrowRight, RxArrowTopRight } from 'react-icons/rx';
+import Link from "next/link";
+import React from "react";
+import { RiArticleFill } from "react-icons/ri";
+import { RxArrowRight, RxArrowTopRight } from "react-icons/rx";
 import {
   SiDiscord,
   SiInstructure,
@@ -9,7 +9,7 @@ import {
   SiReadthedocs,
   SiTwitter,
   SiYoutube,
-} from 'react-icons/si';
+} from "react-icons/si";
 
 type Link = {
   title: string;
@@ -18,41 +18,41 @@ type Link = {
   logo: JSX.Element;
 };
 
-const logoSize = '1.75rem';
+const logoSize = "1.75rem";
 const links: Link[] = [
   {
-    title: 'Articles',
-    href: '#',
+    title: "Articles",
+    href: "#",
     external: false,
     logo: <RiArticleFill size={logoSize} />,
   },
   {
-    title: 'Twitter',
-    href: '#',
+    title: "Twitter",
+    href: "#",
     external: true,
     logo: <SiTwitter size={logoSize} />,
   },
   {
-    title: 'Discord',
-    href: '#',
+    title: "Discord",
+    href: "#",
     external: true,
     logo: <SiDiscord size={logoSize} />,
   },
   {
-    title: 'Whitepaper',
-    href: '#',
+    title: "Whitepaper",
+    href: "#",
     external: false,
     logo: <SiReadthedocs size={logoSize} />,
   },
   {
-    title: 'LinkedIn',
-    href: '#',
+    title: "LinkedIn",
+    href: "#",
     external: true,
     logo: <SiLinkedin size={logoSize} />,
   },
   {
-    title: 'Youtube',
-    href: '#',
+    title: "Youtube",
+    href: "#",
     external: true,
     logo: <SiYoutube size={logoSize} />,
   },

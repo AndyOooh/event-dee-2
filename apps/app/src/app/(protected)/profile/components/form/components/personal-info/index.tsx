@@ -4,7 +4,7 @@ import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { useContext } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { DatePicker, FormError, Select, TextInput } from 'ui';
+import { DatePicker, FormError, Select, TextInput } from '@repo/ui';
 import { formArrayPersonalInfo } from './form-data';
 import { formatDate } from '__firebase/utilities';
 import { IpersonalInfoSchema } from './validation';
@@ -19,7 +19,7 @@ export const PersonalInfo = ({ register, errors }: Props) => {
 
   return (
     <div className={styles.form}>
-      <div className='w-full grid grid-cols-2 gap-6'>
+      <div className="w-full grid grid-cols-2 gap-6">
         {currentUser
           ? formArrayPersonalInfo.map((info, index) => (
               <div key={info.title}>
@@ -30,7 +30,7 @@ export const PersonalInfo = ({ register, errors }: Props) => {
                     options={info.options}
                     register={register}
                     label={true}
-                    maxW='max-w-md'
+                    maxW="max-w-md"
                   />
                 ) : info.type === 'date' ? (
                   <DatePicker
@@ -38,7 +38,7 @@ export const PersonalInfo = ({ register, errors }: Props) => {
                     defaultValue={currentUser && formatDate(currentUser[info.title], true)}
                     register={register}
                     label={true}
-                    maxW='max-w-md'
+                    maxW="max-w-md"
                     extraProps={info.extraProps}
                   />
                 ) : (
@@ -47,7 +47,7 @@ export const PersonalInfo = ({ register, errors }: Props) => {
                     defaultValue={currentUser && currentUser[info.title]}
                     register={register}
                     label={true}
-                    maxW='max-w-md'
+                    maxW="max-w-md"
                     prepend={info.prepend}
                   />
                 )}

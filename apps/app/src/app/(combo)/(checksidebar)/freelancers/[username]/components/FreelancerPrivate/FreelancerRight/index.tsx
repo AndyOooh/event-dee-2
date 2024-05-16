@@ -3,7 +3,7 @@
 // import { CurrUserContext } from 'app/(protected)/components/Providers/userProvider';
 import { UserContext } from 'app/(protected)/components/Providers/UserProvider';
 import React, { useContext } from 'react';
-import { ColoredDiv } from 'ui';
+import { ColoredDiv } from '@repo/ui';
 
 type Props = {};
 
@@ -34,12 +34,12 @@ export const FreelancerRight = (props: Props) => {
     // },
   ];
   return (
-    <div className='flex flex-1 flex-col gap-4 mt-4'>
-      {sections.map(section => (
-        <div key={section.title} className='flex flex-col gap-2'>
-          <h2 className='text-xl pl-4'>{section.title}</h2>
-          <div className='card bg-base-100'>
-            <div className='card-body'>{section.element}</div>
+    <div className="flex flex-1 flex-col gap-4 mt-4">
+      {sections.map((section) => (
+        <div key={section.title} className="flex flex-col gap-2">
+          <h2 className="text-xl pl-4">{section.title}</h2>
+          <div className="card bg-base-100">
+            <div className="card-body">{section.element}</div>
           </div>
         </div>
       ))}

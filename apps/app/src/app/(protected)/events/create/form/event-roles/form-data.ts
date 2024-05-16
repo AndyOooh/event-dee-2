@@ -1,9 +1,9 @@
-import { TextInputClassNames } from 'ui/src/form-elements/TextInput';
+import { TextInputClassNames } from '@repo/ui';
 import {
   IeventRoleSchema,
   // IeventRolesSchema
 } from './validation';
-import { SelectOptions } from 'event-dee-types';
+import { SelectOptions } from '@repo/types';
 
 type FormInput = {
   // title: keyof IeventRoleSchema;

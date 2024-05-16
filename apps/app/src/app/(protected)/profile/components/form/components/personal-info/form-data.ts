@@ -1,6 +1,6 @@
 import thaiProvinces from '__utils/provinces.json';
 import { IpersonalInfoSchema } from './validation';
-import { SelectOptions } from 'event-dee-types';
+import { SelectOptions } from '@repo/types';
 
 const dateXYearsago = (years: number) => {
   const date = new Date();
@@ -45,7 +45,7 @@ export const formArrayPersonalInfo: FormInput[] = [
     title: 'province',
     type: 'select',
     tooltip: 'Enter your province',
-    options: thaiProvinces.map(province => ({
+    options: thaiProvinces.map((province) => ({
       value: province.provinceNameEn,
       label: province.provinceNameEn,
     })),

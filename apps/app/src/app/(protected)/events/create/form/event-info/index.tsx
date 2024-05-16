@@ -4,7 +4,7 @@ import { styles } from '__styles/styles';
 import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUserProvider';
 import { useContext } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { DatePicker, FormError, Select, TextInput } from 'ui';
+import { DatePicker, FormError, Select, TextInput } from '@repo/ui';
 import { formArrayEventDetails } from './form-data';
 import { formatDate } from '__firebase/utilities';
 
@@ -22,8 +22,8 @@ export const EventInfo = ({ register, errors }: Props) => {
 
   return currentUser ? (
     <div className={styles.form}>
-      <div className='w-full grid grid-cols-2 gap-6'>
-        {formArrayEventDetails.slice(0, dateIndex).map(info => (
+      <div className="w-full grid grid-cols-2 gap-6">
+        {formArrayEventDetails.slice(0, dateIndex).map((info) => (
           <div key={info.title}>
             {info.type === 'select' ? (
               <Select
@@ -32,7 +32,7 @@ export const EventInfo = ({ register, errors }: Props) => {
                 options={info.options}
                 register={register}
                 label={true}
-                maxW='max-w-md'
+                maxW="max-w-md"
                 tooltip={info.tooltip}
               />
             ) : (
@@ -41,7 +41,7 @@ export const EventInfo = ({ register, errors }: Props) => {
                 defaultValue={currentUser && currentUser[info.title]}
                 register={register}
                 label={true}
-                maxW='max-w-md'
+                maxW="max-w-md"
                 prepend={info.prepend}
                 tooltip={info.tooltip}
               />
@@ -50,15 +50,15 @@ export const EventInfo = ({ register, errors }: Props) => {
             {/* <FormError formError={errors?.[info.title]?.message} /> */}
           </div>
         ))}
-        <div className='w-full flex gap-4'>
-          {formArrayEventDetails.slice(dateIndex, descriptionIndex).map(info => (
-            <div key={info.title} className='w-full'>
+        <div className="w-full flex gap-4">
+          {formArrayEventDetails.slice(dateIndex, descriptionIndex).map((info) => (
+            <div key={info.title} className="w-full">
               <DatePicker
                 name={info.title}
                 defaultValue={currentUser && formatDate(currentUser[info.title], true)}
                 register={register}
                 label={true}
-                maxW='max-w-[75%]'
+                maxW="max-w-[75%]"
                 extraProps={info.extraProps}
                 tooltip={info.tooltip}
               />
@@ -66,13 +66,13 @@ export const EventInfo = ({ register, errors }: Props) => {
           ))}
         </div>
       </div>
-      <div className='w-1/2 mx-auto'>
+      <div className="w-1/2 mx-auto">
         <TextInput
           name={descriptionFormData.title}
           defaultValue={currentUser && currentUser[descriptionFormData.title]}
           register={register}
           label={true}
-          maxW='max-w-md'
+          maxW="max-w-md"
           tooltip={descriptionFormData.tooltip}
         />
       </div>

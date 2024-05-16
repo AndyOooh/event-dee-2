@@ -10,13 +10,12 @@ import {
   useFieldArray,
   useWatch,
 } from 'react-hook-form';
-import { ActionButton, FormError, RadioButtonMulti, Select, TextInput } from 'ui';
+import { ActionButton, FormError, RadioButtonMulti, Select, TextInput, getAttributes } from '@repo/ui';
 import { formArrayEventRoles } from './form-data';
 import { IcreateEventSchema } from '../validation';
 import { IeventRoleSchema } from './validation';
 import { IeventDetailsSchema } from '../event-info/validation';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
-import { getAttributes } from 'ui/src/form-elements/attributesMap';
 import { BiEdit, BiTrash } from 'react-icons/bi';
 
 type Props = {
@@ -56,29 +55,29 @@ export const EventRoles = ({ register, control, errors }: Props) => {
   };
 
   const onAddRole = (index: number) => {
-    setSaved(prev => [...prev, index]);
+    setSaved((prev) => [...prev, index]);
   };
 
   const onRemoveRole = (index: number) => {
     remove(index);
-    setSaved(prev => prev.filter(item => item !== index));
+    setSaved((prev) => prev.filter((item) => item !== index));
   };
 
   const onUpdateRole = (index: number) => {
-    setSaved(prev => prev.filter(item => item !== index));
+    setSaved((prev) => prev.filter((item) => item !== index));
   };
 
   return currentUser ? (
     <>
       {saved.length ? (
-        <div className='card w-full bg-base-200 shadow-xl text-sm mb-8'>
-          <div className='overflow-x-auto'>
-            <table className='table w-full'>
+        <div className="card w-full bg-base-200 shadow-xl text-sm mb-8">
+          <div className="overflow-x-auto">
+            <table className="table w-full">
               <thead>
                 <tr>
                   {Object.keys(fields[0]).map((key: string) => {
                     return key === 'id' ? null : (
-                      <th key={key} className='text-center'>
+                      <th key={key} className="text-center">
                         {getAttributes(key)._short_label || getAttributes(key)._label}
                       </th>
                     );
@@ -97,17 +96,18 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                             key={key}
                             className={`text-center ${
                               key === 'role_description' ? 'truncate max-w-[4rem]' : ''
-                            }`}>
+                            }`}
+                          >
                             {value}
                           </th>
                         );
                       })}
-                      <th className='flex gap-2 justify-center items-center'>
-                        <button type='button' className='' onClick={() => onUpdateRole(index)}>
-                          <BiEdit className='text-2xl text-info' />
+                      <th className="flex gap-2 justify-center items-center">
+                        <button type="button" className="" onClick={() => onUpdateRole(index)}>
+                          <BiEdit className="text-2xl text-info" />
                         </button>
-                        <button type='button' className='' onClick={() => onRemoveRole(index)}>
-                          <BiTrash className='text-2xl text-error' />
+                        <button type="button" className="" onClick={() => onRemoveRole(index)}>
+                          <BiTrash className="text-2xl text-error" />
                         </button>
                       </th>
                     </tr>
@@ -119,10 +119,10 @@ export const EventRoles = ({ register, control, errors }: Props) => {
       ) : null}
       {saved.length < fields.length ? (
         <div className={styles.form}>
-          <div className='flex justify-between'>
+          <div className="flex justify-between">
             <div>
-              <div className='w-full flex gap-6'>
-                {formArrayEventRoles.slice(0, 3).map(info => (
+              <div className="w-full flex gap-6">
+                {formArrayEventRoles.slice(0, 3).map((info) => (
                   <div key={info.title}>
                     {info.type === 'select' ? (
                       <Select
@@ -132,8 +132,8 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                         options={info.options}
                         register={register}
                         label={true}
-                        className='select-sm '
-                        maxW='max-w-md'
+                        className="select-sm "
+                        maxW="max-w-md"
                         tooltip={info.tooltip}
                       />
                     ) : (
@@ -157,8 +157,8 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                   </div>
                 ))}
               </div>
-              <div className='w-full flex gap-6'>
-                {formArrayEventRoles.slice(3, 6).map(info => (
+              <div className="w-full flex gap-6">
+                {formArrayEventRoles.slice(3, 6).map((info) => (
                   <div key={info.title}>
                     <TextInput
                       name={info.title}
@@ -180,8 +180,8 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                 ))}
               </div>
             </div>
-            {radioFields.map(option => (
-              <div key={option} className='flex gap-2'>
+            {radioFields.map((option) => (
+              <div key={option} className="flex gap-2">
                 <RadioButtonMulti
                   control={control}
                   // register={register}
@@ -193,29 +193,31 @@ export const EventRoles = ({ register, control, errors }: Props) => {
                 {!['Provided', 'Not Provided'].includes(
                   roles?.[saved.length]?.[option] as string
                 ) && (
-                  <div key={'amount_num'} className='form-control self-end'>
-                    <label className='label gap-2 cursor-pointer'>
+                  <div key={'amount_num'} className="form-control self-end">
+                    <label className="label gap-2 cursor-pointer">
                       <Controller
                         name={`roles.${saved.length}.${option}`}
                         control={control}
                         defaultValue={400}
                         render={({ field }) => (
                           <div
-                            className='tooltip tooltip-info tooltip-left w-full text-xs'
-                            data-tip={'Input amount'}>
+                            className="tooltip tooltip-info tooltip-left w-full text-xs"
+                            data-tip={'Input amount'}
+                          >
                             <div
-                              className={`input input-sm input-bordered flex focus-within:[border:1px_solid_black] px-0 max-w-sm`}>
-                              <span className='text-xs bg-gray-200 h-full flex items-center justify-center px-2 my-auto'>
+                              className={`input input-sm input-bordered flex focus-within:[border:1px_solid_black] px-0 max-w-sm`}
+                            >
+                              <span className="text-xs bg-gray-200 h-full flex items-center justify-center px-2 my-auto">
                                 $$
                               </span>
                               <input
                                 defaultValue={'0'}
                                 step={50}
-                                onChange={e => {
+                                onChange={(e) => {
                                   field.onChange(e.target.value);
                                 }}
-                                type='number'
-                                className='input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 '
+                                type="number"
+                                className="input text-xs w-20 mx-auto focus:outline-none focus:border-accent flex-1 text-center h-auto focus:border-none px-0 "
                               />
                             </div>
                           </div>
@@ -248,21 +250,21 @@ export const EventRoles = ({ register, control, errors }: Props) => {
 
           {/* </div> */}
 
-          <div className='self-center flex justify-center gap-4'>
+          <div className="self-center flex justify-center gap-4">
             <ActionButton
               onClick={() => onAddRole(saved.length)}
-              text='Add'
-              className='btn-sm max-w-[10rem]'
+              text="Add"
+              className="btn-sm max-w-[10rem]"
             />
             <ActionButton
               onClick={() => onRemoveRole(saved.length)}
-              text='Cancel'
-              className='btn-sm max-w-[10rem] btn-error'
+              text="Cancel"
+              className="btn-sm max-w-[10rem] btn-error"
             />
           </div>
         </div>
       ) : (
-        <ActionButton onClick={() => append(baseValues)} text='Add Role' />
+        <ActionButton onClick={() => append(baseValues)} text="Add Role" />
       )}
     </>
   ) : (

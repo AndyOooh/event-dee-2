@@ -1,26 +1,25 @@
 import {
-  FaBriefcase,
-  FaComments,
-  FaMoneyBillAlt,
-  FaRegFile,
-  FaRegLightbulb,
-  FaRegMoneyBillAlt,
-  FaShieldAlt,
-} from 'react-icons/fa';
-import { BiMessageSquareDetail } from 'react-icons/bi';
-import { FaRegFileAlt } from 'react-icons/fa';
-import { FaMoneyBill } from 'react-icons/fa';
-import { FaBalanceScale } from 'react-icons/fa';
-import { FaUserFriends } from 'react-icons/fa';
-import { FaStar, FaSearch } from 'react-icons/fa';
-import { MdDescription, MdMessage, MdPayment, MdSearch } from 'react-icons/md';
+    FaBriefcase,
+    FaComments,
+    FaMoneyBillAlt,
+    FaRegFile,
+    FaRegLightbulb,
+    FaRegMoneyBillAlt,
+    FaShieldAlt,
+} from 'react-icons/fa'
+import { BiMessageSquareDetail } from 'react-icons/bi'
+import { FaRegFileAlt } from 'react-icons/fa'
+import { FaMoneyBill } from 'react-icons/fa'
+import { FaBalanceScale } from 'react-icons/fa'
+import { FaUserFriends } from 'react-icons/fa'
+import { FaStar, FaSearch } from 'react-icons/fa'
+import { MdDescription, MdMessage, MdPayment, MdSearch } from 'react-icons/md'
 import {
-  RiHandCoinLine,
-  RiSecurePaymentLine,
-  RiFilePaper2Line,
-  RiChatSmile2Line,
-} from 'react-icons/ri';
-import {} from 'react-icons/';
+    RiHandCoinLine,
+    RiSecurePaymentLine,
+    RiFilePaper2Line,
+    RiChatSmile2Line,
+} from 'react-icons/ri'
 
 // GiInjustice, VscLaw, GoLaw,
 // BiHide, MdOutlineVisibility, MdOutlineVisibilityOff, MdVisibility
@@ -28,45 +27,46 @@ import {} from 'react-icons/';
 // TbWritingSignOff, TbWritingOff
 
 type Benefit = {
-  title: string;
-  description: string;
-  icon1: JSX.Element;
-  icon2: JSX.Element;
-  icon3: JSX.Element;
-};
+    title: string
+    description: string
+    icon1: JSX.Element
+    icon2: JSX.Element
+    icon3: JSX.Element
+}
 
-const iconSize = '2.8rem';
+const iconSize = '2.8rem'
 export const freelancerBenefits: Benefit[] = [
-  {
-    title: 'Automatic Payments',
-    description: 'Our payment system ensures timely and secure payments. We help solve disputes.',
-    icon1: <RiSecurePaymentLine size={iconSize} />,
-    icon2: <MdPayment size={iconSize} />,
-    icon3: <FaRegMoneyBillAlt size={iconSize} />,
-  },
-  {
-    title: 'Legal Support',
-    description: 'We handle the legal matters. Focus on work, let us take care of paperwork.',
-    icon1: <MdDescription size={iconSize} />,
-    icon2: <FaRegFile size={iconSize} />,
-    icon3: <RiFilePaper2Line size={iconSize} />,
-  },
-  {
-    title: 'Access 100s of Jobs',
-    description: 'Find your next job easily. Access many job listings on our platform.',
-    icon1: <RiHandCoinLine size={iconSize} />,
-    icon2: <FaBriefcase size={iconSize} />,
-    icon3: <MdSearch size={iconSize} />,
-  },
-  {
-    title: 'Simple Communication',
-    description:
-      'Communicate seamlessly with clients in one place. Say goodbye to the back-and-forth.',
-    icon1: <FaComments size={iconSize} />,
-    icon2: <MdMessage size={iconSize} />,
-    icon3: <RiChatSmile2Line size={iconSize} />,
-  },
-];
+    {
+        title: 'Automatic Payments',
+        description:
+            'Our payment system ensures timely and secure payments. We help solve disputes.',
+        icon1: <RiSecurePaymentLine size={iconSize} />,
+        icon2: <MdPayment size={iconSize} />,
+        icon3: <FaRegMoneyBillAlt size={iconSize} />,
+    },
+    {
+        title: 'Legal Support',
+        description: 'We handle the legal matters. Focus on work, let us take care of paperwork.',
+        icon1: <MdDescription size={iconSize} />,
+        icon2: <FaRegFile size={iconSize} />,
+        icon3: <RiFilePaper2Line size={iconSize} />,
+    },
+    {
+        title: 'Access 100s of Jobs',
+        description: 'Find your next job easily. Access many job listings on our platform.',
+        icon1: <RiHandCoinLine size={iconSize} />,
+        icon2: <FaBriefcase size={iconSize} />,
+        icon3: <MdSearch size={iconSize} />,
+    },
+    {
+        title: 'Simple Communication',
+        description:
+            'Communicate seamlessly with clients in one place. Say goodbye to the back-and-forth.',
+        icon1: <FaComments size={iconSize} />,
+        icon2: <MdMessage size={iconSize} />,
+        icon3: <RiChatSmile2Line size={iconSize} />,
+    },
+]
 
 // {
 //   title: 'Access to many jobs',

@@ -64,3 +64,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# isolate-package output
+isolate

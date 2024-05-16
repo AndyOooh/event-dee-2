@@ -3,10 +3,10 @@
 
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { auth } from '__firebase/clientApp';
 import { PageWithAuthCard } from '__components/PageWithAuthCard';
 import { CurrentUserProvider } from 'app/(protected)/components/Providers/CurrentUserProvider';
+import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 
 type Props = {
   privatePage: React.ReactNode;
@@ -24,7 +24,7 @@ export const ComboSidebarLayoutProvider = ({ privatePage, publicPage, sideBar }:
   ) : user ? (
     // Most of this is copy/paste from (protected)/page.tsx and layout.tsx.
     // Create a component?
-    <section className='flex'>
+    <section className="flex">
       <CurrentUserProvider>
         {sideBar}
         <PageWithAuthCard>{privatePage}</PageWithAuthCard>

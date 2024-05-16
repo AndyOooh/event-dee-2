@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
-import { TextInput, FormError, Select, ActionButton } from 'ui';
+import { TextInput, FormError, Select, ActionButton } from '@repo/ui';
 import { wizardForm } from '__atoms/signupBusinessAtom';
 import { styles } from '__styles/styles';
 import { CompanyType, IStep2Schema, step2Schema } from '../validation';
@@ -15,7 +15,7 @@ import { DEFAULT_PROFILE_PHOTO_URL } from '__utils/global-consts';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
-import { CustomClaims, SetCustomClaimsParams } from 'event-dee-types';
+import { CustomClaims, SetCustomClaimsParams } from '@repo/types';
 
 export const Step2 = () => {
   const [, setWFormData] = useRecoilState(wizardForm);
@@ -77,7 +77,7 @@ export const Step2 = () => {
         });
       }
 
-      setWFormData(prev => ({
+      setWFormData((prev) => ({
         ...prev,
         step: 1,
       }));
@@ -93,11 +93,11 @@ export const Step2 = () => {
     <LoaderSpinner />
   ) : (
     <form onSubmit={handleSubmit(onSubmit)} className={`${styles.formSmall} max-w-md`}>
-      <div className='flex gap-4'>
+      <div className="flex gap-4">
         <div>
           <TextInput
-            name='first_name'
-            tooltip='Real name looks more professional and could result in more job opportunitues.'
+            name="first_name"
+            tooltip="Real name looks more professional and could result in more job opportunitues."
             register={register}
             label={true}
           />
@@ -106,17 +106,17 @@ export const Step2 = () => {
         <div>
           <TextInput
             register={register}
-            name='last_name'
-            tooltip='This is only for official use and will not be public.'
+            name="last_name"
+            tooltip="This is only for official use and will not be public."
             label={true}
           />
           <FormError formError={errors?.last_name?.message} />
         </div>
       </div>
-      <TextInput name='company_name' register={register} label={true} />
+      <TextInput name="company_name" register={register} label={true} />
       <FormError formError={errors?.company_name?.message} />
       <Select
-        name='company_type'
+        name="company_type"
         register={register}
         options={Object.values(CompanyType)}
         label={true}
@@ -125,7 +125,7 @@ export const Step2 = () => {
       {/* <button className='btn' type='submit'>
         Here
       </button> */}
-      <ActionButton text='Get Started' />
+      <ActionButton text="Get Started" />
     </form>
   );
 };

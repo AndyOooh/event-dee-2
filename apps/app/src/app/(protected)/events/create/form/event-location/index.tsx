@@ -4,7 +4,7 @@ import { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { useLoadScript } from '@react-google-maps/api';
 import { LoaderSpinner } from '__components/ui/LoaderSpinner';
 import { info } from 'console';
-import { TextInput, FormError } from 'ui';
+import { TextInput, FormError } from '@repo/ui';
 // import { formArrayEventDetails } from './form-data';
 import { IeventLocationSchema } from './validation';
 import { IcreateEventSchema } from '../validation';
@@ -30,12 +30,12 @@ export const EventLocation = ({ register, errors, setValue, address }: Props) =>
       <MapLocation setValue={setValue} address={address} />
       <div>
         <TextInput
-          name='location_description'
+          name="location_description"
           // defaultValue={currentUser && currentUser[info.title]}
           register={register}
           label={true}
-          maxW='max-w-md'
-          tooltip='Describe the location of the event.'
+          maxW="max-w-md"
+          tooltip="Describe the location of the event."
           // prepend={info.prepend}
         />
 

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { BurgerMenu } from './BurgerMenu';
 import logoMint from '../../../../public/logo/combi_mint.png';
-// import { colorMap } from 'ui';
+// import { colorMap } from '@repo/ui';
 
 // const gruppo = Gruppo({
 //   weight: ['400'],
@@ -19,12 +19,13 @@ import logoMint from '../../../../public/logo/combi_mint.png';
 
 function HeaderLeft() {
   return (
-    <div className='navbar-start'>
+    <div className="navbar-start">
       <BurgerMenu />
       <Link
         href={'/'}
-        className='relative md:flex hidden items-center w-fit p-2 rounded min-w-fit h-8 min-h-[2rem]'>
-        <Image src={logoMint} alt='logo' width={800} height={800} className='h-4 w-fit' />
+        className="relative md:flex hidden items-center w-fit p-2 rounded min-w-fit h-8 min-h-[2rem]"
+      >
+        <Image src={logoMint} alt="logo" width={800} height={800} className="h-4 w-fit" />
       </Link>
     </div>
   );

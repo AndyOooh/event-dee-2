@@ -6,7 +6,7 @@ import { CurrUserContext } from 'app/(protected)/components/Providers/CurrentUse
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { IdeleteUserSchema, deleteUserSchema } from './validation';
-import { TextInput, FormError, ActionButton } from 'ui';
+import { TextInput, FormError, ActionButton } from '@repo/ui';
 import { useAuthState, useDeleteUser } from 'react-firebase-hooks/auth';
 import { reAuthenticate } from '__firebase/utilities';
 import { useRouter } from 'next/navigation';
@@ -49,40 +49,41 @@ export const DeleteAccountForm = () => {
   const buttonDisabled = providerId === 'password' ? !isDirty || !isValid : false;
 
   return currentUser ? (
-    <div className='flex flex-col gap-2 mt-4'>
-      <h2 className='text-xl'>Delete Account</h2>
-      <div className='card bg-base-100'>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate className='card-body'>
+    <div className="flex flex-col gap-2 mt-4">
+      <h2 className="text-xl">Delete Account</h2>
+      <div className="card bg-base-100">
+        <form onSubmit={handleSubmit(onSubmit)} noValidate className="card-body">
           <p>Deleting your account will remove all of your information from our database.</p>
-          <p className='font-bold text-error'>This cannot be undone.</p>
-          <div className='w-full flex flex-col gap-6 items-center'>
+          <p className="font-bold text-error">This cannot be undone.</p>
+          <div className="w-full flex flex-col gap-6 items-center">
             {providerId === 'password' && (
-              <div className='w-fit'>
+              <div className="w-fit">
                 <TextInput
                   name={'password'}
                   defaultValue={currentUser && currentUser['password']}
                   register={register}
                   label={true}
-                  maxW='max-w-md'
+                  maxW="max-w-md"
                 />
                 <FormError formError={errors?.['password']?.message} />
               </div>
             )}
-            <div className='flex align-bottom'>
+            <div className="flex align-bottom">
               <ActionButton
-                text='Delete my account'
+                text="Delete my account"
                 disabled={buttonDisabled}
                 loading={isSubmitting}
-                className='btn-error'
+                className="btn-error"
               />
             </div>
           </div>
           {process.env.NODE_ENV === 'development' && (
-            <div className='w-full sticky bottom-0 p-4'>
+            <div className="w-full sticky bottom-0 p-4">
               <button
-                type='button'
+                type="button"
                 onClick={() => onTestForm(formState, getValues())}
-                className='btn btn-neutral'>
+                className="btn btn-neutral"
+              >
                 Test
               </button>
             </div>

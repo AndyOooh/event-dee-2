@@ -1,4 +1,4 @@
-import { ColoredDiv } from 'ui';
+import { ColoredDiv } from "./ColoredDiv";
 
 type Props = {
   pageName: string;
