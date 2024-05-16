@@ -10,6 +10,7 @@ on:
       - 'apps/app/*'
       - 'apps/landing/**'
       - 'apps/landing/*'
+  workflow_dispatch:
 
 jobs:
   deploy:
