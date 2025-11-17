@@ -9,7 +9,7 @@
     ".env.*"
   ],
   "engines": {
-    "node": "20"
+    "node": ">=20"
   },
   "scripts": {
     "build": "tsup-node",
@@ -20,7 +20,7 @@
     "emulate": "firebase emulators:start --import=emulator-data",
     "emulate_with_export": "firebase emulators:start --export-on-exit=emulator-data --import=emulator-data",
     "lint-remove-after-config-setup": "eslint . --max-warnings 0",
-    "type:check": "tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@google-cloud/functions-framework": "^3.4.0",
@@ -30,7 +30,6 @@
   "devDependencies": {
     "@repo/types": "workspace:*",
     "firebase-functions-test": "^3.0.0",
-    "firebase-tools-with-isolate": "^13.7.3",
     "tsup": "^8.0.2",
     "typescript": "^4.9.0"
   }

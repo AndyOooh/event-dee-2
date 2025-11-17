@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode",
+    "dev": "next dev",
     "lint": "next lint",
-    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode"
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@repo/ui": "workspace:*"
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@repo/types": "workspace:*",
     "@repo/eslint-config": "workspace:*",
-    "@repo/tsconfig": "workspace:*"
+    "@repo/tsconfig": "workspace:*",
+    "@repo/tailwind-config": "workspace:*"
   }
 }

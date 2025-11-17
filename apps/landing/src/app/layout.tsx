@@ -54,18 +54,9 @@ export const metadata = {
   },
 };
 
-export async function generateStaticParams() {
-  return [{ lang: 'en-US' }, { lang: 'de' }];
-}
-
-type Props = {
-  children: React.ReactNode;
-  params: { lang: string };
-};
-
-export default function RootLayout({ children, params }: Props) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={params.lang} className={`${inter.className} bg-base-200 text-black`}>
+    <html lang="en" className={`${inter.className} bg-base-200 text-black`}>
       {/* Best so far */}
       {/* <html lang='en' className={`${gantari.className} text-black`}> */}
       {/* decent */}
@@ -76,9 +67,9 @@ export default function RootLayout({ children, params }: Props) {
       {/* <html lang='en' className={`${cabin.className} text-black`}> */}
       {/* Too thin, spaces */}
       {/* <html lang='en' className={`${karla.className} text-black`}> */}
-      <body className='min-h-screen'>
+      <body className="min-h-screen">
         <Header />
-        <main className='main-height mt-16'>{children}</main>
+        <main className="main-height mt-16">{children}</main>
         <Footer />
       </body>
     </html>

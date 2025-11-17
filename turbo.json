@@ -28,6 +28,9 @@
     },
     "emulators": {
       "env": ["FIRESTORE_EMULATOR_HOST"]
+    },
+    "typecheck": {
+      "cache": false
     }
   }
 }

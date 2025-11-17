@@ -19,11 +19,13 @@
     "clean": "turbo run clean",
     "clean:root": "rm -r node_modules && rm -r .turbo",
     "clean:all": "run-p clean clean:root",
+    "deploy": "firebase deploy",
     "dev": "dotenv -- turbo dev",
     "emulators": "turbo run emulators",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck"
   },
   "dependencies": {
     "@yarnpkg/plugin-workspace-tools": "^4.0.0-rc.42",
@@ -44,11 +46,12 @@
     "@types/react-dom": "^18.0.7",
     "autoprefixer": "^10.4.14",
     "eslint": "^7.32.0",
+    "firebase-tools-with-isolate": "^14.16.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
     "sass": "^1.62.0",
     "tailwindcss": "^3.3.1",
-    "turbo": "latest",
+    "turbo": "^1.7",
     "typescript": "^5.0.4"
   }
 }

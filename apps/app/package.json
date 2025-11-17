@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001",
     "build": "next build",
-    "start": "next start",
+    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode",
+    "dev": "next dev --port 3001",
     "lint": "next lint",
-    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && rm -rf .vscode"
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",

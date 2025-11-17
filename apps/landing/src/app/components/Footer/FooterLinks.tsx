@@ -7,7 +7,7 @@ import {
   SiInstructure,
   SiLinkedin,
   SiReadthedocs,
-  SiTwitter,
+  // SiTwitter,
   SiYoutube,
 } from "react-icons/si";
 
@@ -30,7 +30,8 @@ const links: Link[] = [
     title: "Twitter",
     href: "#",
     external: true,
-    logo: <SiTwitter size={logoSize} />,
+    logo: <RiArticleFill size={logoSize} />,
+    // logo: <SiTwitter size={logoSize} />,
   },
   {
     title: "Discord",

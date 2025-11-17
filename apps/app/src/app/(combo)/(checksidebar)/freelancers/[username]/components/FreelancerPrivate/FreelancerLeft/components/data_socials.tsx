@@ -3,7 +3,7 @@ import {
   SiInstructure,
   SiLinkedin,
   SiReadthedocs,
-  SiTwitter,
+  // SiTwitter,
   SiYoutube,
   SiFacebook,
   SiInstagram,
@@ -37,7 +37,8 @@ export const data_socials = [
   },
   {
     name: 'twitter',
-    icon: <SiTwitter size={iconSize} className='rounded' />,
+    icon: <SiLinkedin size={iconSize} />,
+    // icon: <SiTwitter size={iconSize} className='rounded' />,
     link: 'twitter.com',
   },
   {
